@@ -1,0 +1,42 @@
+{
+  "name": "studio",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^2.0.0",
+    "@codemirror/lang-javascript": "^6.1.9",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@tiptap/pm": "^2.0.3",
+    "@tiptap/react": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
+    "@uiw/react-codemirror": "^4.21.7",
+    "clsx": "^1.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "highlight.js": "^11.7.0",
+    "jwks-rsa": "^3.0.0",
+    "morgan": "^1.10.0",
+    "next": "^13.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "reactstrap": "^9.1.5",
+    "zustand": "^4.3.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.14",
+    "identity-obj-proxy": "^3.0.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2"
+  }
+}
