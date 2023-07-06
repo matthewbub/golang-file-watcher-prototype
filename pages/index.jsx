@@ -10,7 +10,7 @@ fetch('https://api.openweathermap.org/data/3.0/onecall?lat=34.0336&lon=-117.0431
 export default function Index() {
 
   return (
-    <div className='bg-neutral-950'>
+    <div className=''>
       <Hero />
       <hr />
       <Content />
