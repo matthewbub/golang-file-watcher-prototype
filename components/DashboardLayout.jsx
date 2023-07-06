@@ -1,8 +1,13 @@
+'use client';
+
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { BellIcon, UserIcon } from '@heroicons/react/24/outline'
 import { appConfig } from '../config/appConfig'
 import clsx from 'clsx'
+import { useUser } from '@auth0/nextjs-auth0/client'
+import Link from 'next/link';
+import { DashboardSideNavigation } from './DashboardSideNavigation';
 
 function Navigation() {
   return (
@@ -38,25 +43,36 @@ export default function DashboardLayout({
   mainContent,
   secondaryContent
 }) {
+  const { user, loading } = useUser();
+  const messages = {
+    viewNotifications: appConfig['Dashboard-Layout.Sr-Only.View-Notifications'],
+    account: appConfig['Dashboard-Layout.Sr-Only.Account'],
+    currentUsernameLabel: appConfig['Dashboard-Layout.Label.Current-Username'],
+    accountSettingsLabel: appConfig['Dashboard-Layout.Label.Account-Settings'],
+    supportLabel: appConfig['Dashboard-Layout.Label.Support'],
+    licenseLabel: appConfig['Dashboard-Layout.Label.License'],
+    logOutLabel: appConfig['Dashboard-Layout.Label.Log-out'],
+  }
+
   return (
     <div className="flex min-h-full flex-col">
       <header className="shrink-0 border-b border-gray-200 bg-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <img
             className="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            src={appConfig.logo.src}
+            alt={appConfig.logo.alt}
           />
           <div className="flex items-center gap-x-8">
             <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-300">
-              <span className="sr-only">View notifications</span>
+              <span className="sr-only">{messages.viewNotifications}</span>
               <BellIcon className="h-6 w-6" aria-hidden="true" />
             </button>
             <div className="flex">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="-m-2 p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Account</span>
+                    <span className="sr-only">{messages.account}</span>
                     <UserIcon className="h-6 w-6" aria-hidden="true" />
                   </Menu.Button>
                 </div>
@@ -72,8 +88,10 @@ export default function DashboardLayout({
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-4 py-3">
-                      <p className="text-sm">Signed in as</p>
-                      <p className="truncate text-sm font-medium text-gray-900">tom@example.com</p>
+                      <p className="text-sm">{messages.currentUsernameLabel}</p>
+                      {user.name && !loading && (
+                        <p className="truncate text-sm font-medium text-gray-900">{user.name}</p>
+                      )}
                     </div>
                     <div className="py-1">
                       <Menu.Item>
@@ -85,7 +103,7 @@ export default function DashboardLayout({
                               'block px-4 py-2 text-sm'
                             )}
                           >
-                            Account settings
+                            {messages.accountSettingsLabel}
                           </a>
                         )}
                       </Menu.Item>
@@ -98,7 +116,7 @@ export default function DashboardLayout({
                               'block px-4 py-2 text-sm'
                             )}
                           >
-                            Support
+                            {messages.supportLabel}
                           </a>
                         )}
                       </Menu.Item>
@@ -111,7 +129,7 @@ export default function DashboardLayout({
                               'block px-4 py-2 text-sm'
                             )}
                           >
-                            License
+                            {messages.licenseLabel}
                           </a>
                         )}
                       </Menu.Item>
@@ -120,15 +138,15 @@ export default function DashboardLayout({
                       <form method="POST" action="#">
                         <Menu.Item>
                           {({ active }) => (
-                            <button
-                              type="submit"
+                            <Link
+                              href="/api/auth/logout"
                               className={clsx(
                                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                 'block w-full px-4 py-2 text-left text-sm'
                               )}
                             >
-                              Sign out
-                            </button>
+                              {messages.logOutLabel}
+                            </Link>
                           )}
                         </Menu.Item>
                       </form>
@@ -143,7 +161,7 @@ export default function DashboardLayout({
 
       <div className="mx-auto flex w-full max-w-7xl items-start gap-x-8 px-4 py-10 sm:px-6 lg:px-8">
         <aside className="sticky top-8 hidden w-44 shrink-0 lg:block">
-          <Navigation navigation={appConfig.navigation} />
+          <DashboardSideNavigation />
         </aside>
 
         {typeof mainContent === 'function' && (
