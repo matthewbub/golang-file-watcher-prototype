@@ -3,20 +3,30 @@ import { appConfig } from '../../config/appConfig'
 
 /* Styles & Micro Components */
 import {
-  StyledDashboardLayoutNav,
-  StyledDashboardLayoutList,
-  StyledDashboardLayoutItem
+  StyledDashboardSideNavigationNav,
+  StyledDashboardSideNavigationList,
+  StyledDashboardSideNavigationItem
 } from './DashboardSideNavigation.styled';
 
-const DashboardSideNavigation = ({ navigation = appConfig.navigation }) => {
+const DashboardSideNavigation = ({ navigation = appConfig.navigation, current }) => {
+  const navigationWithCurrent = navigation.map((item) => {
+    if (item.href === current) {
+      return {
+        ...item,
+        current: true
+      }
+    }
+    return item
+  })
+
   return (
-    <StyledDashboardLayoutNav>
-      <StyledDashboardLayoutList>
-        {navigation.map((item) => (
-          <StyledDashboardLayoutItem key={item.name} item={item} />
+    <StyledDashboardSideNavigationNav>
+      <StyledDashboardSideNavigationList>
+        {navigationWithCurrent.map((item) => (
+          <StyledDashboardSideNavigationItem key={item.name} item={item} />
         ))}
-      </StyledDashboardLayoutList>
-    </StyledDashboardLayoutNav>
+      </StyledDashboardSideNavigationList>
+    </StyledDashboardSideNavigationNav>
   )
 }
 
