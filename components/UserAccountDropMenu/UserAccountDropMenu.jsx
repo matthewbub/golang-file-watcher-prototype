@@ -28,7 +28,7 @@ const UserAccountDropMenu = () => {
   return (
     <StyledMenu>
       <div>
-        <StyledMenuButton>
+        <StyledMenuButton id='iep-user-drop'>
           <span className="sr-only">{messages.account}</span>
           <UserIcon className="h-6 w-6" aria-hidden="true" />
         </StyledMenuButton>
