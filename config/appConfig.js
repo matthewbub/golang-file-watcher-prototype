@@ -20,11 +20,12 @@ export const appConfig = {
   ],
   footerCopy: '© 2023 NineMbs Studio LLC. All rights reserved.',
 
-  ['Dashboard-Layout.Sr-Only.View-Notifications']: 'View notifications',
-  ['Dashboard-Layout.Sr-Only.Account']: 'Account',
-  ['Dashboard-Layout.Label.Current-Username']: 'Signed in as',
-  ['Dashboard-Layout.Label.Account-Settings']: 'Account settings',
-  ['Dashboard-Layout.Label.Support']: 'Support',
-  ['Dashboard-Layout.Label.License']: 'License',
-  ['Dashboard-Layout.Label.Log-out']: 'Log out',
+  // Messages
+  ['DashboardLayout.Sr-Only.View-Notifications']: 'View notifications',
+  ['UserAccountDropMenu.Sr-Only.Account']: 'Account',
+  ['UserAccountDropMenu.Label.Current-Username']: 'Signed in as',
+  ['UserAccountDropMenu.Label.Account-Settings']: 'Account settings',
+  ['UserAccountDropMenu.Label.Support']: 'Support',
+  ['UserAccountDropMenu.Label.License']: 'License',
+  ['UserAccountDropMenu.Label.Log-out']: 'Log out',
 }
