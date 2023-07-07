@@ -9,7 +9,7 @@
  */
 import { Fragment } from "react";
 
-const ProfileSettingsPersonalInformation = () => {
+const ProfileSettingsPersonalInformationForm = () => {
   return (
     <Fragment>
       <div className="px-4 sm:px-0">
@@ -160,4 +160,4 @@ const ProfileSettingsPersonalInformation = () => {
   )
 }
 
-export default ProfileSettingsPersonalInformation;
+export default ProfileSettingsPersonalInformationForm;
