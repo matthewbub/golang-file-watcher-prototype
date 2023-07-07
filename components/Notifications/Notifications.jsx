@@ -26,6 +26,7 @@ const Notifications = () => {
     };
 
     // Close notifications after their duration has passed
+    // TODO: Research - This might be bugged out when the user has multiple notifications pile up
     appNotifications.forEach((notification) => {
       closeNotificationAfterDuration(notification);
     });
