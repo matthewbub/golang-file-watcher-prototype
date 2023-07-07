@@ -13,7 +13,7 @@ import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 
 const ProfileSettingsPersonalInformationForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = data => {
 
@@ -147,7 +147,13 @@ const ProfileSettingsPersonalInformationForm = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900"
+            onClick={() => {
+              reset();
+            }}
+          >
             Cancel
           </button>
           <button
