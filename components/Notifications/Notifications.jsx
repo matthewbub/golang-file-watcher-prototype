@@ -14,8 +14,21 @@ const Notifications = () => {
   // to avoid cluttering the UI
   const displayedNotifications = appNotifications.slice(-4);
 
+  const closeNotification = (id) => {
+    setAppNotifications(appNotifications.filter((n) => n.id !== id));
+  }
+
   useEffect(() => {
-    console.log(appNotifications);
+    const closeNotificationAfterDuration = (notification) => {
+      setTimeout(() => {
+        closeNotification(notification.id);
+      }, notification.duration);
+    };
+
+    // Close notifications after their duration has passed
+    appNotifications.forEach((notification) => {
+      closeNotificationAfterDuration(notification);
+    });
   }, [appNotifications])
 
   return (
@@ -24,7 +37,10 @@ const Notifications = () => {
       className="pointer-events-none fixed inset-0 px-4 py-6 sm:items-start sm:p-6 flex flex-col space-y-2 items-end"
     >
       {appNotifications && appNotifications.length > 0 && displayedNotifications.map((notification) => (
-        <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+        <div
+          key={notification.id}
+          className="flex w-full flex-col items-center space-y-4 sm:items-end"
+        >
           {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
           <Transition
             show={notification.show}
@@ -55,9 +71,7 @@ const Notifications = () => {
                     <button
                       type="button"
                       className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={() => {
-                        setAppNotifications(appNotifications.filter((n) => n.id !== notification.id));
-                      }}
+                      onClick={closeNotification}
                     >
                       <span className="sr-only">Close</span>
                       <XMarkIcon className="h-5 w-5" aria-hidden="true" />

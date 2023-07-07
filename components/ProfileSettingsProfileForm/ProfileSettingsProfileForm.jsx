@@ -26,11 +26,7 @@ const ProfileSettingsProfileForm = () => {
   const [appNotifications, setAppNotifications] = useAtom(notifications);
   const { user } = useUser();
 
-  console.log(user);
   const onSubmit = data => {
-    console.log(data, previewImage);
-
-
     setAppNotifications([...appNotifications, newNotification({
       title: 'Profile updated',
       message: 'Your profile has been updated successfully.',
@@ -42,7 +38,6 @@ const ProfileSettingsProfileForm = () => {
       }
     })]);
   }
-
 
   const onCancel = () => {
     reset();
