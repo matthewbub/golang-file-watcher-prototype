@@ -27,7 +27,7 @@ const ProfileSettingsProfileForm = () => {
     console.log(data, previewImage);
     setAppNotifications([...appNotifications, {
       id: Math.random() * 1000,
-      isOpen: true,
+      show: true,
       message: 'Profile updated successfully!',
       type: 'success',
     }]);
