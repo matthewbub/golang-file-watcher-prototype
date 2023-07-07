@@ -9,7 +9,7 @@
     </div>
   </div>
  */
-import { Fragment, useCallback } from "react"
+import { Fragment, useCallback, useState } from "react"
 import { useForm } from "react-hook-form";
 import { UserCircleIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { useDropzone } from 'react-dropzone';
@@ -17,12 +17,22 @@ import clsx from "clsx";
 
 const ProfileSettingsProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [previewImage, setPreviewImage] = useState(null);
 
   const onSubmit = data => {
     console.log(data);
   }
+
+  const onCancel = () => {
+    reset();
+    setPreviewImage(null);
+  }
+
   const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles);
+    const file = acceptedFiles[0];
+    if (file) {
+      setPreviewImage(URL.createObjectURL(file));
+    }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -114,26 +124,34 @@ const ProfileSettingsProfileForm = () => {
                   className="sr-only"
                 />
                 <div className="text-center">
-                  <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                  <div className={clsx("mt-4 flex text-sm leading-6 text-gray-600", isDragActive && 'items-center')}>
-                    <label
-                      htmlFor="file-upload"
-                      className="text-center relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                    >
-                      <span>{isDragActive ? 'Drop file here' : 'Upload a file'}</span>
-                    </label>
-                    {!isDragActive && <p className="pl-1">or drag and drop</p>}
-                  </div>
-                  <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                  {previewImage ? (
+                    <img src={previewImage} alt="preview" className="mx-auto h-12 w-12" />
+                  ) : (
+                    <>
+                      <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                      <div className={clsx("mt-4 flex text-sm leading-6 text-gray-600", isDragActive && 'items-center')}>
+                        <label
+                          htmlFor="file-upload"
+                          className="text-center relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                        >
+                          <span>{isDragActive ? 'Drop file here' : 'Upload a file'}</span>
+                        </label>
+                        {!isDragActive && <p className="pl-1">or drag and drop</p>}
+                      </div>
+                      <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={() => {
-            reset();
-          }}>
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900"
+            onClick={onCancel}
+          >
             Cancel
           </button>
           <button
