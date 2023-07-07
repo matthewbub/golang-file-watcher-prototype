@@ -8,8 +8,15 @@
   </div>
  */
 import { Fragment } from "react";
+import { useForm } from "react-hook-form";
 
 const ProfileSettingsNotificationsForm = () => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = data => {
+    console.log(data);
+  }
+
   return (
     <Fragment>
       <div className="px-4 sm:px-0">
@@ -19,7 +26,7 @@ const ProfileSettingsNotificationsForm = () => {
         </p>
       </div>
 
-      <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
         <div className="px-4 py-6 sm:p-8">
           <div className="max-w-2xl space-y-10">
             <fieldset>
@@ -28,6 +35,7 @@ const ProfileSettingsNotificationsForm = () => {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
+                      {...register("comments")}
                       id="comments"
                       name="comments"
                       type="checkbox"
@@ -44,6 +52,7 @@ const ProfileSettingsNotificationsForm = () => {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
+                      {...register("candidates")}
                       id="candidates"
                       name="candidates"
                       type="checkbox"
@@ -60,6 +69,7 @@ const ProfileSettingsNotificationsForm = () => {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
+                      {...register("offers")}
                       id="offers"
                       name="offers"
                       type="checkbox"
@@ -83,8 +93,10 @@ const ProfileSettingsNotificationsForm = () => {
               <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-x-3">
                   <input
+                    {...register("pushNotifications")}
                     id="push-everything"
-                    name="push-notifications"
+                    value='push-everything'
+                    name="pushNotifications"
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -94,8 +106,10 @@ const ProfileSettingsNotificationsForm = () => {
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
+                    {...register("pushNotifications")}
+                    value='push-email'
                     id="push-email"
-                    name="push-notifications"
+                    name="pushNotifications"
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -105,8 +119,10 @@ const ProfileSettingsNotificationsForm = () => {
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
+                    {...register("pushNotifications")}
                     id="push-nothing"
-                    name="push-notifications"
+                    value='push-nothing'
+                    name="pushNotifications"
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -119,7 +135,11 @@ const ProfileSettingsNotificationsForm = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900"
+            onClick={() => reset()}
+          >
             Cancel
           </button>
           <button
