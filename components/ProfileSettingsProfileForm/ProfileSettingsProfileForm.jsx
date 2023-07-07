@@ -13,6 +13,7 @@ import { Fragment, useCallback } from "react"
 import { useForm } from "react-hook-form";
 import { UserCircleIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { useDropzone } from 'react-dropzone';
+import clsx from "clsx";
 
 const ProfileSettingsProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -24,11 +25,19 @@ const ProfileSettingsProfileForm = () => {
     console.log(acceptedFiles);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/jpeg, image/png, image/gif', // accepts only JPEG, PNG and GIF
     maxSize: 10 * 1024 * 1024, // 10 MB
   });
+
+  const dropzoneClasses = clsx(
+    'flex justify-center rounded-lg border border-dashed px-6 py-10',
+    {
+      'border-gray-900/25': !isDragActive,
+      'border-indigo-500 hover:border-indigo-700': isDragActive,
+    }
+  );
 
   return (
     <Fragment>
@@ -95,7 +104,7 @@ const ProfileSettingsProfileForm = () => {
                 Cover photo
               </label>
               <div
-                className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
+                className={dropzoneClasses}
                 {...getRootProps()}
               >
                 <input
@@ -106,14 +115,14 @@ const ProfileSettingsProfileForm = () => {
                 />
                 <div className="text-center">
                   <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                  <div className={clsx("mt-4 flex text-sm leading-6 text-gray-600", isDragActive && 'items-center')}>
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                      className="text-center relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
-                      <span>Upload a file</span>
+                      <span>{isDragActive ? 'Drop file here' : 'Upload a file'}</span>
                     </label>
-                    <p className="pl-1">or drag and drop</p>
+                    {!isDragActive && <p className="pl-1">or drag and drop</p>}
                   </div>
                   <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                 </div>
