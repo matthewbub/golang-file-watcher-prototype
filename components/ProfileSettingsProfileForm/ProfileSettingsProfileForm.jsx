@@ -16,21 +16,31 @@ import { useDropzone } from 'react-dropzone';
 import clsx from "clsx";
 import { useAtom } from "jotai";
 import { notifications } from "../../stores/jotai";
+import { newNotification } from "../Notifications";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const ProfileSettingsProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [previewImage, setPreviewImage] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [appNotifications, setAppNotifications] = useAtom(notifications);
+  const { user } = useUser();
 
+  console.log(user);
   const onSubmit = data => {
     console.log(data, previewImage);
-    setAppNotifications([...appNotifications, {
-      id: Math.random() * 1000,
-      show: true,
-      message: 'Profile updated successfully!',
+
+
+    setAppNotifications([...appNotifications, newNotification({
+      title: 'Profile updated',
+      message: 'Your profile has been updated successfully.',
       type: 'success',
-    }]);
+      authorId: user.sub,
+      log: {
+        scope: 'user:profile',
+        action: 'update'
+      }
+    })]);
   }
 
 

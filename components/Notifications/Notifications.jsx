@@ -2,13 +2,17 @@
 
 import { Fragment, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { CheckCircleIcon, ExclamationTriangleIcon, ExclamationCircleIcon, InformationCircleIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/20/solid'
 import { useAtom } from 'jotai';
 import { notifications } from '../../stores/jotai';
+
 const Notifications = () => {
-  const [show, setShow] = useState(true)
   const [appNotifications, setAppNotifications] = useAtom(notifications);
+
+  // only display the 4 most recent notifications
+  // to avoid cluttering the UI
+  const displayedNotifications = appNotifications.slice(-4);
 
   useEffect(() => {
     console.log(appNotifications);
@@ -19,7 +23,7 @@ const Notifications = () => {
       aria-live="assertive"
       className="pointer-events-none fixed inset-0 px-4 py-6 sm:items-start sm:p-6 flex flex-col space-y-2 items-end"
     >
-      {appNotifications && appNotifications.length > 0 && appNotifications.slice(-4).map((notification) => (
+      {appNotifications && appNotifications.length > 0 && displayedNotifications.map((notification) => (
         <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
           {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
           <Transition
@@ -36,11 +40,16 @@ const Notifications = () => {
               <div className="p-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <CheckCircleIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
+                    {notification.type === 'success' && <CheckCircleIcon className="h-6 w-6 text-green-400" aria-hidden="true" />}
+                    {notification.type === 'error' && <ExclamationTriangleIcon className="h-6 w-6 text-red-400" aria-hidden="true" />}
+                    {notification.type === 'warning' && <ExclamationCircleIcon className="h-6 w-6 text-yellow-400" aria-hidden="true" />}
+                    {notification.type === 'info' && <InformationCircleIcon className="h-6 w-6 text-blue-400" aria-hidden="true" />}
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5">
-                    <p className="text-sm font-medium text-gray-900">Successfully saved!</p>
-                    <p className="mt-1 text-sm text-gray-500">Anyone with a link can now view this file.</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {notification.title}
+                    </p>
+                    <p className="mt-1 text-sm text-gray-500">{notification.message}</p>
                   </div>
                   <div className="ml-4 flex flex-shrink-0">
                     <button
@@ -48,7 +57,6 @@ const Notifications = () => {
                       className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       onClick={() => {
                         setAppNotifications(appNotifications.filter((n) => n.id !== notification.id));
-                        setShow(false)
                       }}
                     >
                       <span className="sr-only">Close</span>
