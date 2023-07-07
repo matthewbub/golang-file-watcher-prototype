@@ -14,14 +14,25 @@ import { useForm } from "react-hook-form";
 import { UserCircleIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { useDropzone } from 'react-dropzone';
 import clsx from "clsx";
+import { useAtom } from "jotai";
+import { notifications } from "../../stores/jotai";
 
 const ProfileSettingsProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [previewImage, setPreviewImage] = useState(null);
   const [photo, setPhoto] = useState(null);
+  const [appNotifications, setAppNotifications] = useAtom(notifications);
+
   const onSubmit = data => {
     console.log(data, previewImage);
+    setAppNotifications([...appNotifications, {
+      id: Math.random() * 1000,
+      isOpen: true,
+      message: 'Profile updated successfully!',
+      type: 'success',
+    }]);
   }
+
 
   const onCancel = () => {
     reset();

@@ -1,10 +1,17 @@
-import { Fragment, useState } from 'react'
+'use client';
+
+import { Fragment, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/20/solid'
-
-const SuccessNotification = () => {
+import { useAtom } from 'jotai';
+import { notifications } from '../../stores/jotai';
+const Notifications = () => {
   const [show, setShow] = useState(true)
+  const [appNotifications] = useAtom(notifications);
+  useEffect(() => {
+    console.log(appNotifications);
+  }, [appNotifications])
 
   return (
     <>
@@ -57,4 +64,4 @@ const SuccessNotification = () => {
   )
 }
 
-export default SuccessNotification;
+export default Notifications;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BellIcon } from '@heroicons/react/24/outline';
 import { appConfig } from '../../config/appConfig';
 import { DashboardSideNavigation } from '../DashboardSideNavigation';
@@ -10,6 +10,7 @@ import {
   StyledDashboardLayoutMainContent,
   StyledDashboardLayoutSecondaryContent,
 } from './DashboardLayout.styled';
+import { Notifications } from '../Notifications';
 
 const DashboardLayout = ({ mainContent, secondaryContent, currentSideNavItem }) => {
   const messages = {
@@ -42,6 +43,11 @@ const DashboardLayout = ({ mainContent, secondaryContent, currentSideNavItem }) 
 
         {typeof secondaryContent === 'function' && <StyledDashboardLayoutSecondaryContent>{secondaryContent()}</StyledDashboardLayoutSecondaryContent>}
       </div>
+
+      <Fragment>
+        {/* Absolute positioned elements */}
+        <Notifications />
+      </Fragment>
     </div>
   );
 };
