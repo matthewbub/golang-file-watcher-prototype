@@ -9,9 +9,10 @@
     </div>
   </div>
  */
-import { Fragment } from "react"
+import { Fragment, useCallback } from "react"
 import { useForm } from "react-hook-form";
 import { UserCircleIcon, PhotoIcon } from "@heroicons/react/24/outline";
+import { useDropzone } from 'react-dropzone';
 
 const ProfileSettingsProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -19,6 +20,15 @@ const ProfileSettingsProfileForm = () => {
   const onSubmit = data => {
     console.log(data);
   }
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: 'image/jpeg, image/png, image/gif', // accepts only JPEG, PNG and GIF
+    maxSize: 10 * 1024 * 1024, // 10 MB
+  });
 
   return (
     <Fragment>
@@ -84,7 +94,16 @@ const ProfileSettingsProfileForm = () => {
               <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
                 Cover photo
               </label>
-              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+              <div
+                className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
+                {...getRootProps()}
+              >
+                <input
+                  {...getInputProps()}
+                  {...register("coverPhoto")}
+                  type="file"
+                  className="sr-only"
+                />
                 <div className="text-center">
                   <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
@@ -93,11 +112,6 @@ const ProfileSettingsProfileForm = () => {
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Upload a file</span>
-                      <input
-                        {...register("coverPhoto")}
-                        type="file"
-                        className="sr-only"
-                      />
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
