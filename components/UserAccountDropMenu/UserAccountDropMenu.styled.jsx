@@ -13,7 +13,7 @@ export const StyledMenu = forwardRef(({ children, ...rest }, ref) => (
 ));
 
 export const StyledMenuButton = forwardRef(({ children, ...rest }, ref) => (
-  <Menu.Button className="-m-2 p-2 text-gray-400 hover:text-gray-500" ref={ref} {...rest}>
+  <Menu.Button className="p-2 text-gray-400 hover:text-gray-500" ref={ref} {...rest}>
     {children}
   </Menu.Button>
 ));
