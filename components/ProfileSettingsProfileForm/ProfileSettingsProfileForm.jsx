@@ -8,6 +8,7 @@
   </div>
  */
 import { Fragment } from "react"
+import { UserCircleIcon, PhotoIcon } from "@heroicons/react/24/outline";
 
 const ProfileSettingsProfileForm = () => {
   return (
