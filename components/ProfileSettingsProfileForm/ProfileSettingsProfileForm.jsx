@@ -18,9 +18,9 @@ import clsx from "clsx";
 const ProfileSettingsProfileForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [previewImage, setPreviewImage] = useState(null);
-
+  const [photo, setPhoto] = useState(null);
   const onSubmit = data => {
-    console.log(data);
+    console.log(data, previewImage);
   }
 
   const onCancel = () => {
@@ -34,6 +34,12 @@ const ProfileSettingsProfileForm = () => {
       setPreviewImage(URL.createObjectURL(file));
     }
   }, []);
+
+  const handlePhotoChange = (e) => {
+    if (e.target.files[0]) {
+      setPhoto(URL.createObjectURL(e.target.files[0]));
+    }
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -72,7 +78,7 @@ const ProfileSettingsProfileForm = () => {
                     {...register("username")}
                     type="text"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="slick-rick"
+                    placeholder="t-hanks"
                   />
                 </div>
               </div>
@@ -100,9 +106,14 @@ const ProfileSettingsProfileForm = () => {
                 Photo
               </label>
               <div className="mt-2 flex items-center gap-x-3">
-                <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
+                {photo ? (
+                  <img src={photo} alt="User selected" className="h-12 w-12 rounded-full" />
+                ) : (
+                  <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
+                )}
                 <input
                   {...register("photo")}
+                  onChange={handlePhotoChange}
                   type="file"
                   className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 />
@@ -125,7 +136,7 @@ const ProfileSettingsProfileForm = () => {
                 />
                 <div className="text-center">
                   {previewImage ? (
-                    <img src={previewImage} alt="preview" className="mx-auto h-12 w-12" />
+                    <img src={previewImage} alt="preview" className="mx-auto object-cover" />
                   ) : (
                     <>
                       <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
