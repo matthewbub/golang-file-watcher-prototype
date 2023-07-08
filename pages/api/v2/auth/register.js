@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import { supabase } from '../../../../config/supabaseConfig';
 import { v4 as uuidv4 } from 'uuid';
 import { signUpUser } from '../../../../utils/queries/signUpUser';
+import e from 'cors';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -18,9 +19,11 @@ export default async function handler(req, res) {
 
     if (error) {
       console.log(error)
-      res.status(401).json({ message: 'Invalid username or password' });
+      res.status(401).json({ error: { message: 'Invalid username or password' } });
       return;
     }
+
+    console.log('error', error)
 
     res.status(201).json({
       message: 'User registered successfully',
@@ -30,6 +33,6 @@ export default async function handler(req, res) {
       }
     });
   } else {
-    res.status(405).json({ message: 'Only POST requests are accepted' });
+    res.status(405).json({ error: { message: 'Invalid username or password' } });
   }
 }

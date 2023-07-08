@@ -1,12 +1,34 @@
+'use client';
+
 import Link from "next/link";
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from "react";
+import { get } from 'lodash';
+
+import { useAtom } from "jotai";
+import { notifications } from "../../stores/jotai";
+import { newNotification } from "../../components/Notifications";
 
 export default function SignUp() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter();
-  const [signUpError, setSignUpError] = useState(null);
+  const [appNotifications, setAppNotifications] = useAtom(notifications);
+
+  const handleErrorNotification = (title, message) => {
+    setAppNotifications([
+      ...appNotifications,
+      newNotification({
+        title: title,
+        message: message,
+        type: "error",
+        authorId: '123',
+        log: {
+          scope: "user:read",
+          action: "read",
+        }
+      })
+    ]);
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -18,26 +40,25 @@ export default function SignUp() {
         body: JSON.stringify(data),
       });
 
+      const json = await response.json();
+
+      const error = get(json, 'error.message', null);
+      if (error) {
+        handleErrorNotification('Error occurred while signing up', error);
+        return;
+      }
+
       if (response.status === 201) {
         // redirect to login page after successful registration
         router.push('/dashboard?registered=true');
       }
-      else {
-        // handle any other HTTP status
-        const errorData = await response.json();
-        setSignUpError(errorData);
-        console.error(errorData);
-      }
     } catch (err) {
-      setSignUpError(err);
+      handleErrorNotification(
+        'Error occurred while signing up',
+        'Please try again later'
+      );
     }
   };
-
-  useEffect(() => {
-    if (signUpError) {
-      console.error('Error occurred while signing up', signUpError);
-    }
-  }, [signUpError])
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
