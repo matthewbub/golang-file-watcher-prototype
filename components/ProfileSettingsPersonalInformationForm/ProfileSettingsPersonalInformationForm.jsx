@@ -11,9 +11,31 @@
  */
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
+import { useAtom } from "jotai";
+import { notifications } from "../../stores/jotai";
+import { newNotification } from "../Notifications";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const ProfileSettingsPersonalInformationForm = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { user } = useUser();
+  const [appNotifications, setAppNotifications] = useAtom(notifications);
+
+  const handleNotification = () => {
+    setAppNotifications([
+      ...appNotifications,
+      newNotification({
+        title: "Personal information updated",
+        message: "Your personal information has been updated successfully.",
+        type: "success",
+        user: user.sub,
+        log: {
+          scope: "user:personal-information",
+          action: "modify",
+        }
+      })
+    ]);
+  };
 
   const onSubmit = data => {
 
@@ -36,11 +58,17 @@ const ProfileSettingsPersonalInformationForm = () => {
               </label>
               <div className="mt-2">
                 <input
-                  {...register("firstName")}
+                  {...register("firstName", {
+                    minLength: {
+                      value: 1,
+                      message: "First name can't be empty"
+                    },
+                  })}
                   type="text"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+
               </div>
             </div>
 
