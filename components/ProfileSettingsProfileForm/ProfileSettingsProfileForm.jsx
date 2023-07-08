@@ -64,11 +64,12 @@ const ProfileSettingsProfileForm = () => {
   });
 
   const dropzoneClasses = clsx(
-    'flex justify-center rounded-lg border border-dashed px-6 py-10',
+    'flex justify-center rounded-lg',
     {
       'border-gray-900/25': !isDragActive,
       'border-indigo-500 hover:border-indigo-700': isDragActive,
-    }
+    },
+    !previewImage ? 'border border-dashed px-6 py-10' : 'h-[190px]'
   );
 
   return (
@@ -152,7 +153,14 @@ const ProfileSettingsProfileForm = () => {
                 />
                 <div className="text-center">
                   {previewImage ? (
-                    <img src={previewImage} alt="preview" className="mx-auto object-cover" />
+                    <div
+                      className="h-[190px] w-full bg-cover"
+                      style={{
+                        backgroundImage: `url(${previewImage})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
                   ) : (
                     <>
                       <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
