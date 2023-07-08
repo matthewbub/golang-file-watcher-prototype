@@ -17,7 +17,7 @@ import { newNotification } from "../Notifications";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 const ProfileSettingsPersonalInformationForm = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, errors } = useForm();
   const { user } = useUser();
   const [appNotifications, setAppNotifications] = useAtom(notifications);
 
@@ -68,7 +68,7 @@ const ProfileSettingsPersonalInformationForm = () => {
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-
+                {errors && errors.firstName && <span className="text-red-500 text-xs">{errors.firstName.message}</span>}
               </div>
             </div>
 
@@ -78,11 +78,17 @@ const ProfileSettingsPersonalInformationForm = () => {
               </label>
               <div className="mt-2">
                 <input
-                  {...register("lastName")}
+                  {...register("lastName", {
+                    minLength: {
+                      value: 1,
+                      message: "Last name can't be empty"
+                    },
+                  })}
                   type="text"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors && errors.lastName && <span className="text-red-500 text-xs">{errors.lastName.message}</span>}
               </div>
             </div>
 
