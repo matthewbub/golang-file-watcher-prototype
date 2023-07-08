@@ -15,8 +15,8 @@ import { UserCircleIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { useDropzone } from 'react-dropzone';
 import clsx from "clsx";
 import { useAtom } from "jotai";
-import { notifications } from "../../stores/jotai";
-import { newNotification } from "../Notifications";
+import { notifications } from "../../../stores/jotai";
+import { newNotification } from "../../../components/Notifications";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 const ProfileSettingsProfileForm = () => {

@@ -1,6 +1,6 @@
-import { ProfileSettingsProfileForm } from '../ProfileSettingsProfileForm';
-import { ProfileSettingsPersonalInformationForm } from '../ProfileSettingsPersonalInformationForm';
-import { ProfileSettingsNotificationsForm } from '../ProfileSettingsNotificationsForm';
+import { ProfileSettingsProfileForm } from './ProfileSettingsProfileForm';
+import { ProfileSettingsPersonalInformationForm } from './ProfileSettingsPersonalInformationForm';
+import { ProfileSettingsNotificationsForm } from './ProfileSettingsNotificationsForm';
 
 const ProfileSettings = () => {
   return (

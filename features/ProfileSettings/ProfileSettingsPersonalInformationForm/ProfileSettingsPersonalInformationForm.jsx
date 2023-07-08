@@ -12,8 +12,8 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
-import { notifications } from "../../stores/jotai";
-import { newNotification } from "../Notifications";
+import { notifications } from "../../../stores/jotai";
+import { newNotification } from "../../../components/Notifications";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 const ProfileSettingsPersonalInformationForm = () => {
