@@ -6,13 +6,12 @@ import { notifications } from "../../stores/jotai";
 import { newNotification } from "../Notifications";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
-
 const Sample = () => {
-  const [user] = useUser();
+  const {user} = useUser();
   const [appNotifications, setAppNotifications] = useAtom(notifications);
 
   const handleNotification = () => {
-    setNotifications([
+    setAppNotifications([
       ...appNotifications,
       newNotification({
         title: "New Notification",
