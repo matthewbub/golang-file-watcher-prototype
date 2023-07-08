@@ -1,29 +1,20 @@
 import bcrypt from 'bcryptjs';
 import { supabase } from '../../../../config/supabaseConfig';
 import { v4 as uuidv4 } from 'uuid';
-
-// This should be replaced by a database
-let users = [];
+import { signUpUser } from '../../../../utils/queries/signUpUser';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    const userId = uuidv4();
     const user = {
       id: Date.now(),
-      username: req.body.username,
+      email: req.body.email,
       password: hashedPassword,
-      user_id: uuidv4()
+      user_id: userId
     };
 
-    const { data, error } = await supabase
-      .from('users')
-      .insert([
-        {
-          username: user.username,
-          password: user.password,
-          user_id: user.user_id
-        },
-      ])
+    const { error, data } = await signUpUser(user);
 
     if (error) {
       console.log(error)
@@ -31,8 +22,13 @@ export default async function handler(req, res) {
       return;
     }
 
-    users.push(user);
-    res.status(201).json({ message: 'User registered successfully' });
+    res.status(201).json({
+      message: 'User registered successfully',
+      data: {
+        email: data.email,
+        user_id: data.user_id
+      }
+    });
   } else {
     res.status(405).json({ message: 'Only POST requests are accepted' });
   }
