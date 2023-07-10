@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useAtom } from 'jotai';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
@@ -7,6 +7,7 @@ import {
   FEATURE__LOCALIZATION_MANAGER____editMessageIndex as editMessageIndex,
 } from '../../stores/jotai';
 import DashboardLayout from '../../components/DashboardLayout/DashboardLayout';
+import Editor from '@monaco-editor/react';
 
 function LocalizationForm() {
   const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
@@ -44,6 +45,24 @@ function LocalizationForm() {
       setEditIndex(null);
     }
   }
+
+  const editorRef = useRef(null);
+
+  function handleEditorDidMount(editor, monaco) {
+    editorRef.current = editor;
+  }
+
+  function showValue() {
+    alert(editorRef.current.getValue());
+  }
+
+  const editorOptions = {
+    suggestOnTriggerCharacters: false, // Disable popup suggestions
+    minimap: {
+      enabled: false // Remove the mirror (minimap)
+    }
+  };
+
 
   return (
     <div>
@@ -149,13 +168,26 @@ function LocalizationForm() {
                   Localized Message
                 </label>
                 <div className="mt-2">
-                  <textarea
+                  {/* <textarea
                     id="about"
                     name="about"
                     rows={3}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     defaultValue={''}
-                  />
+                  /> */}
+                  <div className="block w-full rounded-md border-0 p-0.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <Editor
+                      height="100px"
+                      defaultLanguage="handlebars"
+                      defaultValue="// some comment"
+                      onMount={handleEditorDidMount}
+                      editorOptions={{
+                        minimap: {
+                          enabled: false,
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">We support basic localization syntax for dynamic variables and HTML.</p>
               </div>
