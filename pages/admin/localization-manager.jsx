@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { useAtom } from 'jotai';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
@@ -8,6 +8,7 @@ import {
 } from '../../stores/jotai';
 import DashboardLayout from '../../components/DashboardLayout/DashboardLayout';
 import Editor from '@monaco-editor/react';
+import ListView from "../../features/LocalizationManager/ListView";
 
 function LocalizationForm() {
   const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
@@ -66,67 +67,16 @@ function LocalizationForm() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="border flex flex-col w-[350px]">
-        <label>
-          Message:
-          <input {...register("message", { required: true })} className="border border-black" />
-        </label>
-        {errors.message && <p>This field is required</p>}
-
-        <label>
-          Locale:
-          <select {...register("locale", { required: true })} className="border border-black">
-            <option value="">Select...</option>
-            <option value="en-US">en-US</option>
-            <option value="fr-FR">fr-FR</option>
-            {/* Add any other locales you support */}
-          </select>
-        </label>
-        {errors.locale && <p>This field is required</p>}
-
-        <label>
-          Tags:
-          <input {...register("tags")} className="border border-black" />
-        </label>
-
-        <label>
-          Payer:
-          <select {...register("payer", { required: true })} className="border border-black">
-            <option value="">Select...</option>
-            <option value="payer1">Payer 1</option>
-            <option value="payer2">Payer 2</option>
-            {/* Add any other payers you support */}
-          </select>
-        </label>
-        {errors.payer && <p>This field is required</p>}
-
-        <input type="submit" className="border border-black" />
-      </form>
-
-      <div>
-        <h2>Messages</h2>
-        {messages.map((message, index) => (
-          <div key={index}>
-            <p>Message: {message.message}</p>
-            <p>Locale: {message.locale}</p>
-            <p>Tags: {message.tags}</p>
-            <p>Payer: {message.payer}</p>
-            <button onClick={() => onEdit(index)}>Edit</button>
-            <button onClick={() => onDelete(index)}>Delete</button>
-          </div>
-        ))}
-      </div>
-
       <form>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">Localization Manager</h2>
+            <h2 className="text-base font-semibold leading-7 text-gray-900">Add New Message</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-3">
                 <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
                   Select Payer
                 </label>
@@ -144,7 +94,7 @@ function LocalizationForm() {
                 </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-3">
                 <label htmlFor="locale" className="block text-sm font-medium leading-6 text-gray-900">
                   Select Locale
                 </label>
@@ -168,13 +118,6 @@ function LocalizationForm() {
                   Localized Message
                 </label>
                 <div className="mt-2">
-                  {/* <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={''}
-                  /> */}
                   <div className="block w-full rounded-md border-0 p-0.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     <Editor
                       height="100px"
@@ -193,26 +136,28 @@ function LocalizationForm() {
               </div>
 
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-4">
                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                   Message ID
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span>
+                    <span className="inline-flex items-center px-3 text-gray-500 bg-gray-50 text-sm border rounded-l">
+                      global-
+                    </span>
                     <input
                       type="text"
                       name="username"
                       id="username"
                       autoComplete="username"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="janesmith"
+                      placeholder="adsawe"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="sm:col-span-4">
+              <div className="sm:col-span-6">
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                   Tags
                 </label>
@@ -224,6 +169,7 @@ function LocalizationForm() {
                     autoComplete="email"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <p className="mt-3 text-sm leading-6 text-gray-600">Add multiple via comma separated values</p>
                 </div>
               </div>
             </div>
@@ -249,7 +195,16 @@ function LocalizationForm() {
 const LocalizationFormPage = () => {
   return (
     <DashboardLayout
-      mainContent={LocalizationForm}
+      mainContent={() => (
+        <Fragment>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Localization Manager</h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
+          </p>
+          <ListView />
+        </Fragment>
+      )}
+      secondaryContent={LocalizationForm}
     />
   );
 };
