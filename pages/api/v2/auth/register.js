@@ -18,7 +18,13 @@ export default async function handler(req, res) {
     const { error, data } = await signUpUser(user);
 
     if (error) {
-      console.log(error)
+      const duplicateEmail = error.message.includes('duplicate key value violates unique constraint');
+
+      if (duplicateEmail) {
+        res.status(401).json({ error: { message: 'Email already exists' } });
+        return;
+      }
+
       res.status(401).json({ error: { message: 'Invalid username or password' } });
       return;
     }

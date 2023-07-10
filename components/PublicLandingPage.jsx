@@ -140,12 +140,10 @@ export default function PublicLandingPage() {
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                   <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                    We’re changing the way people connect.
+                    Leave the web stuff to us
                   </h1>
                   <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                    Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et
-                    labore commodo nulla aliqua proident mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt
-                    mollit id pariatur in voluptate cillum.
+                    We'll help you build a beautiful website that looks great on all devices. We'll even host it for you so you don't have to worry about a thing.
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <a
@@ -211,7 +209,258 @@ export default function PublicLandingPage() {
             </div>
           </div>
         </div>
+
+        <Features />
+        {/* <Timeline /> */}
+        <Testimonials />
       </main>
+    </div>
+  )
+}
+
+
+const timeline = [
+  {
+    name: 'Discovery phase',
+    description: 'We will work with you to understand your business and your customers. We will then create a plan to build a product that will help you achieve your goals.',
+    date: 'Step 1',
+    dateTime: '2021-08',
+  },
+  {
+    name: 'Design and development phase',
+    description: 'We will work with you to understand your business and your customers. We will then create a plan to build a product that will help you achieve your goals.',
+    date: 'Step 2',
+    dateTime: '2021-12',
+  },
+  {
+    name: 'Launch and growth phase',
+    description: 'We will work with you to understand your business and your customers. We will then create a plan to build a product that will help you achieve your goals.',
+    date: 'Step 3',
+    dateTime: '2022-02',
+  },
+  {
+    name: 'Post-launch phase',
+    description: 'We will work with you to understand your business and your customers. We will then create a plan to build a product that will help you achieve your goals.',
+    date: 'Step 4',
+    dateTime: '2022-04',
+  }
+]
+
+export function Timeline() {
+  return (
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div>
+          <p className="text-base font-semibold leading-7 text-indigo-400">Deploy faster</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">A better workflow</h1>
+        </div>
+        <div className="mt-8 mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          {timeline.map((item) => (
+            <div key={item.name}>
+              <time
+                dateTime={item.dateTime}
+                className="flex items-center text-sm font-semibold leading-6 text-indigo-600"
+              >
+                <svg viewBox="0 0 4 4" className="mr-4 h-1 w-1 flex-none" aria-hidden="true">
+                  <circle cx={2} cy={2} r={2} fill="currentColor" />
+                </svg>
+                {item.date}
+                <div
+                  className="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-900/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0"
+                  aria-hidden="true"
+                />
+              </time>
+              <p className="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">{item.name}</p>
+              <p className="mt-1 text-base leading-7 text-gray-600">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const testimonials = [
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam. Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  // More testimonials...
+]
+
+export function Testimonials() {
+  return (
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-xl text-center">
+          <h2 className="text-lg font-semibold leading-8 tracking-tight text-indigo-600">Testimonials</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            We have worked with thousands of amazing people
+          </p>
+        </div>
+        <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
+          <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.author.handle} className="pt-8 sm:inline-block sm:w-full sm:px-4">
+                <figure className="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
+                  <blockquote className="text-gray-900">
+                    <p>{`“${testimonial.body}”`}</p>
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-x-4">
+                    <img className="h-10 w-10 rounded-full bg-gray-50" src={testimonial.author.imageUrl} alt="" />
+                    <div>
+                      <div className="font-semibold text-gray-900">{testimonial.author.name}</div>
+                      <div className="text-gray-600">{`@${testimonial.author.handle}`}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+import { InboxIcon, TrashIcon, UsersIcon } from '@heroicons/react/24/outline'
+
+const features = [
+  {
+    name: 'Unlimited inboxes',
+    description:
+      'Non quo aperiam repellendus quas est est. Eos aut dolore aut ut sit nesciunt. Ex tempora quia. Sit nobis consequatur dolores incidunt.',
+    href: '#',
+    icon: InboxIcon,
+  },
+  {
+    name: 'Manage team members',
+    description:
+      'Vero eum voluptatem aliquid nostrum voluptatem. Vitae esse natus. Earum nihil deserunt eos quasi cupiditate. A inventore et molestiae natus.',
+    href: '#',
+    icon: UsersIcon,
+  },
+  {
+    name: 'Spam report',
+    description:
+      'Et quod quaerat dolorem quaerat architecto aliquam accusantium. Ex adipisci et doloremque autem quia quam. Quis eos molestiae at iure impedit.',
+    href: '#',
+    icon: TrashIcon,
+  },
+]
+
+export function Features() {
+  return (
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Stay on top of customer support
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
+            accusamus quisquam.
+          </p>
+        </div>
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            {features.map((feature) => (
+              <div key={feature.name} className="flex flex-col">
+                <dt className="text-base font-semibold leading-7 text-gray-900">
+                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                    <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                  </div>
+                  {feature.name}
+                </dt>
+                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                  <p className="flex-auto">{feature.description}</p>
+                  <p className="mt-6">
+                    <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-600">
+                      Learn more <span aria-hidden="true">→</span>
+                    </a>
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
     </div>
   )
 }
