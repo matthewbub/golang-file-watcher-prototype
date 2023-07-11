@@ -7,13 +7,13 @@ const LocalizationFormPage = () => {
   return (
     <DashboardLayout
       mainContent={() => (
-        <Fragment>
+        <div className="bg-gray-50 p-5 rounded">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Localization Manager</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
+            <span className='font-semibold'>Note:</span> This is a list of all messages in the system. You can filter by payer, language, or search for a specific message.
           </p>
           <ListMessages />
-        </Fragment>
+        </div>
       )}
       secondaryContent={AddNewMessage}
     />

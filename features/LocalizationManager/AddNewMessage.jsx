@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useAtom } from 'jotai';
@@ -114,25 +116,19 @@ function AddNewMessage() {
                   Localized Message
                 </label>
                 <div className="mt-2">
-                  <div className="block w-full rounded-md border-0 p-0.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <Editor
-                      height="100px"
-                      defaultLanguage="handlebars"
-                      defaultValue="// some comment"
-                      onMount={handleEditorDidMount}
-                      editorOptions={{
-                        minimap: {
-                          autohide: true
-                        }
-                      }}
-                    />
-                  </div>
+                  <textarea
+                    id="about"
+                    name="about"
+                    rows={3}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue={''}
+                  />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">We support basic localization syntax for dynamic variables and HTML.</p>
               </div>
 
 
-              <div className="sm:col-span-4">
+              <div className="sm:col-span-6">
                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                   Message ID
                 </label>
