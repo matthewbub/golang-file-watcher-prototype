@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const winston = require('winston');
 const _ = require('lodash');
 const localesApi = require('./routes/localesApi');
+const screensApi = require('./routes/screensApi');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(localesApi);
+app.use(screensApi);
 
 app.listen(process.env.PORT || 3000, () => {
   logger.info(`Server is running on port ${process.env.PORT || 3000}`);
