@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const winston = require('winston');
 const _ = require('lodash');
+const localesApi = require('./routes/localesApi');
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
+
+app.use(localesApi);
 
 app.listen(process.env.PORT || 3000, () => {
   logger.info(`Server is running on port ${process.env.PORT || 3000}`);
