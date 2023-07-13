@@ -12,11 +12,6 @@ const App = () => {
   const [deletedLocale, setDeletedLocale] = useState({});
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-
   useEffect(() => {
     fetchLocales();
   }, []);
@@ -31,22 +26,31 @@ const App = () => {
     }
   };
 
-  const createLocale = async () => {
+  const createLocale = async (args) => {
     try {
       const response = await fetch('/api/v1/locales', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newLocale),
+        body: JSON.stringify(args),
       });
       const data = await response.json();
-      setLocales([...locales, data.data]);
-      setNewLocale({});
+      console.log('data recoeved ', data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const onSubmit = (data) => {
+    createLocale({
+      locale: data.locale,
+      message: data.message,
+      message_key: data.message_key,
+      screen_id: 1,
+    });
+  };
+
 
   const updateLocale = async (id) => {
     try {

@@ -11,6 +11,8 @@ const supabaseKey = process.env.SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 const app = express();
+app.use(express.json());
+
 
 app.get("/hello", (_, res) => {
   res.send("Hello Vite + React + TypeScript!");
