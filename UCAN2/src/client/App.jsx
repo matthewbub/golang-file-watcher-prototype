@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import Input from './components/input';
+import { useForm } from 'react-hook-form';
+import Select from './components/Select';
+import TextArea from './components/TextArea';
+import Button from './components/Button';
 
 const App = () => {
   const [locales, setLocales] = useState([]);
   const [newLocale, setNewLocale] = useState({});
   const [editedLocale, setEditedLocale] = useState({});
   const [deletedLocale, setDeletedLocale] = useState({});
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
 
   useEffect(() => {
     fetchLocales();
@@ -72,96 +83,55 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Locales</h1>
-      <div>
-        <h2>Get Locales</h2>
-        <button onClick={fetchLocales}>Fetch Locales</button>
-        <ul>
-          {locales.map((locale) => (
-            <li key={locale.id}>{locale.locale}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Create Locale</h2>
-        <input
-          type="text"
-          placeholder="Locale"
-          value={newLocale.locale || ''}
-          onChange={(e) =>
-            setNewLocale({ ...newLocale, locale: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Message"
-          value={newLocale.message || ''}
-          onChange={(e) =>
-            setNewLocale({ ...newLocale, message: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Message Key"
-          value={newLocale.message_key || ''}
-          onChange={(e) =>
-            setNewLocale({ ...newLocale, message_key: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Screen ID"
-          value={newLocale.screen_id || ''}
-          onChange={(e) =>
-            setNewLocale({ ...newLocale, screen_id: e.target.value })
-          }
-        />
-        <button onClick={createLocale}>Create Locale</button>
-      </div>
-      <div>
-        <h2>Edit Locale</h2>
-        {locales.map((locale) => (
-          <div key={locale.id}>
-            <input
-              type="text"
-              placeholder="Locale"
-              value={editedLocale.locale || locale.locale}
-              onChange={(e) =>
-                setEditedLocale({ ...editedLocale, locale: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Message"
-              value={editedLocale.message || locale.message}
-              onChange={(e) =>
-                setEditedLocale({ ...editedLocale, message: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Message Key"
-              value={editedLocale.message_key || locale.message_key}
-              onChange={(e) =>
-                setEditedLocale({ ...editedLocale, message_key: e.target.value })
-              }
-            />
-            <button onClick={() => updateLocale(locale.id)}>Update</button>
-          </div>
-        ))}
-      </div>
-      <div>
-        <h2>Delete Locale</h2>
-        {locales.map((locale) => (
-          <div key={locale.id}>
-            <span>{locale.locale}</span>
-            <button onClick={() => deleteLocale(locale.id)}>Delete</button>
-          </div>
-        ))}
-        {deletedLocale && (
-          <p>Deleted Locale: {deletedLocale.locale}</p>
-        )}
+    <div className='w-full'>
+      <div className='max-w-sm mx-auto'>
+        <h1 className='text-2xl font-bold'>Locales</h1>
+        <form
+          className='pt-4 space-y-4 p-4 border shadow'
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <h2 className='text-lg font-semibold'>Create Locale</h2>
+          <Select
+            register={register}
+            name={'locale'}
+            label="Select Locale"
+            placeholder="Locale"
+            options={[
+              { id: 'en', name: 'English' },
+              { id: 'es', name: 'Spanish' },
+              { id: 'fr', name: 'French' },
+            ]}
+          />
+          <TextArea
+            rows={3}
+            register={register}
+            name={'message'}
+            placeholder="Message"
+            label='Message'
+          />
+          <Input
+            register={register}
+            name={'message_key'}
+            type="text"
+            placeholder="Message Key"
+            label='Message Key'
+          />
+          <Select
+            register={register}
+            name={'screen_id'}
+            placeholder="Screen ID"
+            label="Select Screen ID"
+            options={[
+              { id: '1', name: 'Login' },
+              { id: '2', name: 'Home' },
+              { id: '3', name: 'Profile' },
+            ]}
+          />
+
+          <Button type="submit" className='mt-4'>
+            Create Locale
+          </Button>
+        </form>
       </div>
     </div>
   );
