@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:css": "npx tailwindcss -i ./src/index.css -o ./dist/index.css --watch",
+    "build:css": "npx tailwindcss -i ./src/index.css -o ./dist/index.css",
+    "build:css:prod": "npx tailwindcss -i ./src/index.css -o ./dist/index.css --minify",
+    "dev:with-styles": "concurrently \"npm run dev\" \"npm run dev:css\""
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -17,10 +21,12 @@
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@vitejs/plugin-react": "^4.0.1",
+    "concurrently": "^8.2.0",
     "eslint": "^8.44.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
+    "tailwindcss": "^3.3.3",
     "vite": "^4.4.0"
   }
 }
