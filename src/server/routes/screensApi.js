@@ -7,8 +7,8 @@ const {
   handleDelete,
   handleGetById
 } = require('../helpers/databaseOperations');
-
 const { supabase } = require('./supabase.config');
+
 const table = supabase.from('screens');
 
 // Screens API Routes
