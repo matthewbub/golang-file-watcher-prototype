@@ -1,3 +1,11 @@
+# npm
 node_modules
+
+# env
+.env
 .env.local
 .env.development.local
+
+# logs
+combined.log
+error.log
