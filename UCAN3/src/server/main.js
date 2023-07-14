@@ -148,6 +148,22 @@ app.get("/api/v1/subscribers", async (_, res) => {
   }
 });
 
+app.get("/api/v1/subscribers/:id", async (req, res) => {
+  const { id } = req.params;
+  const { data, error } = await supabase
+    .from('subscribers')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    res.status(500).json({ error: error.message })
+  } else {
+    res.status(200).json({ data })
+  }
+});
+
+
 app.post('/api/v1/subscribe', async (req, res) => {
   const { email } = req.body;
   const { data, error } = await supabase
