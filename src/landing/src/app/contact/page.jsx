@@ -70,6 +70,7 @@ function ContactForm() {
             <fieldset>
               <legend className="text-base/6 text-neutral-500">Budget</legend>
               <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
+                <RadioInput label="Less than $25k" name="budget" value="0" />
                 <RadioInput label="$25K – $50K" name="budget" value="25" />
                 <RadioInput label="$50K – $100K" name="budget" value="50" />
                 <RadioInput label="$100K – $150K" name="budget" value="100" />
@@ -105,8 +106,8 @@ function ContactDetails() {
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
-            ['Careers', 'careers@studioagency.com'],
-            ['Press', 'press@studioagency.com'],
+            ['Careers', 'careers@ninthstreet.studio'],
+            ['Press', 'press@ninthstreet.studio'],
           ].map(([label, email]) => (
             <div key={email}>
               <dt className="font-semibold text-neutral-950">{label}</dt>

@@ -9,7 +9,7 @@ const navigation = [
   {
     title: 'Work',
     links: [
-      { title: 'FamilyFund', href: '/work/family-fund' },
+      { title: 'Localeopia', href: '/work/localeopia' },
       { title: 'Unseal', href: '/work/unseal' },
       { title: 'Phobia', href: '/work/phobia' },
       {
