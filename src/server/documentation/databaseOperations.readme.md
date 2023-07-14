@@ -2,6 +2,16 @@
 
 This module exports functions that handle various database operations.
 
+```js
+const {
+  handleGet,
+  handlePost,
+  handlePut,
+  handleDelete,
+  handleGetById,
+} = require('../helpers/databaseOperations');
+```
+
 ### `handleGet(res, table, [select='*'])`
 
 Handles GET requests.
