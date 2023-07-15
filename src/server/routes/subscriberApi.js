@@ -5,8 +5,8 @@ const {
   handlePost,
   handlePut,
   handleDelete
-} = require('./databaseOperations');
-const { supabase } = require('./supabase.config');
+} = require('../helpers/databaseOperations');
+const { supabase } = require('../supabase.config');
 const table = supabase.from('subscribers');
 
 // Subscribers API Routes

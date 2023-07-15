@@ -8,6 +8,7 @@ const _ = require('lodash');
 const localesApi = require('./routes/localesApi');
 const screensApi = require('./routes/screensApi');
 const subscriberApi = require('./routes/subscriberApi');
+const helpdeskApi = require('./routes/helpdeskApi');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 app.use(localesApi);
 app.use(screensApi);
 app.use(subscriberApi);
+app.use(helpdeskApi);
 
 app.listen(process.env.PORT || 3000, () => {
   logger.info(`Server is running on port ${process.env.PORT || 3000}`);
