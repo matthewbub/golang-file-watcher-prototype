@@ -22,9 +22,16 @@ export function Offices({ invert = false, ...props }) {
     <ul role="list" {...props}>
       <li>
         <Office name="Redlands" invert={invert}>
-          1234 Main St.
+          NineMbs Studio LLC
+          <br />
+          1752 E. Lugonia Ave,
+          <br />
+          Ste 117 - 1096,
           <br />
           Redlands, CA 92373
+          <br />
+          United States
+
         </Office>
       </li>
     </ul>
