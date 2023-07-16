@@ -13,10 +13,6 @@ export function Testimonial({ children, client, className }) {
         className
       )}
     >
-      <GridPattern
-        className="absolute inset-0 -z-10 h-full w-full fill-neutral-100 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_50%,transparent_60%)]"
-        yOffset={-256}
-      />
       <Container>
         <FadeIn>
           <figure className="mx-auto max-w-4xl">
@@ -25,9 +21,15 @@ export function Testimonial({ children, client, className }) {
                 {children}
               </p>
             </blockquote>
-            <figcaption className="mt-10">
-              <Image src={client.logo} alt={client.name} unoptimized />
-            </figcaption>
+            {client.logo ? (
+              <figcaption className="mt-10">
+                <Image src={client.logo} alt={client.name} unoptimized />
+              </figcaption>
+            ) : (
+              <figcaption className="mt-10 text-lg font-medium text-neutral-950">
+                - {client.name}
+              </figcaption>
+            )}
           </figure>
         </FadeIn>
       </Container>

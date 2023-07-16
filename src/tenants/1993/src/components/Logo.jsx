@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import logo from '@/images/YucaipaLandscapingLogo.png';
+import logo from '@/images/logo.png';
 
 export function Logo({
   className,
@@ -9,6 +9,6 @@ export function Logo({
   ...props
 }) {
   return (
-    <Image src={logo} alt='Studio' height={50} width={'100%'} />
+    <Image src={logo} alt='Studio' height={50} width={'100%'} className='p-1' />
   )
 }
