@@ -4,10 +4,10 @@ import clsx from 'clsx'
 export function Button({ invert, href, className, children, ...props }) {
   className = clsx(
     className,
-    'inline-flex rounded-full px-4 py-1.5 text-sm font-semibold transition',
+    'inline-flex rounded px-4 py-1.5 text-sm font-semibold transition',
     invert
-      ? 'bg-white text-neutral-950 hover:bg-neutral-200'
-      : 'bg-neutral-950 text-white hover:bg-neutral-800'
+      ? 'text-neutral-950'
+      : 'bg-primary-500 text-white hover:bg-primary-600'
   )
 
   let inner = <span className="relative top-px">{children}</span>
