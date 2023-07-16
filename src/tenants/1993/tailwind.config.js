@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       borderRadius: {
-        '4xl': '2.5rem',
+        DEFAULT: '5px',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -27,6 +27,12 @@ module.exports = {
           ['Inter', ...defaultTheme.fontFamily.sans],
           { fontVariationSettings: '"wdth" 125' },
         ],
+      },
+      colors: {
+        primary: {
+          500: '#BC4749',
+          600: '#963638',
+        }
       },
     },
   },
