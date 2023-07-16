@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -18,9 +20,10 @@ import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
 import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
 import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
-import { loadMDXMetadata } from '@/lib/loadMDXMetadata'
+// import { loadMDXMetadata } from '@/lib/loadMDXMetadata'
 import { Button } from '@/components/Button'
-
+// import { useTranslation } from 'react-i18next';
+import { useRCIfNonEmptyString } from '@/lib/useRCIfNonEmptyString';
 const clients = [
   ['Phobia', logoPhobiaLight],
   ['Family Fund', logoFamilyFund],
@@ -165,33 +168,32 @@ function Services() {
   )
 }
 
-export const metadata = {
-  description:
-    'We are developer studio working at the intersection of design and technology.',
-}
+// export const metadata = {
+//   description:
+//     'We are developer studio working at the intersection of design and technology.',
+// }
 
-export default async function Home() {
-  let caseStudies = (await loadMDXMetadata('work')).slice(0, 3)
-
+export default function Home() {
+  const useRCI = useRCIfNonEmptyString();
   return (
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <h1 className="font-display text-3xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            We're Transforming The Outdoors One Backyard At A Time.
-          </h1>
-          <p className="mt-6 mb-10 text-xl text-neutral-600">
-            Schedule a free quote today and one of our representatives will preform an on-site evaluation as soon as the next business day.
-          </p>
-          <Button href="/contact">
-            Get a Quote
-          </Button>
+          {useRCI('hero.heading', (label) => (
+            <h1 className="font-display text-3xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">{label}</h1>
+          ))}
+          {useRCI('hero.subheading', (label) => (
+            <p className="mt-6 mb-10 text-xl text-neutral-600">{label}</p>
+          ))}
+          {useRCI('hero.button', (label) => (
+            <Button href="/contact">{label}</Button>
+          ))}
         </FadeIn>
       </Container>
 
       <Clients />
 
-      <CaseStudies caseStudies={caseStudies} />
+      {/* <CaseStudies caseStudies={caseStudies} /> */}
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"

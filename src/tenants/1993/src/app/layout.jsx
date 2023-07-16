@@ -1,13 +1,8 @@
+'use client'
+
 import { RootLayout } from '@/components/RootLayout'
-
+import '../i18n';
 import '@/styles/tailwind.css'
-
-export const metadata = {
-  title: {
-    template: '%s - Studio',
-    default: 'Studio - Award winning developer studio based in California',
-  },
-}
 
 export default function Layout({ children }) {
   return (
