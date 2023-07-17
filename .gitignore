@@ -12,3 +12,6 @@ error.log
 
 # build
 /.next/
+
+# misc
+.DS_Store
