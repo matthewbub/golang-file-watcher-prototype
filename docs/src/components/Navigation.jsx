@@ -197,7 +197,8 @@ export const navigation = [
       { title: 'Authentication', href: '/authentication' },
       { title: 'Hooks', href: '/hooks' },
       { title: 'SDK', href: '/sdks' },
-      { title: 'REST API', href: '/rest-api' }
+      { title: 'REST API', href: '/rest-api' },
+      { title: 'Tenant Configuration', href: '/tenant-configuration' },
     ],
   },
 ]

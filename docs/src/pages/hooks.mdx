@@ -1,5 +1,5 @@
 export const description =
-  'In this guide, we will look at how to work with paginated responses when querying the Protocol API'
+  'We have a number of custom hooks that are available for use in tenant apps. These hooks are designed to make it easier to work with the UCAN2 API and to provide a consistent experience across tenant apps.'
 
 # Hooks
 
@@ -11,7 +11,9 @@ We have a number of custom hooks that are available for use in tenant apps. Thes
   Only available in tenant apps. 
 </Note>
 
-The `useRCIfNonEmptyString` hook is a custom hook that provides a function for conditionally rendering a component based on a translated string value. This is the primary hook we use for localization in tenant apps.
+The `useRCIfNonEmptyString` hook is a custom hook that provides a function for conditionally rendering a component based on a translated string value. This is the primary hook we use for localization in tenant apps. 
+
+If you need a more custom usecase, you can use the `useTranslation` hook directly. Read the [i18next documentation](https://www.i18next.com/overview/api) for more information.
 
 <Row>
   <Col>

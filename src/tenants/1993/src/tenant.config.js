@@ -3,8 +3,6 @@ export const tenantConfig = {
   slogan: "A landscaping company",
   id: "1993",
   logo: "LOGO DEFINED @ src/tenants/1993/src/components/Logo.jsx",
-  theme: "THEME DEFINED @ src/tenants/1993/tailwind.config.js",
-  primaryColor: "PRIMARY COLOR DEFINED @ src/tenants/1993/tailwind.config.js",
   messages: {
     COMMENTS: [
       'MESSAGES MUST USE JSON-LIKE FORMAT',
@@ -32,7 +30,7 @@ export const tenantConfig = {
     'navigation.items.login': '/login',
   },
   ignore: {
-    'navigation.items.home': false,
+    'navigation.items.home': true,
     'navigation.items.about': false,
     'navigation.items.services': false,
     'navigation.items.locations': false,
