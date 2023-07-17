@@ -18,7 +18,6 @@ export const MobileHeader = ({
   setMobileMenuOpen,
   logoHovered,
   setLogoHovered,
-
 }) => {
   return (
     <div className='lg:hidden'>

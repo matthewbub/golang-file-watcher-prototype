@@ -24,7 +24,7 @@ const navigation = [
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/Header/Header'
 import { Logo } from '@/components/Logo'
 
 const RootLayoutContext = createContext({})
