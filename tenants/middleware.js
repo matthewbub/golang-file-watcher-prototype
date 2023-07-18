@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { supabase } from './supabase.config';
-import { get } from 'http';
 
 export const config = {
   matcher: [
@@ -18,7 +16,7 @@ export const config = {
 
 export default function middleware(req) {
   const url = req.nextUrl;
-  const hostname = req.headers.get('host') || 'demo.windmill.ooo';
+  const hostname = req.headers.get('host') || 'ieportals.com';
 
   const currentHost =
     process.env.NODE_ENV === 'production' && process.env.VERCEL === '1'
@@ -27,39 +25,24 @@ export default function middleware(req) {
         .replace(`.platformize.vercel.app`, '')
       : hostname.replace(`.localhost:3000`, '');
 
-  const logger = async () => {
-    const { data, error } = await supabase.from('logs').select('*')
-    console.log(data, error)
-
-
-    await supabase.from('logs').insert([
-      {
-        name: 'page-view',
-        data: {
-          pathname: url.pathname,
-          hostname: hostname,
-          currentHost: currentHost
-        },
-        date: new Date().toISOString(),
-      },
-    ]).select()
-  }
-  logger();
-
-  // rewrites for app pages
-  if (currentHost == 'app') {
-    url.pathname = `/app${url.pathname}`;
-    return NextResponse.rewrite(url);
-  }
-
   // rewrite root application to `/home` folder
-  if (hostname === 'localhost:3000' || hostname === 'iep-ninembs-studio.vercel.app' || hostname === 'ieportals.com') {
+  if (hostnames.includes([
+    'localhost:3000',
+    'iep-ninembs-studio.vercel.app',
+    'ieportals.com',
+    'www.ieportals.com'
+  ])) {
     url.pathname = `/home${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
   // rewrite admin application to `/admin` folder
-  if (hostname === 'admin.localhost:3000' || hostname === 'admin.iep-ninembs-studio.vercel.app' || hostname === 'admin.ieportals.com') {
+  if (hostnames.includes([
+    'admin.localhost:3000',
+    'admin.iep-ninembs-studio.vercel.app',
+    'admin.ieportals.com',
+    'admin.ieportals.com'
+  ])) {
     url.pathname = `/admin${url.pathname}`;
     return NextResponse.rewrite(url);
   }
