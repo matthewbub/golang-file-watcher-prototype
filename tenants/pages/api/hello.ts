@@ -8,9 +8,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       { name: 'Hello World', data: req }
     ]).select();
 
+  console.log('req', req)
+
   res.status(200).json({
     message: 'Hello World',
-    tenant: req,
     data,
     error
   });

@@ -36,9 +36,9 @@ export default function middleware(req) {
     return NextResponse.rewrite(url);
   }
 
-  // rewrite admin application to `/admin` folder
-  if (currentHost === 'admin' || currentHost === 'admin.ieportals.com' || currentHost === 'admin.localhost:3000') {
-    url.pathname = `/admin${url.pathname}`;
+  // rewrite console application to `/console` folder
+  if (currentHost === 'console' || currentHost === 'console.ieportals.com' || currentHost === 'console.localhost:3000') {
+    url.pathname = `/console${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
