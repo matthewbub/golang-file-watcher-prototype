@@ -21,28 +21,23 @@ export default function middleware(req) {
   const currentHost =
     process.env.NODE_ENV === 'production' && process.env.VERCEL === '1'
       ? hostname
-        .replace(`.9mbs.studio`, '')
+        .replace(`.ieportals.com`, '')
         .replace(`.platformize.vercel.app`, '')
       : hostname.replace(`.localhost:3000`, '');
 
+
+  req.tenant = currentHost;
+
   // rewrite root application to `/home` folder
-  if (hostname.includes([
-    'localhost:3000',
-    'iep-ninembs-studio.vercel.app',
-    'ieportals.com',
-    'www.ieportals.com'
-  ])) {
+  if (currentHost === 'www' || currentHost === 'ieportals.com' || currentHost === 'localhost:3000' || currentHost === 'platformize.vercel.app') {
+    console.log(req.tenant)
+
     url.pathname = `/home${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
   // rewrite admin application to `/admin` folder
-  if (hostname.includes([
-    'admin.localhost:3000',
-    'admin.iep-ninembs-studio.vercel.app',
-    'admin.ieportals.com',
-    'admin.ieportals.com'
-  ])) {
+  if (currentHost === 'admin' || currentHost === 'admin.ieportals.com' || currentHost === 'admin.localhost:3000') {
     url.pathname = `/admin${url.pathname}`;
     return NextResponse.rewrite(url);
   }
