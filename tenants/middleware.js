@@ -16,14 +16,8 @@ export const config = {
 
 export default function middleware(req) {
   const url = req.nextUrl;
-
-  // Get hostname of request (e.g. demo.windmill.ooo, demo.localhost:3000)
   const hostname = req.headers.get('host') || 'demo.windmill.ooo';
 
-  /*  You have to replace ".windmill.ooo" with your own domain if you deploy this example under your domain.
-      You can also use wildcard subdomains on .vercel.app links that are associated with your Vercel team slug
-      in this case, our team slug is "platformize", thus *.platformize.vercel.app works. Do note that you'll
-      still need to add "*.platformize.vercel.app" as a wildcard domain on your Vercel dashboard. */
   const currentHost =
     process.env.NODE_ENV === 'production' && process.env.VERCEL === '1'
       ? hostname
@@ -49,7 +43,8 @@ export default function middleware(req) {
     return NextResponse.rewrite(url);
   }
 
-  // rewrite everything else to `/_sites/[site] dynamic route
-  url.pathname = `/_sites/${currentHost}${url.pathname}`;
+  // TODO - add more rules here.
+  // rewrite everything else to `/_tenants/[tenant] dynamic route
+  url.pathname = `/_tenants/${currentHost}${url.pathname}`;
   return NextResponse.rewrite(url);
 }
