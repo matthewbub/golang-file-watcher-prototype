@@ -53,13 +53,13 @@ export default function middleware(req) {
   }
 
   // rewrite root application to `/home` folder
-  if (hostname === 'localhost:3000' || hostname === 'iep-ninembs-studio.vercel.app') {
+  if (hostname === 'localhost:3000' || hostname === 'iep-ninembs-studio.vercel.app' || hostname === 'ieportals.com') {
     url.pathname = `/home${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
   // rewrite admin application to `/admin` folder
-  if (hostname === 'admin.localhost:3000') {
+  if (hostname === 'admin.localhost:3000' || hostname === 'admin.iep-ninembs-studio.vercel.app' || hostname === 'admin.ieportals.com') {
     url.pathname = `/admin${url.pathname}`;
     return NextResponse.rewrite(url);
   }
