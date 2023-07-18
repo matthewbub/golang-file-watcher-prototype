@@ -26,7 +26,7 @@ export default function middleware(req) {
       : hostname.replace(`.localhost:3000`, '');
 
   // rewrite root application to `/home` folder
-  if (hostnames.includes([
+  if (hostname.includes([
     'localhost:3000',
     'iep-ninembs-studio.vercel.app',
     'ieportals.com',
@@ -37,7 +37,7 @@ export default function middleware(req) {
   }
 
   // rewrite admin application to `/admin` folder
-  if (hostnames.includes([
+  if (hostname.includes([
     'admin.localhost:3000',
     'admin.iep-ninembs-studio.vercel.app',
     'admin.ieportals.com',
