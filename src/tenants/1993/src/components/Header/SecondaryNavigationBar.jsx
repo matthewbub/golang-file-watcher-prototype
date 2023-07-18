@@ -2,7 +2,6 @@
 
 import { useTranslation } from 'react-i18next';
 import { ReusableNavigationList } from '@/components/Header/ReusableNavigationList';
-import { DropDownItem } from '@/components/Header/DropDownItem';
 
 export const SecondaryNavigationBar = () => {
   const { t } = useTranslation();
