@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { supabase } from './supabase.config';
+import { get } from 'http';
 
 export const config = {
   matcher: [
@@ -25,6 +27,25 @@ export default function middleware(req) {
         .replace(`.platformize.vercel.app`, '')
       : hostname.replace(`.localhost:3000`, '');
 
+  const logger = async () => {
+    const { data, error } = await supabase.from('logs').select('*')
+    console.log(data, error)
+
+
+    await supabase.from('logs').insert([
+      {
+        name: 'page-view',
+        data: {
+          pathname: url.pathname,
+          hostname: hostname,
+          currentHost: currentHost
+        },
+        date: new Date().toISOString(),
+      },
+    ]).select()
+  }
+  logger();
+
   // rewrites for app pages
   if (currentHost == 'app') {
     url.pathname = `/app${url.pathname}`;
@@ -32,7 +53,7 @@ export default function middleware(req) {
   }
 
   // rewrite root application to `/home` folder
-  if (hostname === 'localhost:3000') {
+  if (hostname === 'localhost:3000' || hostname === 'iep-ninembs-studio.vercel.app') {
     url.pathname = `/home${url.pathname}`;
     return NextResponse.rewrite(url);
   }
