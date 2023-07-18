@@ -1,0 +1,47 @@
+export const description =
+  'We have a number of custom hooks that are available for use in tenant apps. These hooks are designed to make it easier to work with the UCAN2 API and to provide a consistent experience across tenant apps.'
+
+# Hooks
+
+We have a number of custom hooks that are available for use in tenant apps. These hooks are designed to make it easier to work with the UCAN2 API and to provide a consistent experience across tenant apps.
+
+## `useRCIfNonEmptyString`
+
+<Note>
+  Only available in tenant apps. 
+</Note>
+
+The `useRCIfNonEmptyString` hook is a custom hook that provides a function for conditionally rendering a component based on a translated string value. This is the primary hook we use for localization in tenant apps. 
+
+If you need a more custom usecase, you can use the `useTranslation` hook directly. Read the [i18next documentation](https://www.i18next.com/overview/api) for more information.
+
+<Row>
+  <Col>
+    <Properties>
+      <Property name="value" type="string">
+        The translation key for the string.
+      </Property>
+      <Property name="component" type="JSX.Element">
+        The component to render with the non-empty string.
+      </Property>
+    </Properties>
+  </Col>
+  <Col>
+
+    ```jsx {{ title: 'Basic Usage' }}
+    import { useRCIfNonEmptyString } from '@/lib/useRCIfNonEmptyString';
+
+    function MyComponent() {
+      const useRCI = useRCIfNonEmptyString();
+
+      return (
+        <>
+          {useRCI('translation.key', (value) => (
+            <p>{value}</p>
+          ))}
+        </>
+      );
+    }
+    ```
+  </Col>
+</Row>
