@@ -220,7 +220,7 @@ export const getServerSideProps = async () => {
     const status = (
       deployment.state === 'READY' ? 'Completed' : deployment.state === 'ERROR' ? 'Error' : 'Running'
     )
-    console.log('deployment target', duration)
+
     return ([
       ...acc,
       {
