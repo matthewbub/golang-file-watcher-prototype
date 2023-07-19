@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { capitalize, isEmpty } from 'lodash';
+import { get } from 'lodash';
 
 dayjs.locale('en');
 dayjs.extend(relativeTime);
@@ -206,14 +207,12 @@ export const getServerSideProps = async () => {
 
   const formattedDeployments = deployments.deployments.reduce((acc, deployment) => {
     let duration;
-    if (
-      deployment &&
-      deployment.buildingAt &&
-      deployment.buildingAt.toString().length > 0 &&
-      deployment.ready &&
-      deployment.ready.toString().length > 0
-    ) {
-      duration = dayjs(deployment.ready).diff(dayjs(deployment.buildingAt), 's');
+
+    const buildingAt = get(deployment, 'buildingAt', null);
+    const ready = get(deployment, 'ready', null);
+
+    if (buildingAt && ready) {
+      duration = dayjs(ready).diff(dayjs(buildingAt), 's');
     } else {
       duration = '-'
     }
@@ -231,17 +230,15 @@ export const getServerSideProps = async () => {
         },
         dateTime: dayjs(deployment.createdAt).format('YYYY-MM-DDTHH:mm'),
         date: dayjs.unix(deployment.createdAt / 1000).fromNow(),
-        buildingAt: deployment &&
-          deployment.buildingAt &&
-          deployment.buildingAt.toString().length > 0 ? deployment.buildingAt : null,
-        ready: deployment.ready,
-        state: deployment.state,
+        buildingAt,
+        ready,
         duration,
+        status,
+        state: deployment.state,
         commit: deployment.meta.githubCommitSha.slice(0, 7),
         commitUrl: 'https://github.com/' + deployment.meta.githubOrg + '/' + deployment.meta.githubRepo + '/commit/' + deployment.meta.githubCommitSha,
         target: deployment.target,
         inspectorUrl: deployment.inspectorUrl,
-        status
       }
     ])
   }, []);
