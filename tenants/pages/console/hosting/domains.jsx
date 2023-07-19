@@ -1,4 +1,4 @@
-import { supabase } from '../../supabase.config';
+import { supabase } from '9mbs/supabase.config';
 import { useEffect } from 'react';
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
@@ -66,20 +66,18 @@ export function Modal({ open, setOpen, data }) {
   )
 }
 
-const Deployment = ({ deployment }) => {
+const Domain = ({ domain }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <li className='flex flex-col'>
       <div className=''>
-        <a href={deployment.inspectorUrl} target='_blank' className='text-blue-500 underline'>Inspect Deployment</a>
+        <span className='text-green-500 underline' onClick={() => { setOpen(true) }}>Debug Domain</span>
         <span className='text-gray-500'>{' · '}</span>
-        <span className='text-green-500 underline' onClick={() => { setOpen(true) }}>Debug Deployment</span>
-        <span className='text-gray-500'>{' · '}</span>
-        <span className='text-gray-500'>Created by {deployment.creator.email} on {new Date(deployment.createdAt).toLocaleString()} </span>
+        <span className='text-gray-500'>{domain.name} </span>
       </div>
       <Modal
-        data={deployment}
+        data={domain}
         open={open}
         setOpen={setOpen}
       />
@@ -87,16 +85,16 @@ const Deployment = ({ deployment }) => {
   )
 }
 
-const DeploymentsPage = ({ title, deployments: { deployments, pagination } }) => {
+const DeploymentsPage = ({ title, domains }) => {
   return (
     <div className='mx-auto max-w-7xl p-12'>
       <h1 className='text-4xl mb-12'>{title}</h1>
 
-      {console.log(deployments)}
-      <h2 className='text-2xl mb-4'>Recent Deployments</h2>
+      {console.log(domains)}
+      {/* <h2 className='text-2xl mb-4'>Recent Deployments</h2> */}
       <ul className='space-y-4 list-disc pl-6'>
-        {deployments && deployments.length > 0 && deployments.map(deployment => (
-          <Deployment key={deployment.uid} deployment={deployment} />
+        {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
+          <Domain key={domain.uid} domain={domain} />
         ))}
       </ul>
     </div>
@@ -104,16 +102,9 @@ const DeploymentsPage = ({ title, deployments: { deployments, pagination } }) =>
 }
 
 export const getServerSideProps = async (context) => {
-
-  const { data, error } = await supabase.from('tenants').select('*');
-
-  if (error) {
-    console.log(error);
-  }
-
   const vercelToken = process.env.NEXT_PUBLIC_VERCEL_TOKEN;
-  //Replace with your token
-  const apiEndPt = 'https://api.vercel.com/v6/deployments?teamId=' + process.env.NEXT_PUBLIC_VERCEL_TEAM_ID;
+
+  const apiEndPt = 'https://api.vercel.com/v5/domains?teamId=' + process.env.NEXT_PUBLIC_VERCEL_TEAM_ID;
 
   let config = {
     method: 'get',
@@ -123,14 +114,15 @@ export const getServerSideProps = async (context) => {
     },
   };
 
-  const unparsedDeployments = await fetch(config.url, config)
+  const unparsedDomains = await fetch(config.url, config)
 
-  const deployments = await unparsedDeployments.json();
+  const domains = await unparsedDomains.json();
 
+  console.log('Domains', domains)
   return {
     props: {
-      title: 'Deployments',
-      deployments
+      title: 'Domains',
+      domains
     }
   }
 }
