@@ -209,8 +209,8 @@ export const getServerSideProps = async () => {
     if (
       deployment &&
       deployment.buildingAt &&
-      deployment.ready &&
       deployment.buildingAt.toString().length > 0 &&
+      deployment.ready &&
       deployment.ready.toString().length > 0
     ) {
       duration = dayjs(deployment.ready).diff(dayjs(deployment.buildingAt), 's');
@@ -231,7 +231,9 @@ export const getServerSideProps = async () => {
         },
         dateTime: dayjs(deployment.createdAt).format('YYYY-MM-DDTHH:mm'),
         date: dayjs.unix(deployment.createdAt / 1000).fromNow(),
-        buildingAt: deployment.buildingAt,
+        buildingAt: deployment &&
+          deployment.buildingAt &&
+          deployment.buildingAt.toString().length > 0 ? deployment.buildingAt : null,
         ready: deployment.ready,
         state: deployment.state,
         duration,
