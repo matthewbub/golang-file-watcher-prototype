@@ -1,13 +1,11 @@
-import { supabase } from '9mbs/supabase.config';
-import { useEffect } from 'react';
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { capitalize } from 'lodash';
+import { capitalize, isEmpty } from 'lodash';
+import { get } from 'lodash';
 
 dayjs.locale('en');
 dayjs.extend(relativeTime);
@@ -159,55 +157,15 @@ export function Modal({ open, setOpen, data }) {
   )
 }
 
-const Deployment = ({ deployment }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <li className='flex flex-col'>
-      <div className=''>
-        <a href={deployment.inspectorUrl} target='_blank' className='text-blue-500 underline'>Inspect Deployment</a>
-        <span className='text-gray-500'>{' · '}</span>
-        <span className='text-green-500 underline' onClick={() => { setOpen(true) }}>Debug Deployment</span>
-        <span className='text-gray-500'>{' · '}</span>
-        <span className='text-gray-500'>Created by {deployment.creator.email} on {new Date(deployment.createdAt).toLocaleString()} </span>
-      </div>
-      <Modal
-        data={deployment}
-        open={open}
-        setOpen={setOpen}
-      />
-    </li>
-  )
-}
-
 const DeploymentsPage = ({ title, deployments: { deployments, pagination }, formattedDeployments }) => {
   return (
     <div className='mx-auto max-w-7xl p-12'>
       <DeploymentsTable deployments={formattedDeployments} />
-      <h1 className='text-4xl mb-12'>{title}</h1>
-      <h2 className='text-2xl mb-4'>Recent Deployments</h2>
-      {/* <ul className='space-y-4 list-disc pl-6'>
-        {deployments && deployments.length > 0 && deployments.map(deployment => (
-          <Deployment key={deployment.uid} deployment={deployment} />
-        ))}
-      </ul> */}
     </div>
   )
 }
 
-// user: {
-//   name: 'Michael Foster',
-//   imageUrl:
-//     'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-// },
-// commit: '2d89f0c8',
-//  target: 'main',
-// status: 'Completed',
-// duration: '25s',
-// date: '45 minutes ago',
-// dateTime: '2023-01-23T11:00',
-
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async () => {
   const vercelToken = process.env.NEXT_PUBLIC_VERCEL_TOKEN;
   const apiEndPt = 'https://api.vercel.com/v6/deployments?teamId=' + process.env.NEXT_PUBLIC_VERCEL_TEAM_ID;
   let config = {
@@ -220,16 +178,16 @@ export const getServerSideProps = async (context) => {
   const unparsedDeployments = await fetch(config.url, config)
   const deployments = await unparsedDeployments.json();
 
+  // collect all authors
   const authors = deployments.deployments.map(deployment => deployment.creator.githubLogin)
+
+  // remove duplicates
   const uniqueAuthors = [...new Set(authors)]
 
   const authorDetails = await Promise.all(uniqueAuthors.map(async author => {
     const authorConfig = {
       method: 'get',
-      url: `https://api.github.com/users/${author}`,
-      // headers: {
-      //   Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_GITHUB_TOKEN,
-      // },
+      url: `https://api.github.com/users/${author}`
     };
     const authorDetails = await fetch(authorConfig.url, authorConfig)
     const authorDetailsJson = await authorDetails.json();
@@ -247,15 +205,21 @@ export const getServerSideProps = async (context) => {
     })
   }, {});
 
-  console.log('formattedAuthors', formattedAuthors)
-  // console.log('authorDetails', authorDetails)
-
   const formattedDeployments = deployments.deployments.reduce((acc, deployment) => {
-    const duration = dayjs(deployment.ready).diff(dayjs(deployment.buildingAt), 's');
+    let duration;
+
+    const buildingAt = get(deployment, 'buildingAt', null);
+    const ready = get(deployment, 'ready', null);
+
+    if (buildingAt && ready) {
+      duration = dayjs(ready).diff(dayjs(buildingAt), 's');
+    } else {
+      duration = '-'
+    }
     const status = (
       deployment.state === 'READY' ? 'Completed' : deployment.state === 'ERROR' ? 'Error' : 'Running'
     )
-    console.log('deployment target', duration)
+
     return ([
       ...acc,
       {
@@ -266,15 +230,15 @@ export const getServerSideProps = async (context) => {
         },
         dateTime: dayjs(deployment.createdAt).format('YYYY-MM-DDTHH:mm'),
         date: dayjs.unix(deployment.createdAt / 1000).fromNow(),
-        buildingAt: deployment.buildingAt,
-        ready: deployment.ready,
-        state: deployment.state,
+        buildingAt,
+        ready,
         duration,
+        status,
+        state: deployment.state,
         commit: deployment.meta.githubCommitSha.slice(0, 7),
         commitUrl: 'https://github.com/' + deployment.meta.githubOrg + '/' + deployment.meta.githubRepo + '/commit/' + deployment.meta.githubCommitSha,
         target: deployment.target,
         inspectorUrl: deployment.inspectorUrl,
-        status
       }
     ])
   }, []);
