@@ -1,13 +1,9 @@
-import Link from 'next/link';
-import { supabase } from '../../supabase.config';
-import { useEffect } from 'react';
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import Input from '../../components/Input';
+import { supabase } from '9mbs/supabase.config';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { SlideOver } from '../../components/SlideOver';
-import Button from '../../components/Button';
+import { SlideOver } from '9mbs/components/SlideOver';
+import Input from '9mbs/components/Input';
+import Button from '9mbs/components/Button';
 
 const TenantsPage = ({ title, tenants }) => {
   const [open, setOpen] = useState(false);
@@ -15,8 +11,7 @@ const TenantsPage = ({ title, tenants }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   async function submitForm(data) {
-    console.log(data);
-    const { data: tenant, error } = await supabase
+    const { error } = await supabase
       .from('tenants')
       .insert([
         {
