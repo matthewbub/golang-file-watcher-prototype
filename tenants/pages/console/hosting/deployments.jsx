@@ -49,8 +49,12 @@ export function DeploymentsTable({ deployments = [] }) {
             <tr key={item.commit}>
               <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
                 <div className="flex items-center gap-x-4">
-                  <img src={item.user.imageUrl} alt="" className="h-8 w-8 rounded-full bg-gray-800" />
-                  <div className="truncate text-sm font-medium leading-6 text-white">{item.user.name}</div>
+                  <a href={item.user.href} target='_blank'>
+                    <img src={item.user.imageUrl} alt="" className="h-8 w-8 rounded-full bg-gray-800" />
+                  </a>
+                  <a href={item.user.href} target='_blank'>
+                    <div className="truncate text-sm font-medium leading-6 text-white">{item.user.name}</div>
+                  </a>
                 </div>
               </td>
               <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
@@ -79,7 +83,7 @@ export function DeploymentsTable({ deployments = [] }) {
                 </div>
               </td>
               <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
-                {item.duration}
+                {item.duration === '0' ? '-' : item.duration + 's'}
               </td>
               <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
                 <time dateTime={item.dateTime}>{item.date}</time>
@@ -182,11 +186,11 @@ const DeploymentsPage = ({ title, deployments: { deployments, pagination }, form
       <DeploymentsTable deployments={formattedDeployments} />
       <h1 className='text-4xl mb-12'>{title}</h1>
       <h2 className='text-2xl mb-4'>Recent Deployments</h2>
-      <ul className='space-y-4 list-disc pl-6'>
+      {/* <ul className='space-y-4 list-disc pl-6'>
         {deployments && deployments.length > 0 && deployments.map(deployment => (
           <Deployment key={deployment.uid} deployment={deployment} />
         ))}
-      </ul>
+      </ul> */}
     </div>
   )
 }
@@ -216,8 +220,38 @@ export const getServerSideProps = async (context) => {
   const unparsedDeployments = await fetch(config.url, config)
   const deployments = await unparsedDeployments.json();
 
+  const authors = deployments.deployments.map(deployment => deployment.creator.githubLogin)
+  const uniqueAuthors = [...new Set(authors)]
+
+  const authorDetails = await Promise.all(uniqueAuthors.map(async author => {
+    const authorConfig = {
+      method: 'get',
+      url: `https://api.github.com/users/${author}`,
+      // headers: {
+      //   Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_GITHUB_TOKEN,
+      // },
+    };
+    const authorDetails = await fetch(authorConfig.url, authorConfig)
+    const authorDetailsJson = await authorDetails.json();
+    return authorDetailsJson
+  }));
+
+  const formattedAuthors = authorDetails.reduce((acc, author) => {
+    return ({
+      ...acc,
+      [author.login]: {
+        name: author.name,
+        avatar_url: author.avatar_url,
+        html_url: author.html_url,
+      }
+    })
+  }, {});
+
+  console.log('formattedAuthors', formattedAuthors)
+  // console.log('authorDetails', authorDetails)
+
   const formattedDeployments = deployments.deployments.reduce((acc, deployment) => {
-    const duration = dayjs(deployment.ready).diff(dayjs(deployment.buildingAt));
+    const duration = dayjs(deployment.ready).diff(dayjs(deployment.buildingAt), 's');
     const status = (
       deployment.state === 'READY' ? 'Completed' : deployment.state === 'ERROR' ? 'Error' : 'Running'
     )
@@ -226,7 +260,9 @@ export const getServerSideProps = async (context) => {
       ...acc,
       {
         user: {
-          name: deployment.creator.githubLogin
+          name: deployment.creator.githubLogin,
+          imageUrl: formattedAuthors[deployment.creator.githubLogin].avatar_url,
+          href: formattedAuthors[deployment.creator.githubLogin].html_url,
         },
         dateTime: dayjs(deployment.createdAt).format('YYYY-MM-DDTHH:mm'),
         date: dayjs.unix(deployment.createdAt / 1000).fromNow(),
