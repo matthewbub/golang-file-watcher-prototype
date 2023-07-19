@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { SlideOver } from '9mbs/components/SlideOver';
 import Input from '9mbs/components/Input';
 import Button from '9mbs/components/Button';
+import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
 
 const TenantsPage = ({ title, tenants }) => {
   const [open, setOpen] = useState(false);
@@ -53,40 +54,42 @@ const TenantsPage = ({ title, tenants }) => {
   }, [])
 
   return (
-    <div className='mx-auto max-w-7xl p-12'>
-      <a href='/' className="fixed left-0 top-0 flex w-fit justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-        Console Home Page
-      </a>
+    <ConsoleLayout>
+      <div className='mx-auto max-w-7xl p-12 min-h-screen'>
+        <a href='/' className="fixed left-0 top-0 flex w-fit justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+          Console Home Page
+        </a>
 
-      <h1 className='text-4xl mb-12'>{title}</h1>
+        <h1 className='text-4xl mb-12'>{title}</h1>
 
-      <div className='flex justify-between w-full'>
+        <div className='flex justify-between w-full'>
 
-        <h2 className='text-2xl mb-4'>All Tenants</h2>
-        <button onClick={() => { setOpen(true) }}>Add new tenant</button>
+          <h2 className='text-2xl mb-4'>All Tenants</h2>
+          <button onClick={() => { setOpen(true) }}>Add new tenant</button>
+        </div>
+        <ul className='space-y-4 list-disc pl-6'>
+          {tenants.map(tenant => (
+            <li key={tenant.id}>
+              <a href={tenant.tenant_name + '.localhost:3000'} className='text-blue-500 underline'>{tenant.tenant_name}</a>
+            </li>
+          ))}
+        </ul>
+        <SlideOver
+          open={open}
+          setOpen={setOpen}
+          title='Add new tenant'
+        >
+          <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(submitForm)}>
+            <Input label='Tenant Name' name='tenant_name' register={register} className='col-span-12' />
+            <Button className='col-span-4 text-center'>
+              Add Tenant
+            </Button>
+          </form>
+
+
+        </SlideOver>
       </div>
-      <ul className='space-y-4 list-disc pl-6'>
-        {tenants.map(tenant => (
-          <li key={tenant.id}>
-            <a href={tenant.tenant_name + '.localhost:3000'} className='text-blue-500 underline'>{tenant.tenant_name}</a>
-          </li>
-        ))}
-      </ul>
-      <SlideOver
-        open={open}
-        setOpen={setOpen}
-        title='Add new tenant'
-      >
-        <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(submitForm)}>
-          <Input label='Tenant Name' name='tenant_name' register={register} className='col-span-12' />
-          <Button className='col-span-4 text-center'>
-            Add Tenant
-          </Button>
-        </form>
-
-
-      </SlideOver>
-    </div>
+    </ConsoleLayout>
   )
 }
 

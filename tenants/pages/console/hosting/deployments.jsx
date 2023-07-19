@@ -6,6 +6,7 @@ import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { capitalize, isEmpty } from 'lodash';
 import { get } from 'lodash';
+import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
 
 dayjs.locale('en');
 dayjs.extend(relativeTime);
@@ -159,9 +160,11 @@ export function Modal({ open, setOpen, data }) {
 
 const DeploymentsPage = ({ title, deployments: { deployments, pagination }, formattedDeployments }) => {
   return (
-    <div className='mx-auto max-w-7xl p-12'>
-      <DeploymentsTable deployments={formattedDeployments} />
-    </div>
+    <ConsoleLayout>
+      <div className='mx-auto max-w-7xl p-12'>
+        <DeploymentsTable deployments={formattedDeployments} />
+      </div>
+    </ConsoleLayout>
   )
 }
 
