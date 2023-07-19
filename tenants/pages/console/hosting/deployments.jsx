@@ -1,6 +1,5 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
@@ -205,12 +204,15 @@ export const getServerSideProps = async () => {
     })
   }, {});
 
-  console.log('formattedAuthors', formattedAuthors)
-  // console.log('authorDetails', authorDetails)
-
   const formattedDeployments = deployments.deployments.reduce((acc, deployment) => {
     let duration;
-    if (deployment.buildingAt.toString().length > 0 && deployment.ready.toString().length > 0) {
+    if (
+      deployment &&
+      deployment.buildingAt &&
+      deployment.ready &&
+      deployment.buildingAt.toString().length > 0 &&
+      deployment.ready.toString().length > 0
+    ) {
       duration = dayjs(deployment.ready).diff(dayjs(deployment.buildingAt), 's');
     } else {
       duration = '-'
