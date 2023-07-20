@@ -160,11 +160,14 @@ export function Modal({ open, setOpen, data }) {
 
 const DeploymentsPage = ({ title, deployments: { deployments, pagination }, formattedDeployments }) => {
   return (
-    <ConsoleLayout>
-      <div className='mx-auto max-w-7xl p-12'>
-        <DeploymentsTable deployments={formattedDeployments} />
-      </div>
-    </ConsoleLayout>
+    <ConsoleLayout
+      primaryTitle={title}
+      primary={() => (
+        <div className='mx-auto max-w-7xl p-12'>
+          <DeploymentsTable deployments={formattedDeployments} />
+        </div>
+      )}
+    />
   )
 }
 
