@@ -1,72 +1,144 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import clsx from 'clsx';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { capitalize, isEmpty } from 'lodash';
-import { get } from 'lodash';
+import { useState } from 'react'
 import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { SlideOver } from '9mbs/components/SlideOver';
+import { useForm } from 'react-hook-form';
+import Input from '9mbs/components/Input';
+import Button from '9mbs/components/Button';
+import { supabase } from '../../supabase.config';
 
-dayjs.locale('en');
-dayjs.extend(relativeTime);
+export const isStrongPassword = (password) => {
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordRegex.test(password);
+};
 
-export function DeploymentsTable({ deployments = [] }) {
-  const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10', Running: 'text-blue-400 bg-blue-400/10 animated pulse' }
+
+const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
+  const [open, setOpen] = useState(false);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [passwordMatchError, setPasswordMatchError] = useState(null);
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const submitForm = async (data) => {
+    // Reset errors
+    setEmailError(null);
+    setPasswordError(null);
+    setPasswordMatchError(null);
+
+    if (!isStrongPassword(data.password)) {
+      setPasswordMatchError('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number and one special character');
+      return;
+    }
+
+    // Check if passwords match
+    if (data.password !== data['confirm-password']) {
+      setPasswordMatchError('Passwords do not match');
+      return;
+    }
+
+    const response = await fetch('/api/sign-up', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+
+    const { error, data: token } = await response.json();
+
+    if (error) {
+      if (error.message === 'User already exists') {
+        setEmailError('User already exists');
+      }
+      return;
+    }
+
+    console.log(token);
+  }
+
   return (
-    <div className="py-10">
-      <h2 className="px-4 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">Latest activity</h2>
-      <table className="mt-6 w-full whitespace-nowrap text-left">
-        <colgroup>
-          <col className="w-full sm:w-4/12" />
-          <col className="lg:w-4/12" />
-          <col className="lg:w-2/12" />
-          <col className="lg:w-1/12" />
-          <col className="lg:w-1/12" />
-        </colgroup>
-        <thead className="border-b border-white/10 text-sm leading-6 text-white">
-          <tr>
-            <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
-              User
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell">
-              Commit
-            </th>
-            <th scope="col" className="py-2 pl-0 pr-4 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20">
-              Status
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20">
-              Duration
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8">
-              Deployed at
-            </th>
-          </tr>
-        </thead>
+    <>
+      <ConsoleLayout
+        reverseLayout={true}
+        primary={() => (
+          <>
+            <button onClick={() => { setOpen(true) }} className=''>Add User</button>
+            <div>
+              <pre>
+                <code>
+                  {JSON.stringify(data, null, 2)}
+                </code>
+              </pre>
+            </div>
+          </>
+        )}
+        secondary={() => (<h2>Hello!!</h2>)}
+        primaryTitle={primaryTitle}
+        secondaryTitle={secondaryTitle}
+      />
+      <SlideOver
+        open={open}
+        setOpen={setOpen}
+        title="Create a new user"
+      >
+        <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(submitForm)}>
+          <Input
+            label='Email'
+            name='email'
+            register={register}
+            className='col-span-12'
+            error={emailError}
+          />
+          <Input
+            label='Password'
+            name='password'
+            register={register}
+            className='col-span-9'
+            type='password'
+            error={passwordError}
+          />
+          <Input
+            label='Confirm Password'
+            name='confirm-password'
+            register={register}
+            className='col-span-9'
+            type='password'
+            error={passwordMatchError}
+          />
+          <div className='col-span-4'>
 
-      </table>
-    </div>
-  )
-}
+            <Button className='text-center mt-24'>
+              Add User
+            </Button>
+          </div>
+        </form>
 
+      </SlideOver>
+    </>
 
-const UsersPage = ({ primaryTitle, secondaryTitle }) => {
-  return (
-    <ConsoleLayout
-      reverseLayout={true}
-      primary={() => (<h2>Hello!!</h2>)}
-      secondary={() => (<h2>Hello!!</h2>)}
-      primaryTitle={primaryTitle}
-      secondaryTitle={secondaryTitle}
-    />
   )
 }
 
 export const getServerSideProps = async () => {
+  const { data, error } = await supabase.from('users').select('created_at, email, id, phone');
+
+  if (error) {
+    console.error(error);
+    return {
+      props: {
+        primaryTitle: 'Users',
+        secondaryTitle: 'Recent actions',
+        data: [],
+      }
+    }
+  }
+
   return {
     props: {
       primaryTitle: 'Users',
-      secondaryTitle: 'Recent actions'
+      secondaryTitle: 'Recent actions',
+      data: data,
     }
   }
 }

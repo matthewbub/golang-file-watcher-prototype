@@ -1,3 +1,6 @@
+import clsx from "clsx";
+import { baseClassNames } from "../helpers/constants";
+
 /**
  * Wrapper component for form fields.
  *
@@ -13,7 +16,10 @@ const FieldWrapper = ({ label, name, children, ...rest }) => (
     {label && label.length && (
       <label
         htmlFor={name}
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className={clsx(
+          baseClassNames.secondaryText,
+          "block text-sm font-medium leading-6"
+        )}
       >
         {label}
       </label>
