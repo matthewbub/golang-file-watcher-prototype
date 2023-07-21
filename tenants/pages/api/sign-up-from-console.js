@@ -2,7 +2,6 @@ import { supabase } from '../../supabase.config';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { commonApiMessages, regexPatterns } from '../../helpers/constants';
-import { logEvent } from '../../helpers/Logger';
 export const isStrongPassword = (password) => regexPatterns.password.test(password);
 
 import { Logger } from '../../helpers';

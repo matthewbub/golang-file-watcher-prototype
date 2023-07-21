@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { DashboardIcon, DomainsIcon, UsersIcon, HostingIcon } from '9mbs/components/icons';
+import { DashboardIcon, DomainsIcon, UsersIcon, HostingIcon } from '9mbs/components/Icons';
 
 export const fallBackNavigation = [
   { name: 'Console', href: '#', icon: DashboardIcon, current: true },
