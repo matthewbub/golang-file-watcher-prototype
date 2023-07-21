@@ -8,7 +8,7 @@ export default function HomePage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
   const submitForm = async (data) => {
-    const res = await fetch('/api/log-in-from-iep', {
+    const res = await fetch('/api/v1/log-in/from-iep', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
