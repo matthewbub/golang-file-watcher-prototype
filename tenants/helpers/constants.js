@@ -19,3 +19,7 @@ export const regexPatterns = {
   email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$/,
   password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
 }
+
+export const apiRoutes = {
+  logInFromConsole: '/api/v1/log-in/from-console',
+}

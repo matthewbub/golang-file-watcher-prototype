@@ -7,15 +7,22 @@ export default async function handler(req, res) {
     // Retrieve the user data from the request body
     const { email, password } = req.body;
 
+    // Query the database for the user
     const { data: userData, error } = await supabase.from('users').select('*').eq('email', email).single();
 
-    console.log('userData, error', userData, error)
+    // If something went wrong with the query, return a 500 error
     if (error) {
       return res.status(500).json({ message: 'Something went wrong' });
     }
 
+    // If the user doesn't exist in our dbs, return a 404 error
     if (!userData) {
       return res.status(404).json({ message: 'Account doesn\'t exist' });
+    }
+
+    // If the user isn't registered with access to the console, return a 500 error
+    if (userData?.auth_type !== 'iep') {
+      return res.status(500).json({ message: 'Something went wrong' });
     }
 
     // Compare the provided password with the stored hashed password

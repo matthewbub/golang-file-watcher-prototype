@@ -10,13 +10,14 @@ const logger = new Logger('user_created:console');
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, password } = req.body;
+    const { email, password, auth_type } = req.body;
     const confirmPassword = req.body['confirm-password'];
 
+    // Start Basic Validations
     if (!email || !password) {
       logger.error({
         log_message: `User ${email || 'NO_EMAIL_PROVIDED'} failed to create from console`,
-        data: { email, password }
+        data: { email, auth_type }
       });
 
       return res.status(400).json({
@@ -25,6 +26,21 @@ export default async function handler(req, res) {
           message: commonApiMessages.generalError
         }
       });
+    }
+
+    if (auth_type !== 'tenant' && auth_type !== 'iep' && auth_type !== 'console') {
+      logger.error({
+        log_message: `User ${email} failed to create from console`,
+        data: 'Invalid auth_type'
+      });
+
+      return res.status(400).json({
+        data: null,
+        error: {
+          message: commonApiMessages.generalError
+        }
+      });
+
     }
 
     if (!isStrongPassword(password)) {
@@ -52,13 +68,15 @@ export default async function handler(req, res) {
         error: { message: 'Passwords do not match' }
       });
     }
+    // End Basic Validations
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const { error } = await supabase.from('users').insert([{
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      auth_type: auth_type
     }]);
 
     if (error) {
@@ -81,8 +99,8 @@ export default async function handler(req, res) {
     }
 
     logger.success({
-      log_message: `User ${email} created from console`,
-      data: null
+      log_message: `User ${email} created from console as ${auth_type}`,
+      data: auth_type
     });
 
     const token = jwt.sign({ email }, process.env.SUPABASE_JWT, { expiresIn: '1h' });

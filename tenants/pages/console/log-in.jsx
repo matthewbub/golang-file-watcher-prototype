@@ -8,7 +8,7 @@ export default function HomePage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
   const submitForm = async (data) => {
-    const res = await fetch('/api/log-in-from-tenant-client', {
+    const res = await fetch('/api/v1/log-in/from-console', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
