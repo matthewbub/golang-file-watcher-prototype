@@ -9,6 +9,7 @@ export const baseClassNames = {
   background: 'bg-gray-950',
   secondaryBackground: 'bg-gray-900',
   secondaryBackgroundHover: 'hover:bg-gray-950/50 border-2 border-gray-900 hover:border-gray-900',
+  overlayBackground: 'bg-gray-700 bg-opacity-75 transition-opacity',
 }
 
 export const commonApiMessages = {

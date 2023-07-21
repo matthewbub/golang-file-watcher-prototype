@@ -1,16 +1,16 @@
-import { supabase } from '../../supabase.config';
+import { supabase } from '../../../../supabase.config';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { commonApiMessages, regexPatterns } from '../../helpers/constants';
+import { commonApiMessages, regexPatterns } from '../../../../helpers/constants';
 export const isStrongPassword = (password) => regexPatterns.password.test(password);
 
-import { Logger } from '../../helpers';
+import { Logger } from '../../../../helpers';
 
 const logger = new Logger('user_created:console');
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, password, auth_type } = req.body;
+    const { email, password, auth_type, phone } = req.body;
     const confirmPassword = req.body['confirm-password'];
 
     // Start Basic Validations
@@ -76,7 +76,8 @@ export default async function handler(req, res) {
     const { error } = await supabase.from('users').insert([{
       email,
       password: hashedPassword,
-      auth_type: auth_type
+      auth_type: auth_type,
+      phone: phone || null // TODO Validate phone number
     }]);
 
     if (error) {

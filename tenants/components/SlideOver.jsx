@@ -17,7 +17,10 @@ export const SlideOver = ({ open = false, setOpen, children, title }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" />
+          <div className={clsx(
+            baseClassNames.overlayBackground,
+            "fixed inset-0"
+          )} />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
