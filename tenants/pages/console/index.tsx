@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   useEffect(() => {
-    fetch('/api/hello').then((res) => res.json()).then((data) => {
+    fetch('/api/v1/secure/hello').then((res) => res.json()).then((data) => {
       console.log(data)
     })
   }, [])

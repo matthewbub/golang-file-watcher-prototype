@@ -3,9 +3,12 @@ import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
+
 export default function HomePage() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const router = useRouter()
 
   const submitForm = async (data) => {
     const res = await fetch('/api/v1/log-in/from-console', {
@@ -17,6 +20,13 @@ export default function HomePage() {
     })
 
     const json = await res.json()
+
+    if (json.error) {
+      console.log(json.error)
+      return
+    }
+
+    router.push('/')
     console.log(json)
   }
 

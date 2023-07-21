@@ -33,6 +33,9 @@ export function createLoginHandler(auth_type) {
         // Generate a new JWT token
         const token = jwt.sign({ email: userData.email }, process.env.SUPABASE_JWT, { expiresIn: '1h' });
 
+        // Set the JWT token as an HttpOnly cookie
+        res.setHeader('Set-Cookie', `accessToken=${token}; HttpOnly; Path=/; Max-Age=${60 * 60}`); // 1 hour
+
         // Return the token as the response
         res.status(200).json({ token });
       } else {
