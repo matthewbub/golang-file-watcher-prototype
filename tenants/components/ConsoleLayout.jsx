@@ -10,6 +10,7 @@ export const ConsoleLayout = ({
   primaryTitle,
   secondaryTitle,
   navigation = fallBackNavigation,
+  primaryAction = null,
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -104,6 +105,8 @@ export const ConsoleLayout = ({
         <main className="lg:pr-96">
           <header className="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
             {primaryTitle && primaryTitle.length > 0 && (<h1 className="text-base font-semibold leading-7 text-white">{primaryTitle}</h1>)}
+
+            {primaryAction && primaryAction()}
           </header>
 
           {primary()}

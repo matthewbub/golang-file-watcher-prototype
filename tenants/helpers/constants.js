@@ -10,3 +10,12 @@ export const baseClassNames = {
   secondaryBackground: 'bg-gray-900',
   secondaryBackgroundHover: 'hover:bg-gray-950/50 border-2 border-gray-900 hover:border-gray-900',
 }
+
+export const commonApiMessages = {
+  generalError: 'Something went wrong',
+}
+
+export const regexPatterns = {
+  email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$/,
+  password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
+}

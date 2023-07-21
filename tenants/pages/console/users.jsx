@@ -37,7 +37,7 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
       return;
     }
 
-    const response = await fetch('/api/sign-up', {
+    const response = await fetch('/api/sign-up-from-console', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -54,7 +54,7 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
       return;
     }
 
-    console.log(token);
+    window.location.reload();
   }
 
   return (
@@ -62,20 +62,18 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
       <ConsoleLayout
         reverseLayout={true}
         primary={() => (
-          <>
-            <button onClick={() => { setOpen(true) }} className=''>Add User</button>
-            <div>
-              <pre>
-                <code>
-                  {JSON.stringify(data, null, 2)}
-                </code>
-              </pre>
-            </div>
-          </>
+          <div>
+            <pre>
+              <code>
+                {JSON.stringify(data, null, 2)}
+              </code>
+            </pre>
+          </div>
         )}
         secondary={() => (<h2>Hello!!</h2>)}
         primaryTitle={primaryTitle}
         secondaryTitle={secondaryTitle}
+        primaryAction={() => <Button onClick={() => { setOpen(true) }} className=''>Add User</Button>}
       />
       <SlideOver
         open={open}
@@ -107,7 +105,6 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
             error={passwordMatchError}
           />
           <div className='col-span-4'>
-
             <Button className='text-center mt-24'>
               Add User
             </Button>
