@@ -22,7 +22,7 @@ export function createLoginHandler(auth_type) {
       }
 
       // If the user isn't registered with access to the console, return a 500 error
-      if (userData?.auth_type !== 'console') {
+      if (userData?.auth_type !== auth_type) {
         return res.status(500).json({ message: 'Something went wrong' });
       }
 
