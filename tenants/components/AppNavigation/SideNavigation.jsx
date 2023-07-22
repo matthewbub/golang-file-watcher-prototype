@@ -106,7 +106,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
           </li>
           <li className="-mx-6 mt-auto">
             <a
-              href="#"
+              href="/settings"
               className={clsx(
                 textColorClassName,
                 activeClassName,

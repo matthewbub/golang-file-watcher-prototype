@@ -1,4 +1,13 @@
-import { DashboardIcon, DomainsIcon, UsersIcon, TenantsIcon, HostingIcon, DeploymentIcon } from '../Icons';
+import {
+  DashboardIcon,
+  DomainsIcon,
+  UsersIcon,
+  TenantsIcon,
+  HostingIcon,
+  DeploymentIcon,
+  RedditIcon,
+  SubRedditIcon
+} from '../Icons';
 
 export const navigation = [
   { name: 'Console', href: '/', icon: DashboardIcon },
@@ -10,6 +19,14 @@ export const navigation = [
       { name: 'Tenants', href: '/hosting/tenants', icon: TenantsIcon },
       { name: 'Domains', href: '/hosting/domains', icon: DomainsIcon },
       { name: 'Deployments', href: '/hosting/deployments', icon: DeploymentIcon },
+    ],
+  },
+  {
+    name: 'Reddit Bot',
+    icon: RedditIcon,
+    href: '/reddit-bot',
+    children: [
+      { name: 'Subs', href: '/reddit-bot/subs', icon: SubRedditIcon },
     ],
   },
   {

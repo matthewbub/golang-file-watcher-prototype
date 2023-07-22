@@ -8,7 +8,7 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANO
 let loggerInterval = null;
 let fetchInterval = null;
 let lastFetchTime = Date.now();
-const fetchIntervalTime = 60 * 1000 / 6; // 10 requests per minute
+const fetchIntervalTime = 2 * 60 * 1000 / 16; // 8 requests per minute
 
 function startLogger() {
   loggerInterval = setInterval(() => {
@@ -19,30 +19,23 @@ function startLogger() {
   }, 5000);
 }
 
-const crawlReddit = async (url, interval = 2 * 60 * 1000) => {
+const crawlReddit = async (url, interval = fetchIntervalTime) => {
   lastFetchTime = Date.now();
 
   console.log('Crawling Reddit...')
   const response = await fetch(url)
   const json = await response.json()
 
-  const data = json.data.children.reduce((acc, child) => {
+  for (const child of json.data.children) {
     const { data } = child
-    return ([
-      ...acc,
+    await supabase.from('subreddits').upsert([
       {
         subreddit: data.subreddit,
-        cId: data.id,
         is_nsfw: data.over_18,
-        permalink: data.permalink,
-        num_comments: data.num_comments
+        last_seen: new Date().toISOString(),
       }
-    ])
-  }, [])
-
-  const { error } = await supabase.from('reddit').insert([...data]);
-
-
+    ]).eq('subreddit', data.subreddit)
+  }
 
   console.log('Crawling Reddit Complete!')
   fetchInterval = setTimeout(() => {
