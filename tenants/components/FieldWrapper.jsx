@@ -11,8 +11,8 @@ import { baseClassNames } from "../helpers/constants";
  * @param {...*} props.rest - Additional props for the wrapper
  * @returns {JSX.Element} The rendered FieldWrapper component.
  */
-const FieldWrapper = ({ label, name, children, ...rest }) => (
-  <div {...rest}>
+const FieldWrapper = ({ label, name, children, className, ...rest }) => (
+  <div className={className} {...rest}>
     {label && label.length && (
       <label
         htmlFor={name}
