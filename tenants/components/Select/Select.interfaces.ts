@@ -1,4 +1,4 @@
-export interface FieldSelectProps {
+export interface BaseProps {
   name: string
   register: any
   options?: any[]
@@ -6,7 +6,10 @@ export interface FieldSelectProps {
   placeholder: string
 }
 
-export interface SelectProps extends FieldSelectProps {
+export interface FieldSelectProps extends BaseProps {
+  ariaLabel: string
+}
+export interface SelectProps extends BaseProps {
   label?: string
   className?: string
   error?: string
