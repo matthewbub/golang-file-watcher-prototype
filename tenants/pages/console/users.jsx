@@ -4,7 +4,7 @@ import { SlideOver } from '9mbs/components/SlideOver';
 import { useForm } from 'react-hook-form';
 import Input from '9mbs/components/Input';
 import Button from '9mbs/components/Button';
-import Select from '../../components/Select';
+import { Select } from '../../components/Select/Select';
 import { supabase } from '../../supabase.config';
 import { Modal } from '../../components';
 import { set } from 'lodash';

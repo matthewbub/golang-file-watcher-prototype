@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import clsx from 'clsx'
-import FieldWrapper from './FieldWrapper'
-import { FieldError } from './FieldError'
+import FieldWrapper from '../FieldWrapper'
+import { FieldError } from '../FieldError'
 
 interface FieldSelectProps {
   name: string
