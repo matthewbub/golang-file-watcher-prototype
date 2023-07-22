@@ -35,13 +35,13 @@ export default function Input({
         {...register(name)}
         placeholder={placeholder}
         className={clsx(
-          baseClassNames.secondaryText,
+          'text-gray-900 placeholder:text-gray-900/50',
           "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         )}
         {...rest}
       />
       <div className='h-3'>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && error.length > 0 && <p className="text-sm text-red-400 leading-none p-0.5">{error}</p>}
       </div>
     </FieldWrapper>
   )

@@ -19,10 +19,11 @@ export default function Select({
   options = [],
   label,
   className,
+  error,
   ...rest
 }) {
   return (
-    <FieldWrapper name={name} label={label} className={className} >
+    <FieldWrapper name={name} label={label} className={className}>
       <select
         {...register(name)}
         placeholder={placeholder}
@@ -35,6 +36,9 @@ export default function Select({
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}
       </select>
+      <div className='h-3'>
+        {error && error.length > 0 && <p className="text-sm text-red-600">{error}</p>}
+      </div>
     </FieldWrapper>
   )
 }

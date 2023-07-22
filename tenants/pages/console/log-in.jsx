@@ -10,6 +10,9 @@ export default function HomePage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
   const router = useRouter()
 
+  useEffect(() => {
+    console.log('errors', errors)
+  }, [])
   const submitForm = async (data) => {
     const res = await fetch('/api/v1/log-in/from-console', {
       method: 'POST',
