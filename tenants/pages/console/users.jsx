@@ -7,8 +7,6 @@ import Button from '9mbs/components/Button';
 import { Select } from '../../components/Select/Select';
 import { supabase } from '../../supabase.config';
 import { Modal } from '../../components';
-import { set } from 'lodash';
-
 
 export const isStrongPassword = (password) => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -23,7 +21,13 @@ const SubmitButton = ({ children, className }) => (
   </div>
 )
 
-const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
+const UsersPage = ({ primaryTitle, secondaryTitle, data, form }) => {
+  if (!form) {
+    return (
+      <div>Something went wrong</div>
+    )
+  }
+
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
@@ -31,6 +35,9 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
   const [confirm, setConfirm] = useState(false);
   const [formData, setFormData] = useState(null); // [email, password, auth_type
   const { register, handleSubmit, formState: { errors }, setError } = useForm();
+
+
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
     console.log('errors', errors)
@@ -113,7 +120,7 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
     }
 
     // Check if passwords match
-    if (formData?.password !== data['confirm-password']) {
+    if (formData?.password !== formData['confirm-password']) {
       setPasswordMatchError('Passwords do not match');
       return;
     }
@@ -199,39 +206,37 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data }) => {
         title="Create a new user"
       >
         <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(confirmBeforeSubmission)}>
-          {
-            formFields.map((field, index) => {
-              let Field = null;
-              switch (field.field) {
-                case 'Input':
-                  Field = Input;
-                  break;
-                case 'Select':
-                  Field = Select;
-                  break;
-                case 'SubmitButton':
-                  Field = SubmitButton;
-                  break;
-                default:
-                  Field = Input;
-                  break;
-              }
+          {formFields.map((field, index) => {
+            let Field = null;
+            switch (field.field) {
+              case 'Input':
+                Field = Input;
+                break;
+              case 'Select':
+                Field = Select;
+                break;
+              case 'SubmitButton':
+                Field = SubmitButton;
+                break;
+              default:
+                Field = Input;
+                break;
+            }
 
-              return (
-                <Field
-                  key={index}
-                  label={field.label}
-                  name={field.name}
-                  type={field.type}
-                  error={field.error || null}
-                  register={register}
-                  className={field.className}
-                  options={field.options}
-                  registerOptions={field.validate}
-                />
-              )
-            })
-          }
+            return (
+              <Field
+                key={index}
+                label={field.label}
+                name={field.name}
+                type={field.type}
+                error={field.error || null}
+                register={register}
+                className={field.className}
+                options={field.options}
+                registerOptions={field.validate}
+              />
+            )
+          })}
         </form>
       </SlideOver>
       <Modal
@@ -262,6 +267,7 @@ export const getServerSideProps = async () => {
         primaryTitle: 'Users',
         secondaryTitle: 'Recent actions',
         data: [],
+        addUserForm: null
       }
     }
   }
@@ -271,6 +277,59 @@ export const getServerSideProps = async () => {
       primaryTitle: 'Users',
       secondaryTitle: 'Recent actions',
       data: data,
+      form: {
+        formTitle: 'Create a new user',
+        formDescription: 'Create a new user to access the console',
+        fields: [
+          {
+            label: 'Email',
+            name: 'email',
+            type: 'text',
+            className: 'col-span-12',
+            field: 'Input'
+          },
+          {
+            label: 'Password',
+            name: 'password',
+            type: 'password',
+            className: 'col-span-9',
+            field: 'Input'
+          },
+          {
+            label: 'Confirm Password',
+            name: 'confirm-password',
+            type: 'password',
+            className: 'col-span-9',
+            field: 'Input'
+          },
+          {
+            label: 'Role',
+            name: 'auth_type',
+            type: 'select',
+            className: 'col-span-9',
+            options: [
+              { id: 'iep', name: 'IEP Client' },
+              { id: 'tenant', name: 'Tenant' },
+              { id: 'console', name: 'Console User' }
+            ],
+            field: 'Select'
+          },
+          {
+            label: 'Phone',
+            name: 'phone',
+            type: 'text',
+            className: 'col-span-9',
+            field: 'Input',
+          },
+          {
+            label: 'Create User',
+            name: 'submit',
+            type: 'submit',
+            className: 'col-span-4',
+            field: 'SubmitButton'
+          }
+        ]
+      }
     }
   }
 }
