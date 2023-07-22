@@ -10,11 +10,36 @@ import {
 } from '../Icons';
 
 export const navigation = [
-  { name: 'Console', href: '/', icon: DashboardIcon },
+  {
+    name: 'Administration',
+    type: 'section',
+    description: 'Internal administration pages for the console application',
+  },
+  {
+    name: 'Console',
+    href: '/',
+    icon: DashboardIcon,
+    type: 'link',
+    description: 'Console home page and dashboard for the console application'
+  },
+  {
+    name: 'Users',
+    href: '/users',
+    icon: UsersIcon,
+    type: 'link',
+    description: 'User management services and pages for the console application',
+  },
+  {
+    name: 'External Services',
+    type: 'section',
+    description: 'External api services used within the console application for tenant management and deployment management',
+  },
   {
     name: 'Hosting',
     icon: HostingIcon,
     href: '/hosting',
+    type: 'link',
+    description: 'Git history. Vercel hosting services and deployments. Also includes domain management, tenant management and deployment management.',
     children: [
       { name: 'Tenants', href: '/hosting/tenants', icon: TenantsIcon },
       { name: 'Domains', href: '/hosting/domains', icon: DomainsIcon },
@@ -25,13 +50,10 @@ export const navigation = [
     name: 'Reddit Bot',
     icon: RedditIcon,
     href: '/reddit-bot',
+    type: 'link',
+    description: 'Reddit bot services and management.',
     children: [
       { name: 'Subs', href: '/reddit-bot/subs', icon: SubRedditIcon },
     ],
-  },
-  {
-    name: 'Users',
-    href: '/users',
-    icon: UsersIcon,
   }
 ]

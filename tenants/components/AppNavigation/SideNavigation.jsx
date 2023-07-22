@@ -43,64 +43,77 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
           <li>
             <ul role="list" className="-mx-2 space-y-1">
-              {navigation && navigation.length > 0 && navigation.map((item) => (
-                <li key={item.name}>
-                  {!item.children ? (
-                    <Link
-                      href={item.href}
-                      className={clsx(
-                        item.current ? activeClassName : hoverClassName,
-                        textColorClassName,
-                        'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                      )}
-                    >
-                      <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
-                      {item.name}
-                    </Link>
+              {navigation && navigation.length > 0 && navigation.map((item, index) => (
+                <>
+                  {item.type === 'section' ? (
+                    <li className={clsx(index !== 0 && 'mt-8')}>
+                      <div className={clsx(
+                        index !== 0 && 'mt-8',
+                        "flex items-center text-xs text-gray-400/50 uppercase tracking-wider mb-4"
+                      )}>
+                        {item.name}
+                      </div>
+                    </li>
                   ) : (
-                    <Disclosure as="div">
-                      {({ open }) => (
-                        <>
-                          <Disclosure.Button
-                            className={clsx(
-                              item.current ? activeClassName : hoverClassName,
-                              textColorClassName,
-                              'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold'
-                            )}
-                          >
-                            <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
-                            {item.name}
-                            <ChevronRightIcon
-                              className={clsx(
-                                open ? 'rotate-90 text-gray-500' : 'text-gray-400',
-                                'ml-auto h-5 w-5 shrink-0'
-                              )}
-                              aria-hidden="true"
-                            />
-                          </Disclosure.Button>
-                          <Disclosure.Panel as="ul" className="mt-1 px-2">
-                            {item.children.map((subItem) => (
-                              <li key={subItem.name}>
-                                {/* 44px */}
-                                <Disclosure.Button
-                                  as="a"
-                                  href={subItem.href}
+                    <li key={item.name}>
+                      {!item.children ? (
+                        <Link
+                          href={item.href}
+                          className={clsx(
+                            item.current ? activeClassName : hoverClassName,
+                            textColorClassName,
+                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          )}
+                        >
+                          <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <Disclosure as="div">
+                          {({ open }) => (
+                            <>
+                              <Disclosure.Button
+                                className={clsx(
+                                  item.current ? activeClassName : hoverClassName,
+                                  textColorClassName,
+                                  'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold'
+                                )}
+                              >
+                                <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
+                                {item.name}
+                                <ChevronRightIcon
                                   className={clsx(
-                                    subItem.current ? activeClassName : hoverClassName,
-                                    secondaryTextColorClassName,
-                                    'block rounded-md py-2 pr-2 pl-9 text-sm leading-6'
+                                    open ? 'rotate-90 text-gray-500' : 'text-gray-400',
+                                    'ml-auto h-5 w-5 shrink-0'
                                   )}
-                                >
-                                  {subItem.name}
-                                </Disclosure.Button>
-                              </li>
-                            ))}
-                          </Disclosure.Panel>
-                        </>
+                                  aria-hidden="true"
+                                />
+                              </Disclosure.Button>
+                              <Disclosure.Panel as="ul" className="mt-1 px-2">
+                                {item.children.map((subItem) => (
+                                  <li key={subItem.name}>
+                                    {/* 44px */}
+                                    <Disclosure.Button
+                                      as="a"
+                                      href={subItem.href}
+                                      className={clsx(
+                                        subItem.current ? activeClassName : hoverClassName,
+                                        secondaryTextColorClassName,
+                                        'block rounded-md py-2 pr-2 pl-9 text-sm leading-6'
+                                      )}
+                                    >
+                                      {subItem.name}
+                                    </Disclosure.Button>
+                                  </li>
+                                ))}
+                              </Disclosure.Panel>
+                            </>
+                          )}
+                        </Disclosure>
                       )}
-                    </Disclosure>
+                    </li >
                   )}
-                </li>
+                </>
               ))}
             </ul>
           </li>
@@ -109,7 +122,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
               href="/settings"
               className={clsx(
                 textColorClassName,
-                activeClassName,
+                // activeClassName,
                 "flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6"
               )}
             >
@@ -123,7 +136,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
             </a>
           </li>
         </ul>
-      </nav>
-    </div>
+      </nav >
+    </div >
   )
 }
