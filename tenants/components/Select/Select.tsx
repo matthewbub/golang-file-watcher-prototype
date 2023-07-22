@@ -2,21 +2,7 @@ import { FC } from 'react'
 import clsx from 'clsx'
 import FieldWrapper from '../FieldWrapper'
 import { FieldError } from '../FieldError'
-
-interface FieldSelectProps {
-  name: string
-  register: any
-  options?: any[]
-  rest?: any
-  placeholder: string
-}
-
-interface SelectProps extends FieldSelectProps {
-  label?: string
-  className?: string
-  error?: string
-}
-
+import { FieldSelectProps, SelectProps } from './Select.interfaces'
 
 const FieldSelect: FC<FieldSelectProps> = ({
   name,
