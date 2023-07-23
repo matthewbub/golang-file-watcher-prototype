@@ -6,13 +6,13 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
 export default function HomePage() {
-
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
   const router = useRouter()
 
   useEffect(() => {
     console.log('errors', errors)
   }, [])
+
   const submitForm = async (data) => {
     const res = await fetch('/api/v1/log-in/from-console', {
       method: 'POST',
@@ -24,13 +24,12 @@ export default function HomePage() {
 
     const json = await res.json()
 
-    if (json.error) {
-      console.log(json.error)
-      return
+    if (json.error || json?.message && json?.message.length > 0) {
+      console.log(json)
+      return;
     }
 
     router.push('/')
-    console.log(json)
   }
 
   return (
