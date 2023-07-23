@@ -22,14 +22,5 @@ const HomePage = ({ primaryTitle, secondaryTitle }) => {
   )
 }
 
-export const getServerSideProps = async (context) => {
-
-  return {
-    props: {
-      primaryTitle: 'Home',
-      secondaryTitle: 'Recent deployments'
-    }
-  }
-}
-
+export { getServerSideProps } from '../../ssp/console/users';
 export default HomePage;
