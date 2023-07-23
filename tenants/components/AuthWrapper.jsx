@@ -6,23 +6,29 @@ export const AuthWrapper = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
+  let intervalId;
+
+  const checkSession = async () => {
+    try {
+      const response = await fetch('/api/v1/secure/validate-console');
+      const data = await response.json();
+      if (data.ok) {
+        setLoading(false);
+      } else {
+        router.push('/log-in');
+      }
+    } catch (error) {
+      console.error('Error while checking session:', error);
+    }
+  };
 
   useEffect(() => {
-    const checkSession = async () => {
-      const response = await fetch('/api/v1/secure/validate-console')
-      const data = await response.json()
-      if (data.ok) {
-        setLoading(false)
-        return
-      }
-
-      else {
-        router.push('/log-in')
-      }
-    }
-
-    checkSession()
-  }, [])
+    checkSession();
+    intervalId = setInterval(checkSession, 30000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   if (loading) {
     return (
