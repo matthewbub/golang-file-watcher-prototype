@@ -1,15 +1,17 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { capitalize } from 'lodash';
+import { get } from 'lodash';
 import clsx from 'clsx';
+
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { capitalize, isEmpty } from 'lodash';
-import { get } from 'lodash';
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
-
 dayjs.locale('en');
 dayjs.extend(relativeTime);
+
+import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { paths } from '../../../helpers/constants';
 
 export function DeploymentsTable({ deployments = [] }) {
   const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10', Running: 'text-blue-400 bg-blue-400/10 animated pulse' }
@@ -158,7 +160,7 @@ export function Modal({ open, setOpen, data }) {
   )
 }
 
-const DeploymentsPage = ({ title, deployments: { deployments, pagination }, formattedDeployments }) => {
+const DeploymentsPage = ({ title, formattedDeployments }) => {
   return (
     <ConsoleLayout
       primaryTitle={title}
@@ -168,8 +170,8 @@ const DeploymentsPage = ({ title, deployments: { deployments, pagination }, form
         </div>
       )}
       breadcrumbs={[
-        { name: 'Hosting', href: '/hosting', current: false },
-        { name: 'Deployments', href: '/hosting/deployments', current: true },
+        { name: 'Hosting', href: paths.console.hosting, current: false },
+        { name: 'Deployments', href: paths.console['hosting/deployments'], current: true },
       ]}
     />
   )

@@ -1,24 +1,32 @@
-import { supabase } from '9mbs/supabase.config';
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { ConsoleLayout } from '../../../components/ConsoleLayout';
 import { FullNavigation, navigation } from '../../../components/AppNavigation';
+import PathHandler from '../../../helpers/PathHandler';
 
-const RedditBotHomePage = ({ primaryTitle, secondaryTitle }) => {
+const pathHandler = new PathHandler('console');
+
+const Primary = () => (
+  <FullNavigation navigation={navigation.find(nav => nav.name === 'Reddit Bot').children} />
+);
+
+export default function RedditBotHomePage({ primaryTitle, secondaryTitle }) {
   return (
     <ConsoleLayout
       primaryTitle={primaryTitle}
       secondaryTitle={secondaryTitle}
       navigation={navigation}
-      primary={() => <FullNavigation navigation={navigation.find(nav => nav.name === 'Reddit Bot').children} />}
+      primary={Primary}
       breadcrumbs={[
-        { name: 'Reddit Bot', href: '/reddit-bot', current: true },
+        {
+          name: 'Reddit Bot',
+          href: pathHandler.getPath('reddit-bot'),
+          current: true
+        },
       ]}
     />
   )
 }
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async () => {
   return {
     props: {
       primaryTitle: 'Reddit Bot',
@@ -26,5 +34,3 @@ export const getServerSideProps = async (context) => {
     }
   }
 }
-
-export default RedditBotHomePage;

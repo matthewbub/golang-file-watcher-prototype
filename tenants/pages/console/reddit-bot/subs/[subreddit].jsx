@@ -1,15 +1,15 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { capitalize, isEmpty } from 'lodash';
+dayjs.locale('en');
+dayjs.extend(relativeTime);
+
+import { isEmpty } from 'lodash';
 import { get } from 'lodash';
 import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
 import { supabase } from '../../../../supabase.config'
-dayjs.locale('en');
-dayjs.extend(relativeTime);
+
 
 export function Table({ data = [] }) {
   const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10', Running: 'text-blue-400 bg-blue-400/10 animated pulse' }
@@ -57,7 +57,6 @@ export function Table({ data = [] }) {
             <td className="hidden py-3 pl-0 pr-8 sm:table-cell">
               <div className="text-sm text-gray-400">{dayjs(row.last_seen).fromNow()}</div>
             </td>
-
             <td className="py-3 pl-0 pr-4 text-right sm:pr-8 sm:text-left lg:pr-20">
               <span className={clsx('px-2 inline-flex text-xs leading-5 font-semibold rounded-full', !row.is_nsfw ? 'bg-red-400 text-red-100' : 'bg-green-400 text-green-100')}>
                 {!row.is_nsfw ? 'Yes' : 'No'}
@@ -67,15 +66,12 @@ export function Table({ data = [] }) {
               <a href="#" className="text-indigo-400 hover:text-indigo-500">
                 <span className="sr-only">View</span>
                 <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-
                   <path fillRule="evenodd" d="M10.707 3.293a1 1 0 010 1.414L7.414 9H13a1 1 0 110 2H7.414l3.293 3.293a1 1 0 11-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z" clipRule="evenodd" />
-
                 </svg>
               </a>
             </td>
           </tr>
         ))}
-
       </tbody>
     </table>
   )

@@ -24,3 +24,16 @@ export const regexPatterns = {
 export const apiRoutes = {
   logInFromConsole: '/api/v1/log-in/from-console',
 }
+
+export const paths = {
+  console: {
+    ['users']: '/users',
+    ['hosting']: '/hosting',
+    ['hosting/tenants']: '/hosting/tenants',
+    ['hosting/deployments']: '/hosting/deployments',
+    ['hosting/domains']: '/hosting/domains',
+    ['reddit-bot']: '/reddit-bot',
+    ['reddit-bot/subs']: '/reddit-bot/subs',
+    ['settings']: '/settings',
+  }
+}
