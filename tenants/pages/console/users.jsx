@@ -6,7 +6,7 @@ import Input from '9mbs/components/Input';
 import Button from '9mbs/components/Button';
 import { Select } from '../../components/Select/Select';
 import { Modal } from '../../components';
-
+import { withSession } from '../../helpers/withSession';
 export const isStrongPassword = (password) => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return passwordRegex.test(password);
@@ -260,4 +260,4 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data, form }) => {
 }
 
 export { getServerSideProps } from '../../ssp/console/users';
-export default UsersPage;
+export default withSession(UsersPage, 'tenant');
