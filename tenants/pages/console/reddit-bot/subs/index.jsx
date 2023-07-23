@@ -139,11 +139,7 @@ const SubRedditsPage = ({ title, data }) => {
   return (
     <ConsoleLayout
       primaryTitle={title}
-      primary={() => (
-        <div className='mx-auto max-w-7xl p-12'>
-          <Table data={data} />
-        </div>
-      )}
+      primary={() => (<Table data={data} />)}
       breadcrumbs={[
         { name: 'Reddit Bot', href: '/reddit-bot', current: false },
         { name: 'Subs', href: '/reddit-bot/subs', current: true }

@@ -18,7 +18,8 @@ export const ConsoleLayout = ({
   secondaryTitle,
   navigation = fallBackNavigation,
   primaryAction = null,
-  breadcrumbs = pages
+  breadcrumbs = pages,
+  primaryTitleDescription = null
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -147,12 +148,20 @@ export const ConsoleLayout = ({
           </nav>
 
           <header className="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
-            {primaryTitle && primaryTitle.length > 0 && (<h1 className="text-base font-semibold leading-7 text-white">{primaryTitle}</h1>)}
-
-            {primaryAction && primaryAction()}
+            <div className="px-4 sm:px-0">
+              {primaryTitle && primaryTitle.length > 0 && (<h1 className="text-base font-semibold leading-7 text-white">{primaryTitle}</h1>)}
+              {primaryTitleDescription && primaryTitleDescription.length > 0 && (<p className="mt-1 max-w-2xl text-sm leading-6 text-gray-400">{primaryTitleDescription}</p>)}
+            </div>
+            {primaryAction &&
+              <div className="px-4 sm:px-0">
+                primaryAction()
+              </div>
+            }
           </header>
+          <section className="px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+            {primary()}
+          </section>
 
-          {primary()}
         </main>
 
 

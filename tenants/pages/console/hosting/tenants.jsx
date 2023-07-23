@@ -57,7 +57,7 @@ const TenantsPage = ({ title, tenants }) => {
     <ConsoleLayout
       primaryTitle={title}
       primary={() => (
-        <div className='mx-auto max-w-7xl p-12 min-h-screen'>
+        <div>
           <div className='flex justify-between w-full'>
             <button onClick={() => { setOpen(true) }}>Add new tenant</button>
           </div>

@@ -88,13 +88,13 @@ const DeploymentsPage = ({ title, domains }) => {
     <ConsoleLayout
       primaryTitle={title}
       primary={() => (
-        <div className='mx-auto max-w-7xl p-12 min-h-screen'>
-          <ul className='space-y-4 list-disc pl-6'>
-            {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
-              <Domain key={domain.uid} domain={domain} />
-            ))}
-          </ul>
-        </div>
+
+        <ul className='space-y-4 list-disc pl-6'>
+          {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
+            <Domain key={domain.uid} domain={domain} />
+          ))}
+        </ul>
+
       )}
       breadcrumbs={[
         { name: 'Hosting', href: '/hosting', current: false },

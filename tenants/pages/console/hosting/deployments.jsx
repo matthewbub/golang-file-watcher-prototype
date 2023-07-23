@@ -165,9 +165,9 @@ const DeploymentsPage = ({ title, formattedDeployments }) => {
     <ConsoleLayout
       primaryTitle={title}
       primary={() => (
-        <div className='mx-auto max-w-7xl p-12'>
-          <DeploymentsTable deployments={formattedDeployments} />
-        </div>
+
+        <DeploymentsTable deployments={formattedDeployments} />
+
       )}
       breadcrumbs={[
         { name: 'Hosting', href: paths.console.hosting, current: false },
