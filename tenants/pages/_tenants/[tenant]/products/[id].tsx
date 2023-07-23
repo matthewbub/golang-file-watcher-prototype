@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, RadioGroup, Tab, Transition } from '@headlessui/react'
 import {
@@ -309,10 +310,6 @@ const footerNavigation = {
   ],
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Example() {
   const [open, setOpen] = useState(false)
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
@@ -365,7 +362,7 @@ export default function Example() {
                         <Tab
                           key={category.name}
                           className={({ selected }) =>
-                            classNames(
+                            clsx(
                               selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
                             )
@@ -492,14 +489,14 @@ export default function Example() {
                         <>
                           <div className="relative flex">
                             <Popover.Button
-                              className={classNames(
+                              className={clsx(
                                 open ? 'text-indigo-600' : 'text-gray-700 hover:text-gray-800',
                                 'relative z-10 flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out'
                               )}
                             >
                               {category.name}
                               <span
-                                className={classNames(
+                                className={clsx(
                                   open ? 'bg-indigo-600' : '',
                                   'absolute inset-x-0 bottom-0 h-0.5 transition-colors duration-200 ease-out sm:mt-5 sm:translate-y-px sm:transform'
                                 )}
@@ -528,7 +525,7 @@ export default function Example() {
                                       {category.featured.map((item, itemIdx) => (
                                         <div
                                           key={item.name}
-                                          className={classNames(
+                                          className={clsx(
                                             itemIdx === 0 ? 'aspect-w-2 col-span-2' : '',
                                             'group aspect-w-1 aspect-h-1 relative overflow-hidden rounded-md bg-gray-100'
                                           )}
@@ -672,7 +669,7 @@ export default function Example() {
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
-                      className={classNames(
+                      className={clsx(
                         reviews.average > rating ? 'text-yellow-400' : 'text-gray-200',
                         'h-5 w-5 flex-shrink-0'
                       )}
@@ -702,7 +699,7 @@ export default function Example() {
                   key={image.id}
                   src={image.imageSrc}
                   alt={image.imageAlt}
-                  className={classNames(
+                  className={clsx(
                     image.primary ? 'lg:col-span-2 lg:row-span-2' : 'hidden lg:block',
                     'rounded-lg'
                   )}
@@ -725,7 +722,7 @@ export default function Example() {
                         key={color.name}
                         value={color}
                         className={({ active, checked }) =>
-                          classNames(
+                          clsx(
                             color.selectedColor,
                             active && checked ? 'ring ring-offset-1' : '',
                             !active && checked ? 'ring-2' : '',
@@ -738,7 +735,7 @@ export default function Example() {
                         </RadioGroup.Label>
                         <span
                           aria-hidden="true"
-                          className={classNames(
+                          className={clsx(
                             color.bgColor,
                             'h-8 w-8 rounded-full border border-black border-opacity-10'
                           )}
@@ -766,7 +763,7 @@ export default function Example() {
                         key={size.name}
                         value={size}
                         className={({ active, checked }) =>
-                          classNames(
+                          clsx(
                             size.inStock ? 'cursor-pointer focus:outline-none' : 'cursor-not-allowed opacity-25',
                             active ? 'ring-2 ring-indigo-500 ring-offset-2' : '',
                             checked
@@ -850,7 +847,7 @@ export default function Example() {
                       {[0, 1, 2, 3, 4].map((rating) => (
                         <StarIcon
                           key={rating}
-                          className={classNames(
+                          className={clsx(
                             review.rating > rating ? 'text-yellow-400' : 'text-gray-200',
                             'h-5 w-5 flex-shrink-0'
                           )}

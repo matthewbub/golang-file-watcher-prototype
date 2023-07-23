@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
@@ -204,10 +205,6 @@ const footerNavigation = {
   ],
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Example() {
   const [open, setOpen] = useState(false)
 
@@ -258,7 +255,7 @@ export default function Example() {
                         <Tab
                           key={category.name}
                           className={({ selected }) =>
-                            classNames(
+                            clsx(
                               selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
                             )
@@ -391,7 +388,7 @@ export default function Example() {
                         <>
                           <div className="relative flex">
                             <Popover.Button
-                              className={classNames(
+                              className={clsx(
                                 open
                                   ? 'border-indigo-600 text-indigo-600'
                                   : 'border-transparent text-gray-700 hover:text-gray-800',

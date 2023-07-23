@@ -16,7 +16,7 @@ export const ConsoleLayout = ({
   primary,
   secondary = null,
   primaryTitle,
-  secondaryTitle,
+  secondaryTitle = null,
   navigation = fallBackNavigation,
   primaryAction = null,
   breadcrumbs = pages,

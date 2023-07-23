@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
-import { get, getAll } from '@vercel/edge-config';
-
 export const config = {
-  runtime: 'edge',
   matcher: [
     /*
      * Match all paths except for:

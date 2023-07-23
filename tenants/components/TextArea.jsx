@@ -10,7 +10,6 @@ import FieldWrapper from './FieldWrapper'
  * @param {string} props.placeholder - The placeholder text for the input field.
  * @param {number} props.rows - The number of rows for the textarea.
  * @param {Function} props.register - The register function from a form library to bind the input field.
- * @param {...*} props.rest - Additional props for the input field.
  * @returns {JSX.Element} The rendered Input component.
  */
 export default function TextArea({

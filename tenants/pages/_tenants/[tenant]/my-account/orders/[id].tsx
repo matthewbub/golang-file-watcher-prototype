@@ -1,18 +1,4 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
+import clsx from 'clsx'
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -148,10 +134,6 @@ const footerNavigation = {
   ],
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Example() {
   const [open, setOpen] = useState(false)
 
@@ -202,7 +184,7 @@ export default function Example() {
                         <Tab
                           key={category.name}
                           className={({ selected }) =>
-                            classNames(
+                            clsx(
                               selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
                             )
@@ -411,7 +393,7 @@ export default function Example() {
                             <>
                               <div className="relative flex">
                                 <Popover.Button
-                                  className={classNames(
+                                  className={clsx(
                                     open
                                       ? 'border-indigo-600 text-indigo-600'
                                       : 'border-transparent text-gray-700 hover:text-gray-800',
@@ -440,7 +422,7 @@ export default function Example() {
                                     aria-hidden="true"
                                   >
                                     <div
-                                      className={classNames(
+                                      className={clsx(
                                         open ? 'bg-gray-200' : 'bg-transparent',
                                         'h-px w-full transition-colors duration-200 ease-out'
                                       )}
@@ -709,13 +691,13 @@ export default function Example() {
                     </div>
                     <div className="mt-6 hidden grid-cols-4 text-sm font-medium text-gray-600 sm:grid">
                       <div className="text-indigo-600">Order placed</div>
-                      <div className={classNames(product.step > 0 ? 'text-indigo-600' : '', 'text-center')}>
+                      <div className={clsx(product.step > 0 ? 'text-indigo-600' : '', 'text-center')}>
                         Processing
                       </div>
-                      <div className={classNames(product.step > 1 ? 'text-indigo-600' : '', 'text-center')}>
+                      <div className={clsx(product.step > 1 ? 'text-indigo-600' : '', 'text-center')}>
                         Shipped
                       </div>
-                      <div className={classNames(product.step > 2 ? 'text-indigo-600' : '', 'text-right')}>
+                      <div className={clsx(product.step > 2 ? 'text-indigo-600' : '', 'text-right')}>
                         Delivered
                       </div>
                     </div>

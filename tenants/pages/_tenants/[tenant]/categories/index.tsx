@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -213,10 +214,6 @@ const footerNavigation = {
   ],
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
@@ -269,7 +266,7 @@ export default function Example() {
                           <Tab
                             key={category.name}
                             className={({ selected }) =>
-                              classNames(
+                              clsx(
                                 selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
                                 'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
                               )
@@ -405,7 +402,7 @@ export default function Example() {
                           <>
                             <div className="relative flex">
                               <Popover.Button
-                                className={classNames(
+                                className={clsx(
                                   open
                                     ? 'border-indigo-600 text-indigo-600'
                                     : 'border-transparent text-gray-700 hover:text-gray-800',
@@ -595,7 +592,7 @@ export default function Example() {
                                 <span className="text-sm font-medium text-gray-900">{section.name}</span>
                                 <span className="ml-6 flex h-7 items-center">
                                   <ChevronDownIcon
-                                    className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
+                                    className={clsx(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
                                     aria-hidden="true"
                                   />
                                 </span>
@@ -681,7 +678,7 @@ export default function Example() {
               <div className="hidden lg:block">
                 <form className="space-y-10 divide-y divide-gray-200">
                   {filters.map((section, sectionIdx) => (
-                    <div key={section.name} className={sectionIdx === 0 ? null : 'pt-10'}>
+                    <div key={section.name} className={clsx(sectionIdx !== 0 && 'pt-10')}>
                       <fieldset>
                         <legend className="block text-sm font-medium text-gray-900">{section.name}</legend>
                         <div className="space-y-3 pt-6">

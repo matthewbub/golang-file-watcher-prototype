@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Fragment } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
@@ -131,10 +132,6 @@ const footerNavigation = {
   ],
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Example() {
   return (
     <div className="bg-gray-50">
@@ -163,7 +160,7 @@ export default function Example() {
                         <>
                           <div className="relative flex">
                             <Popover.Button
-                              className={classNames(
+                              className={clsx(
                                 open
                                   ? 'border-indigo-600 text-indigo-600'
                                   : 'border-transparent text-gray-700 hover:text-gray-800',
@@ -192,7 +189,7 @@ export default function Example() {
                                 aria-hidden="true"
                               >
                                 <div
-                                  className={classNames(
+                                  className={clsx(
                                     open ? 'bg-gray-200' : 'bg-transparent',
                                     'h-px w-full transition-colors duration-200 ease-out'
                                   )}
@@ -387,7 +384,7 @@ export default function Example() {
                               {({ active }) => (
                                 <a
                                   href={order.href}
-                                  className={classNames(
+                                  className={clsx(
                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                     'block px-4 py-2 text-sm'
                                   )}
@@ -400,7 +397,7 @@ export default function Example() {
                               {({ active }) => (
                                 <a
                                   href={order.invoiceHref}
-                                  className={classNames(
+                                  className={clsx(
                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                     'block px-4 py-2 text-sm'
                                   )}
