@@ -96,6 +96,10 @@ const DeploymentsPage = ({ title, domains }) => {
           </ul>
         </div>
       )}
+      breadcrumbs={[
+        { name: 'Hosting', href: '/hosting', current: false },
+        { name: 'Domains', href: '/hosting/domains', current: true },
+      ]}
     />
   )
 }

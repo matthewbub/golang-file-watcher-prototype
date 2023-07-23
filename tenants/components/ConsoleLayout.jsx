@@ -18,6 +18,7 @@ export const ConsoleLayout = ({
   secondaryTitle,
   navigation = fallBackNavigation,
   primaryAction = null,
+  breadcrumbs = pages
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -112,15 +113,15 @@ export const ConsoleLayout = ({
         <main className={clsx(secondary && "lg:pr-96")}>
           <nav className="flex border-b bg-gray-950 border-white/5" aria-label="Breadcrumb">
             <ol role="list" className="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6 lg:px-8">
-              <li className="flex">
+              <li className="flex h-11">
                 <div className="flex items-center">
-                  <a href="#" className="text-gray-400 hover:text-gray-500">
+                  <a href="/" className="text-gray-400 hover:text-gray-500">
                     <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
                     <span className="sr-only">Home</span>
                   </a>
                 </div>
               </li>
-              {pages.map((page) => (
+              {breadcrumbs && breadcrumbs.length > 0 && breadcrumbs.map((page) => (
                 <li key={page.name} className="flex">
                   <div className="flex items-center">
                     <svg

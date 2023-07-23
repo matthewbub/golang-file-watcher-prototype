@@ -295,6 +295,9 @@ export default function Settings() {
           </div>
         </main>
       )}
+      breadcrumbs={[
+        { name: 'Account Settings', href: '/settings', current: true },
+      ]}
     />
   )
 }

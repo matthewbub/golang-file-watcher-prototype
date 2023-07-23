@@ -31,12 +31,12 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
   const secondaryTextColorClassName = 'text-rose-100/50'
 
   return (
-    <div className="h-full flex grow flex-col gap-y-5 overflow-y-auto px-6">
+    <div className="h-full flex grow flex-col gap-y-5 overflow-y-auto px-6 border-r border-white/5">
       <div className="flex h-16 shrink-0 items-center">
         <img
           className="h-8 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
+          src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/light_logo_only.png"
+          alt="NineMbs Studio"
         />
       </div>
       <nav className="flex flex-1 flex-col">

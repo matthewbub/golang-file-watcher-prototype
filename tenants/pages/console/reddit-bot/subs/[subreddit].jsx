@@ -42,15 +42,17 @@ export function Table({ data = [] }) {
         {data.map((row, i) => (
           <tr key={i} className="text-sm leading-6 text-white">
             <td className="py-3 pl-4 pr-8 sm:pl-6 lg:pl-8">
-              <div className="flex items-center">
-                <div className="flex-shrink-0 w-10 h-10">
-                  <img className="w-10 h-10 rounded-full" src={row.icon} alt="" />
+              <a href={`/reddit-bot/subs/${row.subreddit}`}>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 w-10 h-10">
+                    <img className="w-10 h-10 rounded-full" src={row.icon} alt="" />
+                  </div>
+                  <div className="ml-4">
+                    <div className="text-sm font-medium text-white">{'r/'}{row.subreddit}</div>
+                    <div className="text-sm text-gray-400">{row.display_name}</div>
+                  </div>
                 </div>
-                <div className="ml-4">
-                  <div className="text-sm font-medium text-white">{'r/'}{row.subreddit}</div>
-                  <div className="text-sm text-gray-400">{row.display_name}</div>
-                </div>
-              </div>
+              </a>
             </td>
             <td className="hidden py-3 pl-0 pr-8 sm:table-cell">
               <div className="text-sm text-gray-400">{dayjs(row.last_seen).fromNow()}</div>
@@ -89,6 +91,11 @@ const SubRedditsPage = ({ title, data }) => {
           {/* <Table data={data} /> */}
         </div>
       )}
+      breadcrumbs={[
+        { name: 'Reddit Bot', href: '/reddit-bot', current: false },
+        { name: 'Subs', href: '/reddit-bot/subs', current: false },
+        { name: data.subreddit, href: `/reddit-bot/subs/${data.subreddit}`, current: true }
+      ]}
     />
   )
 }

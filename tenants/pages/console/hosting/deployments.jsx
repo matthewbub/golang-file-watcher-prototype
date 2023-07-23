@@ -167,6 +167,10 @@ const DeploymentsPage = ({ title, deployments: { deployments, pagination }, form
           <DeploymentsTable deployments={formattedDeployments} />
         </div>
       )}
+      breadcrumbs={[
+        { name: 'Hosting', href: '/hosting', current: false },
+        { name: 'Deployments', href: '/hosting/deployments', current: true },
+      ]}
     />
   )
 }

@@ -41,9 +41,24 @@ export const navigation = [
     type: 'link',
     description: 'Git history. Vercel hosting services and deployments. Also includes domain management, tenant management and deployment management.',
     children: [
-      { name: 'Tenants', href: '/hosting/tenants', icon: TenantsIcon },
-      { name: 'Domains', href: '/hosting/domains', icon: DomainsIcon },
-      { name: 'Deployments', href: '/hosting/deployments', icon: DeploymentIcon },
+      {
+        name: 'Tenants',
+        href: '/hosting/tenants',
+        icon: TenantsIcon,
+        description: 'Tenant management services and pages for the console application',
+      },
+      {
+        name: 'Domains',
+        href: '/hosting/domains',
+        icon: DomainsIcon,
+        description: 'Domain management services and pages for the console application',
+      },
+      {
+        name: 'Deployments',
+        href: '/hosting/deployments',
+        icon: DeploymentIcon,
+        description: 'Deployment management services and pages for the console application',
+      },
     ],
   },
   {

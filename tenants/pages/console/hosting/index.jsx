@@ -11,6 +11,9 @@ const HostingHomePage = ({ primaryTitle, secondaryTitle }) => {
       secondaryTitle={secondaryTitle}
       navigation={navigation}
       primary={() => <FullNavigation navigation={navigation.find(nav => nav.name === 'Hosting').children} />}
+      breadcrumbs={[
+        { name: 'Hosting', href: '/hosting', current: true }
+      ]}
     />
   )
 }

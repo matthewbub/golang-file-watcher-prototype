@@ -84,6 +84,10 @@ const TenantsPage = ({ title, tenants }) => {
           </SlideOver>
         </div>
       )}
+      breadcrumbs={[
+        { name: 'Hosting', href: '/hosting', current: false },
+        { name: 'Tenants', href: '/hosting/tenants', current: true },
+      ]}
     />
   )
 }

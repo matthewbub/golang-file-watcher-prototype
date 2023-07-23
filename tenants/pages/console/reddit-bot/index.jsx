@@ -11,6 +11,9 @@ const RedditBotHomePage = ({ primaryTitle, secondaryTitle }) => {
       secondaryTitle={secondaryTitle}
       navigation={navigation}
       primary={() => <FullNavigation navigation={navigation.find(nav => nav.name === 'Reddit Bot').children} />}
+      breadcrumbs={[
+        { name: 'Reddit Bot', href: '/reddit-bot', current: true },
+      ]}
     />
   )
 }

@@ -199,6 +199,9 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data, form }) => {
         primaryTitle={primaryTitle}
         secondaryTitle={secondaryTitle}
         primaryAction={() => <Button onClick={() => { setOpen(true) }} className=''>Add User</Button>}
+        breadcrumbs={[
+          { name: 'Users', href: '/users', current: true }
+        ]}
       />
       <SlideOver
         open={open}
