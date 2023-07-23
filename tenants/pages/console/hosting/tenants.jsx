@@ -14,11 +14,7 @@ const TenantsPage = ({ title, tenants }) => {
   async function submitForm(data) {
     const { error } = await supabase
       .from('tenants')
-      .insert([
-        {
-          tenant_name: data.tenant_name,
-        }
-      ]);
+      .insert([{ tenant_name: data.tenant_name }]);
 
     if (error) {
       console.log(error);
@@ -92,20 +88,5 @@ const TenantsPage = ({ title, tenants }) => {
   )
 }
 
-export const getServerSideProps = async (context) => {
-
-  const { data, error } = await supabase.from('tenants').select('*');
-
-  if (error) {
-    console.log(error);
-  }
-
-  return {
-    props: {
-      title: 'Tenants',
-      tenants: data
-    }
-  }
-}
-
+export { getServerSideProps } from '../../../ssp/console/hosting/hosting__tenants';
 export default TenantsPage;

@@ -18,14 +18,5 @@ const HostingHomePage = ({ primaryTitle, secondaryTitle }) => {
   )
 }
 
-export const getServerSideProps = async (context) => {
-
-  return {
-    props: {
-      primaryTitle: 'Hosting',
-      secondaryTitle: 'Recent deployments'
-    }
-  }
-}
-
+export { getServerSideProps } from '../../../ssp/console/hosting/hosting__home';
 export default HostingHomePage;
