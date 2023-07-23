@@ -21,13 +21,6 @@ const SubmitButton = ({ children, className }) => (
 )
 
 const UsersPage = ({ primaryTitle, secondaryTitle, data, form }) => {
-  console.log('Step 1.3 - UsersPage initial render occurs twice simultaneously')
-  if (!form) {
-    return (
-      <div>Something went wrong</div>
-    )
-  }
-
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
@@ -39,10 +32,6 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data, form }) => {
 
   const [formErrors, setFormErrors] = useState({});
 
-  useEffect(() => {
-    console.log('step 1.4 UsersPage useEffect render occurs twice simultaneously')
-    console.log('errors', errors)
-  }, [errors])
 
   const submitForm = async () => {
     const response = await fetch('/api/v1/sign-up/from-console', {
