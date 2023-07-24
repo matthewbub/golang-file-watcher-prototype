@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import {
@@ -36,10 +37,6 @@ const navigation = [
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function SideNavigation() {
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
@@ -59,7 +56,7 @@ export default function SideNavigation() {
                   {!item.children ? (
                     <a
                       href={item.href}
-                      className={classNames(
+                      className={clsx(
                         item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-700'
                       )}
@@ -72,7 +69,7 @@ export default function SideNavigation() {
                       {({ open }) => (
                         <>
                           <Disclosure.Button
-                            className={classNames(
+                            className={clsx(
                               item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
                               'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700'
                             )}
@@ -80,7 +77,7 @@ export default function SideNavigation() {
                             <item.icon className="h-6 w-6 shrink-0 text-gray-400" aria-hidden="true" />
                             {item.name}
                             <ChevronRightIcon
-                              className={classNames(
+                              className={clsx(
                                 open ? 'rotate-90 text-gray-500' : 'text-gray-400',
                                 'ml-auto h-5 w-5 shrink-0'
                               )}
@@ -94,7 +91,7 @@ export default function SideNavigation() {
                                 <Disclosure.Button
                                   as="a"
                                   href={subItem.href}
-                                  className={classNames(
+                                  className={clsx(
                                     subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
                                     'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700'
                                   )}

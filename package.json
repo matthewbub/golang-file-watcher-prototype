@@ -1,0 +1,14 @@
+{
+  "name": "iep",
+  "version": "1.0.0",
+  "description": "Hello and welcome to the root directory of NineMbs Studio. This is where we keep our internal tools and what not.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.26.0",
+    "node-fetch": "^3.3.1"
+  }
+}

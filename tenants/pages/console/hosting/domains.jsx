@@ -1,8 +1,6 @@
-import { supabase } from '9mbs/supabase.config';
-import { useEffect } from 'react';
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
 
 export function Modal({ open, setOpen, data }) {
   return (
@@ -87,44 +85,24 @@ const Domain = ({ domain }) => {
 
 const DeploymentsPage = ({ title, domains }) => {
   return (
-    <div className='mx-auto max-w-7xl p-12'>
-      <h1 className='text-4xl mb-12'>{title}</h1>
+    <ConsoleLayout
+      primaryTitle={title}
+      primary={() => (
 
-      {console.log(domains)}
-      {/* <h2 className='text-2xl mb-4'>Recent Deployments</h2> */}
-      <ul className='space-y-4 list-disc pl-6'>
-        {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
-          <Domain key={domain.uid} domain={domain} />
-        ))}
-      </ul>
-    </div>
+        <ul className='space-y-4 list-disc pl-6'>
+          {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
+            <Domain key={domain.uid} domain={domain} />
+          ))}
+        </ul>
+
+      )}
+      breadcrumbs={[
+        { name: 'Hosting', href: '/hosting', current: false },
+        { name: 'Domains', href: '/hosting/domains', current: true },
+      ]}
+    />
   )
 }
 
-export const getServerSideProps = async (context) => {
-  const vercelToken = process.env.NEXT_PUBLIC_VERCEL_TOKEN;
-
-  const apiEndPt = 'https://api.vercel.com/v5/domains?teamId=' + process.env.NEXT_PUBLIC_VERCEL_TEAM_ID;
-
-  let config = {
-    method: 'get',
-    url: apiEndPt,
-    headers: {
-      Authorization: 'Bearer ' + vercelToken,
-    },
-  };
-
-  const unparsedDomains = await fetch(config.url, config)
-
-  const domains = await unparsedDomains.json();
-
-  console.log('Domains', domains)
-  return {
-    props: {
-      title: 'Domains',
-      domains
-    }
-  }
-}
-
+export { getServerSideProps } from '../../../ssp/console/hosting/hosting__domains';
 export default DeploymentsPage;
