@@ -6,7 +6,8 @@ import {
   HostingIcon,
   DeploymentIcon,
   RedditIcon,
-  SubRedditIcon
+  SubRedditIcon,
+  DocumentsIcon
 } from '../Icons';
 
 export const navigation = [
@@ -28,6 +29,13 @@ export const navigation = [
     icon: UsersIcon,
     type: 'link',
     description: 'User management services and pages for the console application',
+  },
+  {
+    name: 'Documents',
+    href: '/documents',
+    icon: DocumentsIcon,
+    type: 'link',
+    description: 'Internal documents management services and pages for the console application',
   },
   {
     name: 'External Services',

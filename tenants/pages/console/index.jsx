@@ -3,12 +3,6 @@ import { ConsoleLayout } from '../../components/ConsoleLayout';
 import { FullNavigation, navigation } from '../../components/AppNavigation';
 
 const HomePage = ({ primaryTitle, secondaryTitle }) => {
-  useEffect(() => {
-    fetch('/api/v1/secure/hello').then((res) => res.json()).then((data) => {
-      console.log(data)
-    })
-  }, [])
-
   return (
     <ConsoleLayout
       primaryTitle={primaryTitle}
@@ -22,5 +16,5 @@ const HomePage = ({ primaryTitle, secondaryTitle }) => {
   )
 }
 
-export { getServerSideProps } from '../../ssp/console/users';
+export { getServerSideProps } from '../../ssp/console/index';
 export default HomePage;
