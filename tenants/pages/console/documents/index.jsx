@@ -24,5 +24,5 @@ const RedditBotHomePage = ({ primaryTitle, secondaryTitle }) => (
   />
 )
 
-// export { getServerSideProps } from '../../../ssp/console/documents/index';
+export { getServerSideProps } from '../../../ssp/console/documents/index';
 export default RedditBotHomePage;

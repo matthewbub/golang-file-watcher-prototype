@@ -4,18 +4,18 @@ import { ThreeCards } from '../../../components/__TemplateComponents/ThreeCards_
 import { SideBySide } from '../../../components/__TemplateComponents/SideBySide_NonProfit'
 import { Gallery } from '../../../components/__TemplateComponents/Gallery_NonProfit'
 import { Map } from '../../../components/__TemplateComponents/Map'
-import { Footer } from '../../../components/__TemplateComponents/Footer'
+import { Footer_001 } from '../../../components/__TemplateComponents/Footer_001'
 
 export default function TenantLandingPage() {
   return (
     <div className="bg-white">
-      <Header />
+      {/* <Header />
       <Hero />
       <ThreeCards />
       <SideBySide />
       <Gallery />
-      <Map />
-      <Footer />
+      <Map /> */}
+      <Footer_001 />
     </div>
   )
 }
