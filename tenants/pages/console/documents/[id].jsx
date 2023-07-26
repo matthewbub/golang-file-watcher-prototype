@@ -13,7 +13,11 @@ const Tiptap = () => {
   })
 
   return (
-    <EditorContent editor={editor} />
+    <EditorContent editor={editor}
+      onChange={({ editor }) => {
+        console.log(editor.getHTML())
+      }}
+    />
   )
 }
 
@@ -26,6 +30,10 @@ const DocumentIdPage = ({ id }) => {
       primary={() => (
         <Tiptap />
       )}
+      breadcrumbs={[
+        { name: 'Documents', href: '/documents' },
+        { name: id, href: '/documents/' + id, current: true }
+      ]}
     />
 
   )
