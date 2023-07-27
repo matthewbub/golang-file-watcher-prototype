@@ -75,16 +75,9 @@ export const Hero: React.FC<HeroProps> = ({
           #${ids.heroAardvark} .hero__cta {
             display: flex;
             flex-direction: row;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-          }
-
-          #${ids.heroAardvark} .hero__cta > * {
-            margin-right: 1rem;
-          }
-
-          #${ids.heroAardvark} .hero__cta > *:last-child {
-            margin-right: 0;
+            margin: 30px auto;
           }
 
           @media (min-width: 768px) {
