@@ -1,5 +1,6 @@
 export const ids = {
   heroAardvark: 'hero__aardvark',
+  heroBarracuda: 'hero__barracuda',
   buttonAlligator: 'button__alligator',
   heroCtaBadger: 'heroCta__badger',
 }
