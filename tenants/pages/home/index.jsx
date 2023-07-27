@@ -1,4 +1,4 @@
-import { Hero } from '../../components/__WireFrames/Heros/Hero__Aardvark'
+import { Hero } from '../../components/__WireFrames/Heros/Hero__Barracuda'
 import { HeroCTA } from '../../components/__WireFrames/Heros/HeroCTA__Badger'
 export default function HomePage() {
 

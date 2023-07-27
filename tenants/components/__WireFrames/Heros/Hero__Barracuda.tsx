@@ -27,16 +27,15 @@ export const Hero: React.FC<HeroProps> = ({
             {children}
           </div>
         </div>
+        <div className='hero__imageContainer'>
+          <img src={image} alt={title} />
+        </div>
       </section>
       <style jsx>
         {`
-          #${ids.heroBarracuda} {
-            height: 600px;
-            background-image: url(${image});
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+          #${ids.heroBarracuda} {            
             margin: 0 auto;
+            padding-top: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -80,7 +79,23 @@ export const Hero: React.FC<HeroProps> = ({
             margin: 30px auto;
           }
 
+          #${ids.heroBarracuda} .hero__imageContainer {
+            height: 600px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 60px;
+            padding: 0 30px;
+          }
+
+          #${ids.heroBarracuda} .hero__imageContainer img {            
+            margin: 0 auto;
+          }
+
           @media (min-width: 768px) {
+            #${ids.heroBarracuda} {
+              padding-top: 100px;
+            }
+
             #${ids.heroBarracuda} .hero__eyebrow {
               font-size: ${theme.heroEyebrow__fontSize__tablet};
               line-height: ${theme.heroEyebrow__lineHeight__tablet};
@@ -98,6 +113,10 @@ export const Hero: React.FC<HeroProps> = ({
           }
 
           @media (min-width: 1024px) {
+            #${ids.heroBarracuda} {
+              padding-top: 120px;
+            }
+
             #${ids.heroBarracuda} .hero__eyebrow {
               font-size: ${theme.heroEyebrow__fontSize__desktop};
               line-height: ${theme.heroEyebrow__lineHeight__desktop};              
