@@ -156,7 +156,7 @@ export const ConsoleLayout = ({
               </div>
               {primaryAction &&
                 <div className="px-4 sm:px-0">
-                  primaryAction()
+                  {primaryAction()}
                 </div>
               }
             </header>

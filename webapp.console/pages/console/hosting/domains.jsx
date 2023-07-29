@@ -1,6 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { useForm } from 'react-hook-form';
+import { SlideOver } from '9mbs/components/SlideOver';
+import Input from '9mbs/components/Input';
+import Button from '9mbs/components/Button';
 
 export function Modal({ open, setOpen, data }) {
   return (
@@ -66,7 +70,6 @@ export function Modal({ open, setOpen, data }) {
 
 const Domain = ({ domain }) => {
   const [open, setOpen] = useState(false);
-
   return (
     <li className='flex flex-col'>
       <div className=''>
@@ -84,23 +87,81 @@ const Domain = ({ domain }) => {
 }
 
 const DeploymentsPage = ({ title, domains }) => {
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(null);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  async function submitForm(data) {
+    console.log(data);
+    if (!data.domain) {
+      console.log('no domain');
+      return;
+    }
+
+    const response = await fetch("https://api.vercel.com/v5/domains?teamId=" + process.env.NEXT_PUBLIC_VERCEL_TEAM_ID, {
+      body: JSON.stringify({
+        "name": data.domain,
+        "method": "move-in"
+      }),
+      "headers": {
+        "Authorization": "Bearer " + process.env.NEXT_PUBLIC_VERCEL_TOKEN,
+      },
+      "method": "post"
+    })
+
+    const json = await response.json();
+
+    console.log(json);
+    // if (error) {
+    //   console.log(error);
+    //   setError(error);
+    //   return;
+    // }
+
+    // setOpen(false);
+
+    // window.location.reload();
+  }
+
   return (
-    <ConsoleLayout
-      primaryTitle={title}
-      primary={() => (
-
-        <ul className='space-y-4 list-disc pl-6'>
-          {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
-            <Domain key={domain.uid} domain={domain} />
-          ))}
-        </ul>
-
-      )}
-      breadcrumbs={[
-        { name: 'Hosting', href: '/hosting', current: false },
-        { name: 'Domains', href: '/hosting/domains', current: true },
-      ]}
-    />
+    <Fragment>
+      <ConsoleLayout
+        primaryTitle={title}
+        primaryAction={() => (
+          <Button onClick={() => { setOpen(true) }}>
+            {'Add new domains'}
+          </Button>
+        )}
+        primary={() => (
+          <>
+            <ul className='space-y-4 list-disc pl-6'>
+              {domains && domains.domains && domains.domains.length > 0 && domains.domains.map(domain => (
+                <Domain key={domain.uid} domain={domain} />
+              ))}
+            </ul>
+          </>
+        )}
+        breadcrumbs={[
+          { name: 'Hosting', href: '/hosting', current: false },
+          { name: 'Domains', href: '/hosting/domains', current: true },
+        ]}
+      />
+      <SlideOver
+        open={open}
+        setOpen={setOpen}
+        title='Add new domain'
+      >
+        <p className='text-rose-100/70 text-sm mt-2 mb-8'>
+          {'You can add a domain to any project in your account. Keep in mind you will still need to configure your domain.'}
+        </p>
+        <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(submitForm)}>
+          <Input label='Add new domain' name='domain' register={register} className='col-span-12' />
+          <Button className='col-span-4 text-center'>
+            {'Add Domain'}
+          </Button>
+        </form>
+      </SlideOver>
+    </Fragment>
   )
 }
 

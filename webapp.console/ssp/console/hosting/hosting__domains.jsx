@@ -15,7 +15,7 @@ export const getServerSideProps = async () => {
 
   const domains = await unparsedDomains.json();
 
-  console.log('Domains', domains)
+  console.log('domains', domains)
   return {
     props: {
       title: 'Domains',
