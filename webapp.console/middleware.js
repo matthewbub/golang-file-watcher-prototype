@@ -1,48 +1,61 @@
 import { NextResponse } from 'next/server';
+
+const DOMAINS = {
+  PRODUCTION: 'ieportals.com',
+  VERCEL: 'platformize.vercel.app',
+  LOCAL: 'localhost:3000',
+  LOCAL_MATTHEW: 'matthewbub.localhost:3000',
+  WWW: 'www',
+  CONSOLE: 'console',
+  MATTHEW: 'matthewbub.com',
+  WWW_MATTHEW: 'www.matthewbub.com'
+};
+
 export const config = {
   matcher: [
-    /*
-     * Match all paths except for:
-     * 1. /api routes
-     * 2. /_next (Next.js internals)
-     * 3. /fonts (inside /public)
-     * 4. /examples (inside /public)
-     * 5. all root files inside /public (e.g. /favicon.ico)
-     */
-    '/((?!api|_next|fonts|examples|[\\w-]+\\.\\w+).*)'
-  ]
+    '/((?!api|_next|fonts|examples|[\\w-]+\\.\\w+).*)',
+  ],
 };
 
 export default function middleware(req) {
   const url = req.nextUrl;
-  const hostname = req.headers.get('host') || 'ieportals.com';
+  let hostname = req.headers.get('host') || DOMAINS.PRODUCTION;
 
-  const currentHost =
-    process.env.NODE_ENV === 'production' && process.env.VERCEL === '1'
-      ? hostname
-        .replace(`.ieportals.com`, '')
-        .replace(`.platformize.vercel.app`, '')
-      : hostname.replace(`.localhost:3000`, '');
+  if (process.env.NODE_ENV === 'production' && process.env.VERCEL === '1') {
+    hostname = hostname
+      .replace(`.${DOMAINS.PRODUCTION}`, '')
+      .replace(`.${DOMAINS.VERCEL}`, '')
+      .replace(`.${DOMAINS.MATTHEW}`, '')
+      .replace(`.${DOMAINS.WWW_MATTHEW}`, '');
+  } else {
+    hostname = hostname.replace(`.${DOMAINS.LOCAL}`, '').replace(`.${DOMAINS.LOCAL_MATTHEW}`, '');
+  }
 
+  req.tenant = hostname;
 
-  req.tenant = currentHost;
-
-  // rewrite root application to `/home` folder
-  if (currentHost === 'www' || currentHost === 'ieportals.com' || currentHost === 'localhost:3000' || currentHost === 'platformize.vercel.app') {
-    console.log(req.tenant)
+  if (
+    [DOMAINS.WWW, DOMAINS.PRODUCTION, DOMAINS.LOCAL, DOMAINS.VERCEL].includes(hostname)
+  ) {
+    console.log(req.tenant);
 
     url.pathname = `/home${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
-  // rewrite console application to `/console` folder
-  if (currentHost === 'console' || currentHost === 'console.ieportals.com' || currentHost === 'console.localhost:3000') {
+  if (
+    [DOMAINS.CONSOLE, `${DOMAINS.CONSOLE}.${DOMAINS.PRODUCTION}`, `${DOMAINS.CONSOLE}.${DOMAINS.LOCAL}`].includes(hostname)
+  ) {
     url.pathname = `/console${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 
-  // TODO - add more rules here.
-  // rewrite everything else to `/_tenants/[tenant] dynamic route
-  url.pathname = `/_tenants/${currentHost}${url.pathname}`;
+  if (
+    [DOMAINS.MATTHEW, DOMAINS.WWW_MATTHEW, DOMAINS.LOCAL_MATTHEW].includes(hostname)
+  ) {
+    url.pathname = `/_tenants/${hostname}${url.pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
+  url.pathname = `/_tenants/${hostname}${url.pathname}`;
   return NextResponse.rewrite(url);
 }

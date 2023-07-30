@@ -12,10 +12,15 @@ const FieldSelect: FC<FieldSelectProps> = ({
   ariaLabel,
   ...rest
 }) => {
+  console.log(register)
+  const { onChange, onBlur, ref } = register(name);
+
   return (
     <select
       name={name}
-      {...register(name)}
+      ref={ref}
+      onChange={onChange}
+      onBlur={onBlur}
       placeholder={placeholder}
       className={clsx(
         "rounded-md w-full border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"

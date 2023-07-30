@@ -36,5 +36,6 @@ export const paths = {
     ['reddit-bot/subs']: '/reddit-bot/subs',
     ['settings']: '/settings',
     ['documents']: '/documents',
+    ['messages']: '/messages',
   }
 }
