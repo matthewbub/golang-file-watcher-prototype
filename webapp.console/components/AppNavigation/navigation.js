@@ -38,6 +38,13 @@ export const navigation = [
     description: 'Internal documents management services and pages for the console application',
   },
   {
+    name: 'Messages',
+    href: '/messages',
+    icon: DocumentsIcon,
+    type: 'link',
+    description: 'Internal messages management services and pages for the console application',
+  },
+  {
     name: 'External Services',
     type: 'section',
     description: 'External api services used within the console application for tenant management and deployment management',
