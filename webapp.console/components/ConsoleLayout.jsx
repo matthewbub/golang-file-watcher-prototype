@@ -26,7 +26,7 @@ export const ConsoleLayout = ({
 
   return (
     <AuthWrapper>
-      <div className='min-h-screen bg-gray-950'>
+      <div className='min-h-screen bg-neutral-950'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 xl:hidden" onClose={setSidebarOpen}>
             <Transition.Child
