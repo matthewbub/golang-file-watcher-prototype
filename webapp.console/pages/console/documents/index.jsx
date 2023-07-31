@@ -7,8 +7,14 @@ import { useRouter } from 'next/router';
 
 const pathHandler = new PathHandler('console');
 
-const Primary = () => (
-  <FullNavigation navigation={navigation.find(nav => nav.name === 'Reddit Bot').children} />
+const Primary = ({ data }) => (
+  <div>
+    <pre>
+      <code>
+        {JSON.stringify(data, null, 2)}
+      </code>
+    </pre>
+  </div>
 );
 
 const PrimaryAction = () => {
@@ -28,12 +34,12 @@ const PrimaryAction = () => {
   )
 }
 
-const Page = ({ primaryTitle, secondaryTitle }) => (
+const Page = ({ primaryTitle, secondaryTitle, data }) => (
   <ConsoleLayout
     primaryTitle={primaryTitle}
     secondaryTitle={secondaryTitle}
     navigation={navigation}
-    primary={Primary}
+    primary={() => <Primary data={data} />}
     primaryAction={PrimaryAction}
     breadcrumbs={[
       {

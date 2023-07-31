@@ -3,7 +3,7 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { DashboardIcon, DomainsIcon, UsersIcon, HostingIcon } from '9mbs/components/Icons';
-
+import { Fragment } from 'react';
 export const fallBackNavigation = [
   { name: 'Console', href: '#', icon: DashboardIcon, current: true },
   {
@@ -44,7 +44,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
           <li>
             <ul role="list" className="-mx-2 space-y-1">
               {navigation && navigation.length > 0 && navigation.map((item, index) => (
-                <>
+                <Fragment key={index}>
                   {item.type === 'section' ? (
                     <li className={clsx(index !== 0 && 'mt-8')}>
                       <div className={clsx(
@@ -113,7 +113,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
                       )}
                     </li >
                   )}
-                </>
+                </Fragment>
               ))}
             </ul>
           </li>

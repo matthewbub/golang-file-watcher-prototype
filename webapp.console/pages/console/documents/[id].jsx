@@ -5,9 +5,10 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Button from '../../../components/Button';
 import { useState } from 'react';
+import { ConfigurableForm } from '../../../components/ConfigurableForm';
+import { EllipsisIcon, SaveIcon } from '../../../components/Icons';
 
-
-const Tiptap = () => {
+const Tiptap = ({ pageId }) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -18,15 +19,27 @@ const Tiptap = () => {
       },
     },
     content: '<p>Hello World! 🌎️</p>',
+    onUpdate: ({ editor }) => {
+      fetch('/api/v1/secure/modify-document', {
+        method: 'POST',
+        body: JSON.stringify({
+          document_html: editor.getHTML(),
+          document_json: editor.getJSON(),
+          id: pageId
+        })
+      }).then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
+    }
   })
+
+  // const json = editor.getJSON()
+
 
   return (
     <div className='min-h-screen'>
       <EditorContent
         editor={editor}
-        onChange={({ editor }) => {
-          console.log(editor.getHTML())
-        }}
       />
     </div>
   )
@@ -43,21 +56,43 @@ const PrimaryAction = () => {
   }
 
   return (
-    <Button onClick={handleClick}>
-      {'Save document'}
+    <Button onClick={handleClick} styleType='dark'>
+      <SaveIcon />
     </Button>
   )
 }
 const pathHandler = new PathHandler('console');
 
-const DocumentIdPage = ({ id }) => {
+const Page = ({ id, form }) => {
+  const [open, setOpen] = useState(false);
   return (
     <ConsoleLayout
       primaryTitle={id}
       primary={() => (
-        <Tiptap />
+        <>
+          <Tiptap pageId={id} />
+          <ConfigurableForm
+            open={open}
+            setOpen={setOpen}
+            form={form}
+            slideOverTitle='Add Message'
+            confirmModalTitle='Confirm'
+            confirmModalDescription='Are you sure you want to submit this form?'
+            confirmModalPrimaryAction='Submit Form'
+            submitForm={(formFields) => { console.log(formFields); }}
+            confirmBeforeSubmission={(formFields) => { console.log(formFields); }}
+          />
+        </>
       )}
-      primaryAction={PrimaryAction}
+      primaryAction={() => (
+        <div className='flex space-x-2'>
+          <Button onClick={() => { setOpen(true) }} styleType='info'>
+            <EllipsisIcon />
+          </Button>
+          <PrimaryAction />
+        </div>
+
+      )}
       breadcrumbs={[
         { name: 'Documents', href: '/documents' },
         { name: id, href: '/documents/' + id, current: true }
@@ -68,4 +103,4 @@ const DocumentIdPage = ({ id }) => {
 }
 
 export { getServerSideProps } from '../../../ssp/console/documents/id';
-export default DocumentIdPage;
+export default Page;
