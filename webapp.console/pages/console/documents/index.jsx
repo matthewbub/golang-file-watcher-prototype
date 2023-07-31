@@ -1,19 +1,16 @@
 import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { FullNavigation, navigation } from '../../../components/AppNavigation';
+import { navigation } from '../../../components/AppNavigation';
 import PathHandler from '../../../helpers/PathHandler';
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../../../components/Button';
+import { Table } from '../../../components/__BaseComponents/CompactTable__Documents';
 import { useRouter } from 'next/router';
 
 const pathHandler = new PathHandler('console');
 
 const Primary = ({ data }) => (
   <div>
-    <pre>
-      <code>
-        {JSON.stringify(data, null, 2)}
-      </code>
-    </pre>
+    <Table data={data} />
   </div>
 );
 
