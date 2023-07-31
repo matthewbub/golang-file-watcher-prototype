@@ -45,6 +45,21 @@ export const navigation = [
     description: 'Internal messages management services and pages for the console application',
   },
   {
+    name: 'Experimental',
+    icon: HostingIcon,
+    href: '/experimental',
+    type: 'link',
+    description: 'Experimental features and services.',
+    children: [
+      {
+        name: 'Endless Checkboxes',
+        href: '/experimental/endless-checkboxes',
+        icon: TenantsIcon,
+        description: 'Tenant management services and pages for the console application',
+      },
+    ],
+  },
+  {
     name: 'External Services',
     type: 'section',
     description: 'External api services used within the console application for tenant management and deployment management',
