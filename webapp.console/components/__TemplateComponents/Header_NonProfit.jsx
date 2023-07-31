@@ -234,7 +234,7 @@ export const Header = () => {
   </button> */}
         </div>
       </header>
-      <style>
+      <style jsx>
         {`
         /* Mobile - 1023px */
         @media only screen and (max-width: 63.9375rem) {

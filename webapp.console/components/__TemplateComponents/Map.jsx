@@ -33,7 +33,7 @@ export const Map = () => (
       </picture>
     </section>
 
-    <style>
+    <style jsx>
       {`
         @media only screen and (min-width: 0rem) {
           #map-720 {

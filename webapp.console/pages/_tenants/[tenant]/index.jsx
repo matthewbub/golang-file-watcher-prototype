@@ -7,17 +7,16 @@ import { Map } from '../../../components/__TemplateComponents/Map'
 import { Footer_001 } from '../../../components/__TemplateComponents/Footer_001'
 
 
-export default function TenantLandingPage({ tenant }) {
+export default function Page({ tenant }) {
   return (
     <div className="bg-white">
-      <h1 className='text-4xl text-black'>tenant: {tenant}</h1>
-      {/* <Header />
+      <Header />
       <Hero />
       <ThreeCards />
       <SideBySide />
       <Gallery />
-      <Map /> */}
-      {/* <Footer_001 /> */}
+      <Map />
+      <Footer_001 />
     </div>
   )
 }

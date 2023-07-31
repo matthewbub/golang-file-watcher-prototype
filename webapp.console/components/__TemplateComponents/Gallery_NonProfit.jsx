@@ -105,7 +105,7 @@ export const Gallery = () => (
         </div>
       </div>
     </section>
-    <style>
+    <style jsx>
       {`
         /* Mobile - 360px */
         @media only screen and (min-width: 0rem) {
