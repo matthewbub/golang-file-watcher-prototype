@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { capitalize } from 'lodash';
 import clsx from 'clsx';
 
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { paths } from '../../../helpers/constants';
 
 export function DeploymentsTable({ deployments = [] }) {

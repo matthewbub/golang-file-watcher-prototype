@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { SlideOver } from '9mbs/components/SlideOver';
+import { SlideOver } from '@/components/SlideOver';
 import { useForm } from 'react-hook-form';
-import Input from '9mbs/components/Input';
-import Button from '9mbs/components/Button';
-import { Select } from '9mbs/components/Select/Select';
-import { Modal } from '9mbs/components';
+import Input from '@/components/Input';
+import Button from '@/components/Button';
+import { Select } from '@/components/Select/Select';
+import { Modal } from '@/components';
 
 const SubmitButton = () => (
   <div className='col-span-4'>

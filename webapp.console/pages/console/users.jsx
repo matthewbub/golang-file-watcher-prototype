@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
-import { SlideOver } from '9mbs/components/SlideOver';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
+import { SlideOver } from '@/components/SlideOver';
 import { useForm } from 'react-hook-form';
-import Input from '9mbs/components/Input';
-import Button from '9mbs/components/Button';
+import Input from '@/components/Input';
+import Button from '@/components/Button';
 import { Select } from '../../components/Select/Select';
 import { Modal } from '../../components';
 

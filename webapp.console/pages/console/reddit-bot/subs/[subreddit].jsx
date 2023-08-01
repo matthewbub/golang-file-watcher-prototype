@@ -1,4 +1,4 @@
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
 import DataDisplay__SubReddit from '../../../../components/__BaseComponents/DataDisplay__SubReddit';
 
 const SubRedditsPage = ({ title, description, data }) => {

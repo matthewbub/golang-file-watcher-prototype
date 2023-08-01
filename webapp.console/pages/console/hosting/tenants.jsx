@@ -1,10 +1,10 @@
-import { supabase } from '9mbs/supabase.config';
+import { supabase } from '@/supabase.config';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { SlideOver } from '9mbs/components/SlideOver';
-import Input from '9mbs/components/Input';
-import Button from '9mbs/components/Button';
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { SlideOver } from '@/components/SlideOver';
+import Input from '@/components/Input';
+import Button from '@/components/Button';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
 
 const TenantsPage = ({ title, tenants }) => {
   const [open, setOpen] = useState(false);

@@ -10,7 +10,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout'
+import { ConsoleLayout } from '@/components/ConsoleLayout'
 
 
 

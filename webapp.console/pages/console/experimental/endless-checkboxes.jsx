@@ -1,4 +1,4 @@
-import { supabase } from '9mbs/supabase.config';
+import { supabase } from '@/supabase.config';
 import { useState, useEffect } from 'react';
 import { ConsoleLayout } from '../../../components/ConsoleLayout';
 import { FullNavigation, navigation } from '../../../components/AppNavigation';

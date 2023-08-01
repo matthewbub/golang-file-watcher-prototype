@@ -1,4 +1,4 @@
-import { supabase } from '9mbs/supabase.config';
+import { supabase } from '@/supabase.config';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ConsoleLayout } from '../../../components/ConsoleLayout';

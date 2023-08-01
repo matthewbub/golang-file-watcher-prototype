@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { ConsoleLayout } from '9mbs/components/ConsoleLayout';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { supabase } from '../../../../supabase.config'
 dayjs.locale('en');
 dayjs.extend(relativeTime);
