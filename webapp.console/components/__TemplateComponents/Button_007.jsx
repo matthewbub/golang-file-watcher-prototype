@@ -1,10 +1,9 @@
 export const Button_007 = ({ as, children, ...rest }) => {
   const styles = `
   .iep-button-66 {
-    /* remove the font family so the Stitch inherits the fonts from your global stylesheet */
-    font-family: 'Roboto', 'Arial', sans-serif;
     text-align: center;
     font-size: 1rem;
+
     /* 46px - 56px */
     line-height: clamp(2.875rem, 8vw, 3.5rem);
     text-decoration: none;
@@ -13,6 +12,7 @@ export const Button_007 = ({ as, children, ...rest }) => {
     margin: auto;
     color: #1a1a1a;
     padding: 0 0 0 1.5rem;
+
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
     background-color: #fff;
@@ -24,6 +24,7 @@ export const Button_007 = ({ as, children, ...rest }) => {
     z-index: 1;
     transition: color .3s, border .3s;
   }
+
   .iep-button-66:before {
     /* background color */
     content: '';
@@ -38,6 +39,7 @@ export const Button_007 = ({ as, children, ...rest }) => {
     transition: width .3s;
     z-index: -1;
   }
+  
   .iep-button-66:after {
     /* button border */
     content: '';
@@ -45,6 +47,7 @@ export const Button_007 = ({ as, children, ...rest }) => {
     height: 100%;
     background-color: transparent;
     border: 2px solid #1a1a1a;
+  
     /* prevents border from affecting height and width */
     box-sizing: border-box;
     opacity: 1;
@@ -56,6 +59,7 @@ export const Button_007 = ({ as, children, ...rest }) => {
     z-index: 1;
     pointer-events: none;
   }
+  
   .iep-button-66 .iep-wrapper {
     width: 2.75rem;
     height: auto;
@@ -68,6 +72,7 @@ export const Button_007 = ({ as, children, ...rest }) => {
     position: relative;
     transition: border .3s;
   }
+  
   .iep-button-66 .iep-wrapper:before {
     /* background color */
     content: '';
@@ -83,28 +88,36 @@ export const Button_007 = ({ as, children, ...rest }) => {
     transition-delay: .1s;
     z-index: -1;
   }
+  
   .iep-button-66 .iep-icon {
     width: 1.5rem;
     height: auto;
   }
+  
   .iep-button-66 .iep-icon path {
     transition: fill .3s;
   }
+  
   .iep-button-66:hover {
     color: #fff;
   }
+  
   .iep-button-66:hover:before {
     width: 100%;
   }
+  
   .iep-button-66:hover:after {
     opacity: 0;
   }
+  
   .iep-button-66:hover .iep-wrapper {
     border-color: #1a1a1a;
   }
+  
   .iep-button-66:hover .iep-wrapper:before {
     width: 100%;
   }
+
   .iep-button-66:hover .iep-icon path {
     fill: #fff;
   }       

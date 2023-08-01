@@ -1,8 +1,8 @@
 export const Button_001 = ({ as, children, ...rest }) => {
   const styles = `
     .iep-button-2 {
-      font-family: 'Roboto', 'Arial', sans-serif;
       font-size: 1rem;
+      
       /* 46px - 56px */
       line-height: clamp(2.875rem, 8vw, 3.5rem);
       text-decoration: none;
@@ -16,6 +16,7 @@ export const Button_001 = ({ as, children, ...rest }) => {
       z-index: 1;
       transition: background-color 0.3s;
     }
+
     .iep-button-2:hover {
       background-color: #000;
     }

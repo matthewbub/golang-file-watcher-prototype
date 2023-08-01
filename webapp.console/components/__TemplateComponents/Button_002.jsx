@@ -1,8 +1,8 @@
 export const Button_002 = ({ as, children, ...rest }) => {
   const styles = `
   .iep-button-34 {
-    font-family: 'Roboto', 'Arial', sans-serif;
     font-size: 1rem;
+
     /* 46px - 56px */
     line-height: clamp(2.875rem, 8vw, 3.5rem);
     text-decoration: none;
@@ -15,9 +15,11 @@ export const Button_002 = ({ as, children, ...rest }) => {
     position: relative;
     z-index: 1;
   }
+
   .iep-button-34:hover:before {
     width: 100%;
   }
+
   .iep-button-34:before {
     /* hover box */
     content: '';
@@ -31,9 +33,9 @@ export const Button_002 = ({ as, children, ...rest }) => {
     left: 0;
     z-index: -1;
     transition: width .3s;
-  }
-                                  
+  }                                
   `
+
   if (as === 'link') {
     return (
       <a className="iep-button-34" {...rest}>

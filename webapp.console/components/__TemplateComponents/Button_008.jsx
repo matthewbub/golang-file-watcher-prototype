@@ -1,10 +1,9 @@
 export const Button_008 = ({ as, children, ...rest }) => {
   const styles = `
     .iep-button-713 {
-      /* remove the font family so the Stitch inherits the fonts from your global stylesheet */
-      font-family: 'Roboto', 'Arial', sans-serif;
       text-align: center;
       font-size: 1rem;
+
       /* 46px - 56px */
       line-height: clamp(2.875rem, 8vw, 3.5rem);
       text-decoration: none;
@@ -13,6 +12,7 @@ export const Button_008 = ({ as, children, ...rest }) => {
       margin: auto;
       color: #fff;
       padding: 0 2rem;
+
       /* prevents padding from affecting height and width */
       box-sizing: border-box;
       background-color: #F15A24;
@@ -26,14 +26,17 @@ export const Button_008 = ({ as, children, ...rest }) => {
       transform: skew(-10deg);
       transition: background-color 0.3s, box-shadow 0.3s;
     }
-    .iep-button-713 .cs-icon {
+
+    .iep-button-713 .iep-icon {
       transition: transform .3s;
     }
+    
     .iep-button-713:hover {
       background-color: #1a1a1a;
       box-shadow: 4px 4px 0px 0px var(--primary);
     }
-    .iep-button-713:hover .cs-icon {
+    
+    .iep-button-713:hover .iep-icon {
       transform: translateX(0.25rem);
     }
   `;

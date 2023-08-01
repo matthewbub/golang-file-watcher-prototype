@@ -1,10 +1,9 @@
 export const Button_005 = ({ as, children, ...rest }) => {
   const styles = `
   .iep-button-35 {
-    /* remove the font family so the Stitch inherits the fonts from your global stylesheet */
-    font-family: 'Roboto', 'Arial', sans-serif;
     text-align: center;
     font-size: 1rem;
+
     /* 46px - 56px */
     line-height: clamp(2.875rem, 8vw, 3.5rem);
     text-decoration: none;
@@ -13,6 +12,7 @@ export const Button_005 = ({ as, children, ...rest }) => {
     margin: auto;
     color: #1a1a1a;
     padding: 0 1.5rem;
+    
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
     background-color: #fff;
@@ -25,6 +25,7 @@ export const Button_005 = ({ as, children, ...rest }) => {
     z-index: 1;
     transition: color .3s;
   }
+
   .iep-button-35:before {
     content: '';
     width: 0.375rem;
@@ -38,22 +39,27 @@ export const Button_005 = ({ as, children, ...rest }) => {
     transition: width .3s;
     z-index: -1;
   }
+
   .iep-button-35 .iep-icon {
     width: 1.5rem;
     height: auto;
   }
+
   .iep-button-35 .iep-icon path {
     transition: fill .3s;
   }
+
   .iep-button-35:hover {
     color: #fff;
   }
+
   .iep-button-35:hover:before {
     width: 100%;
   }
+
   .iep-button-35:hover .iep-icon path {
     fill: #fff;
-  }                      
+  }
   `
   if (as === 'link') {
     return (

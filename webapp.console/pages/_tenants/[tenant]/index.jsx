@@ -16,18 +16,18 @@ import { Button_008 } from '../../../components/__TemplateComponents/Button_008'
 
 export default function Page({ tenant }) {
   return (
-    <div className="bg-white p-20">
-      <Button_008 as="link" href="/_tenants/[tenant]/about" tenant={tenant}>
+    <div className="bg-white">
+      {/* <Button_008 as="link" href="/_tenants/[tenant]/about" tenant={tenant}>
         About
-      </Button_008>
+      </Button_008> */}
 
-      {/* <Header />
+      <Header />
       <Hero />
       <ThreeCards />
       <SideBySide />
       <Gallery />
       <Map />
-      <Footer_001 /> */}
+      <Footer_001 />
     </div>
   )
 }
