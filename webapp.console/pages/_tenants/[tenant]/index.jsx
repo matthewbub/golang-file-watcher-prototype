@@ -11,13 +11,15 @@ import { Button_003 } from '../../../components/__TemplateComponents/Button_003'
 import { Button_004 } from '../../../components/__TemplateComponents/Button_004'
 import { Button_005 } from '../../../components/__TemplateComponents/Button_005'
 import { Button_006 } from '../../../components/__TemplateComponents/Button_006'
+import { Button_007 } from '../../../components/__TemplateComponents/Button_007'
+import { Button_008 } from '../../../components/__TemplateComponents/Button_008'
 
 export default function Page({ tenant }) {
   return (
     <div className="bg-white p-20">
-      <Button_006 as="link" href="/_tenants/[tenant]/about" tenant={tenant}>
+      <Button_008 as="link" href="/_tenants/[tenant]/about" tenant={tenant}>
         About
-      </Button_006>
+      </Button_008>
 
       {/* <Header />
       <Hero />
