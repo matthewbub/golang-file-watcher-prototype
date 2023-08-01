@@ -37,5 +37,9 @@ export const paths = {
     'settings': '/settings',
     'documents': '/documents',
     'messages': '/messages',
+    'experimental': '/experimental',
+    'experimental/endless-checkboxes': '/experimental/endless-checkboxes',
+    'website-builder': '/website-builder',
+    'website-builder/kitchen-sink': '/website-builder/kitchen-sink',
   }
 }

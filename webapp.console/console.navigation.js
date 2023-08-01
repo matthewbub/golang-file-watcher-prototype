@@ -8,9 +8,9 @@ import {
   RedditIcon,
   SubRedditIcon,
   DocumentsIcon
-} from '../Icons';
+} from './components/Icons';
 
-export const navigation = [
+export const consoleNavigation = [
   {
     name: 'Administration',
     type: 'section',
@@ -100,5 +100,15 @@ export const navigation = [
     children: [
       { name: 'Subs', href: '/reddit-bot/subs', icon: SubRedditIcon },
     ],
+  },
+  {
+    name: 'Website Builder',
+    icon: RedditIcon,
+    href: '/website-builder',
+    type: 'link',
+    description: 'Our proprietary Website builder .',
+    // children: [
+    //   { name: 'Subs', href: '/reddit-bot/subs', icon: SubRedditIcon },
+    // ],
   }
 ]
