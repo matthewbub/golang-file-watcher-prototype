@@ -5,18 +5,27 @@ import { SideBySide } from '../../../components/__TemplateComponents/SideBySide_
 import { Gallery } from '../../../components/__TemplateComponents/Gallery_NonProfit'
 import { Map } from '../../../components/__TemplateComponents/Map'
 import { Footer_001 } from '../../../components/__TemplateComponents/Footer_001'
-
+import { Button_001 } from '../../../components/__TemplateComponents/Button_001'
+import { Button_002 } from '../../../components/__TemplateComponents/Button_002'
+import { Button_003 } from '../../../components/__TemplateComponents/Button_003'
+import { Button_004 } from '../../../components/__TemplateComponents/Button_004'
+import { Button_005 } from '../../../components/__TemplateComponents/Button_005'
+import { Button_006 } from '../../../components/__TemplateComponents/Button_006'
 
 export default function Page({ tenant }) {
   return (
-    <div className="bg-white">
-      <Header />
+    <div className="bg-white p-20">
+      <Button_006 as="link" href="/_tenants/[tenant]/about" tenant={tenant}>
+        About
+      </Button_006>
+
+      {/* <Header />
       <Hero />
       <ThreeCards />
       <SideBySide />
       <Gallery />
       <Map />
-      <Footer_001 />
+      <Footer_001 /> */}
     </div>
   )
 }
