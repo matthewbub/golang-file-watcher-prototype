@@ -47,12 +47,13 @@ export default async (req, res) => {
       const data = JSON.parse(req.body);
       console.log('data', data);
 
+
       // Update document
-      const { data: documentData, error: documentError } = await supabase.from('documents').update({
-        document_json: data.document_json,
-        document_html: data.document_html,
-        updated_at: new Date(),
-      }).eq('id', data.id).select();
+      // const { data: documentData, error: documentError } = await supabase.from('documents').update({
+      //   document_json: data.document_json,
+      //   document_html: data.document_html,
+      //   updated_at: new Date(),
+      // }).eq('id', data.id).select();
 
 
       if (documentError) {

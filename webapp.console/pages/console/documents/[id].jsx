@@ -46,23 +46,7 @@ const Tiptap = ({ pageId, data }) => {
     </div>
   )
 }
-const PrimaryAction = () => {
-  const [saved, setSaved] = useState(false);
 
-  const handleClick = async () => {
-    const response = await fetch('/api/v1/secure/create-document')
-    const data = await response.json();
-
-    // // TODO - handle error
-    // router.push('/documents/' + data.redirectId);
-  }
-
-  return (
-    <Button onClick={handleClick} styleType='dark'>
-      <SaveIcon />
-    </Button>
-  )
-}
 const pathHandler = new PathHandler('console');
 
 const Page = ({ id, form, data }) => {
@@ -82,11 +66,20 @@ const Page = ({ id, form, data }) => {
             confirmModalDescription='Are you sure you want to submit this form?'
             confirmModalPrimaryAction='Submit Form'
             submitForm={(formFields) => {
+              const documentTitle = get(formFields, 'document_title', 'Untitled Document');
+              const description = get(formFields, 'document_description', '');
+              const pageTitle = get(formFields, 'page_title', documentTitle);
+              const screen = get(formFields, 'screen', '');
+              const visibility = get(formFields, 'visibility', '');
+
               fetch('/api/v1/secure/modify-document-meta', {
                 method: 'POST',
                 body: JSON.stringify({
-                  document_title: formFields.document_title,
-                  page: formFields.page,
+                  document_title: documentTitle,
+                  document_description: description,
+                  page_title: pageTitle,
+                  screen: screen,
+                  visibility: visibility,
                   id: pageId
                 })
               }).then(response => response.json())
@@ -100,13 +93,9 @@ const Page = ({ id, form, data }) => {
         </>
       )}
       primaryAction={() => (
-        <div className='flex space-x-2'>
-          <Button onClick={() => { setOpen(true) }} styleType='info'>
-            <EllipsisIcon />
-          </Button>
-          <PrimaryAction />
-        </div>
-
+        <Button onClick={() => { setOpen(true) }} styleType='info'>
+          <EllipsisIcon />
+        </Button>
       )}
       breadcrumbs={[
         { name: 'Documents', href: '/documents' },

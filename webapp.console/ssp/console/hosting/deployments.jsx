@@ -2,6 +2,7 @@ import { get } from 'lodash';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
+
 dayjs.locale('en');
 dayjs.extend(relativeTime);
 
@@ -83,14 +84,12 @@ export const getServerSideProps = async () => {
     ])
   }, []);
 
-
-
-
   return {
     props: {
-      title: 'Deployments',
-      deployments,
-      formattedDeployments
+      deployments: formattedDeployments,
+      consoleLayout: {
+        primaryTitle: 'Deployments'
+      }
     }
   }
 }
