@@ -18,13 +18,7 @@ export const FullNavigation = ({ navigation = [] }) => {
               'group relative p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500'
             )}
           >
-            <div>
-              <span className={clsx('inline-flex rounded-lg p-3 ring-2 ring-gray-700')}>
-                <action.icon className="h-6 w-6" aria-hidden="true" />
-              </span>
-            </div>
-
-            <div className="mt-8">
+            <div className="">
               <h3 className={clsx(
                 baseClassNames.text,
                 "text-base font-semibold leading-6"

@@ -19,21 +19,21 @@ export const consoleNavigation = [
   {
     name: 'Console',
     href: '/',
-    icon: DashboardIcon,
+    // icon: DashboardIcon,
     type: 'link',
     description: 'Console home page and dashboard for the console application'
   },
   {
     name: 'Users',
     href: '/users',
-    icon: UsersIcon,
+    // icon: UsersIcon,
     type: 'link',
     description: 'User management services and pages for the console application',
   },
   {
     name: 'Documents',
     href: '/documents',
-    icon: DocumentsIcon,
+    // icon: DocumentsIcon,
     type: 'link',
     description: 'Internal documents management services and pages for the console application',
   },

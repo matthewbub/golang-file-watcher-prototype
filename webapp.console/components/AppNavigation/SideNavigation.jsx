@@ -25,10 +25,10 @@ export const fallBackNavigation = [
 ]
 
 export const SideNavigation = ({ navigation = fallBackNavigation }) => {
-  const activeClassName = 'bg-rose-100/10'
-  const hoverClassName = 'hover:bg-rose-100/10'
-  const textColorClassName = 'text-rose-100/70'
-  const secondaryTextColorClassName = 'text-rose-100/50'
+  const activeClassName = 'bg-white/10'
+  const hoverClassName = 'hover:bg-white/10'
+  const textColorClassName = 'text-white/70'
+  const secondaryTextColorClassName = 'text-white-100/50'
 
   return (
     <div className="h-full flex grow flex-col gap-y-5 overflow-y-auto px-6 border-r border-white/5">
@@ -65,7 +65,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                           )}
                         >
-                          <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
+                          {/* <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" /> */}
                           {item.name}
                         </Link>
                       ) : (
@@ -79,7 +79,7 @@ export const SideNavigation = ({ navigation = fallBackNavigation }) => {
                                   'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold'
                                 )}
                               >
-                                <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
+                                {/* <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" /> */}
                                 {item.name}
                                 <ChevronRightIcon
                                   className={clsx(

@@ -5,11 +5,12 @@ import Input from '@/components/Input';
 import Button from '@/components/Button';
 import { Select } from '@/components/Select/Select';
 import { Modal } from '@/components';
+import TextArea from '@/components/TextArea';
 
-const SubmitButton = () => (
+const SubmitButton = ({ children }) => (
   <div className='col-span-4'>
-    <Button className='text-center mt-24'>
-      Submit
+    <Button className='text-center mt-12'>
+      {children || 'Submit'}
     </Button>
   </div>
 )
@@ -40,14 +41,28 @@ export const ConfigurableForm = ({
           {form.formFields.map((field, index) => {
             let Field = null;
             switch (field.field) {
+              case 'Divider':
+                Field = () => (
+                  <div className='col-span-12 mt-2 mb-12'>
+                    <div className='border-b border-white/20 h-2' />
+                  </div>
+                );
+                break;
               case 'Input':
                 Field = Input;
+                break;
+              case 'TextArea':
+                Field = TextArea;
                 break;
               case 'Select':
                 Field = Select;
                 break;
               case 'SubmitButton':
-                Field = SubmitButton;
+                Field = () => (
+                  <SubmitButton>
+                    {field.label}
+                  </SubmitButton>
+                );
                 break;
               default:
                 Field = Input;
@@ -65,6 +80,7 @@ export const ConfigurableForm = ({
                 className={field.className}
                 options={field.options}
                 registerOptions={field.validate}
+                defaultValue={field.defaultValue}
               />
             )
           })}

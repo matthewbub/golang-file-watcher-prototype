@@ -7,8 +7,10 @@ import Button from '../../../components/Button';
 import { useState } from 'react';
 import { ConfigurableForm } from '../../../components/ConfigurableForm';
 import { EllipsisIcon, SaveIcon } from '../../../components/Icons';
+import { get } from 'lodash';
 
-const Tiptap = ({ pageId }) => {
+const Tiptap = ({ pageId, data }) => {
+  const documentHtml = get(data, 'documents[0].document_html', '<p>Hello World! 🌎️</p>');
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -18,7 +20,7 @@ const Tiptap = ({ pageId }) => {
         class: 'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg my-5 focus:outline-none',
       },
     },
-    content: '<p>Hello World! 🌎️</p>',
+    content: documentHtml,
     onUpdate: ({ editor }) => {
       fetch('/api/v1/secure/modify-document', {
         method: 'POST',
@@ -63,14 +65,14 @@ const PrimaryAction = () => {
 }
 const pathHandler = new PathHandler('console');
 
-const Page = ({ id, form }) => {
+const Page = ({ id, form, data }) => {
   const [open, setOpen] = useState(false);
   return (
     <ConsoleLayout
       primaryTitle={id}
       primary={() => (
         <>
-          <Tiptap pageId={id} />
+          <Tiptap pageId={id} data={data} />
           <ConfigurableForm
             open={open}
             setOpen={setOpen}
@@ -79,7 +81,20 @@ const Page = ({ id, form }) => {
             confirmModalTitle='Confirm'
             confirmModalDescription='Are you sure you want to submit this form?'
             confirmModalPrimaryAction='Submit Form'
-            submitForm={(formFields) => { console.log(formFields); }}
+            submitForm={(formFields) => {
+              fetch('/api/v1/secure/modify-document-meta', {
+                method: 'POST',
+                body: JSON.stringify({
+                  document_title: formFields.document_title,
+                  page: formFields.page,
+                  id: pageId
+                })
+              }).then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error))
+
+
+            }}
             confirmBeforeSubmission={(formFields) => { console.log(formFields); }}
           />
         </>
