@@ -1,15 +1,3 @@
-import {
-  DashboardIcon,
-  DomainsIcon,
-  UsersIcon,
-  TenantsIcon,
-  HostingIcon,
-  DeploymentIcon,
-  RedditIcon,
-  SubRedditIcon,
-  DocumentsIcon
-} from './components/Icons';
-
 export const consoleNavigation = [
   {
     name: 'Administration',
