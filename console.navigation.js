@@ -57,6 +57,10 @@ export const consoleNavigation = [
         icon: TenantsIcon,
         description: 'Tenant management services and pages for the console application',
       },
+      {
+        name: 'Endless Checkboxes - Unique Conditions',
+        href: '/experimental/endless-checkboxes-unique-conditions',
+      }
     ],
   },
   {
@@ -89,16 +93,6 @@ export const consoleNavigation = [
         icon: DeploymentIcon,
         description: 'Deployment management services and pages for the console application',
       },
-    ],
-  },
-  {
-    name: 'Reddit Bot',
-    icon: RedditIcon,
-    href: '/reddit-bot',
-    type: 'link',
-    description: 'Reddit bot services and management.',
-    children: [
-      { name: 'Subs', href: '/reddit-bot/subs', icon: SubRedditIcon },
     ],
   },
   {
