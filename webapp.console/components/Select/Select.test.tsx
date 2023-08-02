@@ -6,6 +6,14 @@ import { Select } from './Select'
 // Extend the expect function with the toHaveNoViolations matcher
 expect.extend(toHaveNoViolations)
 
+const mockRegister = () => {
+  return {
+    onChange: () => { },
+    onBlur: () => { },
+    ref: () => { },
+  }
+};
+
 describe('Select component', () => {
   const options = [
     { id: 'option1', name: 'Option 1' },
@@ -17,7 +25,7 @@ describe('Select component', () => {
       <Select
         name="test-select"
         placeholder="Select an option"
-        register={() => { }}
+        register={mockRegister}
         options={options}
       />
     )
@@ -32,7 +40,7 @@ describe('Select component', () => {
       <Select
         name="test-select"
         placeholder="Select an option"
-        register={() => { }}
+        register={mockRegister}
         options={options}
       />
     )

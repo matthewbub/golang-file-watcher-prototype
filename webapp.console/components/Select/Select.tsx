@@ -12,7 +12,6 @@ const FieldSelect: FC<FieldSelectProps> = ({
   ariaLabel,
   ...rest
 }) => {
-  console.log(register)
   const { onChange, onBlur, ref } = register(name);
 
   return (
