@@ -19,6 +19,8 @@ export const getServerSideProps = async () => {
   const unparsedDeployments = await fetch(config.url, config)
   const deployments = await unparsedDeployments.json();
 
+  console.log('deployments', deployments)
+
   // collect all authors
   const authors = deployments.deployments.map(deployment => deployment.creator.githubLogin)
 
