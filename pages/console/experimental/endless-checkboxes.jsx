@@ -1,12 +1,9 @@
-import { supabase } from '@/supabase.config';
-import { useState, useEffect } from 'react';
 import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { FullNavigation, navigation } from '../../../components/AppNavigation';
+import { navigation } from '../../../components/AppNavigation';
 import React from 'react';
-import { useForm, Controller, FormProvider } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
+import { useForm, Controller } from 'react-hook-form';
 
-// Custom Checkbox component
+
 const Checkbox = ({ checked, onChange, value, name }) => {
   return (
     <input
@@ -19,7 +16,6 @@ const Checkbox = ({ checked, onChange, value, name }) => {
   );
 };
 
-// Custom FormControlLabel component
 const FormControlLabel = ({ control, label }) => {
   return (
     <label>
@@ -29,39 +25,54 @@ const FormControlLabel = ({ control, label }) => {
   );
 };
 
-const listStatusOptions = ["all", "published", "draft", "expired", "deleted"];
-
-const defaultValues = {
-  listStatus: ["draft"],
-};
-
-const onSubmit = (data) => console.log("SUBMIT: ", data);
+const checkboxOptions = [
+  "all",
+  "ID-123",
+  "ID-124",
+  "ID-125",
+  "ID-126",
+  "ID-127",
+  "ID-128",
+  "ID-129",
+  "ID-130",
+  "ID-131",
+  "ID-132",
+];
 
 const Primary = () => {
-  const { handleSubmit, control } = useForm({
-    defaultValues,
-  });
-
+  const { handleSubmit, control } = useForm();
+  const onSubmit = (data) => console.log("SUBMIT: ", data);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
-        name="listStatus"
-        render={({ field, fieldState }) => {
+        name="checkboxes"
+        defaultValue={[]}
+        render={({ field }) => {
           const handleAllOptionChange = (checked, field) => {
-            field.onChange(checked ? listStatusOptions : []);
+            if (checked) {
+              field.onChange(checkboxOptions);
+            } else {
+              field.onChange([]);
+            }
           };
 
           const handleSingleOptionChange = (event, field) => {
             const { value, checked } = event.target;
-            const newFieldValue = checked
+            let newFieldValue = checked
               ? [...field.value, value]
               : field.value.filter((v) => v !== value);
 
-            // Set to 'all' if all options are selected, otherwise update normally.
-            field.onChange(
-              newFieldValue.length === listStatusOptions.length - 1 ? listStatusOptions : newFieldValue
-            );
+            // If every other checkbox except the 'all' checkbox is checked, include 'all'.
+            if (newFieldValue.includes('all')) {
+              newFieldValue = newFieldValue.filter((v) => v !== 'all');
+            }
+
+            if (newFieldValue.length === checkboxOptions.length - 1) {
+              newFieldValue = [...newFieldValue, 'all'];
+            }
+
+            field.onChange(newFieldValue);
           };
 
           const onChange = (event) => {
@@ -79,20 +90,20 @@ const Primary = () => {
             <div>
               <h2>Checkboxes</h2>
               <div className='flex flex-col'>
-                {listStatusOptions.map((listStatusOption) => (
+                {checkboxOptions.map((checkboxOption) => (
                   <FormControlLabel
-                    key={listStatusOption}
+                    key={checkboxOption}
                     control={
                       <Checkbox
-                        checked={field.value.some(
-                          (value) => listStatusOption === value
+                        checked={field.value && field.value.some(
+                          (value) => checkboxOption === value
                         )}
                         onChange={onChange}
-                        value={listStatusOption}
-                        name={listStatusOption}
+                        value={checkboxOption}
+                        name={checkboxOption}
                       />
                     }
-                    label={listStatusOption}
+                    label={checkboxOption}
                   />
                 ))}
               </div>
@@ -100,6 +111,7 @@ const Primary = () => {
           );
         }}
       />
+      <button type="submit">Submit</button>
     </form>
   );
 }
