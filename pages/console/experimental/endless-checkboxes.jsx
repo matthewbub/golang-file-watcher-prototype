@@ -6,13 +6,31 @@ import { useForm, Controller } from 'react-hook-form';
 
 const Checkbox = ({ checked, onChange, value, name }) => {
   return (
-    <input
-      type="checkbox"
-      checked={checked}
-      onChange={(e) => onChange(e)}
-      value={value}
-      name={name}
-    />
+    <div className='checkbox-wrapper'>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        value={value}
+        name={name}
+        style={{ display: 'none' }} // Hide the default input
+      />
+      <div className={`custom-checkbox${checked ? ' checked' : ''}`}>
+        {/* Insert the custom SVG here */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="custom-svg"
+        >
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+    </div>
   );
 };
 
@@ -38,6 +56,49 @@ const checkboxOptions = [
   "ID-131",
   "ID-132",
 ];
+
+const checkboxOptionsData = {
+  "ID-123": {
+    conditionA: true,
+    conditionB: false,
+  },
+  "ID-124": {
+    conditionA: false,
+    conditionB: true,
+  },
+  "ID-125": {
+    conditionA: false,
+    conditionB: false,
+  },
+  "ID-126": {
+    conditionA: true,
+    conditionB: true,
+  },
+  "ID-127": {
+    conditionA: false,
+    conditionB: true,
+  },
+  "ID-128": {
+    conditionA: true,
+    conditionB: false,
+  },
+  "ID-129": {
+    conditionA: false,
+    conditionB: true,
+  },
+  "ID-130": {
+    conditionA: true,
+    conditionB: true,
+  },
+  "ID-131": {
+    conditionA: true,
+    conditionB: true,
+  },
+  "ID-132": {
+    conditionA: false,
+    conditionB: false,
+  },
+};
 
 const Primary = () => {
   const { handleSubmit, control } = useForm();
@@ -112,6 +173,40 @@ const Primary = () => {
         }}
       />
       <button type="submit">Submit</button>
+      <style jsx global>{`
+        label {
+          display: flex;
+          align-items: center;
+          margin: 10px 0;
+        }
+
+        .checkbox-wrapper {
+          margin-right: 10px;
+        }
+
+        .custom-checkbox {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          border: 2px solid #000; /* Customize border color */
+          border-radius: 4px; /* Customize border radius */
+          cursor: pointer;
+        }
+        
+        .custom-checkbox.checked {
+          background-color: #000; /* Customize checked background color */
+        }
+        
+        .custom-svg {
+          width: 100%;
+          height: 100%;
+          visibility: hidden;
+        }
+        
+        input[type="checkbox"]:checked + .custom-checkbox .custom-svg {
+          visibility: visible;
+        }
+      `}</style>
     </form>
   );
 }
