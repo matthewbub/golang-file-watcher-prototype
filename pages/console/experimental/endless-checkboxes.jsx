@@ -6,86 +6,104 @@ import React from 'react';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
-const checkboxes = {
-  'something': false,
-  'something2': false,
-  'something3': false,
-  'something4': false,
-  //...
-};
-
-
-const EndlessCheckboxes = () => {
-  const { control, handleSubmit, watch, setValue } = useForm({
-    mode: 'onChange',
-  });
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-  const watchAllFields = watch();
-  const watchCheckAll = watch('checkAll');
-
-  useEffect(() => {
-    console.log('watchCheckAll', { watchCheckAll, watchAllFields })
-    if (watchCheckAll) {
-      Object.keys(checkboxes).forEach((key) => {
-        setValue(key, true);
-      });
-    }
-  }, [watchAllFields, watchCheckAll]);
-
-  // const handleCheckAll = (event) => {
-  //   const checkAllValue = event.target.checked;
-  //   Object.keys(checkboxes).forEach((key) => {
-  //     setValue(key, checkAllValue);
-  //   });
-  // };
-
+// Custom Checkbox component
+const Checkbox = ({ checked, onChange, value, name }) => {
   return (
-    <>
-      <DevTool control={control} placement="top-left" />
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-2xl font-semibold">Endless Checkboxes</h1>
-        <div>
-          <label>
-            <Controller
-              name={'checkAll'}
-              control={control}
-              defaultValue={watch('checkAll')}
-              onChange={([event]) => {
-                console.log('event', event);
-                return event.target.checked;
-              }}
-              render={({ field, formState }) => (
-                <>
-                  {console.log('field', formState, field)}
-                  <input type="checkbox" {...field} />
-                </>
-              )}
-            />
-            Check All
-          </label>
-        </div>
-        {Object.entries(checkboxes).map(([key, value]) => (
-          <div key={key}>
-            <Controller
-              name={key}
-              control={control}
-              defaultValue={value}
-              render={({ field }) => (
-                <input type="checkbox" {...field} />
-              )}
-            />
-            <label>{key}</label>
-          </div>
-        ))}
-        <button type="submit">Submit</button>
-      </form>
-    </>
+    <input
+      type="checkbox"
+      checked={checked}
+      onChange={(e) => onChange(e)}
+      value={value}
+      name={name}
+    />
   );
 };
+
+// Custom FormControlLabel component
+const FormControlLabel = ({ control, label }) => {
+  return (
+    <label>
+      {control}
+      {label}
+    </label>
+  );
+};
+
+const listStatusOptions = ["all", "published", "draft", "expired", "deleted"];
+
+const defaultValues = {
+  listStatus: ["draft"],
+};
+
+const onSubmit = (data) => console.log("SUBMIT: ", data);
+
+const Primary = () => {
+  const { handleSubmit, control } = useForm({
+    defaultValues,
+  });
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
+        name="listStatus"
+        render={({ field, fieldState }) => {
+          const handleAllOptionChange = (checked, field) => {
+            field.onChange(checked ? listStatusOptions : []);
+          };
+
+          const handleSingleOptionChange = (event, field) => {
+            const { value, checked } = event.target;
+            const newFieldValue = checked
+              ? [...field.value, value]
+              : field.value.filter((v) => v !== value);
+
+            // Set to 'all' if all options are selected, otherwise update normally.
+            field.onChange(
+              newFieldValue.length === listStatusOptions.length - 1 ? listStatusOptions : newFieldValue
+            );
+          };
+
+          const onChange = (event) => {
+            const { value, checked } = event.target;
+
+            if (value === "all") {
+              handleAllOptionChange(checked, field);
+            } else {
+              handleSingleOptionChange(event, field);
+            }
+          };
+
+
+          return (
+            <div>
+              <h2>Checkboxes</h2>
+              <div className='flex flex-col'>
+                {listStatusOptions.map((listStatusOption) => (
+                  <FormControlLabel
+                    key={listStatusOption}
+                    control={
+                      <Checkbox
+                        checked={field.value.some(
+                          (value) => listStatusOption === value
+                        )}
+                        onChange={onChange}
+                        value={listStatusOption}
+                        name={listStatusOption}
+                      />
+                    }
+                    label={listStatusOption}
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        }}
+      />
+    </form>
+  );
+}
+
 
 const Page = ({ primaryTitle, secondaryTitle }) => {
   return (
@@ -93,11 +111,7 @@ const Page = ({ primaryTitle, secondaryTitle }) => {
       primaryTitle={primaryTitle}
       secondaryTitle={secondaryTitle}
       navigation={navigation}
-      primary={() => (
-        <FormProvider>
-          <EndlessCheckboxes />
-        </FormProvider>
-      )}
+      primary={Primary}
       breadcrumbs={[
         { name: 'Experimental', href: '/experimental', current: false },
         { name: 'Endless Checkboxes', href: '/experimental/endless-checkboxes', current: true }
