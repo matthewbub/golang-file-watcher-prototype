@@ -33,7 +33,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-950">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-10 w-auto"
@@ -101,13 +101,6 @@ export default function HomePage() {
             </button>
           </div>
         </form>
-
-        <p className="mt-10 text-center text-sm text-gray-400">
-          Not a member?{' '}
-          <a href="/create-account" className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
-            Start a 14 day free trial
-          </a>
-        </p>
       </div>
     </div>
 
