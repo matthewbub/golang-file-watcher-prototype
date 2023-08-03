@@ -1,7 +1,11 @@
+<p align="center">
+  <img src="./public/logo/dark/dark_logo_horizontial.png" alt="NineMbs Studio Logo" width="400"/>
+</p>
+
+
 # Welcome
 
-Hello and welcome to the root directory of NineMbs Studio. This is where we keep
-our internal tools and what not.
+Hello and welcome to the root directory of IE Portals. We're using a proprietary configuration of Next.js, React and Supabase to create a portal for the IE community.
 
 # Getting Started
 
