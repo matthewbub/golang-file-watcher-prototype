@@ -3,17 +3,38 @@ import clsx from 'clsx';
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { Stats } from '@/components/Stats';
 import PathHandler from '@/helpers/PathHandler';
+import Button from '@/components/Button';
 import { uniqueId } from 'lodash';
+import { Fragment, useState, useEffect } from 'react';
 
 const pathHandler = new PathHandler('console');
+
+function Lifecycle({ children }) {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('/api/v1/secure/vercel-api/lazily-get-deployment-stats')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+      });
+
+  }, []);
+
+  return (
+    <Fragment>
+      {children}
+    </Fragment>
+  )
+}
 
 function Primary({ deployments = [] }) {
   const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10', Running: 'text-blue-400 bg-blue-400/10 animated pulse' }
   return (
-    <>
-      <div className=''>
-        <Stats />
-      </div>
+    <Lifecycle>
+      <Stats />
       <table className="w-full whitespace-nowrap text-left">
         <colgroup>
           <col className="w-full sm:w-4/12" />
@@ -89,7 +110,22 @@ function Primary({ deployments = [] }) {
           ))}
         </tbody>
       </table>
-    </>
+      <nav
+        className="flex items-center justify-between border-t border-white/5 bg-neutral-900 px-4 py-3 sm:px-6"
+        aria-label="Pagination"
+      >
+        <div className="hidden sm:block">
+          <p className="text-sm text-neutral-500">
+            Showing <span className="font-medium text-neutral-300">1</span> to <span className="font-medium text-neutral-300">10</span> of{' '}
+            <span className="font-medium text-neutral-300">20</span> results
+          </p>
+        </div>
+        <div className="flex flex-1 justify-between sm:justify-end space-x-4">
+          <Button disabled>{'Previous'}</Button>
+          <Button>{'Next'}</Button>
+        </div>
+      </nav>
+    </Lifecycle>
   )
 }
 

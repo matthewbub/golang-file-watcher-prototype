@@ -10,10 +10,13 @@ export const baseClassNames = {
   secondaryBackground: 'bg-gray-900',
   secondaryBackgroundHover: 'hover:bg-gray-950/50 border-2 border-gray-900 hover:border-gray-900',
   overlayBackground: 'bg-gray-700 bg-opacity-75 transition-opacity',
+  containerPadding: 'px-4 py-4 sm:px-6 sm:py-6 lg:px-8'
 }
 
 export const commonApiMessages = {
   generalError: 'Something went wrong',
+  methodNotAllowed: 'Method Not Allowed',
+  unauthorized: 'Unauthorized',
 }
 
 export const regexPatterns = {
