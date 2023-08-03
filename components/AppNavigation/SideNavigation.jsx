@@ -1,30 +1,11 @@
+import { Fragment } from 'react';
+import Link from 'next/link';
+import clsx from 'clsx';
 import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { DashboardIcon, DomainsIcon, UsersIcon, HostingIcon } from '@/components/Icons';
-import { Fragment } from 'react';
-export const fallBackNavigation = [
-  { name: 'Console', href: '#', icon: DashboardIcon, current: true },
-  {
-    name: 'Hosting',
-    icon: HostingIcon,
-    current: false,
-    children: [
-      { name: 'Tenants', href: '/hosting/tenants' },
-      { name: 'Domains', href: '/hosting/domains' },
-      { name: 'Deployments', href: '/hosting/deployments' },
-    ],
-  },
-  {
-    name: 'Users',
-    href: '/users',
-    icon: UsersIcon,
-    current: false,
-  }
-]
+import { DashboardIcon, UsersIcon, HostingIcon } from '@/components/Icons';
 
-export const SideNavigation = ({ navigation = fallBackNavigation }) => {
+export const SideNavigation = ({ navigation = [] }) => {
   const activeClassName = 'bg-white/10'
   const hoverClassName = 'hover:bg-white/10'
   const textColorClassName = 'text-white/70'

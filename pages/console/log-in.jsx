@@ -1,17 +1,9 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { useEffect } from 'react'
-const inter = Inter({ subsets: ['latin'] })
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
-export default function HomePage() {
+export default function Page() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
   const router = useRouter()
-
-  useEffect(() => {
-    console.log('errors', errors)
-  }, [])
 
   const submitForm = async (data) => {
     const res = await fetch('/api/v1/log-in/from-console', {
@@ -25,7 +17,6 @@ export default function HomePage() {
     const json = await res.json()
 
     if (json.error || json?.message && json?.message.length > 0) {
-      console.log(json)
       return;
     }
 
@@ -103,6 +94,5 @@ export default function HomePage() {
         </form>
       </div>
     </div>
-
   )
 }

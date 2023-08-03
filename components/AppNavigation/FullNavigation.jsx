@@ -1,9 +1,12 @@
 import clsx from 'clsx'
-import { baseClassNames } from '../../helpers/constants'
+import { baseClassNames } from '@/helpers/constants'
 
 export const FullNavigation = ({ navigation = [] }) => {
   return (
-    <div className={clsx("overflow-hidden shadow sm:grid sm:grid-cols-2 sm:gap-4 space-y-4 sm:space-y-0")}>
+    <div className={clsx(
+      baseClassNames.containerPadding,
+      "overflow-hidden shadow sm:grid sm:grid-cols-2 sm:gap-4 space-y-4 sm:space-y-0"
+    )}>
       {navigation && navigation.length > 0 && navigation.map((action) => {
         if (action.type === 'section') return (
           null

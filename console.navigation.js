@@ -5,25 +5,25 @@ export const consoleNavigation = [
     description: 'Internal administration pages for the console application',
   },
   {
-    name: 'Users',
+    name: 'Control Tower',
     href: '/users',
     type: 'link',
     description: 'User management services and pages for the console application',
   },
   {
-    name: 'Documents',
+    name: 'Global Documents',
     href: '/documents',
     type: 'link',
     description: 'Internal documents management services and pages for the console application',
   },
   {
-    name: 'Messages',
+    name: 'Localization (i18n)',
     href: '/messages',
     type: 'link',
     description: 'Internal messages management services and pages for the console application',
   },
   {
-    name: 'Experimental',
+    name: 'Experimental Features',
     href: '/experimental',
     type: 'link',
     description: 'Experimental features and services.',
@@ -34,7 +34,7 @@ export const consoleNavigation = [
         description: 'Tenant management services and pages for the console application',
       },
       {
-        name: 'Endless Checkboxes - Unique Conditions',
+        name: 'Checkbox Unique Conditions',
         href: '/experimental/endless-checkboxes-unique-conditions',
       }
     ],
@@ -45,7 +45,7 @@ export const consoleNavigation = [
     description: 'External api services used within the console application for tenant management and deployment management',
   },
   {
-    name: 'Hosting',
+    name: 'Hosting & Git',
     href: '/hosting',
     type: 'link',
     description: 'Git history. Vercel hosting services and deployments. Also includes domain management, tenant management and deployment management.',
@@ -56,21 +56,15 @@ export const consoleNavigation = [
         description: 'Tenant management services and pages for the console application',
       },
       {
-        name: 'Domains',
+        name: 'Configured Domains',
         href: '/hosting/domains',
         description: 'Domain management services and pages for the console application',
       },
       {
-        name: 'Deployments',
+        name: 'Recent Deployments',
         href: '/hosting/deployments',
         description: 'Deployment management services and pages for the console application',
       },
     ],
-  },
-  {
-    name: 'Website Builder',
-    href: '/website-builder',
-    type: 'link',
-    description: 'Our proprietary Website builder .'
   }
 ]
