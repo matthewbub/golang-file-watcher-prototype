@@ -3,7 +3,7 @@ import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { SlideOver } from '@/components/SlideOver';
 import { useForm } from 'react-hook-form';
 import Input from '@/components/Input';
-import Button from '@/components/Button';
+import { Button } from '@/components';
 import { Select } from '../../components/Select/Select';
 import { Modal } from '../../components';
 

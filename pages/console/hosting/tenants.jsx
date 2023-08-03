@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { SlideOver } from '@/components/SlideOver';
 import Input from '@/components/Input';
-import Button from '@/components/Button';
+import { Button } from '@/components';
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 
 const TenantsPage = ({ title, tenants }) => {

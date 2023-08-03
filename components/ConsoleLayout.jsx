@@ -7,11 +7,6 @@ import clsx from 'clsx';
 import { HomeIcon } from '@heroicons/react/20/solid'
 import { AuthWrapper } from './AuthWrapper';
 
-const pages = [
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Project Nero', href: '#', current: true },
-]
-
 export const ConsoleLayout = ({
   primary,
   secondary = null,
@@ -19,7 +14,7 @@ export const ConsoleLayout = ({
   secondaryTitle = null,
   navigation = fallBackNavigation,
   primaryAction = null,
-  breadcrumbs = pages,
+  breadcrumbs,
   primaryTitleDescription = null
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -115,7 +110,7 @@ export const ConsoleLayout = ({
 
           <main className={clsx(secondary && "lg:pr-96")}>
             <nav className="flex border-b bg-neutral-950 border-white/5" aria-label="Breadcrumb">
-              <ol role="list" className="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6 lg:px-8">
+              <ol role="list" className="mx-auto flex w-full space-x-4 px-4 sm:px-6 lg:px-8">
                 <li className="flex h-11">
                   <div className="flex items-center">
                     <a href="/" className="text-gray-400 hover:text-gray-500">

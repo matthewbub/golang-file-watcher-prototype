@@ -4,7 +4,7 @@ import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { useForm } from 'react-hook-form';
 import { SlideOver } from '@/components/SlideOver';
 import Input from '@/components/Input';
-import Button from '@/components/Button';
+import { Button } from '@/components';
 
 export function Modal({ open, setOpen, data }) {
   return (

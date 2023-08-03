@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { Stats } from '@/components/Stats';
 import PathHandler from '@/helpers/PathHandler';
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 import { uniqueId } from 'lodash';
 import { Fragment, useState, useEffect } from 'react';
 

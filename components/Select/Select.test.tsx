@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { axe, toHaveNoViolations } from 'jest-axe'
-import { Select } from './Select'
+import Select from './Select'
 
 // Extend the expect function with the toHaveNoViolations matcher
 expect.extend(toHaveNoViolations)

@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { navigation } from '../../../components/AppNavigation';
-import PathHandler from '../../../helpers/PathHandler';
-import Button from '../../../components/Button';
+
+import { Button } from '@/components';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
+import { ConfigurableForm } from '@/components/ConfigurableForm';
+
+import PathHandler from '@/helpers/PathHandler';
 const pathHandler = new PathHandler('console');
-import { useForm } from 'react-hook-form';
-import { ConfigurableForm } from '../../../components/ConfigurableForm';
 
 const Primary = ({ open, setOpen, form }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
   return (
     <ConfigurableForm
       open={open}
@@ -25,13 +23,11 @@ const Primary = ({ open, setOpen, form }) => {
   )
 };
 
-const Page = ({ primaryTitle, secondaryTitle, form }) => {
+const Page = ({ primaryTitle, form }) => {
   const [open, setOpen] = useState(false);
   return (
     <ConsoleLayout
       primaryTitle={primaryTitle}
-      secondaryTitle={secondaryTitle}
-      navigation={navigation}
       primary={() => <Primary open={open} setOpen={setOpen} form={form} />}
       primaryAction={() => <Button onClick={() => { setOpen(true) }}>Add Message</Button>}
       breadcrumbs={[
@@ -45,5 +41,5 @@ const Page = ({ primaryTitle, secondaryTitle, form }) => {
   )
 }
 
-export { getServerSideProps } from '../../../ssp/console/messages/index';
+export { getServerSideProps } from '@/ssp/console/messages/index';
 export default Page;

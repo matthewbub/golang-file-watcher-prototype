@@ -1,17 +1,16 @@
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { navigation } from '../../../components/AppNavigation';
-import PathHandler from '../../../helpers/PathHandler';
 import React from 'react';
-import Button from '../../../components/Button';
-import { Table } from '../../../components/__BaseComponents/CompactTable__Documents';
 import { useRouter } from 'next/router';
 
+import PathHandler from '@/helpers/PathHandler';
+
+import { ConsoleLayout } from '@/components/ConsoleLayout';
+import { navigation } from '@/components/AppNavigation';
+import { Table } from '@/components/__BaseComponents/CompactTable__Documents';
+import { Button } from '@/components';
 const pathHandler = new PathHandler('console');
 
 const Primary = ({ data }) => (
-  <div>
-    <Table data={data} />
-  </div>
+  <Table data={data} />
 );
 
 const PrimaryAction = () => {
@@ -48,5 +47,5 @@ const Page = ({ primaryTitle, secondaryTitle, data }) => (
   />
 )
 
-export { getServerSideProps } from '../../../ssp/console/documents/index';
+export { getServerSideProps } from '@/ssp/console/documents/index';
 export default Page;

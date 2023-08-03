@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import { SlideOver } from '@/components/SlideOver';
+import { useState } from 'react'
 import { useForm } from 'react-hook-form';
+
+import { SlideOver } from '@/components/SlideOver';
 import Input from '@/components/Input';
-import { Button } from '@/components/Button';
-import { Select } from '@/components/Select/Select';
 import { Modal } from '@/components';
 import TextArea from '@/components/TextArea';
+import { Button, Select } from '@/components';
 
 const SubmitButton = ({ children }) => (
   <div className='col-span-4'>

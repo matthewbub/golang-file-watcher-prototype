@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { Select } from './Select'
+import Select from './Select'
 
 it('renders Select unchanged', () => {
   const { container } = render(

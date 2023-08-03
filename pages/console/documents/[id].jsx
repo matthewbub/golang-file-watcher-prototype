@@ -1,15 +1,18 @@
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { FullNavigation, navigation } from '../../../components/AppNavigation';
-import PathHandler from '../../../helpers/PathHandler';
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import Button from '../../../components/Button';
 import { useState } from 'react';
-import { ConfigurableForm } from '../../../components/ConfigurableForm';
-import { EllipsisIcon, SaveIcon } from '../../../components/Icons';
 import { get } from 'lodash';
+import StarterKit from '@tiptap/starter-kit'
+import { useEditor, EditorContent } from '@tiptap/react'
 
-const Tiptap = ({ pageId, data }) => {
+
+import { ConsoleLayout } from '@/components/ConsoleLayout';
+import { ConfigurableForm } from '@/components/ConfigurableForm';
+import { EllipsisIcon } from '@/components/Icons';
+import { Button } from '@/components';
+
+import PathHandler from '@/helpers/PathHandler';
+const pathHandler = new PathHandler('console');
+
+const TipTap = ({ pageId, data }) => {
   const documentHtml = get(data, 'documents[0].document_html', '<p>Hello World! 🌎️</p>');
   const editor = useEditor({
     extensions: [
@@ -47,8 +50,6 @@ const Tiptap = ({ pageId, data }) => {
   )
 }
 
-const pathHandler = new PathHandler('console');
-
 const Page = ({ id, form, data }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -56,7 +57,7 @@ const Page = ({ id, form, data }) => {
       primaryTitle={id}
       primary={() => (
         <>
-          <Tiptap pageId={id} data={data} />
+          <TipTap pageId={id} data={data} />
           <ConfigurableForm
             open={open}
             setOpen={setOpen}
@@ -85,8 +86,6 @@ const Page = ({ id, form, data }) => {
               }).then(response => response.json())
                 .then(data => console.log(data))
                 .catch(error => console.log(error))
-
-
             }}
             confirmBeforeSubmission={(formFields) => { console.log(formFields); }}
           />
@@ -98,7 +97,7 @@ const Page = ({ id, form, data }) => {
         </Button>
       )}
       breadcrumbs={[
-        { name: 'Documents', href: '/documents' },
+        { name: 'Documents', href: pathHandler.getPath('documents') },
         { name: id, href: '/documents/' + id, current: true }
       ]}
     />
@@ -106,5 +105,5 @@ const Page = ({ id, form, data }) => {
   )
 }
 
-export { getServerSideProps } from '../../../ssp/console/documents/id';
+export { getServerSideProps } from '@/ssp/console/documents/id';
 export default Page;

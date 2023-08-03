@@ -1,18 +1,4 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { ConsoleLayout } from '@/components/ConsoleLayout'
-
-
 
 const secondaryNavigation = [
   { name: 'Account', href: '#', current: true },

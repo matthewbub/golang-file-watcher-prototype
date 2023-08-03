@@ -34,7 +34,7 @@ const FieldSelect: FC<FieldSelectProps> = ({
   )
 }
 
-export const Select: FC<SelectProps> = ({
+const Select: FC<SelectProps> = ({
   name,
   placeholder,
   register,
@@ -64,3 +64,5 @@ export const Select: FC<SelectProps> = ({
     </FieldWrapper>
   )
 }
+
+export default Select;
