@@ -65,6 +65,28 @@ export default withAuth('GET', 'console', async (req, res, userData) => {
   res.status(200).json({
     message: 'Received... Lazily.',
     data: {
+      stats: [
+        {
+          name: 'Deploy Count',
+          value: deploys,
+          percentage: null
+        },
+        {
+          name: 'Average Deploy Time',
+          value: averageDeployTimeFormatted,
+          percentage: null
+        },
+        {
+          name: 'Failures',
+          value: failures,
+          percentage: failurePercentage
+        },
+        {
+          name: 'Successful Deploys',
+          value: successfulDeploys,
+          percentage: successfulDeploysPercentage
+        },
+      ],
       deployCount: deploys,
       averageDeployTime: averageDeployTimeFormatted,
       failureCount: failures,

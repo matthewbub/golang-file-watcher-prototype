@@ -1,4 +1,4 @@
-import { capitalize } from 'lodash';
+import { capitalize, get, set } from 'lodash';
 import clsx from 'clsx';
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { Stats } from '@/components/Stats';
@@ -6,21 +6,29 @@ import PathHandler from '@/helpers/PathHandler';
 import { Button } from '@/components/Button';
 import { uniqueId } from 'lodash';
 import { Fragment, useState, useEffect } from 'react';
+import { atom, useAtom } from 'jotai';
 
 const pathHandler = new PathHandler('console');
 
+const loadingAtom = atom(false);
+const deploymentStatsAtom = atom([]);
+
 function Lifecycle({ children }) {
-  const [loading, setLoading] = useState(false);
+  const [_L, setLoading] = useAtom(loadingAtom);
+  const [_D, setDeploymentStats] = useAtom(deploymentStatsAtom);
 
   useEffect(() => {
     setLoading(true);
     fetch('/api/v1/secure/vercel-api/lazily-get-deployment-stats')
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        const stats = get(res, 'data.stats', []);
+        setDeploymentStats(stats);
+        setLoading(false);
+      })
+      .catch(() => {
         setLoading(false);
       });
-
   }, []);
 
   return (
@@ -31,10 +39,12 @@ function Lifecycle({ children }) {
 }
 
 function Primary({ deployments = [] }) {
+  const [loading] = useAtom(loadingAtom);
+  const [deploymentStats] = useAtom(deploymentStatsAtom);
   const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10', Running: 'text-blue-400 bg-blue-400/10 animated pulse' }
   return (
     <Lifecycle>
-      <Stats />
+      <Stats loading={loading} stats={deploymentStats} />
       <table className="w-full whitespace-nowrap text-left">
         <colgroup>
           <col className="w-full sm:w-4/12" />

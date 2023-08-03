@@ -4,4 +4,5 @@ export interface StatsProps {
     value: string;
     unit?: string;
   }[];
+  loading?: boolean;
 }
