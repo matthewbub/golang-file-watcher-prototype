@@ -43,6 +43,7 @@ export const withAuthApiWrapper = (method, authType, customCode) => async (req, 
 
       await customCode(req, res, userData);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development') console.log(error);
       logger.error({
         log_message: `Failed at catch block in withAuthApiWrapper`,
         data: error
