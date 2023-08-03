@@ -6,7 +6,7 @@ exports[`renders Stats component unchanged 1`] = `
     class="bg-gray-900"
   >
     <div
-      class="mx-auto max-w-7xl"
+      class="mx-auto"
     >
       <div
         class="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4"

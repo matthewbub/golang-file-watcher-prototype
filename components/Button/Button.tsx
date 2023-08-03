@@ -1,19 +1,14 @@
 import clsx from "clsx";
+import { FC } from "react";
 
-/**
- * Button component.
- *
- * @param {Object} props - The component props.
- * @param {string} props.className - The class name for the button.
- * @param {ReactNode} props.children - The content of the button.
- * @param {...*} props.rest - Additional props for the button.
- * @returns {JSX.Element} The rendered Button component.
- */
-const Button = ({
+import { ButtonProps } from './Button.interfaces';
+
+const Button: FC<ButtonProps> = ({
   children,
   className,
   styleType = 'primary',
   disabled = false,
+  root = 'button',
   ...rest
 }) => {
   const styleTypes = {
@@ -25,7 +20,7 @@ const Button = ({
     info: "bg-blue-600 text-white",
     light: "bg-white text-gray-700",
     dark: "bg-gray-900 text-white",
-  };
+  } as const;
 
   const stateStyles = {
     primary: "hover:bg-indigo-700 focus:ring-indigo-500",
@@ -36,9 +31,25 @@ const Button = ({
     info: "hover:bg-blue-700 focus:ring-blue-500",
     light: "hover:bg-gray-50 focus:ring-gray-500",
     dark: "hover:bg-gray-800 focus:ring-gray-500",
-  };
+  } as const;
 
-  const baseStyles = "inline-flex items-center text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm"
+  const baseStyles = "inline-flex items-center text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm" as const;
+
+  if (root === 'a') {
+    return (
+      <a
+        {...rest}
+        className={clsx(
+          disabled ? "opacity-50 cursor-not-allowed" : stateStyles[styleType],
+          baseStyles,
+          styleTypes[styleType],
+          className
+        )}
+      >
+        {children}
+      </a>
+    )
+  }
 
   return (
     <button

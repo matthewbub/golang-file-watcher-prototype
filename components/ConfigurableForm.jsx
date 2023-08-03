@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { SlideOver } from '@/components/SlideOver';
 import { useForm } from 'react-hook-form';
 import Input from '@/components/Input';
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 import { Select } from '@/components/Select/Select';
 import { Modal } from '@/components';
 import TextArea from '@/components/TextArea';
