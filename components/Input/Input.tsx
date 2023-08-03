@@ -1,20 +1,9 @@
+import { FC } from 'react'
 import clsx from 'clsx'
-import FieldWrapper from './FieldWrapper'
-import { baseClassNames } from '../helpers/constants'
+import FieldWrapper from '@/components/FieldWrapper';
+import { InputProps } from './Input.interfaces';
 
-/**
- * Input component for form fields.
- *
- * @param {Object} props - The component props.
- * @param {string} [props.type='text'] - The type of the input field.
- * @param {string} props.name - The name attribute for the input field.
- * @param {string} props.label - The label for the input field.
- * @param {string} props.placeholder - The placeholder text for the input field.
- * @param {Function} props.register - The register function from a form library to bind the input field.
- * @param {...*} props.rest - Additional props for the input field.
- * @returns {JSX.Element} The rendered Input component.
- */
-export default function Input({
+const Input: FC<InputProps> = ({
   type = 'text',
   name,
   label,
@@ -24,7 +13,7 @@ export default function Input({
   error,
   defaultValue,
   ...rest
-}) {
+}) => {
   return (
     <FieldWrapper
       label={label}
@@ -48,3 +37,5 @@ export default function Input({
     </FieldWrapper>
   )
 }
+
+export default Input;
