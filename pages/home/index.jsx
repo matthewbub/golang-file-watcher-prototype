@@ -43,7 +43,7 @@ export default function Page() {
         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
           <img
             className="h-11"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+            src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/light_logo_only.png"
             alt="Your Company"
           />
           <div className="mt-24 sm:mt-32 lg:mt-16">
@@ -64,15 +64,15 @@ export default function Page() {
             {'Create, Edit, and Publish Blog Posts Effortlessly with Our Intuitive CMS.'}
           </p>
           <div className="mt-10 flex items-center gap-x-6">
-            <a
-              href="#"
-              className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+            <button
+              disabled
+              className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm opacity-50"
             >
-              Get started
-            </a>
-            <a href="#" className="text-sm font-semibold leading-6 text-white">
+              {'Sign up! (Coming Soon)'}
+            </button>
+            {/* <a href="#" className="text-sm font-semibold leading-6 text-white">
               Learn more <span aria-hidden="true">→</span>
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
