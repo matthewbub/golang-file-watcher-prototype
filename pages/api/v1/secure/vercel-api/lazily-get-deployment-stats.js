@@ -77,7 +77,7 @@ export default withAuth('GET', 'console', async (req, res, userData) => {
           percentage: null
         },
         {
-          name: 'Failures',
+          name: 'Failed Deploys',
           value: failures,
           percentage: failurePercentage
         },

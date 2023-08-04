@@ -1,17 +1,35 @@
-import { capitalize, get, set } from 'lodash';
+import { Fragment, useEffect } from 'react';
+import { atom, useAtom } from 'jotai';
+import { capitalize, get } from 'lodash';
 import clsx from 'clsx';
+import { uniqueId } from 'lodash';
+
+import { Button } from '@/components';
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { Stats } from '@/components/Stats';
-import PathHandler from '@/helpers/PathHandler';
-import { Button } from '@/components/Button';
-import { uniqueId } from 'lodash';
-import { Fragment, useState, useEffect } from 'react';
-import { atom, useAtom } from 'jotai';
 
+import PathHandler from '@/helpers/PathHandler';
 const pathHandler = new PathHandler('console');
 
 const loadingAtom = atom(false);
-const deploymentStatsAtom = atom([]);
+const deploymentStatsAtom = atom([
+  {
+    name: 'Deploy Count',
+    value: '-'
+  },
+  {
+    name: 'Average Deploy Time',
+    value: '-',
+  },
+  {
+    name: 'Failed Deploys',
+    value: '-',
+  },
+  {
+    name: 'Successful Deploys',
+    value: '-',
+  }
+]);
 
 function Lifecycle({ children }) {
   const [_L, setLoading] = useAtom(loadingAtom);

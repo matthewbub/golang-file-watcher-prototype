@@ -41,7 +41,7 @@ export const ConfigurableForm = ({
             let Field = null;
             switch (field.field) {
               case 'Divider':
-                Field = () => (
+                Field = (
                   <div className='col-span-12 mt-2 mb-12'>
                     <div className='border-b border-white/20 h-2' />
                   </div>
@@ -57,7 +57,7 @@ export const ConfigurableForm = ({
                 Field = Select;
                 break;
               case 'SubmitButton':
-                Field = () => (
+                Field = (
                   <SubmitButton>
                     {field.label}
                   </SubmitButton>

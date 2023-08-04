@@ -9,7 +9,6 @@ const fbStats = [
 ]
 
 const Stats: FC<StatsProps> = ({ stats = fbStats, loading = false }) => {
-  console.log(stats)
   return (
     <div className="bg-gray-900">
       <div className="mx-auto">
@@ -30,9 +29,3 @@ const Stats: FC<StatsProps> = ({ stats = fbStats, loading = false }) => {
 }
 
 export default Stats;
-// const stats = [
-//   { name: 'Number of deploys', value: '405' },
-//   { name: 'Average deploy time', value: '3.65', unit: 'mins' },
-//   { name: 'Number of servers', value: '3' },
-//   { name: 'Success rate', value: '98.5%' },
-// ]
