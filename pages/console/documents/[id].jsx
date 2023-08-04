@@ -10,6 +10,9 @@ import { EllipsisIcon } from '@/components/Icons';
 import { Button } from '@/components';
 
 import PathHandler from '@/helpers/PathHandler';
+import { baseClassNames } from '@/helpers/constants';
+
+import clsx from 'clsx';
 const pathHandler = new PathHandler('console');
 
 const TipTap = ({ pageId, data }) => {
@@ -42,7 +45,7 @@ const TipTap = ({ pageId, data }) => {
 
 
   return (
-    <div className='min-h-screen'>
+    <div className={clsx('min-h-screen', baseClassNames.containerPadding)}>
       <EditorContent
         editor={editor}
       />
@@ -50,11 +53,12 @@ const TipTap = ({ pageId, data }) => {
   )
 }
 
-const Page = ({ id, form, data }) => {
+const Page = ({ id, form, data, documentTitle }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <ConsoleLayout
-      primaryTitle={id}
+      primaryTitle={documentTitle}
       primary={() => (
         <>
           <TipTap pageId={id} data={data} />
@@ -98,7 +102,7 @@ const Page = ({ id, form, data }) => {
       )}
       breadcrumbs={[
         { name: 'Documents', href: pathHandler.getPath('documents') },
-        { name: id, href: '/documents/' + id, current: true }
+        { name: documentTitle, href: '/documents/' + id, current: true }
       ]}
     />
 

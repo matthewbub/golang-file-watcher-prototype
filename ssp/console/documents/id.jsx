@@ -40,6 +40,7 @@ export const getServerSideProps = async (context) => {
       primaryTitle: 'Documents',
       id: id,
       data: data,
+      documentTitle: data.documents[0].document_title || 'Untitled Document',
       form: {
         formTitle: 'Modify Document',
         formDescription: 'Modify Document Description',
