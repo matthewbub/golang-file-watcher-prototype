@@ -9,3 +9,4 @@ export { default as useWindowDimensions } from './useWindowDimensions';
 export {
   getSessionExpiryMessage
 } from './day';
+export { sspWithAuth } from './sspWithAuth';

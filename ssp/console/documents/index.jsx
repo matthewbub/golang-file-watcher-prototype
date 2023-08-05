@@ -5,9 +5,11 @@ import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.locale('en');
 dayjs.extend(relativeTime);
+import { sspWithAuth } from '@/helpers/sspWithAuth';
+import { get } from 'lodash';
 
-export const getServerSideProps = async (context) => {
-  const token = context.req.cookies.accessToken;
+export const getServerSideProps = sspWithAuth(async (context) => {
+  const token = get(context, 'req.cookies.accessToken', null);
   const decodedToken = jwt.verify(token, process.env.SUPABASE_JWT);
 
   const { data, error } = await supabase
@@ -43,4 +45,4 @@ export const getServerSideProps = async (context) => {
       data: formattedData,
     }
   }
-}
+});

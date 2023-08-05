@@ -1,12 +1,13 @@
-import { supabase } from '../../../supabase.config';
+import { supabase } from '@/supabase.config';
 import jwt from 'jsonwebtoken';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { sspWithAuth } from '@/helpers';
 dayjs.locale('en');
 dayjs.extend(relativeTime);
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = sspWithAuth(async (context) => {
   const token = context.req.cookies.accessToken;
   const decodedToken = jwt.verify(token, process.env.SUPABASE_JWT);
 
@@ -43,4 +44,4 @@ export const getServerSideProps = async (context) => {
       data: formattedData,
     }
   }
-}
+})

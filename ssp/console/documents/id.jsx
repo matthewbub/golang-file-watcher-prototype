@@ -5,10 +5,12 @@ import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.locale('en');
 dayjs.extend(relativeTime);
+import { sspWithAuth } from '@/helpers/sspWithAuth';
+import { get } from 'lodash';
 
-export const getServerSideProps = async (context) => {
-  const { id } = context.params;
-  const token = context.req.cookies.accessToken;
+export const getServerSideProps = sspWithAuth(async (context) => {
+  const { id } = get(context, 'params', {});
+  const token = get(context, 'req.cookies.accessToken', null);
   const decodedToken = jwt.verify(token, process.env.SUPABASE_JWT);
 
   const { data, error } = await supabase
@@ -26,15 +28,16 @@ export const getServerSideProps = async (context) => {
   const { data: screenData, error: screenError } = await supabase
     .from('screens')
     .select(`*`)
+    .eq('id', data.documents[0].screen || '')
+    .single();
 
 
   // TODO - handle error
 
   if (error || screenError) {
-    console.error(error);
+    // console.error(error);
   }
 
-  console.log('screenData', screenData)
   return {
     props: {
       primaryTitle: 'Documents',
@@ -56,7 +59,7 @@ export const getServerSideProps = async (context) => {
           {
             label: 'Screen',
             name: 'screen',
-            defaultValue: data.documents[0].screen || '',
+            defaultValue: screenData ? screenData.screen_title : '',
             type: 'text',
             className: 'col-span-12',
             field: 'Input'
@@ -109,4 +112,4 @@ export const getServerSideProps = async (context) => {
       }
     }
   }
-}
+});

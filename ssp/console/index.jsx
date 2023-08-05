@@ -1,4 +1,6 @@
-export const getServerSideProps = async () => {
+import { sspWithAuth } from "@/helpers"
+
+export const getServerSideProps = sspWithAuth(async (context) => {
   return {
     props: {
       primaryTitle: 'Home',
@@ -6,3 +8,4 @@ export const getServerSideProps = async () => {
     }
   }
 }
+)

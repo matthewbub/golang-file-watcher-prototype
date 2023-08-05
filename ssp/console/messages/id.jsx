@@ -1,4 +1,6 @@
-export const getServerSideProps = async (context) => {
+import { sspWithAuth } from "@/helpers";
+
+export const getServerSideProps = sspWithAuth(async (context) => {
   const { id } = context.params;
   return {
     props: {
@@ -6,4 +8,4 @@ export const getServerSideProps = async (context) => {
       id: id
     }
   }
-}
+})

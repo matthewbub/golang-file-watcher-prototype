@@ -1,6 +1,7 @@
-import { supabase } from '../../../supabase.config';
+import { supabase } from '@/supabase.config';
+import { sspWithAuth } from '@/helpers';
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = sspWithAuth(async (context) => {
   const { data, error } = await supabase.from('tenants').select('*');
 
   if (error) {
@@ -13,4 +14,4 @@ export const getServerSideProps = async (context) => {
       tenants: data
     }
   }
-}
+})
