@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { get } from 'lodash';
 
 import { SlideOver } from '@/components/SlideOver';
 import { Modal } from '@/components';
@@ -19,85 +20,63 @@ export const ConfigurableForm = ({
   open,
   setOpen,
   slideOverTitle,
-  confirmModalTitle = 'Confirm',
-  confirmModalDescription = 'Are you sure you want to submit this form?',
-  confirmModalPrimaryAction = 'Submit Form',
   submitForm = (formFields) => { return formFields; },
-  confirmBeforeSubmission = (formFields) => { return formFields; },
 }) => {
-  const [confirm, setConfirm] = useState(false);
-  const { register, handleSubmit, formState: { errors }, setError } = useForm();
-  const [formErrors, setFormErrors] = useState({});
+  const { register, handleSubmit } = useForm();
+  const formFields = get(form, 'formFields', []);
 
   return (
-    <>
-      <SlideOver
-        open={open}
-        setOpen={setOpen}
-        title={slideOverTitle}
-      >
-        <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(confirmBeforeSubmission)}>
-          {form.formFields.map((field, index) => {
-            let Field = null;
-            switch (field.field) {
-              case 'Divider':
-                Field = (
-                  <div className='col-span-12 mt-2 mb-12'>
-                    <div className='border-b border-white/20 h-2' />
-                  </div>
-                );
-                break;
-              case 'Input':
-                Field = Input;
-                break;
-              case 'TextArea':
-                Field = TextArea;
-                break;
-              case 'Select':
-                Field = Select;
-                break;
-              case 'SubmitButton':
-                Field = (
-                  <SubmitButton>
-                    {field.label}
-                  </SubmitButton>
-                );
-                break;
-              default:
-                Field = Input;
-                break;
-            }
+    <SlideOver
+      open={open}
+      setOpen={setOpen}
+      title={slideOverTitle}
+    >
+      <form className='grid grid-cols-12 gap-5' onSubmit={handleSubmit(submitForm)}>
+        {formFields.map((field, index) => {
+          let Field = null;
+          switch (field.field) {
+            case 'Divider':
+              return (
+                <div className='col-span-12 mt-2 mb-12'>
+                  <div className='border-b border-white/20 h-2' />
+                </div>
+              );
+            case 'Input':
+              Field = Input;
+              break;
+            case 'TextArea':
+              Field = TextArea;
+              break;
+            case 'Select':
+              Field = Select;
+              break;
+            case 'SubmitButton':
+              return (
+                <SubmitButton>
+                  {field.label}
+                </SubmitButton>
+              );
+            default:
+              Field = Input;
+              break;
+          }
 
-            return (
-              <Field
-                key={index}
-                label={field.label}
-                name={field.name}
-                type={field.type}
-                error={field.error || null}
-                register={register}
-                className={field.className}
-                options={field.options}
-                registerOptions={field.validate}
-                defaultValue={field.defaultValue}
-              />
-            )
-          })}
-        </form>
-      </SlideOver>
-      <Modal
-        open={confirm}
-        setOpen={setConfirm}
-        title={confirmModalTitle}
-        description={confirmModalDescription}
-        primaryAction={() => { submitForm() }}
-        primaryActionText={confirmModalPrimaryAction}
-        secondaryAction={() => {
-          setConfirm(false)
-          setFormData(null)
-        }}
-        secondaryActionText={'Cancel'}
-      />
-    </>
+          return (
+            <Field
+              key={index}
+              label={field.label}
+              name={field.name}
+              type={field.type}
+              error={field.error || null}
+              register={register}
+              className={field.className}
+              options={field.options}
+              registerOptions={field.validate}
+              defaultValue={field.defaultValue}
+            />
+          )
+        })}
+      </form>
+    </SlideOver>
   )
 }

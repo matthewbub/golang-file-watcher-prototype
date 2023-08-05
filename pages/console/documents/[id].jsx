@@ -23,10 +23,10 @@ const TipTap = ({ pageId, data }) => {
     ],
     editorProps: {
       attributes: {
-        class: 'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg my-5 focus:outline-none',
+        class: 'min-h-screen prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg my-5 focus:outline-none',
       },
     },
-    content: documentHtml,
+    content: documentHtml || '<p>Hello World! 🌎️</p>',
     onUpdate: ({ editor }) => {
       fetch('/api/v1/secure/modify-document', {
         method: 'POST',
@@ -45,7 +45,7 @@ const TipTap = ({ pageId, data }) => {
 
 
   return (
-    <div className={clsx('min-h-screen', baseClassNames.containerPadding)}>
+    <div className={clsx(baseClassNames.containerPadding)}>
       <EditorContent
         editor={editor}
       />
@@ -85,18 +85,21 @@ const Page = ({ id, form, data, documentTitle }) => {
                   page_title: pageTitle,
                   screen: screen,
                   visibility: visibility,
-                  id: pageId
+                  id: id
                 })
               }).then(response => response.json())
                 .then(data => console.log(data))
                 .catch(error => console.log(error))
             }}
-            confirmBeforeSubmission={(formFields) => { console.log(formFields); }}
+          // confirmBeforeSubmission={(formFields) => { console.log('confirmBeforeSubmission', formFields); }}
           />
         </>
       )}
       primaryAction={() => (
-        <Button onClick={() => { setOpen(true) }} styleType='info'>
+        <Button
+          onClick={() => { setOpen(true) }}
+          styleType='info'
+        >
           <EllipsisIcon />
         </Button>
       )}

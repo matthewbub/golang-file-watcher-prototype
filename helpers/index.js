@@ -5,3 +5,4 @@ export {
 } from './constants';
 export { validateString, alwaysString } from './stringHelpers';
 export { useRCIfNonEmptyString } from './useRCIfNonEmptyString';
+export { default as useWindowDimensions } from './useWindowDimensions';

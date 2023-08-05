@@ -9,6 +9,8 @@ import { navigation } from '@/components/AppNavigation';
 import { Button } from '@/components';
 import clsx from 'clsx';
 import { baseClassNames } from '@/helpers/constants';
+import { useWindowDimensions } from '@/helpers';
+
 const pathHandler = new PathHandler('console');
 
 const Lifecycle = ({ children }) => (
@@ -18,6 +20,7 @@ const Lifecycle = ({ children }) => (
 );
 
 const Table = ({ data }) => {
+  const { width } = useWindowDimensions();
   return (
     <Lifecycle>
       <table className="w-full whitespace-nowrap text-left">
@@ -35,7 +38,7 @@ const Table = ({ data }) => {
             <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell">
               Created By
             </th>
-            <th scope="col" className="py-2 pl-0 pr-4 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20">
+            <th scope="col" className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-8 sm:text-left lg:pr-20">
               Date Created
             </th>
             <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20">
@@ -47,12 +50,15 @@ const Table = ({ data }) => {
           {data && data.length > 0 && data.map((document) => (
             <tr key={document.id}>
               <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
-                {document.document_title || 'Untitled Document'}
+                <span
+                  className='truncate block w-full max-w-screen-sm'
+                  style={{ maxWidth: width - 40 + 'px' }}
+                >{document.document_title || 'Untitled Document'}</span>
               </td>
               <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
                 {document.document_owner}
               </td>
-              <td className="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
+              <td className="hidden py-4 pl-0 pr-4 sm:table-cell text-sm leading-6 sm:pr-8 lg:pr-20">
                 {document.created_at}
               </td>
               <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
