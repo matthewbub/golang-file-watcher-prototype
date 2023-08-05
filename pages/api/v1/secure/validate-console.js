@@ -1,11 +1,26 @@
 import jwt from 'jsonwebtoken';
-import { supabase } from '../../../../supabase.config';
+import { supabase } from '@/supabase.config';
+import dayjs from 'dayjs';
+import 'dayjs/locale/en';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { get } from 'lodash';
+import { getSessionExpiryMessage } from '@/helpers';
+
+dayjs.locale('en');
+dayjs.extend(relativeTime);
 
 const unauthorized = {
   ok: false,
   message: 'Unauthorized',
   email: null
 }
+
+const logIfDev = (message, error) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message, error || '');
+  }
+}
+
 export default async (req, res) => {
   if (req.method === 'GET') {
     try {
@@ -13,6 +28,7 @@ export default async (req, res) => {
       const token = req.cookies.accessToken;
 
       if (!token) {
+        logIfDev('No token');
         return res.status(401).json(unauthorized);
       }
 
@@ -22,33 +38,47 @@ export default async (req, res) => {
       // Otherwise, return an error response
       // Your code to handle the authenticated request goes here
       if (!decodedToken) {
+        logIfDev('No decodedToken');
         return res.status(401).json(unauthorized);
       }
 
       if (!decodedToken.email) {
+        logIfDev('No decodedToken.email');
         return res.status(401).json(unauthorized);
       }
 
       const { data: userData, error } = await supabase.from('users').select('*').eq('email', decodedToken.email).single();
 
       if (error) {
+        logIfDev('Error fetching user data');
         return res.status(401).json(unauthorized);
       }
 
       if (!userData) {
+        logIfDev('No user data');
         return res.status(401).json(unauthorized);
       }
 
       if (userData?.auth_type !== 'console') {
+        logIfDev('User is not a console user');
         return res.status(401).json(unauthorized);
       }
 
-      res.status(200).json({ ok: true, message: 'Authenticated request', email: decodedToken.email });
+      const expiryMessage = getSessionExpiryMessage(decodedToken);
+
+      res.status(200).json({
+        ok: true,
+        message: 'Authenticated request',
+        email: decodedToken.email,
+        expires: expiryMessage
+      });
     } catch (error) {
+      logIfDev('Error validating token', error);
       res.status(401).json(unauthorized);
     }
 
   } else {
+    logIfDev('Method not allowed');
     res.status(405).json(unauthorized);
   }
 }

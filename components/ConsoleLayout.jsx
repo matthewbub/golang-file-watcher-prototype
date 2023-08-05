@@ -6,7 +6,8 @@ import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx';
 import { HomeIcon } from '@heroicons/react/20/solid'
 import { AuthWrapper } from './AuthWrapper';
-
+import { NotificationWithActions } from '@/components/NotificationWithActions';
+import { useSessionStore } from '@/stores/session.store';
 export const ConsoleLayout = ({
   primary,
   secondary = null,
@@ -18,7 +19,10 @@ export const ConsoleLayout = ({
   primaryTitleDescription = null
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sessionTimeoutNotification, setSessionTimeoutNotification] = useState(true);
+  const { session } = useSessionStore();
 
+  console.log('session', session);
   return (
     <AuthWrapper>
       <div className='min-h-screen bg-neutral-950'>
@@ -173,6 +177,20 @@ export const ConsoleLayout = ({
           )}
         </div>
       </div>
+      <NotificationWithActions
+        show={sessionTimeoutNotification}
+        title="Inactivity timeout warning"
+        description={session?.expires}
+        primaryActionLabel='Renew session'
+        primaryAction={() => {
+
+          setSessionTimeoutNotification(false);
+        }}
+        secondaryActionLabel='Sign out'
+        secondaryAction={() => {
+
+        }}
+      />
     </AuthWrapper>
   )
 }
