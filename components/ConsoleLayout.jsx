@@ -8,6 +8,8 @@ import { HomeIcon } from '@heroicons/react/20/solid'
 import { AuthWrapper } from './AuthWrapper';
 import { NotificationWithActions } from '@/components/NotificationWithActions';
 import { useSessionStore } from '@/stores/session.store';
+import { useRouter } from 'next/router';
+
 export const ConsoleLayout = ({
   primary,
   secondary = null,
@@ -21,6 +23,7 @@ export const ConsoleLayout = ({
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [sessionTimeoutNotification, setSessionTimeoutNotification] = useState(true);
   const { session } = useSessionStore();
+  const router = useRouter();
 
   console.log('session', session);
   return (
@@ -187,8 +190,13 @@ export const ConsoleLayout = ({
           setSessionTimeoutNotification(false);
         }}
         secondaryActionLabel='Sign out'
-        secondaryAction={() => {
-
+        secondaryAction={async () => {
+          const response = await fetch('/api/v1/log-out');
+          const data = await response.json();
+          if (data.ok) {
+            setSessionTimeoutNotification(false);
+            router.push('/log-in');
+          }
         }}
       />
     </AuthWrapper>

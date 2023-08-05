@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase.config";
 import { useRouter } from "next/router";
 import { useSessionStore } from '@/stores/session.store';
 
@@ -20,7 +19,6 @@ export const AuthWrapper = ({ children }) => {
       } else {
         setLoading(false);
         setSession(null);
-
         router.push('/log-in');
       }
     } catch (error) {
