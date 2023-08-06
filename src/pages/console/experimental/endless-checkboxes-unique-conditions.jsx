@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import { ConsoleLayout } from '../../../src/components/ConsoleLayout';
-import { consoleNavigation as navigation } from '../../../src/console.navigation';
+import { ConsoleLayout } from '../../../components/ConsoleLayout';
+import { consoleNavigation as navigation } from '../../../constants';
 
 function generateStressTest(numberOfOptions = 10) {
   // Function to generate random boolean values for conditionA and conditionB

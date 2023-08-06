@@ -6,7 +6,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import PathHandler from '../../../helpers/PathHandler';
 
 import { ConsoleLayout, Button } from '../../../components';
-import { consoleNavigation as navigation } from '../../../console.navigation';
+import { consoleNavigation as navigation } from '../../../constants';
 import { baseClassNames } from '../../../helpers/constants';
 import { useWindowDimensions } from '../../../helpers';
 

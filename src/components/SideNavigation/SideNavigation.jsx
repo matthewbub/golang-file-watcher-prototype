@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 
-export const SideNavigation = ({ navigation = [] }) => {
+const SideNavigation = ({ navigation = [] }) => {
   const activeClassName = 'bg-white/10'
   const hoverClassName = 'hover:bg-white/10'
   const textColorClassName = 'text-white/70'
@@ -42,7 +42,7 @@ export const SideNavigation = ({ navigation = [] }) => {
                           className={clsx(
                             item.current ? activeClassName : hoverClassName,
                             textColorClassName,
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6'
                           )}
                         >
                           {/* <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" /> */}
@@ -120,3 +120,5 @@ export const SideNavigation = ({ navigation = [] }) => {
     </div >
   )
 }
+
+export default SideNavigation;
