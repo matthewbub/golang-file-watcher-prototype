@@ -10,7 +10,7 @@ import { AuthWrapper } from '../AuthWrapper';
 import { NotificationWithActions } from '../NotificationWithActions';
 import { useSessionStore } from '../../stores/session.store';
 
-export const ConsoleLayout = ({
+const ConsoleLayout = ({
   primary,
   secondary = null,
   primaryTitle,
@@ -210,3 +210,5 @@ export const ConsoleLayout = ({
     </AuthWrapper>
   )
 }
+
+export default ConsoleLayout;

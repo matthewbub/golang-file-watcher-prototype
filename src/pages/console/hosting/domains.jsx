@@ -1,10 +1,8 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
 import { useForm } from 'react-hook-form';
-import { SlideOver } from '../../../components/SlideOver';
-import Input from '../../../components/Input';
-import { Button } from '../../../components';
+
+import { SlideOver, Input, Button, ConsoleLayout } from '../../../components';
 
 export function Modal({ open, setOpen, data }) {
   return (

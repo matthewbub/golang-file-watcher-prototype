@@ -5,9 +5,8 @@ import { useRouter } from 'next/router';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import PathHandler from '../../../helpers/PathHandler';
 
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { navigation } from '../../../components/SideNavigation';
-import { Button } from '../../../components';
+import { ConsoleLayout, Button } from '../../../components';
+import { consoleNavigation as navigation } from '../../../console.navigation';
 import { baseClassNames } from '../../../helpers/constants';
 import { useWindowDimensions } from '../../../helpers';
 

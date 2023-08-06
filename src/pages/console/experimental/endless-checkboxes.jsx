@@ -1,8 +1,8 @@
-import { ConsoleLayout } from '../../../src/components/ConsoleLayout';
-import { navigation } from '../../../src/components/AppNavigation';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
+import { ConsoleLayout } from '../../../src/components';
+import { consoleNavigation as navigation } from '../../../src/console.navigation';
 
 const Checkbox = ({ checked, onChange, value, name }) => {
   return (

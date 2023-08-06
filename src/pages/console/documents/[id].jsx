@@ -3,10 +3,9 @@ import { get } from 'lodash';
 import StarterKit from '@tiptap/starter-kit'
 import { useEditor, EditorContent } from '@tiptap/react'
 
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { ConfigurableForm } from '../../../components/ConfigurableForm';
+import { ConsoleLayout, ConfigurableForm, Button } from '../../../components';
 import { EllipsisIcon } from '../../../components/Icons';
-import { Button } from '../../../components';
+
 
 import PathHandler from '../../../helpers/PathHandler';
 import { baseClassNames } from '../../../helpers/constants';

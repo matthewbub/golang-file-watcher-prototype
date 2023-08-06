@@ -1,10 +1,7 @@
 import { useState } from 'react';
+import { Button, ConsoleLayout, ConfigurableForm } from '../../../components';
+import PathHandler from '../../../helpers/PathHandler';
 
-import { Button } from '../../../components';
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { ConfigurableForm } from '../../../components/ConfigurableForm';
-
-import PathHandler from '@/helpers/PathHandler';
 const pathHandler = new PathHandler('console');
 
 const Primary = ({ open, setOpen, form }) => {
