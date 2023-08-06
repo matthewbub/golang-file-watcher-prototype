@@ -1,10 +1,6 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { useEffect } from 'react'
-const inter = Inter({ subsets: ['latin'] })
 import { useForm } from 'react-hook-form'
-export default function HomePage() {
 
+export default function HomePage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
   const submitForm = async (data) => {
@@ -17,7 +13,7 @@ export default function HomePage() {
     })
 
     const json = await res.json()
-    console.log(json)
+    // console.log(json)
   }
 
   return (

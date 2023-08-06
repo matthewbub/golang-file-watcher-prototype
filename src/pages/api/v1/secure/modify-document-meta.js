@@ -1,7 +1,4 @@
-import { get } from 'lodash';
-import { dayjs } from '@/helpers';
-
-import { withAuthApiWrapper as withAuth } from '@/helpers/withAuthApiWrapper';
+import { withAuthApiWrapper as withAuth } from '../../../..//helpers/withAuthApiWrapper';
 
 export default withAuth('POST', 'console', async (req, res, userData) => {
   console.log('req.body', req.body, 'userData', userData);

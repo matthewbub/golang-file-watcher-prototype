@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { supabase } from '@/supabase.config';
-import { Logger } from '@/helpers';
-import { commonApiMessages } from '@/helpers/constants';
+import { supabase } from '../supabase.config';
+import Logger from './Logger';
+import { commonApiMessages } from './constants';
 
 const logger = new Logger('user_validation');
 

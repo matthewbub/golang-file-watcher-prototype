@@ -4,11 +4,11 @@ import { capitalize, get } from 'lodash';
 import clsx from 'clsx';
 import { uniqueId } from 'lodash';
 
-import { Button } from '@/src/components';
-import { ConsoleLayout } from '@/src/components/ConsoleLayout';
-import { Stats } from '@/src/components/Stats';
+import { Button } from '../../../components';
+import { ConsoleLayout } from '../../../components/ConsoleLayout';
+import { Stats } from '../../../components/Stats';
 
-import PathHandler from '@/helpers/PathHandler';
+import PathHandler from '../../../helpers/PathHandler';
 const pathHandler = new PathHandler('console');
 
 const loadingAtom = atom(false);

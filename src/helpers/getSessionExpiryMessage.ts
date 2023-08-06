@@ -1,4 +1,4 @@
-import { dayjs } from '@/helpers';
+import dayjs from './dayjs';
 import { get } from 'lodash';
 
 interface DecodedToken {

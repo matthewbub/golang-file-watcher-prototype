@@ -1,9 +1,6 @@
 import { get } from 'lodash';
-import { dayjs } from '@/helpers';
 import jwt from 'jsonwebtoken';
-
-
-import { withAuthApiWrapper as withAuth } from '@/helpers/withAuthApiWrapper';
+import { withAuthApiWrapper as withAuth } from '../../../../../helpers/withAuthApiWrapper';
 
 export default withAuth('GET', 'console', async (req, res, userData) => {
   const token = get(req, 'cookies.accessToken', '');

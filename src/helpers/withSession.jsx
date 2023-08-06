@@ -3,6 +3,9 @@
 import React from 'react';
 import { supabase } from '../supabase.config';
 
+/**
+ * @deprecated
+ */
 export const withSession = (Component, authType) => {
   console.log('Step 1. withSession')
 

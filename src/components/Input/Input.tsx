@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import clsx from 'clsx'
-import FieldWrapper from '@/src/components/FieldWrapper';
+import { FieldWrapper } from '../../components';
 import { InputProps } from './Input.interfaces';
 
 const Input: FC<InputProps> = ({

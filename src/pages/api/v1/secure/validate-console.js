@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { supabase } from '@/supabase.config';
-import { dayjs, getSessionExpiryMessage } from '@/helpers';
-import { get } from 'lodash';
+import { supabase } from '../../../../supabase.config';
+import { getSessionExpiryMessage } from '../../../../helpers';
 
 const unauthorized = {
   ok: false,

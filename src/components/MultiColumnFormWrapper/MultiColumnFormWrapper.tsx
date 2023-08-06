@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { MultiColumnFormWrapperProps } from './MultiColumnFormWrapper.interfaces';
 
 const MultiColumnFormWrapper: FC<MultiColumnFormWrapperProps> = ({ title, description, children }) => {

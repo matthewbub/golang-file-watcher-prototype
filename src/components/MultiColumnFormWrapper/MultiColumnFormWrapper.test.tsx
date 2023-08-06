@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { axe, toHaveNoViolations } from 'jest-axe'
-import { MultiColumnFormWrapper } from '@/src/components/MultiColumnFormWrapper'
+import MultiColumnFormWrapper from './MultiColumnFormWrapper'
 
 // Extend the expect function with the toHaveNoViolations matcher
 expect.extend(toHaveNoViolations)

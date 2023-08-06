@@ -1,14 +1,14 @@
-import { SideNavigation, navigation as fallBackNavigation } from './AppNavigation';
 import { Fragment, useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
+import { SideNavigation, navigation as fallBackNavigation } from './AppNavigation';
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Bars3Icon, MagnifyingGlassIcon, HomeIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx';
-import { HomeIcon } from '@heroicons/react/20/solid'
+
 import { AuthWrapper } from './AuthWrapper';
-import { NotificationWithActions } from '@/src/components/NotificationWithActions';
-import { useSessionStore } from '@/stores/session.store';
-import { useRouter } from 'next/router';
+import { NotificationWithActions } from './NotificationWithActions';
+import { useSessionStore } from '../stores/session.store';
 
 export const ConsoleLayout = ({
   primary,

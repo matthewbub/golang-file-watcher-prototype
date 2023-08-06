@@ -1,5 +1,5 @@
-import clsx from 'clsx'
-import { baseClassNames } from '@/helpers/constants'
+import clsx from 'clsx';
+import { baseClassNames } from '../../helpers/constants';
 
 export const FullNavigation = ({ navigation = [] }) => {
   return (

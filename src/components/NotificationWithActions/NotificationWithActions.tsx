@@ -1,7 +1,6 @@
-import { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Transition } from '@headlessui/react';
 import { NotificationWithActionsProps } from './NotificationWithActions.interfaces';
-import React from 'react';
 
 const NotificationWithActions: FC<NotificationWithActionsProps> = ({
   show = false,

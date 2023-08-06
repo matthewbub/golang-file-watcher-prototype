@@ -1,7 +1,7 @@
 import { get } from 'lodash';
-import { dayjs } from '@/helpers';
+import { dayjs } from '../../../../../helpers';
 
-import { withAuthApiWrapper as withAuth } from '@/helpers/withAuthApiWrapper';
+import { withAuthApiWrapper as withAuth } from '../../../../../helpers/withAuthApiWrapper';
 
 export default withAuth('GET', 'console', async (req, res, userData) => {
   const vercelToken = process.env.NEXT_PUBLIC_VERCEL_TOKEN;

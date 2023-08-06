@@ -3,7 +3,6 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
-import { DashboardIcon, UsersIcon, HostingIcon } from '@/src/components/Icons';
 
 export const SideNavigation = ({ navigation = [] }) => {
   const activeClassName = 'bg-white/10'

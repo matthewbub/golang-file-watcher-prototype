@@ -1,5 +1,5 @@
-import { ConsoleLayout } from '@/src/components/ConsoleLayout';
-import { FullNavigation, navigation } from '@/src/components/AppNavigation';
+import { ConsoleLayout } from '../../../components/ConsoleLayout';
+import { FullNavigation, navigation } from '../../../components/AppNavigation';
 
 const Page = ({ primaryTitle, secondaryTitle }) => {
   return (
