@@ -1,5 +1,6 @@
 import { get } from 'lodash';
-import { dayjs, sspWithAuth } from '@/helpers';
+import { dayjs } from '../../../connections';
+import { sspWithAuth } from '../../../helpers';
 
 
 export const getServerSideProps = sspWithAuth(async (context) => {

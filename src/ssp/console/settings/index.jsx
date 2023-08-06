@@ -1,6 +1,6 @@
-import { supabase } from '@/connections';
 import jwt from 'jsonwebtoken';
-import { dayjs, sspWithAuth } from '@/helpers';
+import { supabase, dayjs } from '../../../connections';
+import { sspWithAuth } from '../../../helpers';
 
 
 export const getServerSideProps = sspWithAuth(async (context) => {

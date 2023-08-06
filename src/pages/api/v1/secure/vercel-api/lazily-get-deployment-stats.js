@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import { dayjs } from '../../../../../helpers';
+import { dayjs } from '../../../../../connections';
 
 import { withAuthApiWrapper as withAuth } from '../../../../../helpers/withAuthApiWrapper';
 
