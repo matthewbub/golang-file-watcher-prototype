@@ -1,4 +1,4 @@
-import { supabase } from '../../../../supabase.config';
+import { supabase } from '../../../../connections';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { commonApiMessages, regexPatterns } from '../../../../helpers/constants';

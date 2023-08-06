@@ -1,4 +1,4 @@
-import { supabase } from '../../../supabase.config';
+import { supabase } from '../../../connections';
 import jwt from 'jsonwebtoken';
 import { dayjs } from '@/helpers';
 import { sspWithAuth } from '@/helpers/sspWithAuth';

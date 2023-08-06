@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { supabase } from '../supabase.config';
+import { supabase } from '../connections';
 import Logger from './Logger';
 import { commonApiMessages } from './constants';
 

@@ -1,4 +1,4 @@
-import { supabase } from '../../../supabase.config';
+import { supabase } from '../../../connections';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { SlideOver } from '../../../components/SlideOver';

@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { supabase } from '../supabase.config';
+import { supabase } from '../connections';
 
 export function createLoginHandler(auth_type) {
   return async function handler(req, res) {

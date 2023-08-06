@@ -1,4 +1,4 @@
-import { supabase } from '../../../../supabase.config';
+import { supabase } from '../../../../connections';
 import { withAuthApiWrapper as withAuth } from '../../../../helpers/withAuthApiWrapper';
 
 export default withAuth('POST', 'console', async (req, res, userData) => {

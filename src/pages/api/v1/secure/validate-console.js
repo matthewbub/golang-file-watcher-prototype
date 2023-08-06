@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { supabase } from '../../../../supabase.config';
+import { supabase } from '../../../../connections';
 import { getSessionExpiryMessage } from '../../../../helpers';
 
 const unauthorized = {

@@ -1,4 +1,4 @@
-import { supabase } from '../supabase.config';
+import { supabase } from '../connections';
 
 /**
  * Logger class to log events to the database.

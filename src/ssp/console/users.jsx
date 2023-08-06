@@ -1,4 +1,4 @@
-import { supabase } from '@/supabase.config';
+import { supabase } from '@/connections';
 import { sspWithAuth } from "@/helpers";
 
 export const getServerSideProps = sspWithAuth(async (context) => {

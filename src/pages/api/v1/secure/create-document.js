@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { supabase } from '../../../../supabase.config';
+import { supabase } from '../../../../connections';
 
 export default async (req, res) => {
   if (req.method === 'GET') {

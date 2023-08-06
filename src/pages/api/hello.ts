@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { supabase } from '../../supabase.config';
+import { supabase } from '../../connections/connections';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase
