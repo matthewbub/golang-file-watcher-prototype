@@ -1,4 +1,4 @@
-import { ConsoleLayout } from '../../../components'
+import { ConsoleLayout } from '../../components'
 import { useForm } from 'react-hook-form'
 const secondaryNavigation = [
   { name: 'Account', href: '#', current: true },
