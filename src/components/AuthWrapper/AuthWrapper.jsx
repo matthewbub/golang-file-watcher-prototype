@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useSessionStore } from '../stores/session.store';
+import { useSessionStore } from '../../stores/session.store';
 
-export const AuthWrapper = ({ children }) => {
+const AuthWrapper = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const { setSession } = useSessionStore();
 
@@ -54,3 +54,5 @@ export const AuthWrapper = ({ children }) => {
 
   return children;
 }
+
+export default AuthWrapper;

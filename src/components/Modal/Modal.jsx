@@ -1,11 +1,11 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { Button } from './Button'
+import { Button } from '../Button'
 import clsx from 'clsx'
-import { baseClassNames } from '../helpers/constants'
+import { baseClassNames } from '../../helpers/constants'
 
-export const Modal = ({
+const Modal = ({
   open = false,
   setOpen,
   title,
@@ -96,3 +96,5 @@ export const Modal = ({
     </Transition.Root>
   )
 }
+
+export default Modal;

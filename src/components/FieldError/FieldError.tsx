@@ -4,7 +4,7 @@ interface FieldErrorProps {
   error?: string
 }
 
-export const FieldError: FC<FieldErrorProps> = ({ error }) => {
+const FieldError: FC<FieldErrorProps> = ({ error }) => {
   return (
     <div className='h-4'>
       {error && error.length > 0 && (
@@ -13,3 +13,5 @@ export const FieldError: FC<FieldErrorProps> = ({ error }) => {
     </div>
   )
 }
+
+export default FieldError;

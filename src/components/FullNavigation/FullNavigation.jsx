@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { baseClassNames } from '../../helpers/constants';
 
-export const FullNavigation = ({ navigation = [] }) => {
+const FullNavigation = ({ navigation = [] }) => {
   return (
     <div className={clsx(
       baseClassNames.containerPadding,
@@ -54,3 +54,5 @@ export const FullNavigation = ({ navigation = [] }) => {
     </div>
   )
 }
+
+export default FullNavigation;

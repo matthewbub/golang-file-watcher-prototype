@@ -1,4 +1,4 @@
-import FieldWrapper from './FieldWrapper'
+import FieldWrapper from '../FieldWrapper'
 
 /**
  * Input component for form fields.

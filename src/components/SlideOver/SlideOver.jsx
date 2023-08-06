@@ -2,9 +2,9 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import { baseClassNames } from '../helpers/constants';
+import { baseClassNames } from '../../helpers/constants';
 
-export const SlideOver = ({ open = false, setOpen, children, title }) => {
+const SlideOver = ({ open = false, setOpen, children, title }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -71,3 +71,5 @@ export const SlideOver = ({ open = false, setOpen, children, title }) => {
     </Transition.Root>
   )
 }
+
+export default SlideOver;

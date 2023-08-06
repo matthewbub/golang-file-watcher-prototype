@@ -16,7 +16,7 @@ const SubmitButton = ({ children }) => (
   </div>
 )
 
-export const ConfigurableForm = ({
+const ConfigurableForm = ({
   form,
   open,
   setOpen,
@@ -81,3 +81,5 @@ export const ConfigurableForm = ({
     </SlideOver>
   )
 }
+
+export default ConfigurableForm;

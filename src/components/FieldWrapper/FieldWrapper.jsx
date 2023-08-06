@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { baseClassNames } from "../helpers/constants";
+import { baseClassNames } from "../../helpers/constants";
 
 const FieldWrapper = ({ label, name, children, className, ...rest }) => (
   <div className={className} {...rest}>
