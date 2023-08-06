@@ -57,7 +57,7 @@ export default function Page() {
               </span>
             </a>
           </div>
-          <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h1 className="mt-10 text-4xl font-bold tracking-tight txt1 sm:text-6xl">
             {'Simplify Your Blogging Workflow'}
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
@@ -66,11 +66,11 @@ export default function Page() {
           <div className="mt-10 flex items-center gap-x-6">
             <button
               disabled
-              className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm opacity-50"
+              className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold txt1 shadow-sm opacity-50"
             >
               {'Sign up! (Coming Soon)'}
             </button>
-            {/* <a href="#" className="text-sm font-semibold leading-6 text-white">
+            {/* <a href="#" className="text-sm font-semibold leading-6 txt1" >
               Learn more <span aria-hidden="true">→</span>
             </a> */}
           </div>

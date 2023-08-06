@@ -30,7 +30,7 @@ export const SideNavigation = ({ navigation = [] }) => {
                     <li className={clsx(index !== 0 && 'mt-8')}>
                       <div className={clsx(
                         index !== 0 && 'mt-8',
-                        "flex items-center text-xs text-gray-400/50 uppercase tracking-wider mb-4"
+                        "flex items-center text-xs text-neutral-500/50 uppercase tracking-wider mb-4"
                       )}>
                         {item.name}
                       </div>

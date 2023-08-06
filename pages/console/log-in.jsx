@@ -31,7 +31,7 @@ export default function Page() {
           src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/light_logo_only.png?t=2023-07-21T10%3A13%3A11.149Z"
           alt="IE Portals"
         />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight txt1" >
           Sign in to your account
         </h2>
       </div>
@@ -39,7 +39,7 @@ export default function Page() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSubmit(submitForm)}>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="email" className="block text-sm font-medium leading-6 txt1" >
               Email address
             </label>
             <div className="mt-2">
@@ -49,7 +49,7 @@ export default function Page() {
                 type="email"
                 autoComplete="email"
                 {...register("email", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.email && <p className="text-sm text-red-600">{errors?.email}</p>}
@@ -59,7 +59,7 @@ export default function Page() {
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
+              <label htmlFor="password" className="block text-sm font-medium leading-6 txt1" >
                 Password
               </label>
               <div className="text-sm">
@@ -75,7 +75,7 @@ export default function Page() {
                 type="password"
                 autoComplete="current-password"
                 {...register("password", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.password && <p className="text-sm text-red-600">{errors?.password}</p>}
@@ -86,7 +86,7 @@ export default function Page() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               Sign in
             </button>

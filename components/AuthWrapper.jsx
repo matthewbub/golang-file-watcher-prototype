@@ -45,9 +45,9 @@ export const AuthWrapper = ({ children }) => {
               alt="NineMbs Studio"
             />
           </div>
-          <div className="mt-4 text-2xl font-bold text-white">NineMbs Studio</div>
+          <div className="mt-4 text-2xl font-bold txt1">NineMbs Studio</div>
         </div>
-        <div className="mt-4 text-sm font-medium text-white">Loading...</div>
+        <div className="mt-4 text-sm font-medium txt1">Loading...</div>
       </div>
     )
   }

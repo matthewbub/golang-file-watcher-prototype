@@ -6,9 +6,9 @@ export const secondaryBackgroundColorClassName = 'bg-rose-100/5'
 export const baseClassNames = {
   text: 'text-gray-200',
   secondaryText: 'text-gray-400',
-  background: 'bg-gray-950',
-  secondaryBackground: 'bg-gray-900',
-  secondaryBackgroundHover: 'hover:bg-gray-950/50 border-2 border-gray-900 hover:border-gray-900',
+  background: 'bg-neutral-950',
+  secondaryBackground: 'bg-neutral-900',
+  secondaryBackgroundHover: 'hover:bg-neutral-950/50 border border-neutral-900 hover:border-white/5',
   overlayBackground: 'bg-gray-700 bg-opacity-75 transition-opacity',
   containerPadding: 'px-4 py-4 sm:px-6 sm:py-6 lg:px-8'
 }

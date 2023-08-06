@@ -7,7 +7,7 @@ export const Table = ({ data }) => {
         <col className="lg:w-2/12" />
         <col className="lg:w-1/12" />
       </colgroup>
-      <thead className="border-b border-neutral-900 text-sm leading-6 text-white bg-neutral-900 sticky top-[63px]">
+      <thead className="border-b border-neutral-900 text-sm leading-6 txt1 bg-neutral-900 sticky top-[63px]">
         <tr>
           <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
             Title

@@ -12,14 +12,14 @@ const Button: FC<ButtonProps> = ({
   ...rest
 }) => {
   const styleTypes = {
-    primary: "bg-indigo-600 text-white",
-    secondary: "bg-gray-600 text-white",
-    danger: "bg-red-600 text-white",
-    success: "bg-green-600 text-white",
-    warning: "bg-yellow-600 text-white",
-    info: "bg-blue-600 text-white",
+    primary: "bg-indigo-600 txt1",
+    secondary: "bg-gray-600 txt1",
+    danger: "bg-red-600 txt1",
+    success: "bg-green-600 txt1",
+    warning: "bg-yellow-600 txt1",
+    info: "bg-blue-600 txt1",
     light: "bg-white text-gray-700",
-    dark: "bg-gray-900 text-white",
+    dark: "bg-gray-900 txt1",
   } as const;
 
   const stateStyles = {

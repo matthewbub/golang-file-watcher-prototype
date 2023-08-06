@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer components {
+  .bg1 {
+    @apply bg-neutral-950;
+  }
+  .bg2 {
+    @apply bg-neutral-900;
+  }
+  .bg3 {
+    @apply bg-neutral-800;
+  }
+  .txt1 {
+    @apply text-white;
+  }
+  .txt2 {
+    @apply text-neutral-300;
+  }
+  .txt3 {
+    @apply text-neutral-500/50;
+  }
+  .a1 {
+    @apply text-cyan-400 hover:underline;
+  }
+  .brdr1 {
+    @apply border-white/5;
+  }
+  .out1 {
+    @apply outline-white/5;
+  }
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

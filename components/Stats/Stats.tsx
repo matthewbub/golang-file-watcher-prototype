@@ -17,7 +17,7 @@ const Stats: FC<StatsProps> = ({ stats = fbStats, loading = false }) => {
             <div key={stat.name} className="bg-neutral-950 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8">
               <p className="text-sm font-medium leading-6 text-neutral-500">{stat.name}</p>
               <p className="mt-2 flex items-baseline gap-x-2">
-                <span className="text-4xl font-semibold tracking-tight text-white">{loading ? '-' : stat.value}</span>
+                <span className="text-4xl font-semibold tracking-tight txt1" >{loading ? '-' : stat.value}</span>
                 {stat.unit ? <span className="text-sm text-neutral-500">{!loading && stat.unit}</span> : null}
               </p>
             </div>

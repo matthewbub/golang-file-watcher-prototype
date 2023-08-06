@@ -71,7 +71,7 @@ export const ConsoleLayout = ({
                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                       <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                        <XMarkIcon className="h-6 w-6 txt1" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -93,7 +93,7 @@ export const ConsoleLayout = ({
         <div className="xl:pl-72">
           {/* Sticky search header */}
           <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-neutral-900 px-4 shadow-sm sm:px-6 lg:px-8">
-            <button type="button" className="-m-2.5 p-2.5 text-white xl:hidden" onClick={() => setSidebarOpen(true)}>
+            <button type="button" className="-m-2.5 p-2.5 txt1 xl:hidden" onClick={() => setSidebarOpen(true)}>
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -110,7 +110,7 @@ export const ConsoleLayout = ({
                   />
                   <input
                     id="search-field"
-                    className="block h-full w-full border-0 bg-transparent py-0 pl-8 pr-0 text-white focus:ring-0 sm:text-sm"
+                    className="block h-full w-full border-0 bg-transparent py-0 pl-8 pr-0 txt1 focus:ring-0 sm:text-sm"
                     placeholder="Search..."
                     type="search"
                     name="search"
@@ -125,7 +125,7 @@ export const ConsoleLayout = ({
               <ol role="list" className="mx-auto flex w-full space-x-4 px-4 sm:px-6 lg:px-8">
                 <li className="flex h-11">
                   <div className="flex items-center">
-                    <a href="/" className="text-gray-400 hover:text-gray-500">
+                    <a href="/" className="a1">
                       <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
                       <span className="sr-only">Home</span>
                     </a>
@@ -145,7 +145,7 @@ export const ConsoleLayout = ({
                       </svg>
                       <a
                         href={page.href || '#'}
-                        className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                        className="ml-4 text-sm font-medium a1"
                         aria-current={page.current ? 'page' : undefined}
                       >
                         {page.name}
@@ -158,7 +158,7 @@ export const ConsoleLayout = ({
 
             <header className="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
               <div className="px-4 sm:px-0">
-                {primaryTitle && primaryTitle.length > 0 && (<h1 className="text-base font-semibold leading-7 text-white">{primaryTitle}</h1>)}
+                {primaryTitle && primaryTitle.length > 0 && (<h1 className="text-base font-semibold leading-7 txt1" >{primaryTitle}</h1>)}
                 {primaryTitleDescription && primaryTitleDescription.length > 0 && (<p className="mt-1 max-w-2xl text-sm leading-6 text-gray-400">{primaryTitleDescription}</p>)}
               </div>
               {primaryAction &&
@@ -177,7 +177,7 @@ export const ConsoleLayout = ({
           {secondary && (
             <aside className="bg-black/10 lg:fixed lg:bottom-0 lg:right-0 lg:top-16 lg:w-96 lg:overflow-y-auto lg:border-l lg:border-white/5">
               <header className="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
-                {(secondaryTitle && secondaryTitle.length > 0 && <h2 className="text-base font-semibold leading-7 text-white">{secondaryTitle}</h2>)}
+                {(secondaryTitle && secondaryTitle.length > 0 && <h2 className="text-base font-semibold leading-7 txt1" >{secondaryTitle}</h2>)}
               </header>
 
               {secondary()}

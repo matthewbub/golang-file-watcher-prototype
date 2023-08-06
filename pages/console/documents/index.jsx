@@ -1,28 +1,70 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { atom, useAtom } from 'jotai';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
-
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import PathHandler from '@/helpers/PathHandler';
 
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { navigation } from '@/components/AppNavigation';
-
+import { Stats } from '@/components/Stats';
 import { Button } from '@/components';
-import clsx from 'clsx';
 import { baseClassNames } from '@/helpers/constants';
 import { useWindowDimensions } from '@/helpers';
 
 const pathHandler = new PathHandler('console');
+const loadingAtom = atom(false);
+const deploymentStatsAtom = atom([
+  {
+    name: 'Total Documents',
+    value: '-'
+  },
+  {
+    name: '',
+    value: '-',
+  },
+  {
+    name: '',
+    value: '-',
+  },
+  {
+    name: '',
+    value: '-',
+  }
+]);
 
-const Lifecycle = ({ children }) => (
-  <div>
-    {children}
-  </div>
-);
+function Lifecycle({ children }) {
+  const [_L, setLoading] = useAtom(loadingAtom);
+  const [_D, setDeploymentStats] = useAtom(deploymentStatsAtom);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('/api/v1/secure/vercel-api/lazily-get-deployment-stats')
+      .then((res) => res.json())
+      .then((res) => {
+        const stats = get(res, 'data.stats', []);
+        setDeploymentStats(stats);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <Fragment>
+      {children}
+    </Fragment>
+  )
+}
 
 const Table = ({ data }) => {
   const { width } = useWindowDimensions();
+  const [loading] = useAtom(loadingAtom);
+  const [deploymentStats] = useAtom(deploymentStatsAtom);
   return (
     <Lifecycle>
+      {/* <Stats data={deploymentStats} loading={loading} /> */}
       <table className="w-full whitespace-nowrap text-left">
         <colgroup>
           <col className="w-full sm:w-5/12" />
@@ -30,10 +72,10 @@ const Table = ({ data }) => {
           <col className="lg:w-2/12" />
           <col className="lg:w-1/12" />
         </colgroup>
-        <thead className="border-b border-neutral-900 text-sm leading-6 text-white bg-neutral-900 sticky top-[63px]">
+        <thead className="border-b border-neutral-900 text-sm leading-6 txt1 bg-neutral-900 sticky top-[63px]">
           <tr>
             <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
-              Title
+              Title <ChevronDownIcon className="w-5 h-5 inline-block" />
             </th>
             <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell">
               Created By

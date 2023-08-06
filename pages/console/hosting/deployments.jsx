@@ -71,7 +71,7 @@ function Primary({ deployments = [] }) {
           <col className="lg:w-1/12" />
           <col className="lg:w-1/12" />
         </colgroup>
-        <thead className="border-b border-neutral-900 text-sm leading-6 text-white bg-neutral-900 sticky top-[63px]">
+        <thead className="border-b border-neutral-900 text-sm leading-6 txt1 bg-neutral-900 sticky top-[63px]">
           <tr>
             <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
               User
@@ -99,7 +99,7 @@ function Primary({ deployments = [] }) {
                     <img src={item.user.imageUrl} alt="" className="h-8 w-8 rounded-full bg-gray-800" />
                   </a>
                   <a href={item.user.href} target='_blank' className='text-sky-600	 hover:underline'>
-                    <div className="truncate text-sm font-medium leading-6 text-white">{item.user.name}</div>
+                    <div className="truncate text-sm font-medium leading-6 txt1" >{item.user.name}</div>
                   </a>
                 </div>
               </td>
@@ -123,7 +123,7 @@ function Primary({ deployments = [] }) {
                   <div className={clsx(statuses[item.status], 'flex-none rounded-full p-1')}>
                     <div className="h-1.5 w-1.5 rounded-full bg-current" />
                   </div>
-                  <div className="hidden text-white sm:block">
+                  <div className="hidden txt1 sm:block">
                     <a href={item.inspectorUrl} target='_blank' className='text-sky-600	 hover:underline'>{item.status}</a>
                   </div>
                 </div>

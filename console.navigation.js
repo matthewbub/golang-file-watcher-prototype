@@ -5,22 +5,46 @@ export const consoleNavigation = [
     description: 'Internal administration pages for the console application',
   },
   {
-    name: 'Control Tower',
+    name: 'Roles & Permissions',
     href: '/users',
     type: 'link',
     description: 'User management services and pages for the console application',
-  },
-  {
-    name: 'Global Documents',
-    href: '/documents',
-    type: 'link',
-    description: 'Internal documents management services and pages for the console application',
   },
   {
     name: 'Localization (i18n)',
     href: '/messages',
     type: 'link',
     description: 'Internal messages management services and pages for the console application',
+  },
+  {
+    name: 'Logs',
+    href: '/logs',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Security',
+    href: '/security',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Screen Manager',
+    href: '/screen-manager',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'My Clients',
+    href: '/my-clients',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'My Team',
+    href: '/my-clients',
+    type: 'link',
+    description: 'Coming soon...',
   },
   {
     name: 'Experimental Features',
@@ -36,8 +60,61 @@ export const consoleNavigation = [
       {
         name: 'Checkbox Unique Conditions',
         href: '/experimental/endless-checkboxes-unique-conditions',
-      }
+      },
     ],
+  },
+  {
+    name: 'Internal Apps',
+    type: 'section',
+    description: 'External api services used within the console application for tenant management and deployment management',
+  },
+  {
+    name: 'Documents',
+    href: '/documents',
+    type: 'link',
+    description: 'Internal documents management services and pages for the console application',
+  },
+  {
+    name: 'Media Manager',
+    href: '/media',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Messages',
+    href: '/direct-messages',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Projects',
+    href: '/projects',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Invoices',
+    href: '/invoices',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Help Desk',
+    href: '/help-desk',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Forms',
+    href: '/forms',
+    type: 'link',
+    description: 'Coming soon...',
+  },
+  {
+    name: 'Analytics',
+    href: '/forms',
+    type: 'link',
+    description: 'Coming soon...',
   },
   {
     name: 'External Services',
@@ -45,7 +122,7 @@ export const consoleNavigation = [
     description: 'External api services used within the console application for tenant management and deployment management',
   },
   {
-    name: 'Hosting & Git',
+    name: 'Hosting',
     href: '/hosting',
     type: 'link',
     description: 'Git history. Vercel hosting services and deployments. Also includes domain management, tenant management and deployment management.',
@@ -60,11 +137,20 @@ export const consoleNavigation = [
         href: '/hosting/domains',
         description: 'Domain management services and pages for the console application',
       },
-      {
-        name: 'Recent Deployments',
-        href: '/hosting/deployments',
-        description: 'Deployment management services and pages for the console application',
-      },
     ],
-  }
+  },
+  {
+    name: 'Recent Deployments',
+    type: 'link',
+    href: '/hosting/deployments',
+    description: 'Deployment management services and pages for the console application',
+  },
+  {
+    name: '3rd Party Services',
+    type: 'link',
+    href: '/3rd-party-services',
+    description: 'Coming soon...',
+  },
+
+
 ]

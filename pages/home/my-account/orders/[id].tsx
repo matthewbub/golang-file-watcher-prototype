@@ -338,7 +338,7 @@ export default function Example() {
                     <select
                       id="desktop-currency"
                       name="currency"
-                      className="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
+                      className="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium txt1 focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
                     >
                       {currencies.map((currency) => (
                         <option key={currency}>{currency}</option>
@@ -351,16 +351,16 @@ export default function Example() {
                 </div>
               </form>
 
-              <p className="flex-1 text-center text-sm font-medium text-white lg:flex-none">
+              <p className="flex-1 text-center text-sm font-medium txt1 lg:flex-none">
                 Get free delivery on orders over $100
               </p>
 
               <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                <a href="#" className="text-sm font-medium txt1 hover:text-gray-100">
                   Create an account
                 </a>
                 <span className="h-6 w-px bg-gray-600" aria-hidden="true" />
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                <a href="#" className="text-sm font-medium txt1 hover:text-gray-100">
                   Sign in
                 </a>
               </div>

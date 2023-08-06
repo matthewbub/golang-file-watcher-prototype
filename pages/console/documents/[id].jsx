@@ -3,7 +3,6 @@ import { get } from 'lodash';
 import StarterKit from '@tiptap/starter-kit'
 import { useEditor, EditorContent } from '@tiptap/react'
 
-
 import { ConsoleLayout } from '@/components/ConsoleLayout';
 import { ConfigurableForm } from '@/components/ConfigurableForm';
 import { EllipsisIcon } from '@/components/Icons';

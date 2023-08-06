@@ -6,7 +6,7 @@ const MultiColumnFormWrapper: FC<MultiColumnFormWrapperProps> = ({ title, descri
     <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
       <div>
         {title && title.length > 0 && (
-          <h2 className="text-base font-semibold leading-7 text-white">
+          <h2 className="text-base font-semibold leading-7 txt1" >
             {title}
           </h2>
         )}

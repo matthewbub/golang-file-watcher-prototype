@@ -767,7 +767,7 @@ export default function Example() {
                             size.inStock ? 'cursor-pointer focus:outline-none' : 'cursor-not-allowed opacity-25',
                             active ? 'ring-2 ring-indigo-500 ring-offset-2' : '',
                             checked
-                              ? 'border-transparent bg-indigo-600 text-white hover:bg-indigo-700'
+                              ? 'border-transparent bg-indigo-600 txt1 hover:bg-indigo-700'
                               : 'border-gray-200 bg-white text-gray-900 hover:bg-gray-50',
                             'flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1'
                           )
@@ -783,7 +783,7 @@ export default function Example() {
 
               <button
                 type="submit"
-                className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium txt1 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Add to cart
               </button>
@@ -995,7 +995,7 @@ export default function Example() {
                   <div className="ml-4 flex-shrink-0">
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium txt1 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Sign up
                     </button>

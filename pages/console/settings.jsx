@@ -25,7 +25,7 @@ const AvatarForm = () => {
           <div>
             <button
               type="button"
-              className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+              className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-white/20"
             >
               Change avatar
             </button>
@@ -46,7 +46,7 @@ const ProfileSettingsForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="md:col-span-2">
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-white">
+          <label htmlFor="first-name" className="block text-sm font-medium leading-6 txt1" >
             First name
           </label>
           <div className="mt-2">
@@ -55,13 +55,13 @@ const ProfileSettingsForm = () => {
               name="first-name"
               id="first-name"
               autoComplete="given-name"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <div className="sm:col-span-3">
-          <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-white">
+          <label htmlFor="last-name" className="block text-sm font-medium leading-6 txt1" >
             Last name
           </label>
           <div className="mt-2">
@@ -70,13 +70,13 @@ const ProfileSettingsForm = () => {
               name="last-name"
               id="last-name"
               autoComplete="family-name"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <div className="col-span-full">
-          <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
+          <label htmlFor="email" className="block text-sm font-medium leading-6 txt1" >
             Email address
           </label>
           <div className="mt-2">
@@ -85,13 +85,13 @@ const ProfileSettingsForm = () => {
               name="email"
               type="email"
               autoComplete="email"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <div className="col-span-full">
-          <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
+          <label htmlFor="username" className="block text-sm font-medium leading-6 txt1" >
             Username
           </label>
           <div className="mt-2">
@@ -104,7 +104,7 @@ const ProfileSettingsForm = () => {
                 name="username"
                 id="username"
                 autoComplete="username"
-                className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-white focus:ring-0 sm:text-sm sm:leading-6"
+                className="flex-1 border-0 bg-transparent py-1.5 pl-1 txt1 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="janesmith"
               />
             </div>
@@ -112,14 +112,14 @@ const ProfileSettingsForm = () => {
         </div>
 
         <div className="col-span-full">
-          <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-white">
+          <label htmlFor="timezone" className="block text-sm font-medium leading-6 txt1" >
             Timezone
           </label>
           <div className="mt-2">
             <select
               id="timezone"
               name="timezone"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
             >
               <option>Pacific Standard Time</option>
               <option>Eastern Standard Time</option>
@@ -132,7 +132,7 @@ const ProfileSettingsForm = () => {
       <div className="mt-8 flex">
         <button
           type="submit"
-          className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         >
           Save
         </button>
@@ -167,7 +167,7 @@ const Primary = () => {
       <div className="divide-y divide-white/5">
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
           <div>
-            <h2 className="text-base font-semibold leading-7 text-white">{'Profile Picture'}</h2>
+            <h2 className="text-base font-semibold leading-7 txt1" >{'Profile Picture'}</h2>
             <p className="mt-1 text-sm leading-6 text-gray-400">{'Update your profile picture.'}</p>
           </div>
 
@@ -176,7 +176,7 @@ const Primary = () => {
 
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
           <div>
-            <h2 className="text-base font-semibold leading-7 text-white">Personal Information</h2>
+            <h2 className="text-base font-semibold leading-7 txt1" >Personal Information</h2>
             <p className="mt-1 text-sm leading-6 text-gray-400">
               Use a permanent address where you can receive mail.
             </p>
@@ -187,7 +187,7 @@ const Primary = () => {
 
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
           <div>
-            <h2 className="text-base font-semibold leading-7 text-white">Change password</h2>
+            <h2 className="text-base font-semibold leading-7 txt1" >Change password</h2>
             <p className="mt-1 text-sm leading-6 text-gray-400">
               Update your password associated with your account.
             </p>
@@ -196,7 +196,7 @@ const Primary = () => {
           <form className="md:col-span-2">
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
               <div className="col-span-full">
-                <label htmlFor="current-password" className="block text-sm font-medium leading-6 text-white">
+                <label htmlFor="current-password" className="block text-sm font-medium leading-6 txt1" >
                   Current password
                 </label>
                 <div className="mt-2">
@@ -205,13 +205,13 @@ const Primary = () => {
                     name="current_password"
                     type="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
 
               <div className="col-span-full">
-                <label htmlFor="new-password" className="block text-sm font-medium leading-6 text-white">
+                <label htmlFor="new-password" className="block text-sm font-medium leading-6 txt1" >
                   New password
                 </label>
                 <div className="mt-2">
@@ -220,13 +220,13 @@ const Primary = () => {
                     name="new_password"
                     type="password"
                     autoComplete="new-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
 
               <div className="col-span-full">
-                <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-white">
+                <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 txt1" >
                   Confirm password
                 </label>
                 <div className="mt-2">
@@ -235,7 +235,7 @@ const Primary = () => {
                     name="confirm_password"
                     type="password"
                     autoComplete="new-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -244,7 +244,7 @@ const Primary = () => {
             <div className="mt-8 flex">
               <button
                 type="submit"
-                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
                 Save
               </button>
@@ -254,7 +254,7 @@ const Primary = () => {
 
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
           <div>
-            <h2 className="text-base font-semibold leading-7 text-white">Log out other sessions</h2>
+            <h2 className="text-base font-semibold leading-7 txt1" >Log out other sessions</h2>
             <p className="mt-1 text-sm leading-6 text-gray-400">
               Please enter your password to confirm you would like to log out of your other sessions across all of
               your devices.
@@ -264,7 +264,7 @@ const Primary = () => {
           <form className="md:col-span-2">
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
               <div className="col-span-full">
-                <label htmlFor="logout-password" className="block text-sm font-medium leading-6 text-white">
+                <label htmlFor="logout-password" className="block text-sm font-medium leading-6 txt1" >
                   Your password
                 </label>
                 <div className="mt-2">
@@ -273,7 +273,7 @@ const Primary = () => {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -282,7 +282,7 @@ const Primary = () => {
             <div className="mt-8 flex">
               <button
                 type="submit"
-                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
                 Log out other sessions
               </button>
@@ -292,7 +292,7 @@ const Primary = () => {
 
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
           <div>
-            <h2 className="text-base font-semibold leading-7 text-white">Delete account</h2>
+            <h2 className="text-base font-semibold leading-7 txt1" >Delete account</h2>
             <p className="mt-1 text-sm leading-6 text-gray-400">
               No longer want to use our service? You can delete your account here. This action is not reversible.
               All information related to this account will be deleted permanently.
@@ -302,7 +302,7 @@ const Primary = () => {
           <form className="flex items-start md:col-span-2">
             <button
               type="submit"
-              className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400"
+              className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-red-400"
             >
               Yes, delete my account
             </button>
