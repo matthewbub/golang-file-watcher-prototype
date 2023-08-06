@@ -1,5 +1,5 @@
-import { supabase } from '@/connections';
-import { sspWithAuth } from "@/helpers";
+import { supabase } from '../../connections';
+import { sspWithAuth } from "../../helpers";
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   const { data, error } = await supabase.from('users').select('created_at, email, id, phone');

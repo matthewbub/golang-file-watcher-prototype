@@ -110,5 +110,7 @@ const Page = ({ id, form, data, documentTitle }) => {
   )
 }
 
-export { getServerSideProps } from '@/ssp/console/documents/id';
+
+export { getServerSideProps } from '../../ssp/console/documents/id';
+
 export default Page;

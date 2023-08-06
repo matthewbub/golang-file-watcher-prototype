@@ -170,5 +170,7 @@ const Page = ({ primaryTitle, secondaryTitle, data }) => (
   />
 )
 
-export { getServerSideProps } from '@/ssp/console/documents/index';
+
+export { getServerSideProps } from '../../../ssp/console/documents/index';
+
 export default Page;
