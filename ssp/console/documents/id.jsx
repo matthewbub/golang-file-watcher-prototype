@@ -32,6 +32,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
     .single();
 
 
+  console.log('data', screenData);
   // TODO - handle error
 
   if (error || screenError) {
@@ -43,7 +44,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
       primaryTitle: 'Documents',
       id: id,
       data: data,
-      documentTitle: data.documents[0].document_title || 'Untitled Document',
+      documentTitle: data?.documents[0]?.document_title || 'Untitled Document',
       form: {
         formTitle: 'Modify Document',
         formDescription: 'Modify Document Description',
@@ -51,7 +52,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
           {
             label: 'Document Title',
             name: 'document_title',
-            defaultValue: data.documents[0].document_title || 'Untitled Document',
+            defaultValue: data?.documents[0]?.document_title || 'Untitled Document',
             type: 'text',
             className: 'col-span-12',
             field: 'Input'
@@ -59,7 +60,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
           {
             label: 'Screen',
             name: 'screen',
-            defaultValue: screenData ? screenData.screen_title : '',
+            defaultValue: screenData ? screenData?.name : '',
             type: 'text',
             className: 'col-span-12',
             field: 'Input'
@@ -70,7 +71,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
             type: 'select',
             className: 'col-span-12',
             field: 'Select',
-            defaultValue: data.documents[0].visibility || 'public',
+            defaultValue: data?.documents[0]?.visibility || 'public',
             options: [
               {
                 name: 'Public',
@@ -88,7 +89,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
           {
             label: 'Page Title (SEO)',
             name: 'page_title',
-            defaultValue: data.documents[0].page_title || '',
+            defaultValue: data?.documents[0]?.page_title || '',
             type: 'text',
             className: 'col-span-12',
             field: 'Input'
@@ -96,7 +97,7 @@ export const getServerSideProps = sspWithAuth(async (context) => {
           {
             label: 'Document Description (SEO)',
             name: 'document_description',
-            defaultValue: data.documents[0].document_description || '',
+            defaultValue: data?.documents[0]?.document_description || '',
             type: 'text',
             className: 'col-span-12',
             field: 'TextArea'
