@@ -8,5 +8,5 @@ export { useRCIfNonEmptyString } from './useRCIfNonEmptyString';
 export { default as useWindowDimensions } from './useWindowDimensions';
 export {
   getSessionExpiryMessage
-} from './day';
+} from './getSessionExpiryMessage';
 export { sspWithAuth } from './sspWithAuth';

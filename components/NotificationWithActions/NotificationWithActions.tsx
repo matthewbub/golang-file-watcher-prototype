@@ -1,6 +1,7 @@
 import { FC, Fragment, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { NotificationWithActionsProps } from './NotificationWithActions.interfaces';
+import React from 'react';
 
 const NotificationWithActions: FC<NotificationWithActionsProps> = ({
   show = false,
@@ -44,7 +45,7 @@ const NotificationWithActions: FC<NotificationWithActionsProps> = ({
                 <div className="flex h-0 flex-1">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-center rounded-none rounded-tr-lg border border-transparent px-4 py-3 text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="flex w-full items-center justify-center rounded-none rounded-tr-lg border border-transparent px-4 py-3 text-sm font-medium text-teal-500 hover:underline focus:z-10 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     onClick={primaryAction}
                   >
                     {primaryActionLabel}
@@ -53,7 +54,7 @@ const NotificationWithActions: FC<NotificationWithActionsProps> = ({
                 <div className="flex h-0 flex-1">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-center rounded-none rounded-br-lg border border-transparent px-4 py-3 text-sm font-medium text-gray-300 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="flex w-full items-center justify-center rounded-none rounded-br-lg border border-transparent px-4 py-3 text-sm font-medium text-gray-300 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     onClick={secondaryAction}
                   >
                     {secondaryActionLabel}

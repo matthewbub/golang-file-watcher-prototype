@@ -1,5 +1,5 @@
 import { SideNavigation, navigation as fallBackNavigation } from './AppNavigation';
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
@@ -21,11 +21,16 @@ export const ConsoleLayout = ({
   primaryTitleDescription = null
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [sessionTimeoutNotification, setSessionTimeoutNotification] = useState(true);
+  const [sessionTimeoutNotification, setSessionTimeoutNotification] = useState(false);
   const { session } = useSessionStore();
   const router = useRouter();
 
-  console.log('session', session);
+  useEffect(() => {
+    if (session?.expires) {
+      setSessionTimeoutNotification(true);
+    }
+  }, [session?.expires])
+
   return (
     <AuthWrapper>
       <div className='min-h-screen bg-neutral-950'>
@@ -185,9 +190,12 @@ export const ConsoleLayout = ({
         title="Inactivity timeout warning"
         description={session?.expires}
         primaryActionLabel='Renew session'
-        primaryAction={() => {
-
-          setSessionTimeoutNotification(false);
+        primaryAction={async () => {
+          const response = await fetch('/api/v1/secure/renew-session/console');
+          const data = await response.json();
+          if (data.ok) {
+            setSessionTimeoutNotification(false);
+          }
         }}
         secondaryActionLabel='Sign out'
         secondaryAction={async () => {

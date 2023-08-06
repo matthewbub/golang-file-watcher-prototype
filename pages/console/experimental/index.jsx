@@ -1,8 +1,5 @@
-import { supabase } from '@/supabase.config';
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { FullNavigation, navigation } from '../../../components/AppNavigation';
+import { ConsoleLayout } from '@/components/ConsoleLayout';
+import { FullNavigation, navigation } from '@/components/AppNavigation';
 
 const Page = ({ primaryTitle, secondaryTitle }) => {
   return (
@@ -10,7 +7,7 @@ const Page = ({ primaryTitle, secondaryTitle }) => {
       primaryTitle={primaryTitle}
       secondaryTitle={secondaryTitle}
       navigation={navigation}
-      primary={() => <FullNavigation navigation={navigation.find(nav => nav.name === 'Experimental').children} />}
+      primary={() => <FullNavigation navigation={navigation.find(nav => nav.name === 'Experimental Features').children} />}
       breadcrumbs={[
         { name: 'Experimental', href: '/experimental', current: true }
       ]}
@@ -18,5 +15,5 @@ const Page = ({ primaryTitle, secondaryTitle }) => {
   )
 }
 
-export { getServerSideProps } from '../../../ssp/console/experimental/experimental__home';
+export { getServerSideProps } from '@/ssp/console/experimental/experimental__home';
 export default Page;
