@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .bg1 {
+    @apply bg-neutral-950;
+  }
+  .bg2 {
+    @apply bg-neutral-900;
+  }
+  .bg3 {
+    @apply bg-neutral-800;
+  }
+  .txt1 {
+    @apply text-white;
+  }
+  .txt2 {
+    @apply text-neutral-300;
+  }
+  .txt3 {
+    @apply text-neutral-500/50;
+  }
+  .a1 {
+    @apply text-cyan-400 hover:underline;
+  }
+  .brdr1 {
+    @apply border-white/5;
+  }
+  .out1 {
+    @apply outline-white/5;
+  }
+}
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  
+  /* remove this whole :root and put in your global css file that's shared on all pages, then just remove this section from all other Stitches you add later, only need this once in your global stylesheet */
+  --primary: #00715D;
+  --primaryLight: #d8673d;
+  --secondary: #FDD65B;
+  --secondaryLight: #FFBA43;
+  --headerColor: #1a1a1a;
+  --bodyTextColor: #4E4B66;
+  --bodyTextColorWhite: #FAFBFC;
+  /* 13px - 16px */
+  --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
+  /* 31px - 49px */
+  --headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem);
+  --bodyFontSize: 1rem;
+  /* 60px - 100px top and bottom */
+  --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;  
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
