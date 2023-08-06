@@ -1,10 +1,5 @@
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import { dayjs } from '@/helpers';
 import { get } from 'lodash';
-
-dayjs.locale('en');
-dayjs.extend(relativeTime);
 
 interface DecodedToken {
   exp: number;

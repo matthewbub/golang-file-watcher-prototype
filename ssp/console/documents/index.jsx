@@ -1,10 +1,6 @@
-import { supabase } from '../../../supabase.config';
+import { supabase } from '@/supabase.config';
 import jwt from 'jsonwebtoken';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.locale('en');
-dayjs.extend(relativeTime);
+import { dayjs } from '@/helpers';
 import { sspWithAuth } from '@/helpers/sspWithAuth';
 import { get } from 'lodash';
 

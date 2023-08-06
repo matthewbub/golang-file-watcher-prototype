@@ -1,11 +1,7 @@
 import { get } from 'lodash';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import { dayjs } from '@/helpers';
 import jwt from 'jsonwebtoken';
 
-dayjs.locale('en');
-dayjs.extend(relativeTime);
 
 import { withAuthApiWrapper as withAuth } from '@/helpers/withAuthApiWrapper';
 

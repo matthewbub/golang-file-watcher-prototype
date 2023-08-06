@@ -1,13 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { supabase } from '@/supabase.config';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import { dayjs, getSessionExpiryMessage } from '@/helpers';
 import { get } from 'lodash';
-import { getSessionExpiryMessage } from '@/helpers';
-
-dayjs.locale('en');
-dayjs.extend(relativeTime);
 
 const unauthorized = {
   ok: false,

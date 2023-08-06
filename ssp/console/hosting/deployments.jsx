@@ -1,11 +1,6 @@
 import { get } from 'lodash';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { sspWithAuth } from '@/helpers';
+import { dayjs, sspWithAuth } from '@/helpers';
 
-dayjs.locale('en');
-dayjs.extend(relativeTime);
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   const vercelToken = process.env.NEXT_PUBLIC_VERCEL_TOKEN;

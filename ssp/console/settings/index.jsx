@@ -1,11 +1,7 @@
 import { supabase } from '@/supabase.config';
 import jwt from 'jsonwebtoken';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { sspWithAuth } from '@/helpers';
-dayjs.locale('en');
-dayjs.extend(relativeTime);
+import { dayjs, sspWithAuth } from '@/helpers';
+
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   const token = context.req.cookies.accessToken;
