@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { Button, Input, Modal } from '@/components';
+import { Button, Input, Modal } from '@/src/components';
 
-import { ConsoleLayout } from '@/components/ConsoleLayout';
-import { SlideOver } from '@/components/SlideOver';
-import { Select } from '@/components/Select/Select';
+import { ConsoleLayout } from '@/src/components/ConsoleLayout';
+import { SlideOver } from '@/src/components/SlideOver';
+import { Select } from '@/src/components/Select/Select';
 
 export const isStrongPassword = (password) => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

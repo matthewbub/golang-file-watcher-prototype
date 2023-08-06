@@ -6,7 +6,7 @@ import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx';
 import { HomeIcon } from '@heroicons/react/20/solid'
 import { AuthWrapper } from './AuthWrapper';
-import { NotificationWithActions } from '@/components/NotificationWithActions';
+import { NotificationWithActions } from '@/src/components/NotificationWithActions';
 import { useSessionStore } from '@/stores/session.store';
 import { useRouter } from 'next/router';
 

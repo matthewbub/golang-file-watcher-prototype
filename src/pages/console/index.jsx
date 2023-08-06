@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { ConsoleLayout } from '../../components/ConsoleLayout';
-import { FullNavigation, navigation } from '../../components/AppNavigation';
+import { ConsoleLayout } from '../../src/components/ConsoleLayout';
+import { FullNavigation, navigation } from '../../src/components/AppNavigation';
 
 const HomePage = ({ primaryTitle, secondaryTitle }) => {
   return (

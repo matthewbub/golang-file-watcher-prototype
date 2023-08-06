@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { MultiColumnFormWrapper } from '@/components/MultiColumnFormWrapper'
+import { MultiColumnFormWrapper } from '@/src/components/MultiColumnFormWrapper'
 
 const HelloWorld = () => <>{'I\'m a make-believe form!'}</>
 const MockMultiColumnFormWrapper = () => (

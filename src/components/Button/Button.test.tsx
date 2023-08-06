@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { axe, toHaveNoViolations } from 'jest-axe'
-import { Button } from '@/components/Button'
+import { Button } from '@/src/components/Button'
 
 // Extend the expect function with the toHaveNoViolations matcher
 expect.extend(toHaveNoViolations)

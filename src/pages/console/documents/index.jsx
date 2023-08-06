@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import PathHandler from '@/helpers/PathHandler';
 
-import { ConsoleLayout } from '@/components/ConsoleLayout';
-import { navigation } from '@/components/AppNavigation';
-import { Stats } from '@/components/Stats';
-import { Button } from '@/components';
+import { ConsoleLayout } from '@/src/components/ConsoleLayout';
+import { navigation } from '@/src/components/AppNavigation';
+import { Stats } from '@/src/components/Stats';
+import { Button } from '@/src/components';
 import { baseClassNames } from '@/helpers/constants';
 import { useWindowDimensions } from '@/helpers';
 

@@ -1,37 +1,8 @@
-import { ConsoleLayout } from '../../../components/ConsoleLayout';
-import { navigation } from '../../../components/AppNavigation';
-import React, { useEffect, useState } from 'react';
+import { ConsoleLayout } from '../../../src/components/ConsoleLayout';
+import { navigation } from '../../../src/components/AppNavigation';
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-function generateStressTest(numberOfOptions = 10) {
-  // Function to generate random boolean values for conditionA and conditionB
-  function getRandomBoolean() {
-    return Math.random() < 0.5; // 50% chance of true, 50% chance of false
-  }
-
-  // Function to create checkboxOptionsData dynamically
-  function createCheckboxOptionsData(optionCount) {
-    const checkboxOptionsData = {};
-    for (let i = 1; i <= optionCount; i++) {
-      const optionId = `ID-${i}`;
-      checkboxOptionsData[optionId] = {
-        conditionA: getRandomBoolean(),
-        conditionB: getRandomBoolean(),
-      };
-    }
-    return checkboxOptionsData;
-  }
-
-  const checkboxOptionsData = createCheckboxOptionsData(numberOfOptions);
-
-
-  return {
-    checkboxOptions: ['all', ...Object.keys(checkboxOptionsData)],
-    checkboxOptionsData,
-  }
-}
-// Mock data for stress testing
-const { checkboxOptions, checkboxOptionsData } = generateStressTest(10000);
 
 const Checkbox = ({ checked, onChange, value, name }) => {
   return (
@@ -72,59 +43,66 @@ const FormControlLabel = ({ control, label }) => {
   );
 };
 
+const checkboxOptions = [
+  "all",
+  "ID-123",
+  "ID-124",
+  "ID-125",
+  "ID-126",
+  "ID-127",
+  "ID-128",
+  "ID-129",
+  "ID-130",
+  "ID-131",
+  "ID-132",
+];
+
+const checkboxOptionsData = {
+  "ID-123": {
+    conditionA: true,
+    conditionB: false,
+  },
+  "ID-124": {
+    conditionA: false,
+    conditionB: true,
+  },
+  "ID-125": {
+    conditionA: false,
+    conditionB: false,
+  },
+  "ID-126": {
+    conditionA: true,
+    conditionB: true,
+  },
+  "ID-127": {
+    conditionA: false,
+    conditionB: true,
+  },
+  "ID-128": {
+    conditionA: true,
+    conditionB: false,
+  },
+  "ID-129": {
+    conditionA: false,
+    conditionB: true,
+  },
+  "ID-130": {
+    conditionA: true,
+    conditionB: true,
+  },
+  "ID-131": {
+    conditionA: true,
+    conditionB: true,
+  },
+  "ID-132": {
+    conditionA: false,
+    conditionB: false,
+  },
+};
+
 const Primary = () => {
-  const { handleSubmit, control, watch, setValue } = useForm();
+  const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log("SUBMIT: ", data);
-  const [touchedCheckbox, setTouchedCheckbox] = useState({
-    name: null,
-    value: null,
-  });
-  const watchedCheckboxes = watch("checkboxes");
-
-  useEffect(() => {
-    if (!touchedCheckbox.name) {
-      return;
-    }
-
-    const checkboxesToSet = [];
-
-    // Conditional logic for checkbox options
-    if (touchedCheckbox.value && checkboxOptionsData[touchedCheckbox.name]?.conditionA) {
-
-      // Collect all checkboxes that meet the conditional criteria
-      const checkboxesWithConditionA = Object.keys(checkboxOptionsData).filter(
-        (key) => checkboxOptionsData[key].conditionA || watchedCheckboxes.includes(key)
-      );
-
-      // Add all checkboxes that meet the conditional criteria to the array of checkboxes to set
-      checkboxesToSet.push(...checkboxesWithConditionA);
-
-      // Create a new array of unique checkboxes to set
-      const uniqueCheckboxesToSet = [...new Set(checkboxesToSet)];
-
-      // Set the checkboxes via batch updates
-      setValue("checkboxes", uniqueCheckboxesToSet);
-
-      // Reset the touched checkbox
-      setTouchedCheckbox({
-        name: null,
-        value: null,
-      });
-    } else if (touchedCheckbox.name !== 'all' && !touchedCheckbox.value) {
-      // If the checkbox doesn't meet the conditional criteria, remove it from the array of checkboxes
-      const filteredCheckboxes = watchedCheckboxes.filter(
-        (checkbox) => checkbox !== touchedCheckbox
-      );
-
-      setValue("checkboxes", filteredCheckboxes);
-
-      // Reset the touched checkbox
-      setTouchedCheckbox({
-        name: null,
-        value: null,
-      });
-    }
-  }, [touchedCheckbox]);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
@@ -141,10 +119,6 @@ const Primary = () => {
           };
 
           const handleSingleOptionChange = (event, field) => {
-            setTouchedCheckbox({
-              name: event.target.value,
-              value: event.target.checked,
-            });
             const { value, checked } = event.target;
             let newFieldValue = checked
               ? [...field.value, value]
