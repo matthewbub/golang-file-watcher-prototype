@@ -1,4 +1,4 @@
-import { sspWithAuth } from "@/helpers"
+import { sspWithAuth } from "../../helpers"
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   return {

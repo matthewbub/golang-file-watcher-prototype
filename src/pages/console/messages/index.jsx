@@ -38,5 +38,5 @@ const Page = ({ primaryTitle, form }) => {
   )
 }
 
-export { getServerSideProps } from '@/ssp/console/messages/index';
+export { getServerSideProps } from '../../../ssp/console/messages/index';
 export default Page;

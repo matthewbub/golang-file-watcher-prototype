@@ -155,7 +155,7 @@ function Primary({ deployments = [] }) {
   )
 }
 
-export { getServerSideProps } from '@/ssp/console/hosting/deployments';
+export { getServerSideProps } from '../../../ssp/console/hosting/deployments';
 export default function Page({ deployments, consoleLayout }) {
   return (
     <ConsoleLayout

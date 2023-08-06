@@ -1,4 +1,4 @@
-import { sspWithAuth } from '@/helpers';
+import { sspWithAuth } from '../../helpers';
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   const vercelToken = process.env.NEXT_PUBLIC_VERCEL_TOKEN;

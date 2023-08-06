@@ -326,5 +326,5 @@ const Page = (props) => {
   )
 }
 
-export { getServerSideProps } from '@/ssp/console/settings/index';
+export { getServerSideProps } from '../../ssp/console/settings/index';
 export default Page;
