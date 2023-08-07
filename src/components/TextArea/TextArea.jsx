@@ -1,4 +1,4 @@
-import FieldWrapper from '../FieldWrapper'
+import { FieldWrapper } from '../FieldWrapper'
 
 /**
  * Input component for form fields.
@@ -12,7 +12,7 @@ import FieldWrapper from '../FieldWrapper'
  * @param {Function} props.register - The register function from a form library to bind the input field.
  * @returns {JSX.Element} The rendered Input component.
  */
-export default function TextArea({
+const TextArea = ({
   name,
   label,
   placeholder,
@@ -21,7 +21,7 @@ export default function TextArea({
   className,
   defaultValue,
   ...rest
-}) {
+}) => {
   return (
     <FieldWrapper
       label={label}
@@ -39,3 +39,5 @@ export default function TextArea({
     </FieldWrapper>
   )
 }
+
+export default TextArea;
