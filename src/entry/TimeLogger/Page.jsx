@@ -1,29 +1,48 @@
-import { ConsoleLayout, Input, Button, TextArea } from '../../components';
+import { ConsoleLayout, Input, Button, TextArea, Select } from '../../components';
 import InitialClientEx from "./InitialClientEx";
 import { useForm } from 'react-hook-form';
-
-const Page = ({ consoleLayout = {
-  title: "Page",
-  description: "Page description"
-} }) => {
+import { formatTime } from '../../constants';
+import clsx from 'clsx';
+import { ProjectForm, TimeLogForm, TableDisplay } from './components';
+import { Fragment } from 'react';
+const Page = ({
+  consoleLayout,
+  secondaryTabs = 'log'
+}) => {
   const { register } = useForm();
+
   return (
     <InitialClientEx>
       <ConsoleLayout {...consoleLayout}
-        primary={() => {
+        primary={() => (
+          <TableDisplay />
+        )}
+        secondary={() => {
           return (
-            <div className='container-padding'>
-              <h1 className='txt1 text-2xl'>New Time</h1>
-              <ul>
-                <li>
-                  <div>
-
-                    <Input label='Start' register={register} name="hello" />
-                    <TextArea label='Description' register={register} name="a" />
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <Fragment>
+              <div className="border-b border-white/20">
+                <nav className="-mb-px flex space-x-2 container-padding-x" aria-label="Tabs">
+                  {secondaryTabs.map((tab) => (
+                    <a
+                      key={tab.name}
+                      href={tab.href}
+                      className={clsx(
+                        tab.current
+                          ? 'border-teal-500 text-teal-600'
+                          : 'border-transparent text-gray-500 hover:border-white/30 hover:text-gray-700',
+                        'whitespace-nowrap border-b-2 h-11 px-1 text-sm font-medium flex items-center'
+                      )}
+                      aria-current={tab.current ? 'page' : undefined}
+                    >
+                      {tab.name}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+              <div className='container-padding'>
+                {secondaryTabs.find(tab => tab.current === true).key === 'log' ? <TimeLogForm /> : <ProjectForm />}
+              </div>
+            </Fragment>
           )
         }}
       />

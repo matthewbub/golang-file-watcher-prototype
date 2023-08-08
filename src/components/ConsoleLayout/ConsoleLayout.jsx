@@ -93,7 +93,7 @@ const ConsoleLayout = ({
 
         <div className="xl:pl-72">
           {/* Sticky search header */}
-          <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-neutral-900 px-4 shadow-sm sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/20 bg-neutral-900 px-4 shadow-sm sm:px-6 lg:px-8">
             <button type="button" className="-m-2.5 p-2.5 txt1 xl:hidden" onClick={() => setSidebarOpen(true)}>
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-5 w-5" aria-hidden="true" />
@@ -122,7 +122,7 @@ const ConsoleLayout = ({
           </div>
 
           <main className={clsx(secondary && "lg:pr-96")}>
-            <nav className="flex border-b bg-neutral-950 border-white/5" aria-label="Breadcrumb">
+            <nav className="flex border-b bg-neutral-950 border-white/20" aria-label="Breadcrumb">
               <ol role="list" className="mx-auto flex w-full space-x-4 px-4 sm:px-6 lg:px-8">
                 <li className="flex h-11">
                   <div className="flex items-center">
@@ -136,7 +136,7 @@ const ConsoleLayout = ({
                   <li key={page.name} className="flex">
                     <div className="flex items-center">
                       <svg
-                        className="h-full w-6 flex-shrink-0 text-white/5"
+                        className="h-full w-6 flex-shrink-0 text-white/20"
                         viewBox="0 0 24 44"
                         preserveAspectRatio="none"
                         fill="currentColor"
@@ -157,7 +157,7 @@ const ConsoleLayout = ({
               </ol>
             </nav>
 
-            <header className="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+            <header className="flex items-center justify-between border-b border-white/20 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
               <div className="px-4 sm:px-0">
                 {primaryTitle && primaryTitle.length > 0 && (<h1 className="text-base font-semibold leading-7 txt1" >{primaryTitle}</h1>)}
                 {primaryTitleDescription && primaryTitleDescription.length > 0 && (<p className="mt-1 max-w-2xl text-sm leading-6 text-gray-400">{primaryTitleDescription}</p>)}
@@ -176,10 +176,15 @@ const ConsoleLayout = ({
 
 
           {secondary && (
-            <aside className="bg-black/10 lg:fixed lg:bottom-0 lg:right-0 lg:top-16 lg:w-96 lg:overflow-y-auto lg:border-l lg:border-white/5">
-              <header className="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
-                {(secondaryTitle && secondaryTitle.length > 0 && <h2 className="text-base font-semibold leading-7 txt1" >{secondaryTitle}</h2>)}
-              </header>
+            <aside className="bg-black/10 lg:fixed lg:bottom-0 lg:right-0 lg:top-16 lg:w-96 lg:overflow-y-auto lg:border-l lg:border-white/20">
+              {
+                secondaryTitle && secondaryTitle.length > 0 && (
+                  <header className="flex items-center justify-between border-b border-white/20 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+                    <h2 className="text-base font-semibold leading-7 txt1 block mb-5" >{secondaryTitle}</h2>
+                  </header>
+
+                )
+              }
 
               {secondary()}
             </aside>

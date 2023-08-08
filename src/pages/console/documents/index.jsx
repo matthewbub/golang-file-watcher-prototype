@@ -86,7 +86,7 @@ const Table = ({ data }) => {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/5">
+        <tbody className="divide-y divide-white/20">
           {data && data.length > 0 && data.map((document) => (
             <tr key={document.id}>
               <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
@@ -112,7 +112,7 @@ const Table = ({ data }) => {
       </table>
       <nav
         className={clsx(
-          "flex items-center justify-between border-t border-white/5 bg-neutral-900",
+          "flex items-center justify-between border-t border-white/20 bg-neutral-900",
           baseClassNames.containerPadding
         )}
         aria-label="Pagination"

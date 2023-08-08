@@ -11,7 +11,7 @@ const SideNavigation = ({ navigation = [] }) => {
   const secondaryTextColorClassName = 'text-white-100/50'
 
   return (
-    <div className="h-full flex grow flex-col gap-y-5 overflow-y-auto px-6 border-r border-white/5">
+    <div className="h-full flex grow flex-col gap-y-5 overflow-y-auto px-6 border-r border-white/20">
       <div className="flex h-16 shrink-0 items-center">
         <img
           className="h-8 w-auto"

@@ -28,7 +28,7 @@ const NotificationWithActions: FC<NotificationWithActionsProps> = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="pointer-events-auto flex w-full max-w-md divide-x divide-white/5 rounded-lg bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5">
+          <div className="pointer-events-auto flex w-full max-w-md divide-x divide-white/20 rounded-lg bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="flex w-0 flex-1 items-center p-4">
               <div className="w-full">
                 <p className="text-sm font-medium text-gray-100">
@@ -40,7 +40,7 @@ const NotificationWithActions: FC<NotificationWithActionsProps> = ({
               </div>
             </div>
             <div className="flex">
-              <div className="flex flex-col divide-y divide-white/5">
+              <div className="flex flex-col divide-y divide-white/20">
                 <div className="flex h-0 flex-1">
                   <button
                     type="button"

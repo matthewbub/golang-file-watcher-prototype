@@ -23,16 +23,22 @@
     @apply text-neutral-500/50;
   }
   .a1 {
-    @apply text-cyan-400 hover:underline;
+    @apply text-teal-500 hover:underline;
   }
   .brdr1 {
-    @apply border-white/5;
+    @apply border-white/20;
   } 
   .out1 {
-    @apply outline-white/5;
+    @apply outline-white/20;
   }
   .container-padding {
     @apply px-4 py-4 sm:px-6 sm:py-6 lg:px-8;
+  }
+  .container-padding-x {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+  .container-padding-y {
+    @apply py-4 sm:py-6;
   }
 }
 :root {

@@ -46,7 +46,7 @@ export default function HomePage() {
                 type="email"
                 autoComplete="email"
                 {...register("email", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.email && <p className="text-sm text-red-600">{errors?.email}</p>}
@@ -72,7 +72,7 @@ export default function HomePage() {
                 type="password"
                 autoComplete="current-password"
                 {...register("password", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.password && <p className="text-sm text-red-600">{errors?.password}</p>}
