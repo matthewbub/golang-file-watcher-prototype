@@ -1,4 +1,4 @@
-import { Input, Button, TextArea, Select } from '../../../components';
+import { Input, Button, TextArea, Select, TipTap } from '../../../components';
 import { Fragment } from "react"
 import { useForm } from 'react-hook-form';
 
@@ -11,7 +11,7 @@ const NewDocumentForm = () => {
         <h1 className='text-base font-semibold leading-7 txt1'>New Document</h1>
         <p className='mt-1 max-w-2xl text-sm leading-6 txt2'>Create a new document.</p>
       </div>
-      <div className='max-w-md grid gird-cols-12'>
+      <div className='max-w-lg grid gird-cols-12'>
         <Input
           label='Document Title'
           register={register}
@@ -19,7 +19,7 @@ const NewDocumentForm = () => {
           className='col-span-9'
           placeholder='Untitled Document'
         />
-        <TextArea
+        <TipTap
           label='Description'
           register={register}
           name="description"
