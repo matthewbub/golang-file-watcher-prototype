@@ -25,7 +25,7 @@ export default function HomePage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-10 w-auto"
-          src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/light_logo_only.png?t=2023-07-21T10%3A13%3A11.149Z"
+          src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/logo.png"
           alt="IE Portals"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight txt1" >

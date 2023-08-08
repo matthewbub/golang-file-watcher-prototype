@@ -41,7 +41,7 @@ const AuthWrapper = ({ children }) => {
           <div className="flex items-center justify-center">
             <img
               className="h-16 w-auto"
-              src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/light_logo_only.png"
+              src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/logo.png"
               alt="NineMbs Studio"
             />
           </div>

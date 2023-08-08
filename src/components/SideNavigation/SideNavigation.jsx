@@ -14,8 +14,8 @@ const SideNavigation = ({ navigation = [] }) => {
     <div className="h-full flex grow flex-col gap-y-5 overflow-y-auto px-6 border-r border-white/20">
       <div className="flex h-16 shrink-0 items-center">
         <img
-          className="h-8 w-auto"
-          src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/light_logo_only.png"
+          className="h-10 w-auto"
+          src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/logo.png"
           alt="NineMbs Studio"
         />
       </div>
@@ -29,7 +29,7 @@ const SideNavigation = ({ navigation = [] }) => {
                     <li className={clsx(index !== 0 && 'mt-8')}>
                       <div className={clsx(
                         index !== 0 && 'mt-8',
-                        "flex items-center text-xs text-neutral-500/50 uppercase tracking-wider mb-4"
+                        "flex items-center text-xs text-teal-600 uppercase tracking-wider mb-4 font-bold"
                       )}>
                         {item.name}
                       </div>
