@@ -3,7 +3,7 @@ import InitialClientEx from "./InitialClientEx";
 import { useForm } from 'react-hook-form';
 import { formatTime } from '../../constants';
 import clsx from 'clsx';
-import { ProjectForm, TableDisplay } from './components';
+import { NewDocumentForm, TableDisplay } from './components';
 import { Fragment } from 'react';
 const Page = ({
   consoleLayout,
@@ -40,7 +40,7 @@ const Page = ({
                 </nav>
               </div>
               <div className='container-padding'>
-                <ProjectForm />
+                <NewDocumentForm />
               </div>
             </Fragment>
           )

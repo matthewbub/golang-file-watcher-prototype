@@ -1,2 +1,2 @@
-export { default as ProjectForm } from './ProjectForm';
+export { default as NewDocumentForm } from './NewDocumentForm';
 export { default as TableDisplay } from './TableDisplay';

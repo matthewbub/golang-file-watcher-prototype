@@ -10,6 +10,7 @@ import { consoleNavigation as fallBackNavigation } from '../../constants';
 import { AuthWrapper } from '../AuthWrapper';
 import { NotificationWithActions } from '../NotificationWithActions';
 import { useSessionStore } from '../../stores/session.store';
+import { set } from 'lodash';
 
 const ConsoleLayout = ({
   primary,
@@ -22,6 +23,7 @@ const ConsoleLayout = ({
   primaryTitleDescription = null
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [loadingSessionRenewal, setLoadingSessionRenewal] = useState(false);
   const [sessionTimeoutNotification, setSessionTimeoutNotification] = useState(false);
   const { session } = useSessionStore();
   const router = useRouter();
@@ -195,13 +197,17 @@ const ConsoleLayout = ({
         show={sessionTimeoutNotification}
         title="Inactivity timeout warning"
         description={session?.expires}
-        primaryActionLabel='Renew session'
+        primaryActionLabel={loadingSessionRenewal ? 'Loading...' : 'Renew session'}
         primaryAction={async () => {
+          setLoadingSessionRenewal(true);
           const response = await fetch('/api/v1/secure/renew-session/console');
           const data = await response.json();
           if (data.ok) {
             setSessionTimeoutNotification(false);
+            setLoadingSessionRenewal(false);
           }
+          setSessionTimeoutNotification(false);
+          setLoadingSessionRenewal(false);
         }}
         secondaryActionLabel='Sign out'
         secondaryAction={async () => {
