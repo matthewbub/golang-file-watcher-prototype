@@ -1,18 +1,15 @@
-import { useState } from 'react';
-import { get } from 'lodash';
-import { Node } from '@tiptap/core'
-import { NodeViewWrapper } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import { useEditor, EditorContent, FloatingMenu, ReactNodeViewRenderer } from '@tiptap/react'
+import React, { forwardRef } from 'react';
+import StarterKit from '@tiptap/starter-kit';
+import { useEditor, EditorContent, FloatingMenu } from '@tiptap/react';
 import clsx from 'clsx';
-import { FieldWrapper } from '../FieldWrapper'
+import { FieldWrapper } from '../FieldWrapper';
 
-const TipTap = ({
+const TipTap = forwardRef(({
   name,
   label,
   className,
   ...rest
-}) => {
+}, ref) => {
   const editor = useEditor({
     extensions: [
       StarterKit
@@ -68,11 +65,13 @@ const TipTap = ({
           </button>
         </FloatingMenu>}
         <EditorContent
+          ref={ref}
           editor={editor}
+          {...rest}
         />
       </div>
     </FieldWrapper>
   )
-}
+})
 
 export default TipTap;

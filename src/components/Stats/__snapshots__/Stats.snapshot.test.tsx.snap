@@ -3,7 +3,7 @@
 exports[`renders Stats component unchanged 1`] = `
 <div>
   <div
-    class="bg-gray-900"
+    class="bg2"
   >
     <div
       class="mx-auto"
@@ -12,10 +12,10 @@ exports[`renders Stats component unchanged 1`] = `
         class="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4"
       >
         <div
-          class="bg-neutral-950 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
+          class="bg1 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
         >
           <p
-            class="text-sm font-medium leading-6 text-neutral-500"
+            class="text-sm font-medium leading-6 txt2"
           >
             Number of deploys
           </p>
@@ -23,17 +23,17 @@ exports[`renders Stats component unchanged 1`] = `
             class="mt-2 flex items-baseline gap-x-2"
           >
             <span
-              class="text-4xl font-semibold tracking-tight txt1" 
+              class="text-4xl font-semibold tracking-tight txt1"
             >
               405
             </span>
           </p>
         </div>
         <div
-          class="bg-neutral-950 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
+          class="bg1 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
         >
           <p
-            class="text-sm font-medium leading-6 text-neutral-500"
+            class="text-sm font-medium leading-6 txt2"
           >
             Average deploy time
           </p>
@@ -41,22 +41,22 @@ exports[`renders Stats component unchanged 1`] = `
             class="mt-2 flex items-baseline gap-x-2"
           >
             <span
-              class="text-4xl font-semibold tracking-tight txt1" 
+              class="text-4xl font-semibold tracking-tight txt1"
             >
               3.65
             </span>
             <span
-              class="text-sm text-neutral-500"
+              class="text-sm txt2"
             >
               mins
             </span>
           </p>
         </div>
         <div
-          class="bg-neutral-950 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
+          class="bg1 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
         >
           <p
-            class="text-sm font-medium leading-6 text-neutral-500"
+            class="text-sm font-medium leading-6 txt2"
           >
             Number of failures
           </p>
@@ -64,17 +64,17 @@ exports[`renders Stats component unchanged 1`] = `
             class="mt-2 flex items-baseline gap-x-2"
           >
             <span
-              class="text-4xl font-semibold tracking-tight txt1" 
+              class="text-4xl font-semibold tracking-tight txt1"
             >
               3
             </span>
           </p>
         </div>
         <div
-          class="bg-neutral-950 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
+          class="bg1 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8"
         >
           <p
-            class="text-sm font-medium leading-6 text-neutral-500"
+            class="text-sm font-medium leading-6 txt2"
           >
             Success rate
           </p>
@@ -82,7 +82,7 @@ exports[`renders Stats component unchanged 1`] = `
             class="mt-2 flex items-baseline gap-x-2"
           >
             <span
-              class="text-4xl font-semibold tracking-tight txt1" 
+              class="text-4xl font-semibold tracking-tight txt1"
             >
               98.5%
             </span>

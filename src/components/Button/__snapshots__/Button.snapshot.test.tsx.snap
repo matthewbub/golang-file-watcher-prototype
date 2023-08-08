@@ -3,7 +3,7 @@
 exports[`renders Button unchanged 1`] = `
 <div>
   <button
-    class="hover:bg-indigo-700 focus:ring-indigo-500 inline-flex items-center text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm bg-indigo-600 txt1" 
+    class="hover:bg-teal-700 focus:ring-teal-500 inline-flex items-center text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm bg-teal-600 txt1"
   >
     Hello, World!
   </button>

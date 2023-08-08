@@ -1,19 +1,22 @@
-import React, { FC } from 'react'
+import React, { forwardRef, InputHTMLAttributes } from 'react'
 import clsx from 'clsx'
 import { FieldWrapper } from '../../components';
 import { InputProps } from './Input.interfaces';
 
-const Input: FC<InputProps> = ({
+interface ForwardedInputProps extends InputProps {
+  ref?: React.Ref<HTMLInputElement>;
+}
+
+const Input = forwardRef<HTMLInputElement, ForwardedInputProps>(({
   type = 'text',
   name,
   label,
   placeholder,
-  register,
   className,
   error,
   defaultValue,
   ...rest
-}) => {
+}, ref) => {
   return (
     <FieldWrapper
       label={label}
@@ -21,8 +24,8 @@ const Input: FC<InputProps> = ({
       className={className}
     >
       <input
+        ref={ref}
         type={type}
-        {...register(name)}
         placeholder={placeholder}
         className={clsx(
           'txt1 bg2',
@@ -40,6 +43,6 @@ const Input: FC<InputProps> = ({
       </div>
     </FieldWrapper>
   )
-}
+})
 
 export default Input;
