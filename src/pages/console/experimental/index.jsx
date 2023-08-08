@@ -15,7 +15,5 @@ const Page = ({ primaryTitle, secondaryTitle }) => {
   )
 }
 
-
 export { getServerSideProps } from '../../../ssp/console/experimental/experimental__home';
-
 export default Page;

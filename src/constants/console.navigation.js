@@ -87,10 +87,10 @@ export const consoleNavigation = [
     description: 'Coming soon...',
   },
   {
-    name: 'Projects',
-    href: '/projects',
+    name: 'Time Logger',
+    href: '/experimental/time-logger',
     type: 'link',
-    description: 'Coming soon...',
+    description: 'Securely track your time spent on projects.',
   },
   {
     name: 'Invoices',

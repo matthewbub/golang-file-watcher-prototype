@@ -22,7 +22,12 @@ const FieldSelect: FC<FieldSelectProps> = ({
       onBlur={onBlur}
       placeholder={placeholder}
       className={clsx(
-        "rounded-md w-full border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        'txt1 bg2',
+        'placeholder:text-neutral-500/80',
+        'ring-1 ring-inset ring-white/20',
+        'focus:ring-2 focus:ring-inset focus:ring-teal-600',
+        'block w-full rounded-md border-0 py-1.5 shadow-sm',
+        'sm:text-sm sm:leading-6'
       )}
       aria-label={ariaLabel}
       {...rest}

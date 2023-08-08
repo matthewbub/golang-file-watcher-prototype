@@ -88,7 +88,7 @@ function Primary({ deployments = [] }) {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/5">
+        <tbody className="divide-y divide-white/20">
           {deployments && deployments.length > 0 && deployments.map((item) => (
             <tr key={uniqueId(item.commit)}>
               <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
@@ -137,7 +137,7 @@ function Primary({ deployments = [] }) {
         </tbody>
       </table>
       <nav
-        className="flex items-center justify-between border-t border-white/5 bg-neutral-900 px-4 py-3 sm:px-6"
+        className="flex items-center justify-between border-t border-white/20 bg-neutral-900 px-4 py-3 sm:px-6"
         aria-label="Pagination"
       >
         <div className="hidden sm:block">
@@ -155,9 +155,7 @@ function Primary({ deployments = [] }) {
   )
 }
 
-
 export { getServerSideProps } from '../../../ssp/console/hosting/deployments';
-
 export default function Page({ deployments, consoleLayout }) {
   return (
     <ConsoleLayout

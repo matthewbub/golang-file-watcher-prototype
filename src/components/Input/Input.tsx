@@ -25,8 +25,12 @@ const Input: FC<InputProps> = ({
         {...register(name)}
         placeholder={placeholder}
         className={clsx(
-          'text-gray-900 placeholder:text-gray-900/50',
-          "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          'txt1 bg2',
+          'placeholder:text-neutral-500/80',
+          'ring-1 ring-inset ring-white/20',
+          'focus:ring-2 focus:ring-inset focus:ring-teal-600',
+          'block w-full rounded-md border-0 py-1.5 shadow-sm',
+          'sm:text-sm sm:leading-6'
         )}
         defaultValue={defaultValue}
         {...rest}

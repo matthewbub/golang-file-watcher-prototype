@@ -12,7 +12,7 @@ const Button: FC<ButtonProps> = ({
   ...rest
 }) => {
   const styleTypes = {
-    primary: "bg-indigo-600 txt1",
+    primary: "bg-teal-600 txt1",
     secondary: "bg-gray-600 txt1",
     danger: "bg-red-600 txt1",
     success: "bg-green-600 txt1",
@@ -23,7 +23,7 @@ const Button: FC<ButtonProps> = ({
   } as const;
 
   const stateStyles = {
-    primary: "hover:bg-indigo-700 focus:ring-indigo-500",
+    primary: "hover:bg-teal-700 focus:ring-teal-500",
     secondary: "hover:bg-gray-700 focus:ring-gray-500",
     danger: "hover:bg-red-700 focus:ring-red-500",
     success: "hover:bg-green-700 focus:ring-green-500",

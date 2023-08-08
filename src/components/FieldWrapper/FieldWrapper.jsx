@@ -6,10 +6,7 @@ const FieldWrapper = ({ label, name, children, className, ...rest }) => (
     {label && label.length && (
       <label
         htmlFor={name}
-        className={clsx(
-          baseClassNames.secondaryText,
-          "block text-sm font-medium leading-6"
-        )}
+        className={clsx("txt1 block text-sm font-medium leading-6")}
       >
         {label}
       </label>

@@ -14,3 +14,4 @@ export { SlideOver } from './SlideOver';
 export { Stats } from './Stats';
 export { TextArea } from './TextArea';
 export { Modal } from './Modal';
+export { TipTap } from './TipTap';

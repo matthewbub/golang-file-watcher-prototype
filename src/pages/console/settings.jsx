@@ -55,7 +55,7 @@ const ProfileSettingsForm = () => {
               name="first-name"
               id="first-name"
               autoComplete="given-name"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ const ProfileSettingsForm = () => {
               name="last-name"
               id="last-name"
               autoComplete="family-name"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ const ProfileSettingsForm = () => {
               name="email"
               type="email"
               autoComplete="email"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -95,7 +95,7 @@ const ProfileSettingsForm = () => {
             Username
           </label>
           <div className="mt-2">
-            <div className="flex rounded-md bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
+            <div className="flex rounded-md bg-white/20 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
               <span className="flex select-none items-center pl-3 text-gray-400 sm:text-sm">
                 example.com/
               </span>
@@ -119,7 +119,7 @@ const ProfileSettingsForm = () => {
             <select
               id="timezone"
               name="timezone"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
             >
               <option>Pacific Standard Time</option>
               <option>Eastern Standard Time</option>
@@ -145,7 +145,7 @@ const ProfileSettingsForm = () => {
 const Primary = () => {
   return (
     <main>
-      <header className="border-b border-white/5">
+      <header className="border-b border-white/20">
         {/* Secondary navigation */}
         <nav className="flex overflow-x-auto py-4">
           <ul
@@ -164,7 +164,7 @@ const Primary = () => {
       </header>
 
       {/* Settings forms */}
-      <div className="divide-y divide-white/5">
+      <div className="divide-y divide-white/20">
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
           <div>
             <h2 className="text-base font-semibold leading-7 txt1" >{'Profile Picture'}</h2>
@@ -205,7 +205,7 @@ const Primary = () => {
                     name="current_password"
                     type="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -220,7 +220,7 @@ const Primary = () => {
                     name="new_password"
                     type="password"
                     autoComplete="new-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -235,7 +235,7 @@ const Primary = () => {
                     name="confirm_password"
                     type="password"
                     autoComplete="new-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -273,7 +273,7 @@ const Primary = () => {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -326,7 +326,5 @@ const Page = (props) => {
   )
 }
 
-
 export { getServerSideProps } from '../../ssp/console/settings/index';
-
 export default Page;
