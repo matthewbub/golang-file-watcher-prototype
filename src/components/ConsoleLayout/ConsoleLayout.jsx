@@ -192,7 +192,7 @@ const ConsoleLayout = ({
             </aside>
           )}
         </div>
-      </div>
+      </div >
       <NotificationWithActions
         show={sessionTimeoutNotification}
         title="Inactivity timeout warning"
@@ -219,7 +219,7 @@ const ConsoleLayout = ({
           }
         }}
       />
-    </AuthWrapper>
+    </AuthWrapper >
   )
 }
 
