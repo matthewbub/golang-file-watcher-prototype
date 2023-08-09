@@ -18,7 +18,7 @@ const FullNavigation = ({ navigation = [] }) => {
               baseClassNames.secondaryBackground,
               baseClassNames.secondaryBackgroundHover,
               'rounded',
-              'group relative p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500'
+              'group relative p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-teal-500'
             )}
           >
             <div className="">
