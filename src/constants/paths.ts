@@ -14,5 +14,8 @@ export const paths = {
     'experimental/endless-checkboxes': '/experimental/endless-checkboxes',
     'website-builder': '/website-builder',
     'website-builder/kitchen-sink': '/website-builder/kitchen-sink',
+  },
+  api: {
+    'log-time-entry': '/api/v1/iep/log-time-entry',
   }
 }
