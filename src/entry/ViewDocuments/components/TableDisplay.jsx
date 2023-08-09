@@ -56,7 +56,7 @@ const TableDisplay = ({ data = [] }) => {
                 {document.created_at}
               </td>
               <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
-                <a href={"/documents/" + document.id} className="text-indigo-400 hover:text-indigo-600">
+                <a href={"/documents/" + document.id} className="text-teal-400 hover:text-teal-600">
                   Edit<span className="sr-only">, {document.document_title}</span>
                 </a>
               </td>

@@ -55,7 +55,7 @@ const ProfileSettingsForm = () => {
               name="first-name"
               id="first-name"
               autoComplete="given-name"
-              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ const ProfileSettingsForm = () => {
               name="last-name"
               id="last-name"
               autoComplete="family-name"
-              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ const ProfileSettingsForm = () => {
               name="email"
               type="email"
               autoComplete="email"
-              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -95,7 +95,7 @@ const ProfileSettingsForm = () => {
             Username
           </label>
           <div className="mt-2">
-            <div className="flex rounded-md bg-white/20 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
+            <div className="flex rounded-md bg-white/20 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-teal-500">
               <span className="flex select-none items-center pl-3 text-gray-400 sm:text-sm">
                 example.com/
               </span>
@@ -119,7 +119,7 @@ const ProfileSettingsForm = () => {
             <select
               id="timezone"
               name="timezone"
-              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+              className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6 [&_*]:text-black"
             >
               <option>Pacific Standard Time</option>
               <option>Eastern Standard Time</option>
@@ -132,7 +132,7 @@ const ProfileSettingsForm = () => {
       <div className="mt-8 flex">
         <button
           type="submit"
-          className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          className="rounded-md bg-teal-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
         >
           Save
         </button>
@@ -154,7 +154,7 @@ const Primary = () => {
           >
             {secondaryNavigation.map((item) => (
               <li key={item.name}>
-                <a href={item.href} className={item.current ? 'text-indigo-400' : ''}>
+                <a href={item.href} className={item.current ? 'text-teal-400' : ''}>
                   {item.name}
                 </a>
               </li>
@@ -205,7 +205,7 @@ const Primary = () => {
                     name="current_password"
                     type="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -220,7 +220,7 @@ const Primary = () => {
                     name="new_password"
                     type="password"
                     autoComplete="new-password"
-                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -235,7 +235,7 @@ const Primary = () => {
                     name="confirm_password"
                     type="password"
                     autoComplete="new-password"
-                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -244,7 +244,7 @@ const Primary = () => {
             <div className="mt-8 flex">
               <button
                 type="submit"
-                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="rounded-md bg-teal-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
               >
                 Save
               </button>
@@ -273,7 +273,7 @@ const Primary = () => {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -282,7 +282,7 @@ const Primary = () => {
             <div className="mt-8 flex">
               <button
                 type="submit"
-                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="rounded-md bg-teal-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
               >
                 Log out other sessions
               </button>

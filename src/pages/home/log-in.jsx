@@ -46,7 +46,7 @@ export default function HomePage() {
                 type="email"
                 autoComplete="email"
                 {...register("email", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.email && <p className="text-sm text-red-600">{errors?.email}</p>}
@@ -60,7 +60,7 @@ export default function HomePage() {
                 Password
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
+                <a href="#" className="font-semibold text-teal-400 hover:text-teal-300">
                   Forgot password?
                 </a>
               </div>
@@ -72,7 +72,7 @@ export default function HomePage() {
                 type="password"
                 autoComplete="current-password"
                 {...register("password", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.password && <p className="text-sm text-red-600">{errors?.password}</p>}
@@ -83,7 +83,7 @@ export default function HomePage() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 txt1 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              className="flex w-full justify-center rounded-md bg-teal-500 px-3 py-1.5 text-sm font-semibold leading-6 txt1 shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
             >
               Sign in
             </button>
@@ -92,7 +92,7 @@ export default function HomePage() {
 
         <p className="mt-10 text-center text-sm text-gray-400">
           Not a member?{' '}
-          <a href="/create-account" className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
+          <a href="/create-account" className="font-semibold leading-6 text-teal-400 hover:text-teal-300">
             Start a 14 day free trial
           </a>
         </p>
