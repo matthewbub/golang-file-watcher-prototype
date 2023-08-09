@@ -8,6 +8,7 @@ const TipTap = forwardRef(({
   name,
   label,
   className,
+  onChange,
   ...rest
 }, ref) => {
   const editor = useEditor({
@@ -29,9 +30,7 @@ const TipTap = forwardRef(({
       },
     },
     content: '<p>Hello World! 🌎️</p>',
-    onUpdate: ({ editor, ...rest }) => {
-      console.log('rest', rest, 'editor', editor)
-    }
+    onUpdate: onChange
   })
 
   return (
