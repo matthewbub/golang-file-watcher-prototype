@@ -4,5 +4,7 @@ export const formConfigs = {
     dateField: 'date',
     timeSpentField: 'time_spent',
     descriptionField: 'description',
+    projectField: 'project',
+    projectDescriptionField: 'project_description',
   }
 }
