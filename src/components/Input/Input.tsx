@@ -1,4 +1,4 @@
-import React, { forwardRef, InputHTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
 import clsx from 'clsx'
 import { FieldWrapper } from '../../components';
 import { InputProps } from './Input.interfaces';

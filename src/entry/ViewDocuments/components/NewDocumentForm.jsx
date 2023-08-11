@@ -44,6 +44,7 @@ const NewDocumentForm = () => {
           name="description"
           className='col-span-12'
           placeholder='Enter anything you want here...'
+          onChange={(value) => console.log(value)}
         />
         <div className='col-span-12 pt-10'>
           <Button type='submit'>

@@ -34,11 +34,20 @@
   .container-padding {
     @apply px-4 py-4 sm:px-6 sm:py-6 lg:px-8;
   }
+  .container-padding-small {
+    @apply px-4 py-4;
+  }
   .container-padding-x {
     @apply px-4 md:px-6 lg:px-8;
   }
   .container-padding-y {
     @apply py-4 sm:py-6;
+  }
+  .container-padding-left {
+    @apply pl-4 md:pl-6 lg:pl-8;
+  }
+  .container-padding-right {
+    @apply pr-4 md:pr-6 lg:pr-8;
   }
 }
 :root {

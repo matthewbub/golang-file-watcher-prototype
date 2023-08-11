@@ -1,70 +1,76 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stats } from '../../../components';
+import clsx from 'clsx';
+import TableRowEditableFields from './TableRowEditableFields';
+import { tableConfig } from '../constants';
+import TableHeadings from './TableHeadings';
 
-const TableDisplay = ({ data = [] }) => {
+const TableDisplay = () => {
   return (
     <>
       <Stats
-        data={[
+        stats={[
           {
             name: 'Total Documents',
             value: '-'
           },
           {
-            name: 'Projects',
+            name: 'Average Read Time',
             value: '-',
-          }
+          },
+          {
+            name: 'Total Read Time',
+            value: '-',
+          },
+          {
+            name: 'Total Views',
+            value: '-',
+          },
         ]}
-        loading={false}
+        loading={true}
       />
-      <table className="w-full whitespace-nowrap text-left">
-        <colgroup>
-          <col className="w-full sm:w-5/12" />
-          <col className="lg:w-4/12" />
-          <col className="lg:w-2/12" />
-          <col className="lg:w-1/12" />
-        </colgroup>
-        <thead className="border-b border-neutral-900 text-sm leading-6 txt1 bg-neutral-900 sticky top-[63px]">
-          <tr>
-            <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
-              Project
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell">
-              Owner
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-8 sm:text-left lg:pr-20">
-              Hours Spent
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20">
-              <span className="sr-only">Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-white/20">
-          {data && data.length > 0 && data.map((document) => (
-            <tr key={document.id}>
-              <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
-                <span
-                  className='truncate block w-full max-w-screen-sm'
-                  style={{ maxWidth: width - 40 + 'px' }}
-                >{document.document_title || 'Untitled Document'}</span>
-              </td>
-              <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
-                {document.document_owner}
-              </td>
-              <td className="hidden py-4 pl-0 pr-4 sm:table-cell text-sm leading-6 sm:pr-8 lg:pr-20">
-                {document.created_at}
-              </td>
-              <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
-                <a href={"/documents/" + document.id} className="text-teal-400 hover:text-teal-600">
-                  Edit<span className="sr-only">, {document.document_title}</span>
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section className='w-full'>
+        <TableHeadings />
+        <div className='iep--table w-full'>
+          {Object.keys(tableConfig.data).map((item, index) => {
+            const [open, setOpen] = useState(false);
 
+            return (
+              <div key={index} className='border-transparent focus-within:border focus-within:border-teal-500'>
+                <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
+                  {tableConfig.data[item].map((item, index) => {
+                    const baseClassName = clsx(
+                      tableConfig.colHeaders.find((col) => col.id === item.mapToId).colSpan,
+                      tableConfig.colHeaders.find((col) => col.id === item.mapToId).className !== 'sr-only' && tableConfig.colHeaders.find((col) => col.id === item.mapToId).className,
+                      'flex items-center h-16 text-sm',
+                      index === 0 ? 'container-padding-left' : '',
+                      index === tableConfig.colHeaders.length - 1 ? 'container-padding-right' : '',
+                    );
+
+                    if (item.mapToId === 4) {
+                      return (
+                        <div className={baseClassName}>
+                          <button className='a1' onClick={() => setOpen(!open)}>
+                            {open ? 'Collapse' : 'Modify'}
+                          </button>
+                        </div>
+                      )
+                    }
+                    return (
+                      <div className={baseClassName}>
+                        <span className='txt1 text-sm'>
+                          {item.title}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+                {open && <TableRowEditableFields />}
+              </div>
+            )
+          })}
+        </div>
+      </section>
     </>
   )
 }

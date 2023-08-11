@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import { sspWithAuth } from '../../helpers/sspWithAuth';
+import { sspWithAuth } from '../../../helpers/sspWithAuth';
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   const currentTab = get(context, 'query.tab', 'new-document');
