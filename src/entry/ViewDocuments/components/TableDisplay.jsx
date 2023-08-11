@@ -41,6 +41,7 @@ const TableDisplay = () => {
                   {tableConfig.data[item].map((item, index) => {
                     const baseClassName = clsx(
                       tableConfig.colHeaders.find((col) => col.id === item.mapToId).colSpan,
+                      tableConfig.colHeaders.find((col) => col.id === item.mapToId).className !== 'sr-only' && tableConfig.colHeaders.find((col) => col.id === item.mapToId).className,
                       'flex items-center h-16 text-sm',
                       index === 0 ? 'container-padding-left' : '',
                       index === tableConfig.colHeaders.length - 1 ? 'container-padding-right' : '',

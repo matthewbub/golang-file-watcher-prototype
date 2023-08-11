@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { ImageUploadLarge, Input, Stats, TextArea, MultiColumnFormWrapper, Button } from '../../../components';
+import React from 'react';
 import clsx from 'clsx';
-import TableRowEditableFields from './TableRowEditableFields';
-import { tableConfig } from '../constants';
 import { get } from 'lodash';
+import { tableConfig } from '../constants';
 
 const TableHeadings = () => {
   return (
@@ -19,7 +17,7 @@ const TableHeadings = () => {
             'flex items-center',
             item.colSpan,
             index === 0 && 'container-padding-left',
-            index === lastItemIndex && lastItem ? lastItem.className : 'container-padding-right',
+            index === lastItemIndex && lastItem ? lastItem.className || 'container-padding-right' : item.className,
           )}>
             <span className='text-sm font-bold leading-6 txt2'>
               {item.title}
