@@ -18,7 +18,7 @@ const ImageUploadLarge = forwardRef(({
       name={name}
       className={className}
     >
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full pb-1.5">
         <label
           htmlFor="dropzone-file"
           className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg2 hover:bg3 dark:border-gray-600 dark:hover:border-gray-500 "

@@ -91,7 +91,7 @@ const TableDisplay = ({ data = fdata }) => {
             const [open, setOpen] = useState(false);
 
             return (
-              <div className='border-transparent focus-within:border focus-within:border-teal-500'>
+              <div key={index} className='border-transparent focus-within:border focus-within:border-teal-500'>
                 <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
                   {data.data[item].map((item, index) => {
                     const baseClassName = clsx(
@@ -127,19 +127,16 @@ const TableDisplay = ({ data = fdata }) => {
                         <Input
                           label='Document Name'
                           placeholder='Untitled Document'
-                        // className='col-span-9 container-padding-x'
                         />
                         <Input
                           label='Slug'
                           placeholder='/untitled-document'
-                        // className='col-span-6 container-padding-left'
                         />
                         <Input
                           label='Categories'
                           placeholder='General'
-                        // className='col-span-12'
                         />
-                        <div>
+                        <div className='mt-6'>
                           <Button>
                             {'Save'}
                           </Button>
@@ -159,8 +156,10 @@ const TableDisplay = ({ data = fdata }) => {
                           label='Document Description'
                           placeholder='Untitled Document'
                         />
-                        <ImageUploadLarge label='Primary Image' />
-                        <div>
+                        <ImageUploadLarge
+                          label='Primary Image'
+                        />
+                        <div className='mt-6'>
                           <Button>
                             {'Save'}
                           </Button>
