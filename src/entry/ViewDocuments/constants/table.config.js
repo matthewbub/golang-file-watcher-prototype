@@ -31,5 +31,59 @@ export const tableConfig = {
       3: '12/12/2020',
       4: 'Edit',
     },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    }
   ]
 }

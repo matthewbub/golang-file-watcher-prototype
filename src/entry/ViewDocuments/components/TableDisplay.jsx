@@ -3,19 +3,25 @@ import clsx from 'clsx';
 import TableRowEditableFields from './TableRowEditableFields';
 import { tableConfig } from '../constants';
 import TableHeadings from './TableHeadings';
+import Pagination from './Pagination';
 
 const TableDisplay = () => {
   return (
     <section className='w-full'>
       <TableHeadings />
-      <div className='iep--table w-full'>
+      <div className='iep--table w-full min-h-[384px]'>
+        {Object.keys(tableConfig.data).length === 0 && (
+          <div className='iep--table-row w-full h-96 flex items-center justify-center'>
+            <p className='txt2'>No documents</p>
+          </div>
+        )}
         {Object.keys(tableConfig.data).map((item, index) => {
           const [open, setOpen] = useState(false);
-
           return (
             <div key={index} className={clsx(
               open ? 'border border-dashed border-teal-500' : 'border border-transparent',
               'focus-within:border focus-within:border-teal-500',
+              index % 2 === 0 ? '' : 'bg2',
             )}>
               <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
                 <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
@@ -47,6 +53,8 @@ const TableDisplay = () => {
           )
         })}
       </div>
+      <Pagination />
+
     </section>
   )
 }
