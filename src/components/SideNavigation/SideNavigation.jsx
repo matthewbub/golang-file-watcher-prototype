@@ -45,7 +45,7 @@ const SideNavigation = ({ navigation = [] }) => {
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6'
                           )}
                         >
-                          {/* <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" /> */}
+                          <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
                           {item.name}
                         </Link>
                       ) : (
@@ -59,7 +59,7 @@ const SideNavigation = ({ navigation = [] }) => {
                                   'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold'
                                 )}
                               >
-                                {/* <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" /> */}
+                                <item.icon className={clsx("h-6 w-6 shrink-0", textColorClassName)} aria-hidden="true" />
                                 {item.name}
                                 <ChevronRightIcon
                                   className={clsx(
