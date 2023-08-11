@@ -1,6 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useDocumentList } from "../state";
 
-const InitialClientEx = ({ children }) => {
+const InitialClientEx = ({ data, children }) => {
+  const setDocuments = useDocumentList((state) => state.setDocuments);
+
+  useEffect(() => {
+    setDocuments(data);
+  }, []);
+
   return (
     <Fragment>
       {children}

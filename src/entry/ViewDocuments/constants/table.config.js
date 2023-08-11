@@ -24,42 +24,12 @@ export const tableConfig = {
       className: 'sr-only',
     },
   ],
-  data: {
-    1: [
-      {
-        mapToId: 1,
-        title: 'Untitled Document',
-      },
-      {
-        mapToId: 2,
-        title: 'General',
-      },
-      {
-        mapToId: 3,
-        title: '12/12/2020',
-      },
-      {
-        mapToId: 4,
-        title: 'Edit',
-      }
-    ],
-    2: [
-      {
-        mapToId: 1,
-        title: 'Untitled Document',
-      },
-      {
-        mapToId: 2,
-        title: 'General',
-      },
-      {
-        mapToId: 3,
-        title: '12/12/2020',
-      },
-      {
-        mapToId: 4,
-        title: 'Edit',
-      }
-    ]
-  }
+  data: [
+    {
+      1: 'Untitled Document',
+      2: 'General',
+      3: '12/12/2020',
+      4: 'Edit',
+    },
+  ]
 }

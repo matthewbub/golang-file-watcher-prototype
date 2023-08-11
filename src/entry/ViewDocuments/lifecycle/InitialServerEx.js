@@ -1,5 +1,6 @@
 import { get } from 'lodash';
 import { sspWithAuth } from '../../../helpers/sspWithAuth';
+import { tableConfig } from '../constants';
 
 export const getServerSideProps = sspWithAuth(async (context) => {
   const currentTab = get(context, 'query.tab', 'new-document');
@@ -14,7 +15,8 @@ export const getServerSideProps = sspWithAuth(async (context) => {
       },
       secondaryTabs: [
         { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
-      ]
+      ],
+      data: tableConfig.data
     }
   }
 });

@@ -18,35 +18,29 @@ const TableDisplay = () => {
               'focus-within:border focus-within:border-teal-500',
             )}>
               <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
-                {tableConfig.data[item].map((item, index) => {
-                  const baseClassName = clsx(
-                    tableConfig.colHeaders.find((col) => col.id === item.mapToId).colSpan,
-                    tableConfig.colHeaders.find((col) => col.id === item.mapToId).className !== 'sr-only' && tableConfig.colHeaders.find((col) => col.id === item.mapToId).className,
-                    'flex items-center h-16 text-sm',
-                    index === 0 ? 'container-padding-left' : '',
-                    index === tableConfig.colHeaders.length - 1 ? 'container-padding-right' : '',
-                  );
-
-                  if (item.mapToId === 4) {
-                    return (
-                      <div className={baseClassName}>
-                        <button
-                          className={clsx('a1', open && 'animate-pulse')}
-                          onClick={() => setOpen(!open)}
-                        >
-                          {open ? 'Hide' : 'Info'}
-                        </button>
-                      </div>
-                    )
-                  }
-                  return (
-                    <div className={baseClassName}>
-                      <span className='txt1 text-sm'>
-                        {item.title}
-                      </span>
-                    </div>
-                  )
-                })}
+                <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
+                  <span className='txt1 text-sm'>
+                    {tableConfig.data[item][1]}
+                  </span>
+                </div>
+                <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
+                  <span className='txt1 text-sm sm:flex hidden col-span-2'>
+                    {tableConfig.data[item][2]}
+                  </span>
+                </div>
+                <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
+                  <span className='txt1 text-sm sm:flex hidden col-span-2'>
+                    {tableConfig.data[item][3]}
+                  </span>
+                </div>
+                <div className={'flex items-center h-16 text-sm'}>
+                  <button
+                    className={clsx('a1', open && 'animate-pulse', 'txt1 text-sm col-span-1')}
+                    onClick={() => setOpen(!open)}
+                  >
+                    {open ? 'Hide' : 'Info'}
+                  </button>
+                </div>
               </div>
               {open && <TableRowEditableFields />}
             </div>

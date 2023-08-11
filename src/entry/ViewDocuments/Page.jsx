@@ -8,7 +8,8 @@ import { statsConfig } from './constants';
 
 const Page = ({
   consoleLayout,
-  secondaryTabs = 'log'
+  secondaryTabs = 'log',
+  data = {}
 }) => {
   const PrimaryAction = () => {
     const router = useRouter();
@@ -28,8 +29,11 @@ const Page = ({
   }
 
   return (
-    <InitialClientEx>
-      <ConsoleLayout {...consoleLayout}
+    <InitialClientEx
+      data={data}
+    >
+      <ConsoleLayout
+        {...consoleLayout}
         primary={() => (
           <Fragment>
             <Stats stats={statsConfig.fallbackStats} />
