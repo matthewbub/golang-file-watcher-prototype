@@ -1,15 +1,32 @@
 import { ConsoleLayout, Input, Button, TextArea, Select } from '../../components';
 import InitialClientEx from "./InitialClientEx";
 import { useForm } from 'react-hook-form';
-import { formatTime } from '../../constants';
 import clsx from 'clsx';
 import { NewDocumentForm, TableDisplay } from './components';
 import { Fragment } from 'react';
+import { useRouter } from 'next/router';
+
 const Page = ({
   consoleLayout,
   secondaryTabs = 'log'
 }) => {
   const { register } = useForm();
+  const PrimaryAction = () => {
+    const router = useRouter();
+    const handleClick = async () => {
+      const response = await fetch('/api/v1/secure/create-document')
+      const data = await response.json();
+
+      // TODO - handle error
+      router.push('/documents/' + data.redirectId);
+    }
+
+    return (
+      <Button onClick={handleClick}>
+        {'Create new document'}
+      </Button>
+    )
+  }
 
   return (
     <InitialClientEx>
@@ -17,6 +34,7 @@ const Page = ({
         primary={() => (
           <TableDisplay />
         )}
+        primaryAction={PrimaryAction}
         secondary={() => {
           return (
             <Fragment>

@@ -1,70 +1,180 @@
-import React from 'react';
-import { Stats } from '../../../components';
+import React, { useState } from 'react';
+import { ImageUploadLarge, Input, Stats, TextArea, MultiColumnFormWrapper, Button } from '../../../components';
+import clsx from 'clsx';
 
-const TableDisplay = ({ data = [] }) => {
+const fdata = {
+  colHeaders: [
+    {
+      id: 1,
+      title: 'Document Name',
+      colSpan: 'col-span-5',
+    },
+    {
+      id: 2,
+      title: 'Categories',
+      colSpan: 'col-span-3',
+    },
+    {
+      id: 3,
+      title: 'Date Created',
+      colSpan: 'col-span-2',
+    },
+    {
+      id: 4,
+      title: 'Edit',
+      colSpan: 'col-span-2',
+    },
+  ],
+  data: {
+    1: [
+      {
+        mapToId: 1,
+        title: 'Untitled Document',
+      },
+      {
+        mapToId: 2,
+        title: 'General',
+      },
+      {
+        mapToId: 3,
+        title: '12/12/2020',
+      },
+      {
+        mapToId: 4,
+        title: 'Edit',
+      }
+    ]
+  }
+}
+
+const TableDisplay = ({ data = fdata }) => {
   return (
     <>
       <Stats
-        data={[
+        stats={[
           {
             name: 'Total Documents',
             value: '-'
           },
           {
-            name: 'Projects',
+            name: 'Average Read Time',
             value: '-',
-          }
+          },
+          {
+            name: 'Total Read Time',
+            value: '-',
+          },
+          {
+            name: 'Total Views',
+            value: '-',
+          },
         ]}
-        loading={false}
+        loading={true}
       />
-      <table className="w-full whitespace-nowrap text-left">
-        <colgroup>
-          <col className="w-full sm:w-5/12" />
-          <col className="lg:w-4/12" />
-          <col className="lg:w-2/12" />
-          <col className="lg:w-1/12" />
-        </colgroup>
-        <thead className="border-b border-neutral-900 text-sm leading-6 txt1 bg-neutral-900 sticky top-[63px]">
-          <tr>
-            <th scope="col" className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8">
-              Project
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell">
-              Owner
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-8 sm:text-left lg:pr-20">
-              Hours Spent
-            </th>
-            <th scope="col" className="hidden py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20">
-              <span className="sr-only">Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-white/20">
-          {data && data.length > 0 && data.map((document) => (
-            <tr key={document.id}>
-              <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
-                <span
-                  className='truncate block w-full max-w-screen-sm'
-                  style={{ maxWidth: width - 40 + 'px' }}
-                >{document.document_title || 'Untitled Document'}</span>
-              </td>
-              <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
-                {document.document_owner}
-              </td>
-              <td className="hidden py-4 pl-0 pr-4 sm:table-cell text-sm leading-6 sm:pr-8 lg:pr-20">
-                {document.created_at}
-              </td>
-              <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
-                <a href={"/documents/" + document.id} className="text-teal-400 hover:text-teal-600">
-                  Edit<span className="sr-only">, {document.document_title}</span>
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section className='w-full'>
+        <div className='iep--table-heading w-full bg2 h-11 grid grid-cols-12 gap-2'>
+          {data.colHeaders.map((item, index) => {
+            return (
+              <div className={clsx(
+                item.colSpan,
+                'flex items-center',
+                index === 0 ? 'container-padding-left' : '',
+                index === data.colHeaders.length - 1 ? 'sr-only' : '',
+              )}>
+                {item.title}
+              </div>
+            )
+          })}
+        </div>
+        <div className='iep--table w-full'>
+          {Object.keys(data.data).map((item, index) => {
+            const [open, setOpen] = useState(false);
 
+            return (
+              <div className='border-transparent focus-within:border focus-within:border-teal-500'>
+                <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
+                  {data.data[item].map((item, index) => {
+                    const baseClassName = clsx(
+                      data.colHeaders.find((col) => col.id === item.mapToId).colSpan,
+                      'flex items-center h-16',
+                      index === 0 ? 'container-padding-left' : '',
+                      index === data.colHeaders.length - 1 ? 'container-padding-right' : '',
+                    );
+
+                    if (item.mapToId === 4) {
+                      return (
+                        <div className={baseClassName}>
+                          <button className='a1' onClick={() => setOpen(!open)}>
+                            {open ? 'Collapse' : 'Modify'}
+                          </button>
+                        </div>
+                      )
+                    }
+                    return (
+                      <div className={baseClassName}>
+                        {item.title}
+                      </div>
+                    )
+                  })}
+                </div>
+                {open && (
+                  <div className='w-full border-t border-white/20 min-h-11 container-padding-y'>
+                    <MultiColumnFormWrapper
+                      title='Modify Document'
+                      description='Select any field to modify it.'
+                    >
+                      <div className='col-span-2'>
+                        <Input
+                          label='Document Name'
+                          placeholder='Untitled Document'
+                        // className='col-span-9 container-padding-x'
+                        />
+                        <Input
+                          label='Slug'
+                          placeholder='/untitled-document'
+                        // className='col-span-6 container-padding-left'
+                        />
+                        <Input
+                          label='Categories'
+                          placeholder='General'
+                        // className='col-span-12'
+                        />
+                        <div>
+                          <Button>
+                            {'Save'}
+                          </Button>
+                        </div>
+                      </div>
+                    </MultiColumnFormWrapper>
+                    <MultiColumnFormWrapper
+                      title='Modify SEO'
+                      description='Modify and apply changes to SEO related fields here.'
+                    >
+                      <div className='col-span-2'>
+                        <Input
+                          label='Document Title'
+                          placeholder='Untitled Document'
+                        />
+                        <TextArea
+                          label='Document Description'
+                          placeholder='Untitled Document'
+                        />
+                        <ImageUploadLarge label='Primary Image' />
+                        <div>
+                          <Button>
+                            {'Save'}
+                          </Button>
+                        </div>
+                      </div>
+                    </MultiColumnFormWrapper>
+
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </section>
     </>
   )
 }
