@@ -1,9 +1,10 @@
-import { ConsoleLayout, Button } from '../../components';
+import { ConsoleLayout, Button, Stats } from '../../components';
 import InitialClientEx from "./lifecycle/InitialClientEx";
 import clsx from 'clsx';
 import { NewDocumentForm, TableDisplay } from './components';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
+import { statsConfig } from './constants';
 
 const Page = ({
   consoleLayout,
@@ -30,7 +31,10 @@ const Page = ({
     <InitialClientEx>
       <ConsoleLayout {...consoleLayout}
         primary={() => (
-          <TableDisplay />
+          <Fragment>
+            <Stats stats={statsConfig.fallbackStats} />
+            <TableDisplay />
+          </Fragment>
         )}
         primaryAction={PrimaryAction}
         secondary={() => {
