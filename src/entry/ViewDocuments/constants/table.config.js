@@ -3,7 +3,7 @@ export const tableConfig = {
     {
       id: 1,
       title: 'Document Name',
-      colSpan: 'col-span-10 sm:col-span-6',
+      colSpan: 'col-span-10 sm:col-span-7',
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export const tableConfig = {
     {
       id: 4,
       title: 'Edit',
-      colSpan: 'col-span-2',
+      colSpan: 'col-span-1',
       className: 'sr-only',
     },
   ],

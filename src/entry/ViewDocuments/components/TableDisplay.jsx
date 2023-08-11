@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Stats } from '../../../components';
 import clsx from 'clsx';
 import TableRowEditableFields from './TableRowEditableFields';
 import { tableConfig } from '../constants';
@@ -14,7 +13,10 @@ const TableDisplay = () => {
           const [open, setOpen] = useState(false);
 
           return (
-            <div key={index} className='border-transparent focus-within:border focus-within:border-teal-500'>
+            <div key={index} className={clsx(
+              open ? 'border border-dashed border-teal-500' : 'border border-transparent',
+              'focus-within:border focus-within:border-teal-500',
+            )}>
               <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
                 {tableConfig.data[item].map((item, index) => {
                   const baseClassName = clsx(
@@ -28,8 +30,11 @@ const TableDisplay = () => {
                   if (item.mapToId === 4) {
                     return (
                       <div className={baseClassName}>
-                        <button className='a1' onClick={() => setOpen(!open)}>
-                          {open ? 'Collapse' : 'Modify'}
+                        <button
+                          className={clsx('a1', open && 'animate-pulse')}
+                          onClick={() => setOpen(!open)}
+                        >
+                          {open ? 'Hide' : 'Info'}
                         </button>
                       </div>
                     )
