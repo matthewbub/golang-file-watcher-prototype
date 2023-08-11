@@ -1,6 +1,5 @@
-import { ConsoleLayout, Input, Button, TextArea, Select } from '../../components';
-import InitialClientEx from "./InitialClientEx";
-import { useForm } from 'react-hook-form';
+import { ConsoleLayout, Button } from '../../components';
+import InitialClientEx from "./lifecycle/InitialClientEx";
 import clsx from 'clsx';
 import { NewDocumentForm, TableDisplay } from './components';
 import { Fragment } from 'react';
@@ -10,7 +9,6 @@ const Page = ({
   consoleLayout,
   secondaryTabs = 'log'
 }) => {
-  const { register } = useForm();
   const PrimaryAction = () => {
     const router = useRouter();
     const handleClick = async () => {
@@ -69,4 +67,4 @@ const Page = ({
 }
 
 export default Page;
-export { getServerSideProps } from './InitialServerEx';
+export { getServerSideProps } from './lifecycle/InitialServerEx';
