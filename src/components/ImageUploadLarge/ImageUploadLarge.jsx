@@ -1,6 +1,6 @@
-import { forwardRef } from 'react'
-import clsx from 'clsx'
-import { FieldWrapper } from '../FieldWrapper'
+import { forwardRef } from 'react';
+import { FieldWrapper } from '../FieldWrapper';
+import { useDropzone } from 'react-dropzone';
 
 const ImageUploadLarge = forwardRef(({
   name,
@@ -10,8 +10,19 @@ const ImageUploadLarge = forwardRef(({
   rows = 3,
   className,
   defaultValue,
-  ...rest
+  onChange,
 }, ref) => {
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    onChange(file);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    multiple: false, // Only allow one file
+    accept: 'image/jpeg, image/png, image/gif, image/svg+xml' // Accept only these image types
+  });
+
   return (
     <FieldWrapper
       label={label}
@@ -20,8 +31,9 @@ const ImageUploadLarge = forwardRef(({
     >
       <div className="flex items-center justify-center w-full pb-1.5">
         <label
+          {...getRootProps()}
           htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg2 hover:bg3 dark:border-gray-600 dark:hover:border-gray-500 "
+          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg2 hover:bg3 dark:border-gray-600 dark:hover:border-gray-500"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
@@ -46,27 +58,11 @@ const ImageUploadLarge = forwardRef(({
               SVG, PNG, JPG or GIF (MAX. 800x400px)
             </p>
           </div>
-          <input id="dropzone-file" type="file" className="hidden" ref={ref} />
+          <input {...getInputProps()} id="dropzone-file" type="file" className="hidden" ref={ref} />
         </label>
       </div>
-
-      {/* <textarea
-        rows={rows}
-        ref={ref}
-        placeholder={placeholder}
-        className={clsx(
-          'txt1 bg2',
-          'placeholder:text-neutral-500/80',
-          'ring-1 ring-inset ring-white/20',
-          'focus:ring-2 focus:ring-inset focus:ring-teal-600',
-          'block w-full rounded-md border-0 py-1.5 shadow-sm',
-          'sm:text-sm sm:leading-6'
-        )}
-        defaultValue={defaultValue}
-        {...rest}
-      /> */}
     </FieldWrapper>
-  )
-})
+  );
+});
 
 export default ImageUploadLarge;

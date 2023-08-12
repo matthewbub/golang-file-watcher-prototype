@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, useController } from 'react-hook-form';
+import { useDropzone } from 'react-dropzone';
 
 import {
   ImageUploadLarge,
@@ -13,16 +14,31 @@ import clsx from 'clsx';
 
 const ModifyDocumentForm = () => {
   const { control, handleSubmit } = useForm();
+
   const customSubmit = (data) => {
     console.log(data);
   }
 
+  // slug 
+  const { field: slugField } = useController({
+    name: 'slug',
+    control,
+    defaultValue: '',
+  });
+
+  // category
+  const { field: categoryField } = useController({
+    name: 'category',
+    control,
+    defaultValue: '',
+  });
+
+  // title
   const { field: titleField } = useController({
     name: 'title',
     control,
     defaultValue: '',
   });
-
 
   return (
     <MultiColumnFormWrapper
@@ -31,18 +47,21 @@ const ModifyDocumentForm = () => {
       className='mb-10 pt-5'
       headingSize='small'
     >
-      <form className='col-span-2'>
+      <form className='col-span-2' onSubmit={handleSubmit(customSubmit)}>
         <Input
           label='Document Name'
           placeholder='Untitled Document'
+          {...titleField}
         />
         <Input
           label='Slug'
           placeholder='/untitled-document'
+          {...slugField}
         />
         <Input
           label='Category'
           placeholder='General'
+          {...categoryField}
         />
         <div className='mt-6'>
           <Button>
@@ -66,6 +85,26 @@ const ModifySEOForm = () => {
     defaultValue: '',
   });
 
+  const { field: descriptionField } = useController({
+    name: 'description',
+    control,
+    defaultValue: '',
+  });
+
+  const {
+    field: { ref: imageRef, ...imageField },
+  } = useController({
+    name: 'image',
+    control,
+    defaultValue: null,
+  });
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop: (acceptedFiles) => {
+      imageField.onChange(acceptedFiles[0]);
+    },
+  });
+
   return (
     <MultiColumnFormWrapper
       title='Modify SEO'
@@ -73,24 +112,27 @@ const ModifySEOForm = () => {
       headingSize='small'
       className='mb-10 pt-5'
     >
-      <div className='col-span-2'>
+      <form className='col-span-2' onSubmit={handleSubmit(customSubmit)}>
         <Input
           label='Document Title'
           placeholder='Untitled Document'
+          {...titleField}
         />
         <TextArea
           label='Document Description'
           placeholder='Untitled Document'
+          {...descriptionField}
         />
         <ImageUploadLarge
           label='Primary Image'
+          {...imageField}
         />
         <div className='mt-6'>
           <Button>
             {'Save'}
           </Button>
         </div>
-      </div>
+      </form>
     </MultiColumnFormWrapper>
   )
 }
