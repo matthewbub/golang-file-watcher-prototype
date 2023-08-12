@@ -1,3 +1,4 @@
+import { DocumentIcon, PhotoIcon, RectangleGroupIcon, BuildingLibraryIcon } from "@heroicons/react/24/outline"
 export const consoleNavigation = [
   {
     name: 'Apps',
@@ -9,24 +10,28 @@ export const consoleNavigation = [
     href: '/documents',
     type: 'link',
     description: 'Internal documents management services and pages for the console application',
+    icon: DocumentIcon,
   },
   {
     name: 'Media Manager',
     href: '/media',
     type: 'link',
     description: 'Coming soon...',
+    icon: PhotoIcon,
   },
   {
     name: 'Project Manager',
     href: '/experimental/time-logger',
     type: 'link',
     description: 'Securely track your time spent on projects.',
+    icon: RectangleGroupIcon,
   },
   {
     name: 'Invoices',
     href: '/invoices',
     type: 'link',
     description: 'Coming soon...',
+    icon: BuildingLibraryIcon,
   },
   //   {
   //     name: 'Administrative',

@@ -8,7 +8,7 @@ const fbStats = [
   { name: 'Success rate', value: '98.5%' },
 ]
 
-const Stats: FC<StatsProps> = ({ stats = fbStats, loading = false }) => {
+const Stats: FC<StatsProps> = ({ stats = fbStats, loading = true }) => {
   return (
     <div className="bg2">
       <div className="mx-auto">
