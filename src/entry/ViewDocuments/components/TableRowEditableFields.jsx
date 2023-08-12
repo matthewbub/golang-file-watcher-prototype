@@ -120,7 +120,7 @@ const TableRowEditableFields = () => {
   ]
   return (
     <div className={clsx(
-      'w-full',
+      'w-full bg1',
       'border-t border-white/20',
       'divide-solid divide-y divide-white/20'
     )}>
