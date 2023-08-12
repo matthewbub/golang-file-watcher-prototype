@@ -16,3 +16,4 @@ export { TextArea } from './TextArea';
 export { Modal } from './Modal';
 export { TipTap } from './TipTap';
 export { ImageUploadLarge } from './ImageUploadLarge';
+export { Tabs } from './Tabs';
