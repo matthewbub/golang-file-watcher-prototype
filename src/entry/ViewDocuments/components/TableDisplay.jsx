@@ -4,10 +4,46 @@ import TableRowEditableFields from './TableRowEditableFields';
 import { tableConfig } from '../constants';
 import TableHeadings from './TableHeadings';
 import Pagination from './Pagination';
+import { Input, Select } from '../../../components';
 
 const TableDisplay = () => {
   return (
     <section className='w-full'>
+      <div className='w-full container-padding grid grid-cols-12 gap-2 bg2'>
+        <div className='col-span-12'>
+          <Input label='Search documents' placeholder='Search' />
+        </div>
+        <div className='col-span-3'>
+          <Select
+            label='Filter by category'
+            register={() => ({
+              onChange: () => { },
+              onBlur: () => { },
+              ref: () => { },
+            })}
+            options={[
+              { id: 'all', name: 'All' },
+              { id: 'document', name: 'Document' },
+              { id: 'client', name: 'Client' },
+              { id: 'date', name: 'Date' },
+            ]}
+          />
+        </div>
+        <div className='col-span-3'>
+          <Select
+            label='Filter by date'
+            register={() => ({
+              onChange: () => { },
+              onBlur: () => { },
+              ref: () => { },
+            })}
+            options={[
+              { id: 'ascending', name: 'Default (ascending)' },
+              { id: 'descending', name: 'Descending' },
+            ]}
+          />
+        </div>
+      </div>
       <TableHeadings />
       <div className='iep--table w-full min-h-[384px]'>
         {Object.keys(tableConfig.data).length === 0 && (
@@ -21,9 +57,11 @@ const TableDisplay = () => {
             <div key={index} className={clsx(
               open ? 'border border-dashed border-teal-500' : 'border border-transparent',
               'focus-within:border focus-within:border-teal-500',
-              index % 2 === 0 ? '' : 'bg2',
             )}>
-              <div className='iep--table-row grid grid-cols-12 gap-2 hover:bg3'>
+              <div className={clsx(
+                'iep--table-row grid grid-cols-12 gap-2 hover:bg3',
+                index % 2 === 0 ? '' : 'bg2',
+              )}>
                 <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
                   <span className='txt1 text-sm'>
                     {tableConfig.data[item][1]}
@@ -48,7 +86,10 @@ const TableDisplay = () => {
                   </button>
                 </div>
               </div>
-              {open && <TableRowEditableFields />}
+              <div className='bg1'>
+
+                {open && <TableRowEditableFields />}
+              </div>
             </div>
           )
         })}
