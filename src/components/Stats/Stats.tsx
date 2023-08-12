@@ -10,9 +10,9 @@ const fbStats = [
 
 const Stats: FC<StatsProps> = ({ stats = fbStats, loading = true }) => {
   return (
-    <div className="bg2">
+    <div className="bg1">
       <div className="mx-auto">
-        <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4 divide-x divide-white/20">
           {stats && stats.length > 0 && stats.map((stat) => (
             <div key={stat.name} className="bg1 px-4 py-6 lg:pt-6 lg:pb-24 sm:px-6 lg:px-8">
               <p className="text-sm font-medium leading-6 txt2">{stat.name}</p>

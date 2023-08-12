@@ -6,12 +6,6 @@ import { Tabs } from './index';
 // Extend the expect function with the toHaveNoViolations matcher
 expect.extend(toHaveNoViolations)
 
-const mockData = [
-  { label: 'Tab 1', href: '#', current: true, as: 'a' },
-  { label: 'Tab 2', onClick: () => { }, current: false, as: 'button' },
-  { label: 'Tab 3', href: '#', current: false, as: 'a' },
-]
-
 describe('Tabs component', () => {
   it('renders without accessibility violations', async () => {
     const { container } = render(

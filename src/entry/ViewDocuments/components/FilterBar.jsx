@@ -3,7 +3,7 @@ import { Input, Select } from '../../../components';
 
 const FilterBar = () => {
   return (
-    <section className='w-full container-padding grid grid-cols-12 gap-2 bg2'>
+    <section className='w-full container-padding grid grid-cols-12 gap-2 bg1 border-t border-white/20'>
       <div className='col-span-12'>
         <Input label='Search documents' placeholder='Search' />
       </div>

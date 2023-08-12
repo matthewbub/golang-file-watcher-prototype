@@ -26,12 +26,12 @@ const TableRows = () => {
           <div
             key={index}
             className={clsx(
-              open ? 'border border-dashed border-teal-500' : 'border border-transparent',
+              open && 'border border-dashed border-teal-500',
               'focus-within:border focus-within:border-teal-500',
             )}>
             <div className={clsx(
               'iep--table-row grid grid-cols-12 gap-2 hover:bg3',
-              index % 2 === 0 ? '' : 'bg2',
+              'border-t border-white/20'
             )}>
               <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
                 <span className='txt1 text-sm'>

@@ -11,7 +11,8 @@ import { AuthWrapper } from '../AuthWrapper';
 import { NotificationWithActions } from '../NotificationWithActions';
 import { useSessionStore } from '../../stores/session.store';
 import { set } from 'lodash';
-
+import { Button } from '../Button';
+import { AppNavigation } from '../AppNavigation';
 const ConsoleLayout = ({
   primary,
   secondary = null,
@@ -48,7 +49,7 @@ const ConsoleLayout = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-900/80" />
+              <div className="fixed inset-0 bg-neutral-900/80" />
             </Transition.Child>
 
             <div className="fixed inset-0 flex">
@@ -79,7 +80,7 @@ const ConsoleLayout = ({
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 ring-1 ring-white/10">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-neutral-900 px-6 ring-1 ring-white/10">
                     <SideNavigation navigation={navigation} />
                   </div>
                 </Dialog.Panel>
@@ -94,33 +95,16 @@ const ConsoleLayout = ({
         </div>
 
         <div className="xl:pl-72">
-          {/* Sticky search header */}
+
           <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/20 bg-neutral-900 px-4 shadow-sm sm:px-6 lg:px-8">
             <button type="button" className="-m-2.5 p-2.5 txt1 xl:hidden" onClick={() => setSidebarOpen(true)}>
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-5 w-5" aria-hidden="true" />
             </button>
 
-            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-              <form className="flex flex-1" action="#" method="GET">
-                <label htmlFor="search-field" className="sr-only">
-                  Search
-                </label>
-                <div className="relative w-full">
-                  <MagnifyingGlassIcon
-                    className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-500"
-                    aria-hidden="true"
-                  />
-                  <input
-                    id="search-field"
-                    className="block h-full w-full border-0 bg-transparent py-0 pl-8 pr-0 txt1 focus:ring-0 sm:text-sm"
-                    placeholder="Search..."
-                    type="search"
-                    name="search"
-                  />
-                </div>
-              </form>
-            </div>
+
+            <AppNavigation />
+
           </div>
 
           <main className={clsx(secondary && "lg:pr-96")}>
