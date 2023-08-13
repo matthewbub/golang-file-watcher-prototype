@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import TableRowEditableFields from './TableRowEditableFields';
 import { tableConfig } from '../constants';
-import { useDocumentList } from "../state";
+import { useAccordionsList, useDocumentList } from "../state";
 
 const EmptyTableRows = ({ show, label }) => {
   if (!show) return null;
@@ -16,7 +16,10 @@ const EmptyTableRows = ({ show, label }) => {
 
 const TableRows = () => {
   const documentsList = useDocumentList((state) => state.documents);
-  console.log('documentsList', documentsList)
+  const accordionList = useAccordionsList((state) => state.accordions);
+  const openAccordion = useAccordionsList((state) => state.openAccordion);
+  const closeAccordion = useAccordionsList((state) => state.closeAccordion);
+
   return (
     <div className='iep--table w-full min-h-[384px]'>
       <EmptyTableRows
@@ -29,7 +32,7 @@ const TableRows = () => {
           <div
             key={index}
             className={clsx(
-              open && 'border border-dashed border-teal-500',
+              accordionList[item[4]] && 'border border-dashed border-teal-500',
               'focus-within:border focus-within:border-teal-500',
             )}>
             <div className={clsx(
@@ -55,15 +58,21 @@ const TableRows = () => {
               </div>
               <div className={'flex items-center h-16 text-sm'}>
                 <button
-                  className={clsx('a1', open && 'animate-pulse', 'txt1 text-sm col-span-1')}
-                  onClick={() => setOpen(!open)}
+                  className={clsx('a1', accordionList[item[4]] && 'animate-pulse', 'txt1 text-sm col-span-1')}
+                  onClick={() => {
+                    if (accordionList[item[4]]) {
+                      closeAccordion(item[4])
+                    } else {
+                      openAccordion(item[4])
+                    }
+                  }}
                 >
-                  {open ? 'Hide' : 'Info'}
+                  {accordionList[item[4]] ? 'Hide' : 'Info'}
                 </button>
               </div>
             </div>
             <div className='bg1'>
-              {open && <TableRowEditableFields />}
+              {accordionList[item[4]] && <TableRowEditableFields />}
             </div>
           </div>
         )

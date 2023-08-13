@@ -86,9 +86,9 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     }
   }
 
-  const totalDocuments = await getTotalDocumentsByOwnerId(data.id);
+  // const totalDocuments = await getTotalDocumentsByOwnerId(data.id);
 
-  console.log('totalDocuments:', totalDocuments, data.id);
+  // console.log('totalDocuments:', totalDocuments, data.id);
 
   const formattedTableRowData = data.documents.reduce((acc, curr) => {
     return [
@@ -102,6 +102,13 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     ]
   }, []);
 
+  const formattedTableRowAccordions = data.documents.reduce((acc, curr) => {
+    return ({
+      ...acc,
+      [curr.id]: false
+    })
+  }, false);
+
   return {
     props: {
       consoleLayout: {
@@ -114,7 +121,10 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
       secondaryTabs: [
         { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
       ],
-      data: formattedTableRowData
+      data: {
+        documentsList: formattedTableRowData,
+        accordionsList: formattedTableRowAccordions
+      }
     }
   }
 });
