@@ -1,25 +1,24 @@
-import React, { FC } from 'react'
+import React, { FC, forwardRef } from 'react'
 import clsx from 'clsx'
 import { FieldWrapper } from '../FieldWrapper'
 import { FieldError } from '../FieldError'
 import { FieldSelectProps, SelectProps } from './Select.interfaces'
 
-const FieldSelect: FC<FieldSelectProps> = ({
+interface ForwardedSelectProps extends SelectProps {
+  ref?: React.Ref<HTMLSelectElement>;
+}
+
+const FieldSelect: FC<FieldSelectProps> = forwardRef<HTMLSelectElement, FieldSelectProps>(({
   name,
-  register,
   options = [],
   placeholder,
   ariaLabel,
   ...rest
-}) => {
-  const { onChange, onBlur, ref } = register(name);
-
+}, ref) => {
   return (
     <select
       name={name}
       ref={ref}
-      onChange={onChange}
-      onBlur={onBlur}
       placeholder={placeholder}
       className={clsx(
         'txt1 bg2',
@@ -37,9 +36,9 @@ const FieldSelect: FC<FieldSelectProps> = ({
       ))}
     </select>
   )
-}
+});
 
-const Select: FC<SelectProps> = ({
+const Select = forwardRef<HTMLSelectElement, ForwardedSelectProps>(({
   name,
   placeholder,
   register,
@@ -48,7 +47,7 @@ const Select: FC<SelectProps> = ({
   className = '',
   error,
   ...rest
-}) => {
+}, ref) => {
   return (
     <FieldWrapper
       name={name}
@@ -61,6 +60,7 @@ const Select: FC<SelectProps> = ({
         register={register}
         options={options}
         ariaLabel={name}
+        ref={ref}
         {...rest}
       />
       <FieldError
@@ -68,6 +68,6 @@ const Select: FC<SelectProps> = ({
       />
     </FieldWrapper>
   )
-}
+});
 
 export default Select;
