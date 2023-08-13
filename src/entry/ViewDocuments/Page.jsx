@@ -5,6 +5,7 @@ import { NewDocumentForm, Table } from './components';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { statsConfig } from './constants';
+import ClientObserver from './lifecycle/ClientObserver';
 
 const Page = ({
   consoleLayout,
@@ -29,47 +30,47 @@ const Page = ({
   }
 
   return (
-    <InitialClientEx
-      data={data}
-    >
-      <ConsoleLayout
-        {...consoleLayout}
-        primary={() => (
-          <Fragment>
-            <Stats stats={statsConfig.fallbackStats} />
-            <Table />
-          </Fragment>
-        )}
-        primaryAction={PrimaryAction}
-        secondary={() => {
-          return (
+    <InitialClientEx data={data}>
+      <ClientObserver>
+        <ConsoleLayout
+          {...consoleLayout}
+          primary={() => (
             <Fragment>
-              <div className="border-b border-white/20">
-                <nav className="-mb-px flex space-x-2 container-padding-x" aria-label="Tabs">
-                  {secondaryTabs.map((tab) => (
-                    <a
-                      key={tab.name}
-                      href={tab.href}
-                      className={clsx(
-                        tab.current
-                          ? 'border-teal-500 text-teal-600'
-                          : 'border-transparent text-gray-500 hover:border-white/30 hover:text-gray-700',
-                        'whitespace-nowrap border-b-2 h-11 px-1 text-sm font-medium flex items-center'
-                      )}
-                      aria-current={tab.current ? 'page' : undefined}
-                    >
-                      {tab.name}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-              <div className='container-padding'>
-                <NewDocumentForm />
-              </div>
+              <Stats stats={statsConfig.fallbackStats} />
+              <Table />
             </Fragment>
-          )
-        }}
-      />
+          )}
+          primaryAction={PrimaryAction}
+          secondary={() => {
+            return (
+              <Fragment>
+                <div className="border-b border-white/20">
+                  <nav className="-mb-px flex space-x-2 container-padding-x" aria-label="Tabs">
+                    {secondaryTabs.map((tab) => (
+                      <a
+                        key={tab.name}
+                        href={tab.href}
+                        className={clsx(
+                          tab.current
+                            ? 'border-teal-500 text-teal-600'
+                            : 'border-transparent text-gray-500 hover:border-white/30 hover:text-gray-700',
+                          'whitespace-nowrap border-b-2 h-11 px-1 text-sm font-medium flex items-center'
+                        )}
+                        aria-current={tab.current ? 'page' : undefined}
+                      >
+                        {tab.name}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+                <div className='container-padding'>
+                  <NewDocumentForm />
+                </div>
+              </Fragment>
+            )
+          }}
+        />
+      </ClientObserver>
     </InitialClientEx>
   )
 }
