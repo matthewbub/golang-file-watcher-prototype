@@ -23,7 +23,7 @@ export function sspWithAuth(getServerSidePropsFunc) {
     }
 
     // Call the original getServerSideProps function
-    const originalProps = await getServerSidePropsFunc(context);
+    const originalProps = await getServerSidePropsFunc(context, decoded);
 
     return originalProps;
   };

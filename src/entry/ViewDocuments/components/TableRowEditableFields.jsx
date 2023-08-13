@@ -172,8 +172,8 @@ const DeleteDocumentForm = () => {
 }
 const TableRowEditableFields = () => {
   const tabs = [
-    { label: 'Stats', href: '#', current: true, as: 'a' },
-    { label: 'Edit', href: '#', current: false, as: 'a' },
+    { label: 'Stats', href: '#', current: false, as: 'a' },
+    { label: 'Edit', href: '#', current: true, as: 'a' },
   ]
   return (
     <div className={clsx(
