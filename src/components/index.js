@@ -2,6 +2,7 @@ export { AuthWrapper } from './AuthWrapper';
 export { Button } from './Button';
 export { ConfigurableForm } from './ConfigurableForm';
 export { ConsoleLayout } from './ConsoleLayout';
+export { PublicDocsLayout } from './PublicDocsLayout';
 export { FieldError } from './FieldError';
 export { FieldWrapper } from './FieldWrapper';
 export { FullNavigation } from './FullNavigation';
