@@ -15,6 +15,8 @@ const Input = forwardRef<HTMLInputElement, ForwardedInputProps>(({
   className,
   error,
   defaultValue,
+  onChange,
+  value,
   ...rest
 }, ref) => {
   return (
@@ -36,6 +38,8 @@ const Input = forwardRef<HTMLInputElement, ForwardedInputProps>(({
           'sm:text-sm sm:leading-6'
         )}
         defaultValue={defaultValue}
+        onChange={onChange}
+        value={value || ''}
         {...rest}
       />
       <div className='h-3'>

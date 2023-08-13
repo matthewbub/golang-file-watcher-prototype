@@ -10,6 +10,7 @@ const TextArea = forwardRef(({
   rows = 3,
   className,
   defaultValue,
+  value,
   ...rest
 }, ref) => {
   return (
@@ -31,6 +32,7 @@ const TextArea = forwardRef(({
           'sm:text-sm sm:leading-6'
         )}
         defaultValue={defaultValue}
+        value={value || ''}
         {...rest}
       />
     </FieldWrapper>
