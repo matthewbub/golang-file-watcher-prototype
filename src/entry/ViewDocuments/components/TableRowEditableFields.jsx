@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm, useController } from 'react-hook-form';
-import { useDropzone } from 'react-dropzone';
 
 import {
   ImageUploadLarge,
@@ -15,25 +14,34 @@ import clsx from 'clsx';
 const ModifyDocumentForm = () => {
   const { control, handleSubmit } = useForm();
 
-  const customSubmit = (data) => {
-    console.log(data);
+  const customSubmit = async (data) => {
+    const response = await fetch('/api/v1/secure/', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: data.title,
+        slug: data.slug,
+        category: data.category,
+        id: '123'
+      })
+    });
+    const json = await response.json();
+
+    console.log(json);
+
   }
 
-  // slug 
   const { field: slugField } = useController({
     name: 'slug',
     control,
     defaultValue: '',
   });
 
-  // category
   const { field: categoryField } = useController({
     name: 'category',
     control,
     defaultValue: '',
   });
 
-  // title
   const { field: titleField } = useController({
     name: 'title',
     control,
@@ -75,12 +83,25 @@ const ModifyDocumentForm = () => {
 
 const ModifySEOForm = () => {
   const { control, handleSubmit } = useForm();
-  const customSubmit = (data) => {
-    console.log(data);
+
+  const customSubmit = async (data) => {
+    const response = await fetch('/api/v1/secure/', {
+      method: 'POST',
+      body: JSON.stringify({
+        page_title: data.page_title,
+        description: data.description,
+        image: data.image,
+        id: '123'
+      })
+    });
+    const json = await response.json();
+
+    console.log(json);
+
   }
 
   const { field: titleField } = useController({
-    name: 'title',
+    name: 'page_title',
     control,
     defaultValue: '',
   });
@@ -91,19 +112,12 @@ const ModifySEOForm = () => {
     defaultValue: '',
   });
 
-  const {
-    field: { ref: imageRef, ...imageField },
-  } = useController({
+  const { field: imageField, } = useController({
     name: 'image',
     control,
     defaultValue: null,
   });
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop: (acceptedFiles) => {
-      imageField.onChange(acceptedFiles[0]);
-    },
-  });
 
   return (
     <MultiColumnFormWrapper
