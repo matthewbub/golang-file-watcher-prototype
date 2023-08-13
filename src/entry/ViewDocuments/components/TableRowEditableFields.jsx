@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, useController } from 'react-hook-form';
 import { get } from 'lodash';
 import {
@@ -13,9 +13,9 @@ import clsx from 'clsx';
 import { useDocumentList } from '../state';
 
 const ModifyDocumentForm = ({ document }) => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, watch, setValue } = useForm();
 
-  console.log(document);
+  // console.log(document);
 
   const customSubmit = async (data) => {
     const response = await fetch('/api/v1/secure/', {
@@ -37,6 +37,7 @@ const ModifyDocumentForm = ({ document }) => {
     control,
     defaultValue: slugFieldDefaultValue,
   });
+  const watchSlug = watch('slug');
 
   const categoryFieldDefaultValue = get(document, 'documentCategory', '');
   const { field: categoryField } = useController({
@@ -51,6 +52,17 @@ const ModifyDocumentForm = ({ document }) => {
     control,
     defaultValue: titleFieldDefaultValue,
   });
+
+  useEffect(() => {
+    const handleSlugChange = () => {
+      if (watchSlug && watchSlug.length > 0) {
+        const slug_mustBeLowerCase_replaceSpacesWithDashes_removeNonAlphaNumericCharacters = watchSlug.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        setValue('slug', slug_mustBeLowerCase_replaceSpacesWithDashes_removeNonAlphaNumericCharacters);
+      }
+    }
+
+    handleSlugChange();
+  }, [watchSlug]);
 
   return (
     <MultiColumnFormWrapper

@@ -7,11 +7,11 @@ const ClientObserver = ({ children }) => {
   const dateValue = useFilterBar(state => state.dateValue);
 
   useEffect(() => {
-    console.log("ClientObserver observed a change in the filter bar state.", {
-      searchValue,
-      categoryValue,
-      dateValue
-    });
+    // console.log("ClientObserver observed a change in the filter bar state.", {
+    //   searchValue,
+    //   categoryValue,
+    //   dateValue
+    // });
   }, [searchValue, categoryValue, dateValue]);
 
   return (
