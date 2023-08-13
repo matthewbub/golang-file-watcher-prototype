@@ -32,8 +32,10 @@ const FilterBar = () => {
             ref: () => { },
           })}
           options={[
-            { id: 'ascending', name: 'Default (ascending)' },
-            { id: 'descending', name: 'Descending' },
+            { id: 'date-created-asc', name: 'Created (Asc)' },
+            { id: 'date-created-desc', name: 'Created (Desc)' },
+            { id: 'date-modified-asc', name: 'Modified (Asc)' },
+            { id: 'date-modified-desc', name: 'Modified (Desc)' },
           ]}
         />
       </div>
