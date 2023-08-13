@@ -72,7 +72,7 @@ const TableRows = () => {
               </div>
             </div>
             <div className='bg1'>
-              {accordionList[item.documentId] && <TableRowEditableFields />}
+              {accordionList[item.documentId] && <TableRowEditableFields documentId={item.documentId} />}
             </div>
           </div>
         )

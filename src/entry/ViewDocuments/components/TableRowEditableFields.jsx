@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, useController } from 'react-hook-form';
-
+import { get } from 'lodash';
 import {
   ImageUploadLarge,
   Input,
@@ -10,9 +10,12 @@ import {
   Tabs
 } from '../../../components';
 import clsx from 'clsx';
+import { useDocumentList } from '../state';
 
-const ModifyDocumentForm = () => {
+const ModifyDocumentForm = ({ document }) => {
   const { control, handleSubmit } = useForm();
+
+  console.log(document);
 
   const customSubmit = async (data) => {
     const response = await fetch('/api/v1/secure/', {
@@ -25,27 +28,28 @@ const ModifyDocumentForm = () => {
       })
     });
     const json = await response.json();
-
     console.log(json);
-
   }
 
+  const slugFieldDefaultValue = get(document, 'documentUrl', '');
   const { field: slugField } = useController({
     name: 'slug',
     control,
-    defaultValue: '',
+    defaultValue: slugFieldDefaultValue,
   });
 
+  const categoryFieldDefaultValue = get(document, 'documentCategory', '');
   const { field: categoryField } = useController({
     name: 'category',
     control,
-    defaultValue: '',
+    defaultValue: categoryFieldDefaultValue,
   });
 
+  const titleFieldDefaultValue = get(document, 'documentTitle', '');
   const { field: titleField } = useController({
     name: 'title',
     control,
-    defaultValue: '',
+    defaultValue: titleFieldDefaultValue,
   });
 
   return (
@@ -81,7 +85,7 @@ const ModifyDocumentForm = () => {
   )
 }
 
-const ModifySEOForm = () => {
+const ModifySEOForm = ({ document }) => {
   const { control, handleSubmit } = useForm();
 
   const customSubmit = async (data) => {
@@ -100,24 +104,27 @@ const ModifySEOForm = () => {
 
   }
 
+  const titleFieldFallBackValue = get(document, 'documentTitle', '');
+  const titleFieldDefaultValue = get(document, 'documentSeoTitle', titleFieldFallBackValue);
   const { field: titleField } = useController({
     name: 'page_title',
     control,
-    defaultValue: '',
+    defaultValue: titleFieldDefaultValue
   });
 
+  const descriptionFieldFallBackValue = get(document, 'documentDescription', '');
   const { field: descriptionField } = useController({
     name: 'description',
     control,
-    defaultValue: '',
+    defaultValue: descriptionFieldFallBackValue
   });
 
+  const imageFieldFallBackValue = get(document, 'documentImage', null);
   const { field: imageField, } = useController({
     name: 'image',
     control,
-    defaultValue: null,
+    defaultValue: imageFieldFallBackValue,
   });
-
 
   return (
     <MultiColumnFormWrapper
@@ -151,7 +158,7 @@ const ModifySEOForm = () => {
   )
 }
 
-const DeleteDocumentForm = () => {
+const DeleteDocumentForm = ({ document }) => {
   return (
     <MultiColumnFormWrapper
       title='Delete Document'
@@ -170,7 +177,9 @@ const DeleteDocumentForm = () => {
     </MultiColumnFormWrapper>
   )
 }
-const TableRowEditableFields = () => {
+
+const TableRowEditableFields = ({ documentId }) => {
+  const document = useDocumentList((state) => state.documents).find((item) => item.documentId === documentId);
   const tabs = [
     { label: 'Stats', href: '#', current: false, as: 'a' },
     { label: 'Edit', href: '#', current: true, as: 'a' },
@@ -181,11 +190,10 @@ const TableRowEditableFields = () => {
       'border-t border-white/20',
       'divide-solid divide-y divide-white/20'
     )}>
-
       <Tabs tabs={tabs} />
-      <ModifyDocumentForm />
-      <ModifySEOForm />
-      <DeleteDocumentForm />
+      <ModifyDocumentForm document={document} />
+      <ModifySEOForm document={document} />
+      <DeleteDocumentForm document={document} />
     </div>
   )
 }
