@@ -1,7 +1,7 @@
 import { ConsoleLayout, Button, Stats } from '../../components';
 import InitialClientEx from "./lifecycle/InitialClientEx";
 import clsx from 'clsx';
-import { NewDocumentForm, TableDisplay } from './components';
+import { NewDocumentForm, Table } from './components';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { statsConfig } from './constants';
@@ -37,7 +37,7 @@ const Page = ({
         primary={() => (
           <Fragment>
             <Stats stats={statsConfig.fallbackStats} />
-            <TableDisplay />
+            <Table />
           </Fragment>
         )}
         primaryAction={PrimaryAction}

@@ -25,7 +25,7 @@ exports[`renders Stats component unchanged 1`] = `
             <span
               class="text-4xl font-semibold tracking-tight txt1"
             >
-              405
+              -
             </span>
           </p>
         </div>
@@ -43,13 +43,11 @@ exports[`renders Stats component unchanged 1`] = `
             <span
               class="text-4xl font-semibold tracking-tight txt1"
             >
-              3.65
+              -
             </span>
             <span
               class="text-sm txt2"
-            >
-              mins
-            </span>
+            />
           </p>
         </div>
         <div
@@ -66,7 +64,7 @@ exports[`renders Stats component unchanged 1`] = `
             <span
               class="text-4xl font-semibold tracking-tight txt1"
             >
-              3
+              -
             </span>
           </p>
         </div>
@@ -84,7 +82,7 @@ exports[`renders Stats component unchanged 1`] = `
             <span
               class="text-4xl font-semibold tracking-tight txt1"
             >
-              98.5%
+              -
             </span>
           </p>
         </div>

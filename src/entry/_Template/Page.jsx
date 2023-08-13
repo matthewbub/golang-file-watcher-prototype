@@ -1,7 +1,6 @@
 import { ConsoleLayout } from '../../components';
 import InitialClientEx from "./InitialClientEx";
 
-
 const Page = ({ consoleLayout = {
   title: "Page",
   description: "Page description"
@@ -14,3 +13,4 @@ const Page = ({ consoleLayout = {
 }
 
 export default Page;
+export { getServerSideProps } from './lifecycle/InitialServerEx';

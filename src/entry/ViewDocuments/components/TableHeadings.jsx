@@ -13,12 +13,14 @@ const TableHeadings = () => {
         const lastItem = get(tableConfig.colHeaders, `[${tableConfig.colHeaders.length - 1}]`, null);
         const lastItemIndex = tableConfig.colHeaders.length - 1;
         return (
-          <div className={clsx(
-            'flex items-center',
-            item.colSpan,
-            index === 0 && 'container-padding-left',
-            index === lastItemIndex && lastItem ? lastItem.className || 'container-padding-right' : item.className,
-          )}>
+          <div
+            key={index}
+            className={clsx(
+              'flex items-center',
+              item.colSpan,
+              index === 0 && 'container-padding-left',
+              index === lastItemIndex && lastItem ? lastItem.className || 'container-padding-right' : item.className,
+            )}>
             <span className='text-sm font-bold leading-6 txt2'>
               {item.title}
             </span>

@@ -1,9 +1,21 @@
-import { DocumentIcon, PhotoIcon, RectangleGroupIcon, BuildingLibraryIcon } from "@heroicons/react/24/outline"
+import {
+  DocumentIcon,
+  PhotoIcon,
+  RectangleGroupIcon,
+  BuildingLibraryIcon,
+  AdjustmentsHorizontalIcon,
+  DocumentTextIcon,
+  GlobeAltIcon,
+  QuestionMarkCircleIcon,
+  BookOpenIcon
+} from "@heroicons/react/24/outline";
+
 export const consoleNavigation = [
   {
     name: 'Apps',
     type: 'section',
     description: 'Internal application pages for the console application',
+    uid: 'apps',
   },
   {
     name: 'Documents',
@@ -11,6 +23,7 @@ export const consoleNavigation = [
     type: 'link',
     description: 'Internal documents management services and pages for the console application',
     icon: DocumentIcon,
+    uid: 'apps_documents'
   },
   {
     name: 'Media Manager',
@@ -18,49 +31,54 @@ export const consoleNavigation = [
     type: 'link',
     description: 'Coming soon...',
     icon: PhotoIcon,
+    uid: 'apps_media'
   },
   {
-    name: 'Project Manager',
-    href: '/experimental/time-logger',
-    type: 'link',
-    description: 'Securely track your time spent on projects.',
-    icon: RectangleGroupIcon,
-  },
-  {
-    name: 'Invoices',
-    href: '/invoices',
+    name: 'Administrative',
+    href: '/admin',
     type: 'link',
     description: 'Coming soon...',
-    icon: BuildingLibraryIcon,
+    icon: AdjustmentsHorizontalIcon,
+    uid: 'more_administrative'
   },
-  //   {
-  //     name: 'Administrative',
-  //     href: '/hosting',
-  //     type: 'link',
-  //     description: 'Git history. Vercel hosting services and deployments. Also includes domain management, tenant management and deployment management.',
-  //     children: [
-  //       {
-  //         name: 'Tenants',
-  //         href: '/hosting/tenants',
-  //         description: 'Tenant management services and pages for the console application',
-  //       },
-  //       {
-  //         name: 'Configured Domains',
-  //         href: '/hosting/domains',
-  //         description: 'Domain management services and pages for the console application',
-  //       },
-  //       {
-  //         name: 'Logs',
-  //         href: '/logs',
-  //         type: 'link',
-  //         description: 'Coming soon...',
-  //       },
-  //       {
-  //         name: 'Recent Deployments',
-  //         type: 'link',
-  //         href: '/hosting/deployments',
-  //         description: 'Deployment management services and pages for the console application',
-  //       },
-  //   ],
-  // }
-]
+];
+export const consoleHeaderNavigation = [
+  {
+    name: 'More',
+    type: 'section',
+    description: 'More pages for the console application',
+    uid: 'more',
+  },
+  {
+    name: 'Documentation',
+    href: '/docs',
+    type: 'link',
+    description: 'Coming soon...',
+    icon: DocumentTextIcon,
+    uid: 'more_documentation'
+  },
+  {
+    name: 'Developer API',
+    href: '/developer',
+    type: 'link',
+    description: 'Coming soon...',
+    icon: GlobeAltIcon,
+    uid: 'more_developer'
+  },
+  {
+    name: 'Support',
+    href: '/support',
+    type: 'link',
+    description: 'Coming soon...',
+    icon: QuestionMarkCircleIcon,
+    uid: 'more_support'
+  },
+  {
+    name: 'Blog',
+    href: '/blog',
+    type: 'link',
+    description: 'Coming soon...',
+    icon: BookOpenIcon,
+    uid: 'more_blog'
+  },
+];

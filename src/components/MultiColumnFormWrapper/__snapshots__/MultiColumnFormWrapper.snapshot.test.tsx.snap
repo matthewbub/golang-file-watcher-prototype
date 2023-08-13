@@ -3,11 +3,11 @@
 exports[`renders MultiColumnFormWrapper unchanged 1`] = `
 <div>
   <div
-    class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8"
+    class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 mt-5 sm:px-6 md:grid-cols-3 lg:px-8"
   >
     <div>
       <h2
-        class="text-base font-semibold leading-7 txt1"
+        class="font-semibold leading-7 txt1 text-base"
       >
         Hello, World!
       </h2>

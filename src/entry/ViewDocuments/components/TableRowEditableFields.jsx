@@ -6,22 +6,47 @@ import {
   Input,
   TextArea,
   MultiColumnFormWrapper,
-  Button
+  Button,
+  Tabs
 } from '../../../components';
 import clsx from 'clsx';
 
 const ModifyDocumentForm = () => {
   const { control, handleSubmit } = useForm();
-  const customSubmit = (data) => {
-    console.log(data);
+
+  const customSubmit = async (data) => {
+    const response = await fetch('/api/v1/secure/', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: data.title,
+        slug: data.slug,
+        category: data.category,
+        id: '123'
+      })
+    });
+    const json = await response.json();
+
+    console.log(json);
+
   }
+
+  const { field: slugField } = useController({
+    name: 'slug',
+    control,
+    defaultValue: '',
+  });
+
+  const { field: categoryField } = useController({
+    name: 'category',
+    control,
+    defaultValue: '',
+  });
 
   const { field: titleField } = useController({
     name: 'title',
     control,
     defaultValue: '',
   });
-
 
   return (
     <MultiColumnFormWrapper
@@ -30,18 +55,21 @@ const ModifyDocumentForm = () => {
       className='mb-10 pt-5'
       headingSize='small'
     >
-      <form className='col-span-2'>
+      <form className='col-span-2' onSubmit={handleSubmit(customSubmit)}>
         <Input
           label='Document Name'
           placeholder='Untitled Document'
+          {...titleField}
         />
         <Input
           label='Slug'
           placeholder='/untitled-document'
+          {...slugField}
         />
         <Input
           label='Category'
           placeholder='General'
+          {...categoryField}
         />
         <div className='mt-6'>
           <Button>
@@ -55,15 +83,41 @@ const ModifyDocumentForm = () => {
 
 const ModifySEOForm = () => {
   const { control, handleSubmit } = useForm();
-  const customSubmit = (data) => {
-    console.log(data);
+
+  const customSubmit = async (data) => {
+    const response = await fetch('/api/v1/secure/', {
+      method: 'POST',
+      body: JSON.stringify({
+        page_title: data.page_title,
+        description: data.description,
+        image: data.image,
+        id: '123'
+      })
+    });
+    const json = await response.json();
+
+    console.log(json);
+
   }
 
   const { field: titleField } = useController({
-    name: 'title',
+    name: 'page_title',
     control,
     defaultValue: '',
   });
+
+  const { field: descriptionField } = useController({
+    name: 'description',
+    control,
+    defaultValue: '',
+  });
+
+  const { field: imageField, } = useController({
+    name: 'image',
+    control,
+    defaultValue: null,
+  });
+
 
   return (
     <MultiColumnFormWrapper
@@ -72,24 +126,27 @@ const ModifySEOForm = () => {
       headingSize='small'
       className='mb-10 pt-5'
     >
-      <div className='col-span-2'>
+      <form className='col-span-2' onSubmit={handleSubmit(customSubmit)}>
         <Input
           label='Document Title'
           placeholder='Untitled Document'
+          {...titleField}
         />
         <TextArea
           label='Document Description'
           placeholder='Untitled Document'
+          {...descriptionField}
         />
         <ImageUploadLarge
           label='Primary Image'
+          {...imageField}
         />
         <div className='mt-6'>
           <Button>
             {'Save'}
           </Button>
         </div>
-      </div>
+      </form>
     </MultiColumnFormWrapper>
   )
 }
@@ -115,33 +172,17 @@ const DeleteDocumentForm = () => {
 }
 const TableRowEditableFields = () => {
   const tabs = [
-    { name: 'Stats', href: '#', current: true },
-    { name: 'Edit', href: '#', current: false },
+    { label: 'Stats', href: '#', current: false, as: 'a' },
+    { label: 'Edit', href: '#', current: true, as: 'a' },
   ]
   return (
     <div className={clsx(
-      'w-full',
+      'w-full bg1',
       'border-t border-white/20',
       'divide-solid divide-y divide-white/20'
     )}>
 
-      <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 mt-5 sm:px-6 md:grid-cols-3 lg:px-8">
-        <nav className="flex space-x-4" aria-label="Tabs">
-          {tabs.map((tab) => (
-            <a
-              key={tab.name}
-              href={tab.href}
-              className={clsx(
-                tab.current ? 'bg-teal-100/50 text-white outline outline-teal-500' : 'text-gray-500 hover:text-gray-700',
-                'px-3 py-0.5 text-sm font-medium'
-              )}
-              aria-current={tab.current ? 'page' : undefined}
-            >
-              {tab.name}
-            </a>
-          ))}
-        </nav>
-      </div>
+      <Tabs tabs={tabs} />
       <ModifyDocumentForm />
       <ModifySEOForm />
       <DeleteDocumentForm />

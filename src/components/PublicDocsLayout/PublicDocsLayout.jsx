@@ -4,16 +4,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Bars3Icon, MagnifyingGlassIcon, HomeIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx';
-
 import { SideNavigation } from '../SideNavigation';
 import { consoleNavigation as fallBackNavigation } from '../../constants';
-import { AuthWrapper } from '../AuthWrapper';
 import { NotificationWithActions } from '../NotificationWithActions';
 import { useSessionStore } from '../../stores/session.store';
-import { set } from 'lodash';
-import { Button } from '../Button';
 import { AppNavigation } from '../AppNavigation';
-const ConsoleLayout = ({
+
+const PublicDocsLayout = ({
   primary,
   secondary = null,
   primaryTitle,
@@ -29,14 +26,8 @@ const ConsoleLayout = ({
   const { session } = useSessionStore();
   const router = useRouter();
 
-  useEffect(() => {
-    if (session?.expires) {
-      setSessionTimeoutNotification(true);
-    }
-  }, [session?.expires])
-
   return (
-    <AuthWrapper>
+    <Fragment>
       <div className='min-h-screen bg-neutral-950'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 xl:hidden" onClose={setSidebarOpen}>
@@ -203,8 +194,8 @@ const ConsoleLayout = ({
           }
         }}
       />
-    </AuthWrapper >
+    </Fragment>
   )
 }
 
-export default ConsoleLayout;
+export default PublicDocsLayout;
