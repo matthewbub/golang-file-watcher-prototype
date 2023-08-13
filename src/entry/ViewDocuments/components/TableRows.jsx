@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import TableRowEditableFields from './TableRowEditableFields';
 import { tableConfig } from '../constants';
+import { useDocumentList } from "../state";
 
 const EmptyTableRows = ({ show, label }) => {
   if (!show) return null;
@@ -14,13 +15,15 @@ const EmptyTableRows = ({ show, label }) => {
 }
 
 const TableRows = () => {
+  const documentsList = useDocumentList((state) => state.documents);
+  console.log('documentsList', documentsList)
   return (
     <div className='iep--table w-full min-h-[384px]'>
       <EmptyTableRows
         label='No documents'
         show={Object.keys(tableConfig.data).length === 0}
       />
-      {Object.keys(tableConfig.data).map((item, index) => {
+      {documentsList && documentsList.length && documentsList.map((item, index) => {
         const [open, setOpen] = useState(false);
         return (
           <div
@@ -35,17 +38,17 @@ const TableRows = () => {
             )}>
               <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
                 <span className='txt1 text-sm'>
-                  {tableConfig.data[item][1]}
+                  {item[1]}
                 </span>
               </div>
               <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
                 <span className='txt1 text-sm sm:flex hidden col-span-2'>
-                  {tableConfig.data[item][2]}
+                  {item[2]}
                 </span>
               </div>
               <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
                 <span className='txt1 text-sm sm:flex hidden col-span-2'>
-                  {tableConfig.data[item][3]}
+                  {item[3]}
                 </span>
               </div>
               <div className={'flex items-center h-16 text-sm'}>
