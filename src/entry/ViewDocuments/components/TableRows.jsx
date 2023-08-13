@@ -37,9 +37,11 @@ const TableRows = () => {
               'border-t border-white/20'
             )}>
               <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
-                <span className='txt1 text-sm'>
-                  {item[1]}
-                </span>
+                <a href={`/documents/${item.id}`} className='inline-block w-full'>
+                  <span className='txt1 text-sm'>
+                    {item[1]}
+                  </span>
+                </a>
               </div>
               <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
                 <span className='txt1 text-sm sm:flex hidden col-span-2'>

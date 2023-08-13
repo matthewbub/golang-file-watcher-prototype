@@ -97,7 +97,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
         1: curr.document_title,
         2: categoryNames.find(cat => cat.id === curr.category)?.category || 'Uncategorized',
         3: dayjs(curr.created_at).fromNow(),
-        4: 'Edit',
+        4: curr.id,
       }
     ]
   }, []);
