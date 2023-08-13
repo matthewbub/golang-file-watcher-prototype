@@ -94,10 +94,16 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     return [
       ...acc,
       {
-        1: curr.document_title,
-        2: categoryNames.find(cat => cat.id === curr.category)?.category || 'Uncategorized',
-        3: dayjs(curr.created_at).fromNow(),
-        4: curr.id,
+        documentTitle: curr.document_title,
+        documentCategory: categoryNames.find(cat => cat.id === curr.category)?.category || 'Uncategorized',
+        dateCreated: dayjs(curr.created_at).fromNow(),
+        lastUpdated: dayjs(curr.updated_at).fromNow(),
+        documentId: curr.id,
+        documentOwnerId: curr.owner_id,
+        documentVisibility: curr.visibility,
+        documentDescription: curr.document_description,
+        documentUrl: curr.slug,
+        documentSeoTitle: curr.page_title,
       }
     ]
   }, []);

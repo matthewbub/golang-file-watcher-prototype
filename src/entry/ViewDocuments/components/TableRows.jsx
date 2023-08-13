@@ -32,7 +32,7 @@ const TableRows = () => {
           <div
             key={index}
             className={clsx(
-              accordionList[item[4]] && 'border border-dashed border-teal-500',
+              accordionList[item.documentId] && 'border border-dashed border-teal-500',
               'focus-within:border focus-within:border-teal-500',
             )}>
             <div className={clsx(
@@ -40,39 +40,39 @@ const TableRows = () => {
               'border-t border-white/20'
             )}>
               <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
-                <a href={`/documents/${item[4]}`} className='inline-block w-full'>
+                <a href={`/documents/${item.documentId}`} className='inline-block w-full'>
                   <span className='txt1 text-sm'>
-                    {item[1]}
+                    {item.documentTitle}
                   </span>
                 </a>
               </div>
               <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
                 <span className='txt1 text-sm sm:flex hidden col-span-2'>
-                  {item[2]}
+                  {item.documentCategory}
                 </span>
               </div>
               <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
                 <span className='txt1 text-sm sm:flex hidden col-span-2'>
-                  {item[3]}
+                  {item.dateCreated}
                 </span>
               </div>
               <div className={'flex items-center h-16 text-sm'}>
                 <button
-                  className={clsx('a1', accordionList[item[4]] && 'animate-pulse', 'txt1 text-sm col-span-1')}
+                  className={clsx('a1', accordionList[item.documentId] && 'animate-pulse', 'txt1 text-sm col-span-1')}
                   onClick={() => {
-                    if (accordionList[item[4]]) {
-                      closeAccordion(item[4])
+                    if (accordionList[item.documentId]) {
+                      closeAccordion(item.documentId)
                     } else {
-                      openAccordion(item[4])
+                      openAccordion(item.documentId)
                     }
                   }}
                 >
-                  {accordionList[item[4]] ? 'Hide' : 'Info'}
+                  {accordionList[item.documentId] ? 'Hide' : 'Info'}
                 </button>
               </div>
             </div>
             <div className='bg1'>
-              {accordionList[item[4]] && <TableRowEditableFields />}
+              {accordionList[item.documentId] && <TableRowEditableFields />}
             </div>
           </div>
         )
