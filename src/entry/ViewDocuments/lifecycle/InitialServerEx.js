@@ -108,6 +108,16 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     }
   };
   const userCategoriesList = get(userCategories, 'data[0].document_categories', []);
+  const formattedUserCategoriesList = userCategoriesList.reduce((acc, curr) => {
+    return [
+      ...acc,
+      {
+        id: curr.id,
+        name: curr.category,
+      }
+    ]
+  }, []);
+
 
   // TODO Doesn't work but is for the Stats section
   // const totalDocuments = await getTotalDocumentsByOwnerId(data.id);
@@ -155,7 +165,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
       data: {
         documentsList: formattedTableRowData,
         accordionsList: formattedTableRowAccordions,
-        categoriesList: userCategoriesList,
+        categoriesList: formattedUserCategoriesList,
       }
     }
   }

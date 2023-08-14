@@ -41,7 +41,6 @@ const FieldSelect: FC<FieldSelectProps> = forwardRef<HTMLSelectElement, FieldSel
 const Select = forwardRef<HTMLSelectElement, ForwardedSelectProps>(({
   name,
   placeholder,
-  register,
   options = [],
   label = '',
   className = '',
@@ -57,7 +56,6 @@ const Select = forwardRef<HTMLSelectElement, ForwardedSelectProps>(({
       <FieldSelect
         name={name}
         placeholder={placeholder}
-        register={register}
         options={options}
         ariaLabel={name}
         ref={ref}

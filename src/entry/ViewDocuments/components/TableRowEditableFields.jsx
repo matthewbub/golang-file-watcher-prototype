@@ -7,16 +7,17 @@ import {
   TextArea,
   MultiColumnFormWrapper,
   Button,
-  Tabs
+  Tabs,
+  Select
 } from '../../../components';
 import clsx from 'clsx';
-import { useDocumentList } from '../state';
+import { useDocumentList, useCategoryList } from '../state';
 
 const ModifyDocumentForm = ({ document }) => {
   const { control, handleSubmit, watch, setValue } = useForm();
+  const categoriesList = useCategoryList(state => state.categories);
 
-  // console.log(document);
-
+  console.log('categoriesList', categoriesList);
   const customSubmit = async (data) => {
     const response = await fetch('/api/v1/secure/', {
       method: 'POST',
@@ -82,9 +83,9 @@ const ModifyDocumentForm = ({ document }) => {
           placeholder='/untitled-document'
           {...slugField}
         />
-        <Input
+        <Select
           label='Category'
-          placeholder='General'
+          options={categoriesList}
           {...categoryField}
         />
         <div className='mt-6'>
