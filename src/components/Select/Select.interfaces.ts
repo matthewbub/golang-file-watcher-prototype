@@ -1,6 +1,5 @@
 export interface BaseProps {
   name: string
-  register: any
   options?: any[]
   rest?: any
   placeholder: string

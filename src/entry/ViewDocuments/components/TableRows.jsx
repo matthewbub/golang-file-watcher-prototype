@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import TableRowEditableFields from './TableRowEditableFields';
 import { tableConfig } from '../constants';
-import { useDocumentList } from "../state";
-
+import { useAccordionsList, useDocumentList } from "../state";
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { upperFirst, toLower } from 'lodash';
 const EmptyTableRows = ({ show, label }) => {
   if (!show) return null;
 
@@ -16,7 +17,10 @@ const EmptyTableRows = ({ show, label }) => {
 
 const TableRows = () => {
   const documentsList = useDocumentList((state) => state.documents);
-  console.log('documentsList', documentsList)
+  const accordionList = useAccordionsList((state) => state.accordions);
+  const openAccordion = useAccordionsList((state) => state.openAccordion);
+  const closeAccordion = useAccordionsList((state) => state.closeAccordion);
+
   return (
     <div className='iep--table w-full min-h-[384px]'>
       <EmptyTableRows
@@ -24,44 +28,55 @@ const TableRows = () => {
         show={Object.keys(tableConfig.data).length === 0}
       />
       {documentsList && documentsList.length && documentsList.map((item, index) => {
-        const [open, setOpen] = useState(false);
         return (
           <div
             key={index}
             className={clsx(
-              open && 'border border-dashed border-teal-500',
+              accordionList[item.documentId] && 'border border-dashed border-teal-500',
               'focus-within:border focus-within:border-teal-500',
             )}>
             <div className={clsx(
               'iep--table-row grid grid-cols-12 gap-2 hover:bg3',
-              'border-t border-white/20'
+              'border-t border-white/20',
+              'container-padding'
             )}>
-              <div className={'container-padding-left flex items-center h-16 text-sm col-span-10 sm:col-span-7'}>
-                <span className='txt1 text-sm'>
-                  {item[1]}
-                </span>
+              <div className={'flex items-center text-sm col-span-10'}>
+                <a href={`/documents/${item.documentId}`} className='inline-block w-full'>
+                  <span className='txt1 text-sm font-bold'>
+                    {item.documentTitle}
+                  </span>
+                </a>
               </div>
-              <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
-                <span className='txt1 text-sm sm:flex hidden col-span-2'>
-                  {item[2]}
-                </span>
-              </div>
-              <div className={'items-center h-16 text-sm sm:flex hidden col-span-2'}>
-                <span className='txt1 text-sm sm:flex hidden col-span-2'>
-                  {item[3]}
-                </span>
-              </div>
-              <div className={'flex items-center h-16 text-sm'}>
+              <div className={'col-span-2 flex items-center justify-end'}>
                 <button
-                  className={clsx('a1', open && 'animate-pulse', 'txt1 text-sm col-span-1')}
-                  onClick={() => setOpen(!open)}
+                  className={clsx('a1', accordionList[item.documentId] && 'animate-pulse', 'txt1 text-sm')}
+                  onClick={() => {
+                    if (accordionList[item.documentId]) {
+                      closeAccordion(item.documentId)
+                    } else {
+                      openAccordion(item.documentId)
+                    }
+                  }}
                 >
-                  {open ? 'Hide' : 'Info'}
+                  {accordionList[item.documentId] ? <span className='text-sm text-teal-600 hover:text-teal-700'>{'Collapse'}</span> : <span className='text-sm text-teal-600 hover:text-teal-700'>{'Quick Edit'}</span>}
                 </button>
+              </div>
+              <div className={'text-sm col-span-12 flex flex-col'}>
+                <a href={`/documents/${item.documentId}`} className='inline-flex flex-col w-full space-y-4'>
+                  <span className='txt2 text-sm'>
+                    {'Created '} {item.dateCreated} {' · Last modified '}{item.lastUpdated}
+                  </span>
+
+                  <div className='bg-teal-700/20 border-teal-500 border rounded w-fit px-4 py-0.5'>
+                    <span className='txt2 text-sm'>
+                      {upperFirst(toLower(item.documentCategory))}
+                    </span>
+                  </div>
+                </a>
               </div>
             </div>
             <div className='bg1'>
-              {open && <TableRowEditableFields />}
+              {accordionList[item.documentId] && <TableRowEditableFields documentId={item.documentId} />}
             </div>
           </div>
         )

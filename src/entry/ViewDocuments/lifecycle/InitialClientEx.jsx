@@ -1,11 +1,23 @@
 import { Fragment, useEffect } from "react";
-import { useDocumentList } from "../state";
+import { useDocumentList, useAccordionsList, useCategoryList } from "../state";
 
 const InitialClientEx = ({ data, children }) => {
   const setDocuments = useDocumentList((state) => state.setDocuments);
+  const setAccordions = useAccordionsList((state) => state.setAccordions);
+  const setCategories = useCategoryList((state) => state.setCategories);
+
+  const clearStateJustToBeSure = () => {
+    setDocuments([]);
+    setAccordions([]);
+    setCategories([]);
+  };
 
   useEffect(() => {
-    setDocuments(data);
+    clearStateJustToBeSure();
+
+    setDocuments(data.documentsList);
+    setAccordions(data.accordionsList);
+    setCategories(data.categoriesList);
   }, []);
 
   return (

@@ -8,7 +8,7 @@ const Table = () => {
   return (
     <section className='w-full'>
       <FilterBar />
-      <TableHeadings />
+      {/* <TableHeadings /> */}
       <TableRows />
       <Pagination />
     </section>
