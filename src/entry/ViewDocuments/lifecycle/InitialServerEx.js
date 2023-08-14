@@ -11,6 +11,13 @@ const fetchUserDocuments = async (user) => {
     .single();
 }
 
+const fetchUserCategories = async (user) => {
+  return await supabase
+    .from('users')
+    .select(`email, id, document_categories (*)`)
+    .eq('email', user.email)
+}
+
 const fetchUniqueCategories = async (data) => {
   // 1. Collect all of the category fields in an array
   const categories = data.documents.map(doc => doc.category);
@@ -62,6 +69,7 @@ const getTotalDocumentsByOwnerId = async (ownerId) => {
 export const getServerSideProps = sspWithAuth(async (context, user) => {
   const currentTab = get(context, 'query.tab', 'new-document');
 
+  // Collect all of the user's documents
   const { data, error } = await fetchUserDocuments(user);
   if (error) {
     return {
@@ -74,6 +82,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     }
   }
 
+  // Collect all of categories in the `data.documentsList`
   const categoryNames = await fetchUniqueCategories(data);
   if (categoryNames.error) {
     return {
@@ -86,10 +95,25 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     }
   }
 
-  // const totalDocuments = await getTotalDocumentsByOwnerId(data.id);
+  // Collect all categories for the user
+  const userCategories = await fetchUserCategories(data);
+  if (userCategories.error) {
+    return {
+      props: {
+        ...defaultProps,
+        secondaryTabs: [
+          { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
+        ],
+      }
+    }
+  };
+  const userCategoriesList = get(userCategories, 'data[0].document_categories', []);
 
+  // TODO Doesn't work but is for the Stats section
+  // const totalDocuments = await getTotalDocumentsByOwnerId(data.id);
   // console.log('totalDocuments:', totalDocuments, data.id);
 
+  // `data.documents` is used to populate the table rows
   const formattedTableRowData = data.documents.reduce((acc, curr) => {
     return [
       ...acc,
@@ -108,6 +132,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     ]
   }, []);
 
+  // `data.accordionsList` is used to control the open/close state of the accordions
   const formattedTableRowAccordions = data.documents.reduce((acc, curr) => {
     return ({
       ...acc,
@@ -129,7 +154,8 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
       ],
       data: {
         documentsList: formattedTableRowData,
-        accordionsList: formattedTableRowAccordions
+        accordionsList: formattedTableRowAccordions,
+        categoriesList: userCategoriesList,
       }
     }
   }
