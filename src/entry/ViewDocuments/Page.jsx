@@ -1,7 +1,6 @@
 import { ConsoleLayout, Button, Stats } from '../../components';
 import InitialClientEx from "./lifecycle/InitialClientEx";
-import clsx from 'clsx';
-import { NewDocumentForm, Table } from './components';
+import { Table } from './components';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { statsConfig } from './constants';
@@ -9,7 +8,6 @@ import ClientObserver from './lifecycle/ClientObserver';
 
 const Page = ({
   consoleLayout,
-  secondaryTabs = 'log',
   data = {}
 }) => {
   const PrimaryAction = () => {
@@ -36,7 +34,7 @@ const Page = ({
           {...consoleLayout}
           primary={() => (
             <Fragment>
-              <Stats stats={statsConfig.fallbackStats} />
+              {/* <Stats stats={statsConfig.fallbackStats} /> */}
               <Table />
             </Fragment>
           )}
