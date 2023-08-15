@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, useController } from 'react-hook-form';
 import { get } from 'lodash';
 import {
@@ -8,7 +8,8 @@ import {
   MultiColumnFormWrapper,
   Button,
   Tabs,
-  Select
+  Select,
+  Modal
 } from '../../../components';
 import clsx from 'clsx';
 import { useDocumentList, useCategoryList } from '../state';
@@ -19,7 +20,7 @@ const ModifyDocumentForm = ({ document }) => {
 
   console.log('categoriesList', categoriesList);
   const customSubmit = async (data) => {
-    const response = await fetch('/api/v1/secure/', {
+    const response = await fetch('/api/v1/secure/documents/modify-document-title', {
       method: 'POST',
       body: JSON.stringify({
         title: data.title,
@@ -102,19 +103,17 @@ const ModifySEOForm = ({ document }) => {
   const { control, handleSubmit } = useForm();
 
   const customSubmit = async (data) => {
-    const response = await fetch('/api/v1/secure/', {
+    const response = await fetch('/api/v1/secure/documents/modify-document-seo', {
       method: 'POST',
       body: JSON.stringify({
-        page_title: data.page_title,
-        description: data.description,
-        image: data.image,
+        title: data.title,
+        slug: data.slug,
+        category: data.category,
         id: '123'
       })
     });
     const json = await response.json();
-
     console.log(json);
-
   }
 
   const titleFieldFallBackValue = get(document, 'documentTitle', '');
@@ -172,6 +171,21 @@ const ModifySEOForm = ({ document }) => {
 }
 
 const DeleteDocumentForm = ({ document }) => {
+  const [modal, setModal] = useState(false);
+
+  const customSubmit = async (data) => {
+    console.log(data)
+    const response = await fetch('/api/v1/secure/documents/delete-document', {
+      method: 'POST',
+      body: JSON.stringify({
+        documentId: data.documentId,
+        userId: data.documentOwnerId,
+      })
+    });
+    const json = await response.json();
+    console.log(json);
+  }
+
   return (
     <MultiColumnFormWrapper
       title='Delete Document'
@@ -179,14 +193,30 @@ const DeleteDocumentForm = ({ document }) => {
       className='mb-10 pt-5'
       headingSize='small'
     >
-      <form className="flex items-start md:col-span-2">
+      <div className="flex items-start md:col-span-2">
         <button
-          type="submit"
+          onClick={() => setModal(true)}
           className="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold txt1 shadow-sm hover:bg-red-400"
         >
-          Yes, delete this document
+          Delete this document
         </button>
-      </form>
+      </div>
+      <Modal
+        open={modal}
+        setOpen={setModal}
+        title={'Delete Document'}
+        description={'Are you sure you want to delete this document?'}
+        primaryAction={() => {
+          setModal(false);
+          customSubmit(document);
+        }}
+        primaryActionText={'Yes, delete this document'}
+        secondaryAction={() => {
+          setModal(false)
+        }}
+        secondaryActionText={'Cancel'}
+        primaryButtonStyleType={'danger'}
+      />
     </MultiColumnFormWrapper>
   )
 }

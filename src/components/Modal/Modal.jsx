@@ -14,7 +14,8 @@ const Modal = ({
   primaryActionText,
   secondaryAction,
   secondaryActionText,
-  icon = null
+  icon = null,
+  primaryButtonStyleType = 'primary',
 }) => {
   const cancelButtonRef = useRef(null)
 
@@ -74,8 +75,9 @@ const Modal = ({
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                   <Button
                     type="button"
-                    className="sm:ml-3 sm:w-auto"
+                    className={"sm:ml-3 sm:w-auto"}
                     onClick={primaryAction}
+                    styleType={primaryButtonStyleType}
                   >
                     {primaryActionText}
                   </Button>
