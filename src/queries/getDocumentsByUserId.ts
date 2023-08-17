@@ -1,4 +1,9 @@
 import { supabase } from "../connections";
+import { CommonResponse } from '../helpers';
+
+const response = new CommonResponse({
+  data: { documents: [] },
+});
 
 export const getDocumentsByUserId = async (id: string, { limit, order }: {
   limit: number;
@@ -15,6 +20,15 @@ export const getDocumentsByUserId = async (id: string, { limit, order }: {
     .order(orderType, { ascending: orderDateType === "asc" })
     .limit(safeLimit);
 
-  if (error) throw error;
-  return data;
+  if (error) {
+    return response.sendError({
+      isSuccessful: false,
+      message: error.message,
+      code: 'SUPABASE_DOCUMENT_GET_BY_ID_ERROR'
+    });
+  }
+
+  return response.send({
+    documents: data || []
+  });
 };

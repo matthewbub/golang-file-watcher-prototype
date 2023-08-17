@@ -9,9 +9,19 @@ import {
 } from "../../../queries";
 
 const fetchUserDocuments = async (user) => {
-  const unsafeUserData = await getUserByEmail(user.email);
-  const unsafeUserDocuments = await getDocumentsByUserId(unsafeUserData.id, { limit: 10, order: 'created_at,desc' });
-  return unsafeUserDocuments;
+  const {data: userData, error: userError} = await getUserByEmail(user.email);
+  if (!userError.isSuccessful) {
+    console.error(`Error fetching user with email ${user.email}:`, userError);
+    return userError;
+  }
+
+  const {data: userDocumentsData, error: userDocumentsError} = await getDocumentsByUserId(userData?.user?.id, { limit: 10, order: 'created_at,desc' });
+  if (!userDocumentsError.isSuccessful) {
+    console.error(`Error fetching documents for user with ID ${userData.user.id}:`, error);
+    return error;
+  }
+
+  return userDocumentsData.documents;
 }
 
 const fetchUserCategories = async (user) => {
