@@ -54,9 +54,9 @@ const fetchUniqueCategories = async (data) => {
   return categoryNames.filter(Boolean);
 }
 
-const getTotalDocumentsByOwnerId = async (ownerId) => {
-  const userDocumentCount = await getDocumentCountByUserId(user.email);
-  return userDocumentCount;
+const getTotalDocumentsByOwnerId = async (user) => {
+  // const userDocumentCount = await getDocumentCountByUserId(user.email);
+  // return userDocumentCount;
 }
 
 export const getServerSideProps = sspWithAuth(async (context, user) => {
@@ -112,7 +112,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     ]
   }, []);
 
-  const totalDocuments = await getTotalDocumentsByOwnerId(user.email);
+  // const totalDocuments = await getTotalDocumentsByOwnerId(user.email);
 
   // `data.documents` is used to populate the table rows
   const formattedTableRowData = data.reduce((acc, curr) => {
@@ -157,7 +157,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
         documentsList: formattedTableRowData,
         accordionsList: formattedTableRowAccordions,
         categoriesList: formattedUserCategoriesList,
-        documentCount: totalDocuments,
+        // documentCount: totalDocuments,
       }
     }
   }
