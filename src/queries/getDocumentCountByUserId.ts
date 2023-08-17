@@ -3,7 +3,7 @@ import { supabase } from "../connections";
 import { CommonResponse } from '../helpers';
 
 const response = new CommonResponse({
-  count: 0,
+  data: { count: 0 },
 });
 
 export const getDocumentCountByUserId = async (email: string) => {
@@ -13,8 +13,15 @@ export const getDocumentCountByUserId = async (email: string) => {
     .eq('email', email)
     .single();
 
-  if (error) return response.sendError(error.message);
+  if (error) {
+    return response.sendError({
+      isSuccessful: false,
+      message: error.message,
+      code: 'SUPABASE_DOCUMENT_COUNT_ERROR'
+    });
+  }
 
-  return get(data, 'documents[0].count', 0);
-  // return data;
+  return response.send({
+    count: get(data, 'documents[0].count', 0)
+  });
 };

@@ -55,8 +55,8 @@ const fetchUniqueCategories = async (data) => {
 }
 
 const getTotalDocumentsByOwnerId = async (user) => {
-  // const userDocumentCount = await getDocumentCountByUserId(user.email);
-  // return userDocumentCount;
+  const userDocumentCount = await getDocumentCountByUserId(user.email);
+  return userDocumentCount;
 }
 
 export const getServerSideProps = sspWithAuth(async (context, user) => {

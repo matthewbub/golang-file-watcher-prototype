@@ -5,34 +5,43 @@
  * @constructor
  * @returns {CommonResponse}
  * @example
- * const response = new CommonResponse({data: []}); // init common response and set fallback data
+ * const response = new CommonResponse({data: {}}); // init common response and set fallback data
  * 
- * const data = [
- *  {id: 1, name: 'test'}
- * ]
+ * const data = {id: 1, name: 'test'}
  * 
  * response.send(data);
- * console.log(response) // {data: [{id: 1, name: 'test'}], error: {isBusted: false, message: ''}}
+ * console.log(response) // {data: {id: 1, name: 'test'}, error: {isSuccessful: false, message: '', code: '', meta: {}}}
  * 
  * const error = response.sendError({message: 'test'});
- * console.log(error) // {data: [], error: {isBusted: true, message: 'test'}}
+ * console.log(error) // {data: {}, error: {isSuccessful: true, message: 'test', code: '', meta: {}}}
  */
 export class CommonResponse {
-  data: any[];
-  error: { status: boolean; message: string; code: string };
+  data: any;
+  error: { isSuccessful: boolean; message: string; code: string; meta?: any };
   success: boolean = true;
 
-  constructor(data: { data: any[]; error: { status: boolean; message: string; code: string; } }) {
+  constructor(data: { data: any; error?: { isSuccessful: boolean; message: string; code: string; meta?: any } }) {
     this.data = data.data;
-    this.error = data.error;
+    this.error = data.error || {
+      isSuccessful: false,
+      message: '',
+      code: '',
+      meta: {}
+    };
   }
 
-  send(data: any[]) {
+  send(data: any) {
     this.data = data;
+    this.error = {
+      isSuccessful: true,
+      message: '',
+      code: '',
+      meta: {}
+    }
     return this;
   }
 
-  sendError(error: { status: boolean; message: string; code: string; }) {
+  sendError(error: { isSuccessful: boolean; message: string; code: string; meta?: any }) {
     this.error = error;
     return this;
   }
