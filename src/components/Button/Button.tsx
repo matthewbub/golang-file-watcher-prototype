@@ -14,7 +14,7 @@ const Button: FC<ButtonProps> = ({
   const styleTypes = {
     primary: "bg-teal-600 txt1",
     secondary: "bg-gray-600 txt1",
-    danger: "bg-red-600 txt1",
+    danger: "bg-red-500 txt1",
     success: "bg-green-600 txt1",
     warning: "bg-yellow-600 txt1",
     info: "bg-blue-600 txt1",
@@ -25,7 +25,7 @@ const Button: FC<ButtonProps> = ({
   const stateStyles = {
     primary: "hover:bg-teal-700 focus:ring-teal-500",
     secondary: "hover:bg-gray-700 focus:ring-gray-500",
-    danger: "hover:bg-red-700 focus:ring-red-500",
+    danger: "hover:bg-red-600 focus:ring-red-500",
     success: "hover:bg-green-700 focus:ring-green-500",
     warning: "hover:bg-yellow-700 focus:ring-yellow-500",
     info: "hover:bg-blue-700 focus:ring-blue-500",
