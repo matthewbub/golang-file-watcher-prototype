@@ -46,7 +46,8 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
     ]
   }, []);
 
-  // const totalDocuments = await getTotalDocumentsByOwnerId(user.email);
+  const totalDocuments =  await getDocumentCountByUserId(userData.user.id)
+  // console.log('totalDocuments:', totalDocuments);
 
   // `data.documents` is used to populate the table rows
   const formattedTableRowData = documents.reduce((acc, curr) => {

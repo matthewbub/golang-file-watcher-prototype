@@ -6,7 +6,8 @@ import {
   Modal,
   ConsoleLayout,
   SlideOver,
-  Select
+  Select,
+  PublicDocsLayout
 } from '../../components';
 
 export const isStrongPassword = (password) => {
@@ -176,7 +177,7 @@ const UsersPage = ({ primaryTitle, secondaryTitle, data, form }) => {
 
   return (
     <>
-      <ConsoleLayout
+      <PublicDocsLayout
         reverseLayout={true}
         primary={() => (
           <div>

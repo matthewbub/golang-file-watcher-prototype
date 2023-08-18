@@ -3,16 +3,27 @@ import { useRouter } from 'next/router'
 import { Button } from '../../components'
 
 export default function Page() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const { register, handleSubmit, watch, formState: { errors }, setError } = useForm()
   const router = useRouter()
 
   const submitForm = async (data) => {
-    const res = await fetch('/api/v1/log-in/from-console', {
+    const { email, password, confirmPassword } = data;
+    
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setError("confirmPassword", {
+        type: "custom",
+        message: "Passwords do not match"
+      });
+      return;
+    }
+
+    const res = await fetch('/api/v1/sign-up/from-console', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ email, password, confirmPassword }),
     })
 
     const json = await res.json()
@@ -32,7 +43,7 @@ export default function Page() {
           src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/logo.png"
           alt="IE Portals"
         />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight txt1" >
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight " >
           Sign in to your account
         </h2>
       </div>
@@ -40,7 +51,7 @@ export default function Page() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSubmit(submitForm)}>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 txt1" >
+            <label htmlFor="email" className="block text-sm font-medium leading-6 " >
               Email address
             </label>
             <div className="mt-2">
@@ -50,7 +61,7 @@ export default function Page() {
                 type="email"
                 autoComplete="email"
                 {...register("email", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0  py-1.5  shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.email && <p className="text-sm text-red-600">{errors?.email}</p>}
@@ -60,14 +71,9 @@ export default function Page() {
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 txt1" >
+              <label htmlFor="password" className="block text-sm font-medium leading-6 " >
                 Password
               </label>
-              <div className="text-sm">
-                <a href="#" className="font-semibold text-teal-400 hover:text-teal-300">
-                  Forgot password?
-                </a>
-              </div>
             </div>
             <div className="mt-2">
               <input
@@ -76,7 +82,7 @@ export default function Page() {
                 type="password"
                 autoComplete="current-password"
                 {...register("password", { required: true })}
-                className="block w-full rounded-md border-0 bg-white/20 py-1.5 txt1 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0  py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.password && <p className="text-sm text-red-600">{errors?.password}</p>}
@@ -85,10 +91,30 @@ export default function Page() {
           </div>
 
           <div>
+            <div className="flex items-center justify-between">
+              <label htmlFor="password" className="block text-sm font-medium leading-6 " >
+                Confirm Password
+              </label>
+            </div>
+            <div className="mt-2">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                {...register("confirmPassword", { required: true })}
+                className="text-black block w-full rounded-md border-0  py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
+              />
+              <div className='h-3'>
+                {errors?.confirmPassword && <p className="text-sm text-red-600">{errors?.confirmPassword.message}</p>}
+              </div>
+            </div>
+          </div>
+
+          <div>
             <Button
               type="submit"
             >
-              Sign in
+              Sign up
             </Button>
           </div>
         </form>
