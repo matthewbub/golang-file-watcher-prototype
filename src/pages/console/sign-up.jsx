@@ -40,6 +40,15 @@ export default function Page() {
     router.push('/')
   }
 
+  const passwordValidation = (value) => {
+    if (value.length < 8) return "Password must be 8 characters";
+    if (!/[A-Z]/.test(value)) return "Password must have 1 upper case";
+    if (!/[a-z]/.test(value)) return "Password must have 1 lower case";
+    if (!/[0-9]/.test(value)) return "Password must have 1 number";
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value)) return "Password must have 1 special character";
+    return true;
+  }
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -66,7 +75,7 @@ export default function Page() {
                 type="email"
                 autoComplete="email"
                 {...register("email", { required: "This field is required" })}
-                className="block w-full rounded-md border-0  py-1.5  shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0  py-1.5 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
                 {errors?.email?.message && <p className="text-sm text-red-600">{errors?.email?.message}</p>}
@@ -83,17 +92,13 @@ export default function Page() {
             <div className="mt-2 relative">
               <input
                 id="password"
-                name="password"                
+                name="password"
                 type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
                 {...register("password", { 
                   required: "This field is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters long"
-                  }
+                  validate: passwordValidation
                 })}
-                className="block w-full rounded-md border-0  py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 text-black py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className="absolute inset-y-0 right-0 pr-3 pb-3 flex items-center cursor-pointer">
                 {showPassword ? 
