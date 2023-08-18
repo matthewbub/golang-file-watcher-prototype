@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Button } from '../../components'
 
 export default function Page() {
-  const { register, handleSubmit, watch, formState: { errors }, setError } = useForm()
+  const { register, handleSubmit, formState: { errors }, setError } = useForm()
   const router = useRouter()
 
   const submitForm = async (data) => {
@@ -60,11 +60,11 @@ export default function Page() {
                 name="email"
                 type="email"
                 autoComplete="email"
-                {...register("email", { required: true })}
+                {...register("email", { required: "This field is required" })}
                 className="block w-full rounded-md border-0  py-1.5  shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
-                {errors?.email && <p className="text-sm text-red-600">{errors?.email}</p>}
+                {errors?.email?.message && <p className="text-sm text-red-600">{errors?.email?.message}</p>}
               </div>
             </div>
           </div>
@@ -81,11 +81,11 @@ export default function Page() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                {...register("password", { required: true })}
+                {...register("password", { required: "This field is required" })}
                 className="block w-full rounded-md border-0  py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
-                {errors?.password && <p className="text-sm text-red-600">{errors?.password}</p>}
+                {errors?.password?.message && <p className="text-sm text-red-600">{errors?.password?.message}</p>}
               </div>
             </div>
           </div>
@@ -101,11 +101,11 @@ export default function Page() {
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
-                {...register("confirmPassword", { required: true })}
+                {...register("confirmPassword", { required: "This field is required" })}
                 className="text-black block w-full rounded-md border-0  py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className='h-3'>
-                {errors?.confirmPassword && <p className="text-sm text-red-600">{errors?.confirmPassword.message}</p>}
+                {errors?.confirmPassword?.message && <p className="text-sm text-red-600">{errors?.confirmPassword?.message}</p>}
               </div>
             </div>
           </div>
