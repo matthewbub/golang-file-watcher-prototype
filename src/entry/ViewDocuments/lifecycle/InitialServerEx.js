@@ -8,27 +8,22 @@ import {
   getDocumentCountByUserId
 } from "../../../queries";
 
-const fetchUserDocuments = async (user) => {
-  const {data: userData, error: userError} = await getUserByEmail(user.email);
-  if (!userError.isSuccessful) {
-    console.error(`Error fetching user with email ${user.email}:`, userError);
-    return userError;
-  }
-
-  const {data: userDocumentsData, error: userDocumentsError} = await getDocumentsByUserId(userData?.user?.id, { limit: 10, order: 'created_at,desc' });
-  if (!userDocumentsError.isSuccessful) {
-    console.error(`Error fetching documents for user with ID ${userData.user.id}:`, error);
-    return error;
-  }
-
-  return userDocumentsData.documents;
-}
-
 const fetchUserCategories = async (user) => {
   return await supabase
     .from('users')
     .select(`email, id, document_categories (*)`)
     .eq('email', user.email)
+}
+
+const getUniqueCategories = async (data) => {
+  // 1. Collect all of the category fields in an array
+  const categories = data.map(doc => doc.category);
+
+  // 2. Remove any falsey values
+  const truthyCategories = categories.filter(Boolean);
+
+  // 3. Remove any duplicate values
+  return [...new Set(truthyCategories)];
 }
 
 const fetchUniqueCategories = async (data) => {
@@ -70,45 +65,35 @@ const getTotalDocumentsByOwnerId = async (user) => {
 }
 
 export const getServerSideProps = sspWithAuth(async (context, user) => {
-  const currentTab = get(context, 'query.tab', 'new-document');
+  const {data: userData, error: userError} = await getUserByEmail(user.email);
+  if (!userError.isSuccessful) {
+    console.error(`Error fetching user with email ${user.email}:`, userError);
+    return defaultProps;
+  }
 
-  // Collect all of the user's documents
-  const data = await fetchUserDocuments(user);
-  // if (error) {
-  //   return {
-  //     props: {
-  //       ...defaultProps,
-  //       secondaryTabs: [
-  //         { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
-  //       ],
-  //     }
-  //   }
-  // }
-  console.log('data: 123', data)
+  const {data: userDocumentsData, error: userDocumentsError} = await getDocumentsByUserId(userData?.user?.id, { limit: 10, order: 'created_at,desc' });
+  if (!userDocumentsError.isSuccessful) {
+    console.error(`Error fetching documents for user with ID ${userData.user.id}:`, error);
+    return defaultProps;
+  }
+  const documents = userDocumentsData.documents;
+
+
+  const uniqueCategories = getUniqueCategories(documents);
 
   // Collect all of categories in the `data.documentsList`
-  const categoryNames = await fetchUniqueCategories(data);
+  const categoryNames = await fetchUniqueCategories(documents);
   if (categoryNames.error) {
     return {
-      props: {
-        ...defaultProps,
-        secondaryTabs: [
-          { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
-        ],
-      }
+      props: defaultProps
     }
   }
 
   // Collect all categories for the user
-  const userCategories = await fetchUserCategories(data);
+  const userCategories = await fetchUserCategories(documents);
   if (userCategories.error) {
     return {
-      props: {
-        ...defaultProps,
-        secondaryTabs: [
-          { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
-        ],
-      }
+      props: defaultProps
     }
   };
   const userCategoriesList = get(userCategories, 'data[0].document_categories', []);
@@ -125,7 +110,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
   // const totalDocuments = await getTotalDocumentsByOwnerId(user.email);
 
   // `data.documents` is used to populate the table rows
-  const formattedTableRowData = data.reduce((acc, curr) => {
+  const formattedTableRowData = documents.reduce((acc, curr) => {
     return [
       ...acc,
       {
@@ -144,7 +129,7 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
   }, []);
 
   // `data.accordionsList` is used to control the open/close state of the accordions
-  const formattedTableRowAccordions = data.reduce((acc, curr) => {
+  const formattedTableRowAccordions = documents.reduce((acc, curr) => {
     return ({
       ...acc,
       [curr.id]: false
@@ -160,9 +145,6 @@ export const getServerSideProps = sspWithAuth(async (context, user) => {
           { name: 'Documents', href: '/documents', current: true },
         ]
       },
-      secondaryTabs: [
-        { name: 'Add Document', href: '?tab=new-document', key: 'new-document', current: currentTab === 'new-document' },
-      ],
       data: {
         documentsList: formattedTableRowData,
         accordionsList: formattedTableRowAccordions,
