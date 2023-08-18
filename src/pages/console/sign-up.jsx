@@ -1,3 +1,5 @@
+// TODO: Add Email Exists Error
+// TODO: Add Loading State on Submit
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
