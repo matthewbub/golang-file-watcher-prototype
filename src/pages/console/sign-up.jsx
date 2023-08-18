@@ -86,7 +86,13 @@ export default function Page() {
                 name="password"                
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
-                {...register("password", { required: "This field is required" })}
+                {...register("password", { 
+                  required: "This field is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters long"
+                  }
+                })}
                 className="block w-full rounded-md border-0  py-1.5 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
               />
               <div className="absolute inset-y-0 right-0 pr-3 pb-3 flex items-center cursor-pointer">
