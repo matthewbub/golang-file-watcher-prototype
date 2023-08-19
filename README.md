@@ -26,3 +26,29 @@ Check out our [Wiki](https://github.com/ninembs-studio/ieportals.com/wiki) for t
 
 - Node.js v18.4.0 is what our team is using. We use MVN to manage node versions.
 
+
+## Architecture  
+
+```shell
+/repo-root
+|-- /iep-postgres
+|   |-- Dockerfile
+|   |-- init.sql (optional initialization scripts)
+|
+|-- /iep-buss
+|   |-- Dockerfile
+|   |-- /src
+|   |-- package.json
+|
+|-- /iep-js-helpers
+|   |-- Dockerfile
+|   |-- /src
+|   |-- package.json
+|
+|-- /iep-web
+|   |-- Dockerfile
+|   |-- /src
+|   |-- package.json
+|
+|-- docker-compose.yml
+```
