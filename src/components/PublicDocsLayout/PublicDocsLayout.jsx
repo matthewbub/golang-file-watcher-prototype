@@ -168,7 +168,7 @@ const PublicDocsLayout = ({
           )}
         </div>
       </div >
-      <NotificationWithActions
+      {/* <NotificationWithActions
         show={sessionTimeoutNotification}
         title="Inactivity timeout warning"
         description={session?.expires}
@@ -193,7 +193,7 @@ const PublicDocsLayout = ({
             router.push('/log-in');
           }
         }}
-      />
+      /> */}
     </Fragment>
   )
 }

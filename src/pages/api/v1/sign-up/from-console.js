@@ -1,72 +1,49 @@
-import { supabase } from '../../../../connections';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { supabase } from '../../../../connections';
 import { commonApiMessages, regexPatterns } from '../../../../helpers/constants';
+
 export const isStrongPassword = (password) => regexPatterns.password.test(password);
 
-import { Logger } from '../../../../helpers';
+import { Logger, passwordValidation } from '../../../../helpers';
 
 const logger = new Logger('user_created:console');
 
+const authTypes = [
+  'tenant',
+  'iep',
+  'console'
+];
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, password, auth_type, phone } = req.body;
-    const confirmPassword = req.body['confirm-password'];
+    const { email, password, authType, phone, confirmPassword } = req.body; 
 
+    console.log('req.body', req.body);
     // Start Basic Validations
     if (!email || !password) {
-      logger.error({
-        log_message: `User ${email || 'NO_EMAIL_PROVIDED'} failed to create from console`,
-        data: { email, auth_type }
-      });
+      logger.error({ log_message: `User ${email || 'NO_EMAIL_PROVIDED'} failed to create from console`, data: { email, authType }});
 
-      return res.status(400).json({
-        data: null,
-        error: {
-          message: commonApiMessages.generalError
-        }
-      });
+      return res.status(400).json({ data: null, error: { message: commonApiMessages.generalError } });
     }
 
-    if (auth_type !== 'tenant' && auth_type !== 'iep' && auth_type !== 'console') {
-      logger.error({
-        log_message: `User ${email} failed to create from console`,
-        data: 'Invalid auth_type'
-      });
+    if (!authTypes.includes(authType)) {
+      logger.error({ log_message: `User ${email} failed to create from console`, data: 'Invalid authType' });
 
-      return res.status(400).json({
-        data: null,
-        error: {
-          message: commonApiMessages.generalError
-        }
-      });
-
+      return res.status(400).json({ data: null, error: { message: commonApiMessages.generalError } });
     }
 
-    if (!isStrongPassword(password)) {
-      logger.error({
-        log_message: `User ${email} failed to create from console`,
-        data: 'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number and one special character'
-      });
+    const isValidPassword = passwordValidation(password);
+    if (typeof isValidPassword === 'string') {
+      logger.error({ log_message: `User ${email} failed to create from console`, data: isValidPassword });
 
-      return res.status(400).json({
-        data: null,
-        error: {
-          message: 'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number and one special character'
-        }
-      });
+      return res.status(400).json({ data: null, error: { message: isValidPassword }});
     }
 
     if (password !== confirmPassword) {
-      logger.error({
-        log_message: `User ${email} failed to create from console`,
-        data: 'Passwords do not match'
-      });
+      logger.error({ log_message: `User ${email} failed to create from console`, data: 'Passwords do not match' });
 
-      return res.status(400).json({
-        data: null,
-        error: { message: 'Passwords do not match' }
-      });
+      return res.status(400).json({ data: null, error: { message: 'Passwords do not match' } });
     }
     // End Basic Validations
 
@@ -76,44 +53,31 @@ export default async function handler(req, res) {
     const { error } = await supabase.from('users').insert([{
       email,
       password: hashedPassword,
-      auth_type: auth_type,
-      phone: phone || null // TODO Validate phone number
+      auth_type: authType,
+      phone: phone || null, // TODO Validate phone number
     }]);
 
     if (error) {
-      logger.error({
-        log_message: `User ${email} failed to create from console`,
-        data: error
-      });
+      logger.error({log_message: `User ${email} failed to create from console`, data: error});
 
       if (error.message.includes('duplicate key value violates unique constraint')) {
-        return res.status(400).json({
-          data: null,
-          error: { message: 'User already exists' }
-        });
+        return res.status(400).json({data: null, error: { message: 'User already exists' }});
       }
-
-      return res.status(500).json({
-        data: null,
-        error: { message: commonApiMessages.generalError }
-      });
+      
+      console.log('error', error);
+      return res.status(500).json({ data: null, error: { message: commonApiMessages.generalError } });
     }
-
-    logger.success({
-      log_message: `User ${email} created from console as ${auth_type}`,
-      data: auth_type
-    });
-
+    
+    logger.success({ log_message: `User ${email} created from console as ${authType}`, data: authType });
+    
+    // TODO: Validate phone number
+    // TODO: Send email to user with link to verify email address
+    // TODO: Send email to admin with link to verify user
+    // TODO: Set expires in value from database
     const token = jwt.sign({ email }, process.env.SUPABASE_JWT, { expiresIn: '1h' });
-    res.status(200).json({
-      data: token,
-      error: null
-    });
-
+    
+    res.status(200).json({ data: token, error: null });
   } else {
-    res.status(405).json({
-      data: null,
-      error: { message: commonApiMessages.generalError }
-    });
+    res.status(405).json({ data: null, error: { message: commonApiMessages.generalError } });
   }
 }

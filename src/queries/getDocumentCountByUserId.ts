@@ -6,13 +6,14 @@ const response = new CommonResponse({
   data: { count: 0 },
 });
 
-export const getDocumentCountByUserId = async (email: string) => {
+export const getDocumentCountByUserId = async (id: string) => {
   const { data, error } = await supabase
-    .from('users')
-    .select(`email, id, documents (count)`)
-    .eq('email', email)
-    .single();
+    .from('documents')
+    .select('*', { count: 'exact', head: true })
+    // .range(0, 1)
+    // .eq('owner_id', id);
 
+    console.log('data::', data);
   if (error) {
     return response.sendError({
       isSuccessful: false,

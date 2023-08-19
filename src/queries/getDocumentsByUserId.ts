@@ -15,11 +15,12 @@ export const getDocumentsByUserId = async (id: string, { limit, order }: {
   const [orderType, orderDateType] = safeOrder.split(",");
   const { data, error } = await supabase
     .from("documents")
-    .select("*", { count: 'exact' })
+    .select("*, category (*)", { count: 'exact' })
     .eq("owner_id", id)
     .order(orderType, { ascending: orderDateType === "asc" })
     .limit(safeLimit);
 
+    // console.log('INFO',data);
   if (error) {
     return response.sendError({
       isSuccessful: false,

@@ -69,7 +69,7 @@ const TableRows = () => {
 
                   <div className='bg-teal-700/20 border-teal-500 border rounded w-fit px-4 py-0.5'>
                     <span className='txt2 text-sm'>
-                      {upperFirst(toLower(item.documentCategory))}
+                      {item?.documentCategory?.category || 'No category'}
                     </span>
                   </div>
                 </a>
