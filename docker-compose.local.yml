@@ -4,8 +4,8 @@ services:
   ieportals:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: ieportals-image
+      dockerfile: Dockerfile.local  # Pointing to the development Dockerfile
+    image: ieportals-local-image
     volumes:
       - .:/app
       - /app/node_modules

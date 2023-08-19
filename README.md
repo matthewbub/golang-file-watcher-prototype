@@ -20,35 +20,16 @@ We're using [Ant Design](https://ant.design/) for our UI Component Framework, in
 
 # Getting Started
 
-Check out our [Wiki](https://github.com/ninembs-studio/ieportals.com/wiki) for the technical details. 🙂
+Local development 
 
-## Prerequisites
+```sh
+docker-compose -f docker-compose.local.yml down
+docker-compose -f docker-compose.local.yml up --build
+```
 
-- Node.js v18.4.0 is what our team is using. We use MVN to manage node versions.
+Production 
 
-
-## Architecture  
-
-```shell
-/repo-root
-|-- /iep-postgres
-|   |-- Dockerfile
-|   |-- init.sql (optional initialization scripts)
-|
-|-- /iep-buss
-|   |-- Dockerfile
-|   |-- /src
-|   |-- package.json
-|
-|-- /iep-js-helpers
-|   |-- Dockerfile
-|   |-- /src
-|   |-- package.json
-|
-|-- /iep-web
-|   |-- Dockerfile
-|   |-- /src
-|   |-- package.json
-|
-|-- docker-compose.yml
+```sh
+docker-compose down
+docker-compose up --build
 ```
