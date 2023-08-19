@@ -84,11 +84,11 @@ The tenants table shares a relation to the `users->id` field. The table consists
 
 ### Media
 
-- **id**
-- **created_at**
-- **updated_at**
-- **owner_id**
-- **name**
-- **type**
-- **size**
-- **data**
+- **id** Auto Generated, UUID, not null
+- **created_at** Timestamp, default now(), not null
+- **updated_at** Timestamp, default now(), not null
+- **owner_id** UUID references Users->id, not null
+- **name** String
+- **type** String
+- **size** Big Int
+- **data** BYTEA 
