@@ -7,3 +7,5 @@ export { default as useWindowDimensions } from './useWindowDimensions';
 export { getSessionExpiryMessage } from './getSessionExpiryMessage';
 export { sspWithAuth } from './sspWithAuth';
 export { CommonResponse } from './CommonResponse';
+export { passwordValidation } from './passwordValidation';
+export { phoneValidation } from './phoneValidation';

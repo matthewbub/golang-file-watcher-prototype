@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { Button } from '../../components'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+import { passwordValidation, phoneNumberValidation } from '../../helpers'
 
 export default function Page() {
   const { register, handleSubmit, formState: { errors }, setError } = useForm()
@@ -14,7 +15,7 @@ export default function Page() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const submitForm = async (data) => {
-    const { email, password, confirmPassword } = data;
+    const { email, password, confirmPassword, phone } = data;
     
     // Check if passwords match
     if (password !== confirmPassword) {
@@ -30,25 +31,27 @@ export default function Page() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password, confirmPassword }),
+      body: JSON.stringify({ 
+        email, 
+        password,
+        authType: 'console',
+        phone,
+        confirmPassword
+       }),
     })
 
     const json = await res.json()
 
     if (json.error || json?.message && json?.message.length > 0) {
+      setError("email", {
+        type: "custom",
+        message: json.message
+      });
+      
       return;
     }
 
     router.push('/')
-  }
-
-  const passwordValidation = (value) => {
-    if (value.length < 8) return "Password must be 8 characters";
-    if (!/[A-Z]/.test(value)) return "Password must have 1 upper case";
-    if (!/[a-z]/.test(value)) return "Password must have 1 lower case";
-    if (!/[0-9]/.test(value)) return "Password must have 1 number";
-    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value)) return "Password must have 1 special character";
-    return true;
   }
 
   return (
@@ -60,7 +63,7 @@ export default function Page() {
           alt="IE Portals"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight " >
-          Sign in to your account
+          Sign up for an account
         </h2>
       </div>
 
@@ -142,6 +145,28 @@ export default function Page() {
               </div>
               <div className='h-3'>
                 {errors?.confirmPassword?.message && <p className="text-sm text-red-600">{errors?.confirmPassword?.message}</p>}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium leading-6">
+              Phone Number
+            </label>
+            <div className="mt-2">
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="+14155552671"
+                {...register("phone", { 
+                  required: "This field is required",
+                  validate: phoneNumberValidation
+                })}
+                className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6"
+              />
+              <div className='h-3'>
+                {errors?.phone?.message && <p className="text-sm text-red-600">{errors?.phone?.message}</p>}
               </div>
             </div>
           </div>
