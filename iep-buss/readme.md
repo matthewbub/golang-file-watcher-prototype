@@ -81,3 +81,14 @@ The tenants table shares a relation to the `users->id` field. The table consists
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **owner_id** UUID references Users->id, not null
+
+### Media
+
+- **id**
+- **created_at**
+- **updated_at**
+- **owner_id**
+- **name**
+- **type**
+- **size**
+- **data**
