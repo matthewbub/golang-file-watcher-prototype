@@ -9,3 +9,4 @@
 ## Documents
 The base endpoint is `/api/documents` and the available endpoints support all CRUD operations. 
 
+
