@@ -4,7 +4,19 @@
 
 # IE Portal Services
 
-Hello and welcome to the root directory of IE Portals. We're using a proprietary configuration of Next.js, React, and Supabase to create a portal for the IE community.
+Hello and welcome to the root directory of IE Portals. This repository consists of several micro services, rest assured that at no-point in the development lifecycle are we reinventing the wheel. 
+
+### IEP Bus
+
+Our Express.js server.
+
+### IEP JS Helpers
+
+Helper functions that can be used in server services and web services.
+
+### IEP Web
+
+We're using [Ant Design](https://ant.design/) for our UI Component Framework, in junction with React for the actual web framework and Vite for the compiler.
 
 # Getting Started
 
@@ -13,3 +25,4 @@ Check out our [Wiki](https://github.com/ninembs-studio/ieportals.com/wiki) for t
 ## Prerequisites
 
 - Node.js v18.4.0 is what our team is using. We use MVN to manage node versions.
+
