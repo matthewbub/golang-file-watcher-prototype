@@ -17,7 +17,7 @@ Yeah it's just a node application, so you can run it locally or in a container. 
 First, create a development instance of the application. This will create a `.env` file in the root directory of the application.
 
 ```sh
-NODE_ENV=development node ucan/init/create-tables.js
+NODE_ENV=development node ucan/admin/exec/create-tables.js
 ```
 
 ```sh
