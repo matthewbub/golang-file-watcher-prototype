@@ -17,5 +17,8 @@
     "nodemon": "^3.0.1",
     "sqlite3": "^5.1.6",
     "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "inquirer": "^9.2.10"
   }
 }
