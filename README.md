@@ -14,6 +14,12 @@ UCAN stands for User, Content, Access, Network - the four pillars of our applica
 
 Yeah it's just a node application, so you can run it locally or in a container. Containers are preferred, because they align much closer to our production environment. Thee primary difference being the data they read and write to.
 
+First, create a development instance of the application. This will create a `.env` file in the root directory of the application.
+
+```sh
+NODE_ENV=development node ucan/init/create-tables.js
+```
+
 ```sh
 docker-compose -f docker-compose.local.yml down
 docker-compose -f docker-compose.local.yml up --build
