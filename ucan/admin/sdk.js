@@ -85,6 +85,16 @@ class Database {
     });
   }
   
+  runQuery(query, callback) {
+    this.db.all(query, (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        return callback(err);
+      }
+      callback(null, rows);
+    });
+  }
+  
   close() {
     this.db.close((err) => {
       if (err) {

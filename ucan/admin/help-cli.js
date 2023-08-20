@@ -13,6 +13,7 @@ async function main() {
       choices: [
         'View all tables',
         'View table by name',
+        'Execute SQL query',
         'Exit'
       ],
     }
@@ -53,11 +54,31 @@ async function main() {
       main();
       break;
 
+    case 'Execute SQL query':
+
+      const sqlQuery = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'sqlQuery',
+          message: 'Enter the SQL query:',
+        }
+      ]);
+
+      const relativePathExecuteSQLQuery = './exec/execute_sql_query.js';
+      const absolutePathExecuteSQLQuery = path.resolve(__dirname, relativePathExecuteSQLQuery);
+
+      // Execute the shell command using ShellJS
+      if (shell.exec(`node ${absolutePathExecuteSQLQuery} "${sqlQuery.sqlQuery}"`).code !== 0) {
+        console.error('Error executing the command');
+      }
+      
     case 'Exit':
       console.log('Exiting...');
-      break;      
+      db.close();
+      break;
     default:
-      console.log(`You selected: ${selectedOption.selectedOption}`);
+      console.log('Unknown option, Exiting...');
+      db.close();
       break;
   }
 }
