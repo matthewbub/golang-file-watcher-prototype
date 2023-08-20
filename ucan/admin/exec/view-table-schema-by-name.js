@@ -1,7 +1,7 @@
 const path = require('path');
-const Database = require('../sdk');
+const ConsoleDatabase = require('../sdk-console');
 
-const db = new Database();
+const db = new ConsoleDatabase();
 
 const tableName = process.argv[2]; 
 
