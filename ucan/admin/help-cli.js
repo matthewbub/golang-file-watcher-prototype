@@ -21,7 +21,7 @@ async function main() {
 
   switch (selectedOption.selectedOption) {
     case 'View all tables':
-      const relativePathViewAllTables = './exec/view_all_tables.js';
+      const relativePathViewAllTables = './exec/view-all-tables.js';
       const absolutePathViewAllTables = path.resolve(__dirname, relativePathViewAllTables);
 
       // Execute the shell command using ShellJS
@@ -43,7 +43,7 @@ async function main() {
         }
       ]);
 
-      const relativePathViewTableByName = './exec/view_table_schema_by_name.js';
+      const relativePathViewTableByName = './exec/view-table-schema-by-name.js';
       const absolutePathViewTableByName = path.resolve(__dirname, relativePathViewTableByName);
 
       // Execute the shell command using ShellJS
@@ -64,7 +64,7 @@ async function main() {
         }
       ]);
 
-      const relativePathExecuteSQLQuery = './exec/execute_sql_query.js';
+      const relativePathExecuteSQLQuery = './exec/execute-sql-query.js';
       const absolutePathExecuteSQLQuery = path.resolve(__dirname, relativePathExecuteSQLQuery);
 
       // Execute the shell command using ShellJS
