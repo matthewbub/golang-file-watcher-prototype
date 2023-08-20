@@ -1,16 +1,10 @@
 const winston = require('winston');
+const shell = require('../../shell/index');
 
-/**
- * setupWinston
- * 
- * Configures and sets up the winston logger object.
- * 
- * @returns {object} - Returns a winston logger object.
- */
 function setupWinston() {
   const transports = [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
+    new winston.transports.File({ filename: shell.setupWinston_errorLogFilename, level: 'error' }),
+    new winston.transports.File({ filename: shell.setupWinston_combinedLogFilename })
   ];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -20,7 +14,7 @@ function setupWinston() {
   }
 
   return winston.createLogger({
-    level: 'info',
+    level: shell.setupWinston_defaultLogLevel,
     format: winston.format.json(),
     transports
   });
