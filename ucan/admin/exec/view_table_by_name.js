@@ -1,7 +1,7 @@
 const path = require('path');
-const Database = require('../sdk'); 
+const Database = require('../sdk');
 
-const db = new Database(); 
+const db = new Database();
 
 (async () => {
   try {
@@ -15,14 +15,7 @@ const db = new Database();
 
       // Display information about each table
       tableNames.forEach((tableName) => {
-        db.getColumnsForTable(tableName, (err, columnData) => {
-          if (err) {
-            console.error(err.message);
-          } else {
-            console.log(`Table: ${tableName}`);
-            console.table(columnData);
-          }
-        });
+        db.displayTableByName(tableName); // Use the displayTableByName method
       });
 
       // Close the database connection

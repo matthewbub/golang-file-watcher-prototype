@@ -44,6 +44,23 @@ class Database {
     });
   }
 
+  displayTableByName(tableName) {
+    const columnsQuery = `PRAGMA table_info(${tableName});`;
+    this.db.all(columnsQuery, (err, columns) => {
+      if (err) {
+        console.error(err.message);
+        return;
+      }
+      const columnData = columns.map(column => ({
+        'Row Name': column.name,
+        'Row Type': column.type,
+        'Required': column.notnull === 1,
+      }));
+      console.log(`Columns for table "${tableName}":`);
+      console.table(columnData);
+    });
+  }
+  
   close() {
     this.db.close((err) => {
       if (err) {
