@@ -23,7 +23,7 @@ Schema outlines can be [found here](https://docs.google.com/spreadsheets/d/1fAWW
 
 The users table consists of the following fields 
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **name** String, not null
@@ -35,7 +35,7 @@ The users table consists of the following fields
 
 The user meta table shares a relation to the `users->id` field. The table consists of the following fields
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **owner_id** UUID references Users->id, not null
@@ -47,7 +47,7 @@ The user meta table shares a relation to the `users->id` field. The table consis
 
 The user groups table shares a relation to the `users->id` field. The table consists of the following fields
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **name** String, not null
@@ -57,7 +57,7 @@ The user groups table shares a relation to the `users->id` field. The table cons
 
 The user roles table shares a relation to the `users->id` field. The table consists of the following fields
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **name** String, not null
@@ -67,7 +67,7 @@ The user roles table shares a relation to the `users->id` field. The table consi
 
 The customize table shares a relation to the `tenants->id` field.  The table consists of the following fields
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **data** JSON
@@ -77,14 +77,14 @@ The customize table shares a relation to the `tenants->id` field.  The table con
 
 The tenants table shares a relation to the `users->id` field. The table consists of the following fields
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **owner_id** UUID references Users->id, not null
 
 ### Media
 
-- **id** Auto Generated, UUID, not null
+- **id** UUID, not null
 - **created_at** Timestamp, default now(), not null
 - **updated_at** Timestamp, default now(), not null
 - **owner_id** UUID references Users->id, not null
