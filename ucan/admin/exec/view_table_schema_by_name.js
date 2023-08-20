@@ -1,10 +1,9 @@
 const path = require('path');
 const Database = require('../sdk');
 
-
 const db = new Database();
 
-const tableName = process.argv[2]; // Get the table name from command line argument
+const tableName = process.argv[2]; 
 
 (async () => {
   try {

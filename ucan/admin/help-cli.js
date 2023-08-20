@@ -12,7 +12,7 @@ async function main() {
       message: 'Select an option:',
       choices: [
         'View all tables',
-        'View table by name',
+        'View table schema by name',
         'Execute SQL query',
         'Exit'
       ],
@@ -32,7 +32,7 @@ async function main() {
       main();
       break;
 
-    case 'View table by name':
+    case 'View table schema by name':
       const tableNames = await db.getTableNames();
       const selectedTable = await inquirer.prompt([
         {
@@ -43,7 +43,7 @@ async function main() {
         }
       ]);
 
-      const relativePathViewTableByName = './exec/view_table_by_name.js';
+      const relativePathViewTableByName = './exec/view_table_schema_by_name.js';
       const absolutePathViewTableByName = path.resolve(__dirname, relativePathViewTableByName);
 
       // Execute the shell command using ShellJS
@@ -71,11 +71,15 @@ async function main() {
       if (shell.exec(`node ${absolutePathExecuteSQLQuery} "${sqlQuery.sqlQuery}"`).code !== 0) {
         console.error('Error executing the command');
       }
-      
+    
+      main();
+      break;
+   
     case 'Exit':
       console.log('Exiting...');
       db.close();
       break;
+    
     default:
       console.log('Unknown option, Exiting...');
       db.close();
