@@ -1,10 +1,10 @@
 const inquirer = require('inquirer');
 const shell = require('shelljs');
 const path = require('path');
-const Database = require('./sdk');
+const ConsoleDatabase = require('./sdk-console');
 
 async function main() {
-  const db = new Database();
+  const db = new ConsoleDatabase();
   const selectedOption = await inquirer.prompt([
     {
       type: 'list',

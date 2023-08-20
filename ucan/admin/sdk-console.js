@@ -5,7 +5,7 @@ const environment = process.env.NODE_ENV || 'development';
 
 const dbPath = path.join(__dirname, '..', 'database', `${environment}.sql`);
 
-class UCAN2 {
+class Database {
   constructor() {
     this.db = new sqlite3.Database(dbPath, (err) => {
       if (err) {
@@ -106,4 +106,4 @@ class UCAN2 {
   }
 }
 
-module.exports = UCAN2;
+module.exports = Database;
