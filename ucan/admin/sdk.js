@@ -16,7 +16,7 @@ class Database {
     });
   }
 
-  getAllTableNames(callback) {
+  console___getAllTableNames(callback) {
     const tablesQuery = "SELECT name FROM sqlite_master WHERE type='table';";
     this.db.all(tablesQuery, (err, rows) => {
       if (err) {
@@ -28,7 +28,7 @@ class Database {
     });
   }
 
-  getColumnsForTable(tableName, callback) {
+  console___getColumnsForTable(tableName, callback) {
     const columnsQuery = `PRAGMA table_info(${tableName});`;
     this.db.all(columnsQuery, (err, columns) => {
       if (err) {
@@ -44,7 +44,7 @@ class Database {
     });
   }
 
-  displayTableByName(tableName) {
+  console___displayTableByName(tableName) {
     const columnsQuery = `PRAGMA table_info(${tableName});`;
     this.db.all(columnsQuery, (err, columns) => {
       if (err) {

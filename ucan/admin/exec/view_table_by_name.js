@@ -6,7 +6,7 @@ const db = new Database();
 (async () => {
   try {
     // Get all table names from the database
-    db.getAllTableNames((err, tableNames) => {
+    db.console___getAllTableNames((err, tableNames) => {
       if (err) {
         console.error(err.message);
         db.close();
@@ -15,7 +15,7 @@ const db = new Database();
 
       // Display information about each table
       tableNames.forEach((tableName) => {
-        db.displayTableByName(tableName); // Use the displayTableByName method
+        db.console___displayTableByName(tableName); // Use the displayTableByName method
       });
 
       // Close the database connection

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node index.js",
-    "admin:help": "node ucan/admin/help.js"
+    "admin:help": "node ucan/admin/help-cli.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

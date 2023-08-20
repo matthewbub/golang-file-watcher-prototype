@@ -9,7 +9,8 @@ async function main() {
       name: 'selectedOption',
       message: 'Select an option:',
       choices: [
-        'View all tables', 
+        'View all tables',
+        'View table by name',
         'Exit'
       ],
     }
