@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const winston = require('winston');
 const setupWinston = require('./ucan/express-middleware/setupWinston');
+const setupMorgan = require('./ucan/express-middleware/setupMorgan');
 const setupExpressRateLimit = require('./ucan/express-middleware/setupExpressRateLimit');
 const setupExpressSlowDown = require('./ucan/express-middleware/setupExpressSlowDown');
 const app = express();
