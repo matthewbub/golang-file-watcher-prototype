@@ -4,8 +4,8 @@ const sqlite3 = require('sqlite3').verbose();
 
 const environment = process.env.NODE_ENV || 'development';
 
-const dbPath = path.join(__dirname, '..', 'database', `${environment}.sql`);
-const sqlFilePath = path.join(__dirname, '..', 'schemas', 'init.sql');
+const dbPath = path.join(__dirname, '..', '..', 'database', `${environment}.sql`);
+const sqlFilePath = path.join(__dirname, '..', '..', 'schemas', 'init.sql');
 const sql = fs.readFileSync(sqlFilePath, 'utf8');
 
 const db = new sqlite3.Database(dbPath, (err) => {
