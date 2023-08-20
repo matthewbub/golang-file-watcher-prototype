@@ -15,11 +15,11 @@ const db = new Database();
 
       // Display information about each table
       tableNames.forEach((tableName) => {
-        console.log(`Table: ${tableName}`);
         db.getColumnsForTable(tableName, (err, columnData) => {
           if (err) {
             console.error(err.message);
           } else {
+            console.log(`Table: ${tableName}`);
             console.table(columnData);
           }
         });

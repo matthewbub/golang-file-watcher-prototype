@@ -36,9 +36,9 @@ class Database {
         return callback(err);
       }
       const columnData = columns.map(column => ({
-        name: column.name,
-        type: column.type,
-        allowsNull: column.notnull === 0,
+        'Row Name': column.name,
+        'Row Type': column.type,
+        'Required': column.notnull === 1,
       }));
       callback(null, columnData);
     });
