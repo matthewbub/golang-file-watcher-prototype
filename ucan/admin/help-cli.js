@@ -1,8 +1,10 @@
 const inquirer = require('inquirer');
 const shell = require('shelljs');
 const path = require('path');
+const Database = require('./sdk');
 
 async function main() {
+  const db = new Database();
   const selectedOption = await inquirer.prompt([
     {
       type: 'list',
@@ -18,14 +20,39 @@ async function main() {
 
   switch (selectedOption.selectedOption) {
     case 'View all tables':
-      const relativePath = './exec/view_all_tables.js';
-      const absolutePath = path.resolve(__dirname, relativePath);
+      const relativePathViewAllTables = './exec/view_all_tables.js';
+      const absolutePathViewAllTables = path.resolve(__dirname, relativePathViewAllTables);
 
       // Execute the shell command using ShellJS
-      if (shell.exec(`node ${absolutePath}`).code !== 0) {
+      if (shell.exec(`node ${absolutePathViewAllTables}`).code !== 0) {
         console.error('Error executing the command');
       }
+
+      main();
       break;
+
+    case 'View table by name':
+      const tableNames = await db.getTableNames();
+      const selectedTable = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'selectedTable',
+          message: 'Select a table:',
+          choices: tableNames,
+        }
+      ]);
+
+      const relativePathViewTableByName = './exec/view_table_by_name.js';
+      const absolutePathViewTableByName = path.resolve(__dirname, relativePathViewTableByName);
+
+      // Execute the shell command using ShellJS
+      if (shell.exec(`node ${absolutePathViewTableByName} ${selectedTable.selectedTable}`).code !== 0) {
+        console.error('Error executing the command');
+      }
+
+      main();
+      break;
+
     case 'Exit':
       console.log('Exiting...');
       break;      

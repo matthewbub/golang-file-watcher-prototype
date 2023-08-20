@@ -16,6 +16,30 @@ class Database {
     });
   }
 
+  getAllTableNames(callback) {
+    const tablesQuery = "SELECT name FROM sqlite_master WHERE type='table';";
+    this.db.all(tablesQuery, (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        return callback(err);
+      }
+      const tableNames = rows.map(row => row.name);
+      callback(null, tableNames);
+    });
+  }
+
+  async getTableNames() {
+    return new Promise((resolve, reject) => {
+      this.getAllTableNames((err, tableNames) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(tableNames);
+        }
+      });
+    });
+  }
+
   console___getAllTableNames(callback) {
     const tablesQuery = "SELECT name FROM sqlite_master WHERE type='table';";
     this.db.all(tablesQuery, (err, rows) => {

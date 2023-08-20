@@ -1,24 +1,26 @@
 const path = require('path');
 const Database = require('../sdk');
 
+
 const db = new Database();
+
+const tableName = process.argv[2]; // Get the table name from command line argument
 
 (async () => {
   try {
-    // Get all table names from the database
-    db.console___getAllTableNames((err, tableNames) => {
+    if (!tableName) {
+      console.error('Table name not provided.');
+      db.close();
+      return;
+    }
+
+    db.console___displayTableByName(tableName, (err, columnData) => {
       if (err) {
         console.error(err.message);
-        db.close();
-        return;
+      } else {
+        console.log(`Table: ${tableName}`);
+        console.table(columnData);
       }
-
-      // Display information about each table
-      tableNames.forEach((tableName) => {
-        db.console___displayTableByName(tableName); // Use the displayTableByName method
-      });
-
-      // Close the database connection
       db.close();
     });
   } catch (error) {
