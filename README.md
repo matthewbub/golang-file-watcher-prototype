@@ -6,21 +6,13 @@
 
 Hello and welcome to the root directory of IE Portals. This repository consists of several micro services, rest assured that at no-point in the development lifecycle are we reinventing the wheel. 
 
-### IEP Bus
+Whats UCAN?
 
-Our Express.js server.
-
-### IEP JS Helpers
-
-Helper functions that can be used in server services and web services.
-
-### IEP Web
-
-We're using [Ant Design](https://ant.design/) for our UI Component Framework, in junction with React for the actual web framework and Vite for the compiler.
+UCAN stands for User, Content, Access, Network - the four pillars of our application. Want a fun back story? UCAN is shorten from UCAN2, originally stood for "You Can, Too." but we decided to make it an acronym instead.
 
 # Getting Started
 
-Local development 
+Yeah it's just a node application, so you can run it locally or in a container. Containers are preferred, because they align much closer to our production environment. Thee primary difference being the data they read and write to.
 
 ```sh
 docker-compose -f docker-compose.local.yml down
@@ -33,3 +25,7 @@ Production
 docker-compose down
 docker-compose up --build
 ```
+
+## Architecture
+
+The primary entry point of this application is the `./index.js` file. This file is responsible for starting the Express.js server and loading all the routes. You'll find the functional application code within the `ucan` directory. 
