@@ -1,0 +1,1 @@
+console.log('[INFO]: ' + 'Database initialized successfully.');

@@ -106,4 +106,16 @@ class UCAN2 {
   }
 }
 
+class UCAN3 extends UCAN2 {
+  constructor() {
+    super();
+  }
+
+  test() {
+    console.log(this.db);
+  }
+}
+
+new UCAN3().test();
+
 module.exports = UCAN2;

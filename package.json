@@ -13,6 +13,7 @@
     "express-slow-down": "^1.6.0",
     "helmet": "^7.0.0",
     "inquirer": "^8.2.6",
+    "joi": "^17.9.2",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",

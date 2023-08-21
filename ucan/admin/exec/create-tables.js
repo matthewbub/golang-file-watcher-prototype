@@ -9,19 +9,19 @@ const sqlFilePath = path.join(__dirname, '..', '..', 'database', 'schemas', 'ini
 const sql = fs.readFileSync(sqlFilePath, 'utf8');
 
 const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) console.error(err.message);
-  console.log('Connected to the database.');
+  if (err) console.error('[ERROR]: ' + err.message);
+  console.log('[INFO]: Connected to the database.');
 });
 
 (async () => {
   await db.exec(sql, async (err) => {
     if (err) console.error(err.message);
-    console.log('Database initialized.');
+    console.log('[INFO]: Database initialized.');
 
     // Retrieve the list of created fields
     const fieldsQuery = "SELECT name FROM sqlite_master WHERE type='table';";
     db.all(fieldsQuery, (err, rows) => {
-      if (err) console.error(err.message);
+      if (err) console.error('[ERROR]: ' + err.message);
       else {
         rows.forEach(async (row) => {
           const tableName = row.name;
@@ -29,14 +29,14 @@ const db = new sqlite3.Database(dbPath, (err) => {
           // Retrieve column information for the current table
           const columnsQuery = `PRAGMA table_info(${tableName});`;
           db.all(columnsQuery, (err, columns) => {
-            if (err) console.error(err.message);
+            if (err) console.error('[ERROR]: ' + err.message);
             else {
               const columnData = columns.map(column => ({
                 'Row Name': column.name,
                 'Row Type': column.type,
                 'Required': column.notnull === 1,
               }));
-              console.log(`[INFO] Successfully created: ${tableName}`);
+              console.log(`[INFO]: Successfully created: ${tableName}`);
               console.table(columnData);
             }
           });
@@ -45,8 +45,8 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
       // Close the database connection
       db.close((err) => {
-        if (err) console.error(err.message);
-        console.log('Database connection closed.');
+        if (err) console.error('[ERROR]: ' + err.message);
+        console.log('[INFO]: Database connection closed.');
       });
     });
   });
