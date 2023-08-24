@@ -1,0 +1,10 @@
+{
+  "name": "notbold.com",
+  "version": "1.0.0",
+  "description": "A website for the notbold.com domain",
+  "dependencies": {
+    "next": "^13.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
