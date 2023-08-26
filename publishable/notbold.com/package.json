@@ -2,9 +2,15 @@
   "name": "notbold.com",
   "version": "1.0.0",
   "description": "A website for the notbold.com domain",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
+    "@vercel/analytics": "^1.0.2",
     "next": "^13.4.19",
-    "react": "^18.2.0",
+    "react": "link:@vercel/analytics/react",
     "react-dom": "^18.2.0"
   }
 }

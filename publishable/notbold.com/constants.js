@@ -6,5 +6,6 @@ export const paths = {
   "api.auth.logout": "/api/auth/logout",
   "api.auth.forgot-password": "/api/auth/forgot-password",
   "api.content.comment": "/api/content/comment",
-  "api.content.like": "/api/content/like",
+  "api.content.comment-like": "/api/content/comment-like",
+  "api.content.post-like": "/api/content/post-like",
 }
