@@ -28,21 +28,31 @@ func readCurrentDir() string {
 	return dir
 }
 
+func clipString(s string, max int) string {
+	if len(s) > max {
+		return s[:max]
+	}
+	return s
+}
+
+func printErr(err error) {
+	fmt.Println("Error: ", err)
+	os.Exit(1)
+}
+
 // traverse directory and add all subdirectories to watcher
 func watchDir(path string, watcher *fsnotify.Watcher) int {
 	dirCount := 0
 
 	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			fmt.Println("Error: ", err)
-			return err
+			printErr(err)
 		}
 
 		if info.IsDir() {
 			err := watcher.Add(path)
 			if err != nil {
-				fmt.Println("Error: ", err)
-				return err
+				printErr(err)
 			}
 
 			fmt.Println("[INFO] Added: ", path+" to watch list")
@@ -59,8 +69,7 @@ func main() {
 
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
-		fmt.Println("Error: ", err)
-		os.Exit(1)
+		printErr(err)
 	}
 
 	defer watcher.Close()
@@ -90,21 +99,21 @@ func main() {
 					// if new directory is created, add it to watcher
 					fileInfo, err := os.Stat(event.Name)
 					if err != nil {
-						fmt.Println("Error: ", err)
+						printErr(err)
 					} else if fileInfo.IsDir() {
 						watcher.Add(event.Name)
 						fmt.Println("[INFO] Added: ", event.Name+" to watch list")
 					}
 				}
 			case err := <-watcher.Errors:
-				fmt.Println("Error: ", err)
+				printErr(err)
 			}
 		}
 	}()
 
 	// init watcher
 	dirCount := watchDir(contentDir, watcher)
-	fmt.Printf("[INFO] Watching %d directories for changes\n", dirCount)
+	fmt.Println("[INFO] Watching:", dirCount, "directories for changes")
 
 	<-done
 
