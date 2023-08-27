@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
+	"github.com/9mbs/ucan/core/content-watchman/helpers"
 	"github.com/fsnotify/fsnotify"
 )
 
@@ -42,6 +44,14 @@ func printErr(err error) {
 	os.Exit(1)
 }
 
+func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
+	// Make sure contentDir ends with a trailing slash
+	if !strings.HasSuffix(contentDir, "/") {
+		contentDir += "/"
+	}
+	return strings.TrimPrefix(absPath, contentDir)
+}
+
 // traverse directory and add all subdirectories to watcher
 func watchDir(path string, watcher *fsnotify.Watcher) int {
 	dirCount := 0
@@ -57,8 +67,6 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 				printErr(err)
 			}
 
-			logMessage := "[INFO] Added to watch list: " + path
-			clipString(logMessage, 50)
 			dirCount++
 		}
 		return nil
@@ -82,25 +90,24 @@ func main() {
 		for {
 			select {
 			case event := <-watcher.Events:
-				// fmt.Println("Event: ", event)
-				path := filepath.Base(event.Name)
+				relPath := clipAbsolutePathToContentDir(event.Name, contentDir)
+				// fmt.Println("[INFO] Event:", event.Op.String(), relPath)
 
-				fmt.Println("Path: ", path)
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					logMessage := "[INFO] Modified file: " + path
-					clipString(logMessage, 50)
+					logMessage := "[Auto Commit] Modified file: " + relPath
+					helpers.CommitAndPushAsBot("", logMessage)
 				}
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
-					logMessage := "[INFO] Removed file: " + path
-					clipString(logMessage, 50)
+					logMessage := "[Auto Commit] Removed file: " + relPath
+					helpers.CommitAndPushAsBot("", logMessage)
 				}
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
-					logMessage := "[INFO] Renamed file: " + path
-					clipString(logMessage, 50)
+					logMessage := "[Auto Commit] Renamed file: " + relPath
+					helpers.CommitAndPushAsBot("", logMessage)
 				}
 				if event.Op&fsnotify.Create == fsnotify.Create {
-					logMessage := "[INFO] Created file: " + path
-					clipString(logMessage, 50)
+					logMessage := "[Auto Commit] Created file: " + relPath
+					helpers.CommitAndPushAsBot("", logMessage)
 
 					// if new directory is created, add it to watcher
 					fileInfo, err := os.Stat(event.Name)
