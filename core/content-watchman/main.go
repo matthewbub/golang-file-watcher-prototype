@@ -28,11 +28,13 @@ func readCurrentDir() string {
 	return dir
 }
 
-func clipString(s string, max int) string {
+func clipString(s string, max int) {
 	if len(s) > max {
-		return s[:max]
+		fmt.Println(s[:max], "...")
+		return
 	}
-	return s
+	fmt.Println(s)
+	return
 }
 
 func printErr(err error) {
@@ -55,7 +57,8 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 				printErr(err)
 			}
 
-			fmt.Println("[INFO] Added: ", path+" to watch list")
+			logMessage := "[INFO] Added to watch list: " + path
+			clipString(logMessage, 50)
 			dirCount++
 		}
 		return nil
@@ -65,7 +68,6 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 
 func main() {
 	var contentDir = readCurrentDir()
-	// fmt.Println("Watching directory: ", contentDir)
 
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
@@ -85,16 +87,20 @@ func main() {
 
 				fmt.Println("Path: ", path)
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					fmt.Println("Modified file: ", path)
+					logMessage := "[INFO] Modified file: " + path
+					clipString(logMessage, 50)
 				}
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
-					fmt.Println("Removed file: ", path)
+					logMessage := "[INFO] Removed file: " + path
+					clipString(logMessage, 50)
 				}
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
-					fmt.Println("Renamed file: ", path)
+					logMessage := "[INFO] Renamed file: " + path
+					clipString(logMessage, 50)
 				}
 				if event.Op&fsnotify.Create == fsnotify.Create {
-					fmt.Println("Created file: ", path)
+					logMessage := "[INFO] Created file: " + path
+					clipString(logMessage, 50)
 
 					// if new directory is created, add it to watcher
 					fileInfo, err := os.Stat(event.Name)
@@ -102,7 +108,8 @@ func main() {
 						printErr(err)
 					} else if fileInfo.IsDir() {
 						watcher.Add(event.Name)
-						fmt.Println("[INFO] Added: ", event.Name+" to watch list")
+						logMessage := "[INFO] Added to watch list: " + event.Name
+						clipString(logMessage, 50)
 					}
 				}
 			case err := <-watcher.Errors:
