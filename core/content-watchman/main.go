@@ -11,6 +11,15 @@ import (
 )
 
 var relativePathToContent string = "../../content"
+var changesBeforeCommit int = 5
+var commitMessage string = "[Auto Commit] Updated content"
+var branchName string = "auto-commit" + helpers.FormatTimeStamp()
+var useDebug bool = false
+
+func printErr(err error) {
+	fmt.Println("[ERROR]", err)
+	os.Exit(1)
+}
 
 func readCurrentDir() string {
 	// Change directory
@@ -23,8 +32,7 @@ func readCurrentDir() string {
 	dir, err := os.Getwd()
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		printErr(err)
 	}
 
 	return dir
@@ -37,11 +45,6 @@ func clipString(s string, max int) {
 	}
 	fmt.Println(s)
 	return
-}
-
-func printErr(err error) {
-	fmt.Println("Error: ", err)
-	os.Exit(1)
 }
 
 func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
@@ -91,23 +94,22 @@ func main() {
 			select {
 			case event := <-watcher.Events:
 				relPath := clipAbsolutePathToContentDir(event.Name, contentDir)
-				// fmt.Println("[INFO] Event:", event.Op.String(), relPath)
+
+				if useDebug {
+					fmt.Println("[DEBUG] Event:", event.Op.String(), relPath)
+				}
 
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					logMessage := "[Auto Commit] Modified file: " + relPath
-					helpers.CommitAndPushAsBot("", logMessage)
+					helpers.CommitAndPushAsBot(branchName, commitMessage)
 				}
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
-					logMessage := "[Auto Commit] Removed file: " + relPath
-					helpers.CommitAndPushAsBot("", logMessage)
+					helpers.CommitAndPushAsBot(branchName, commitMessage)
 				}
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
-					logMessage := "[Auto Commit] Renamed file: " + relPath
-					helpers.CommitAndPushAsBot("", logMessage)
+					helpers.CommitAndPushAsBot(branchName, commitMessage)
 				}
 				if event.Op&fsnotify.Create == fsnotify.Create {
-					logMessage := "[Auto Commit] Created file: " + relPath
-					helpers.CommitAndPushAsBot("", logMessage)
+					helpers.CommitAndPushAsBot(branchName, commitMessage)
 
 					// if new directory is created, add it to watcher
 					fileInfo, err := os.Stat(event.Name)
