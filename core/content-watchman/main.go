@@ -28,6 +28,27 @@ func readCurrentDir() string {
 	return dir
 }
 
+// traverse directory and add all subdirectories to watcher
+func watchDir(path string, watcher *fsnotify.Watcher) {
+	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			fmt.Println("Error: ", err)
+			return err
+		}
+
+		if info.IsDir() {
+			err := watcher.Add(path)
+			if err != nil {
+				fmt.Println("Error: ", err)
+				return err
+			}
+
+			fmt.Println("Watching: ", path)
+		}
+		return nil
+	})
+}
+
 func main() {
 	var contentDir = readCurrentDir()
 	fmt.Println("Watching directory: ", contentDir)
@@ -53,14 +74,23 @@ func main() {
 				if event.Op&fsnotify.Write == fsnotify.Write {
 					fmt.Println("Modified file: ", path)
 				}
-				if event.Op&fsnotify.Create == fsnotify.Create {
-					fmt.Println("Created file: ", path)
-				}
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
 					fmt.Println("Removed file: ", path)
 				}
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
 					fmt.Println("Renamed file: ", path)
+				}
+				if event.Op&fsnotify.Create == fsnotify.Create {
+					fmt.Println("Created file: ", path)
+
+					// if new directory is created, add it to watcher
+					fileInfo, err := os.Stat(event.Name)
+					if err != nil {
+						fmt.Println("Error: ", err)
+					} else if fileInfo.IsDir() {
+						watcher.Add(event.Name)
+						fmt.Println("Watching: ", event.Name)
+					}
 				}
 			case err := <-watcher.Errors:
 				fmt.Println("Error: ", err)
@@ -68,13 +98,8 @@ func main() {
 		}
 	}()
 
-	// Add directory to watcher
-	err = watcher.Add(contentDir)
-
-	if err != nil {
-		fmt.Println("Error: ", err)
-		os.Exit(1)
-	}
+	// init watcher
+	watchDir(contentDir, watcher)
 
 	<-done
 
