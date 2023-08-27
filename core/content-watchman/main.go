@@ -49,6 +49,15 @@ func main() {
 				if event.Op&fsnotify.Write == fsnotify.Write {
 					fmt.Println("Modified file: ", event.Name)
 				}
+				if event.Op&fsnotify.Create == fsnotify.Create {
+					fmt.Println("Created file: ", event.Name)
+				}
+				if event.Op&fsnotify.Remove == fsnotify.Remove {
+					fmt.Println("Removed file: ", event.Name)
+				}
+				if event.Op&fsnotify.Rename == fsnotify.Rename {
+					fmt.Println("Renamed file: ", event.Name)
+				}
 			case err := <-watcher.Errors:
 				fmt.Println("Error: ", err)
 			}
