@@ -5,8 +5,16 @@ import (
 	"os"
 )
 
-// readCurrentDir returns the current directory
+var relativePathToContent string = "../../content"
+
 func readCurrentDir() string {
+	// Change directory
+	if err := os.Chdir(relativePathToContent); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// Get new directory
 	dir, err := os.Getwd()
 
 	if err != nil {
@@ -18,6 +26,7 @@ func readCurrentDir() string {
 }
 
 func main() {
-	currentDir := readCurrentDir()
-	fmt.Println(currentDir)
+	var hello = readCurrentDir()
+	fmt.Println(hello)
+
 }
