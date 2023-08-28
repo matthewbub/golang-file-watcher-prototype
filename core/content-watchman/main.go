@@ -64,7 +64,7 @@ func commitIfCounterReached(originalExecDir string) {
 
 	if eventCounter >= changesBeforeCommit {
 		// execute shell script @ ./commit.sh
-		cmd := exec.Command(commitScriptPath)
+		cmd := exec.Command("sh", commitScriptPath)
 		err := cmd.Run()
 		if err != nil {
 			printErr(err)
