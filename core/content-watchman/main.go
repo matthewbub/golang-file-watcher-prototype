@@ -69,7 +69,7 @@ func commitIfCounterReached(originalExecDir string) {
 		if err != nil {
 			printErr(err)
 		}
-		fmt.Println("[INFO] Code committed and pushed successfully.")
+		fmt.Println("[INFO] Code committed successfully.")
 		eventCounter = 0 // Reset the counter
 	}
 }
@@ -124,7 +124,7 @@ func main() {
 					event.Op&fsnotify.Rename == fsnotify.Rename ||
 					event.Op&fsnotify.Create == fsnotify.Create {
 					eventCounter++
-					fmt.Println("[INFO] Event count:", eventCounter)
+					fmt.Println("[INFO]", eventCounter, "changes detected since last commit.")
 					commitIfCounterReached(originalExecDir)
 				}
 
