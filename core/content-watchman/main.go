@@ -8,17 +8,16 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
-	"github.com/9mbs/ucan/core/content-watchman/helpers"
 	"github.com/fsnotify/fsnotify"
 )
 
 var relativePathToContent string = "../../content"
 var changesBeforeCommit int = 5
-var commitMessage string = "[Auto Commit] Updated content"
-var branchName string = "auto-commit" + helpers.FormatTimeStamp()
+
 var useDebug bool = false
 var eventCounter int = 0
 
@@ -30,8 +29,7 @@ func printErr(err error) {
 func readCurrentDir() string {
 	// Change directory
 	if err := os.Chdir(relativePathToContent); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		printErr(err)
 	}
 
 	// Get new directory
@@ -61,10 +59,17 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 	return strings.TrimPrefix(absPath, contentDir)
 }
 
-func commitIfCounterReached() {
+func commitIfCounterReached(originalExecDir string) {
+	commitScriptPath := filepath.Join(originalExecDir, "commit.sh")
+
 	if eventCounter >= changesBeforeCommit {
-		helpers.CommitAndPushAsBot(branchName, commitMessage)
-		fmt.Println("[INFO] Code committed and pushed successfully.")
+		// execute shell script @ ./commit.sh
+		cmd := exec.Command("sh", commitScriptPath)
+		err := cmd.Run()
+		if err != nil {
+			printErr(err)
+		}
+		fmt.Println("[INFO] Code committed successfully.")
 		eventCounter = 0 // Reset the counter
 	}
 }
@@ -92,6 +97,7 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 }
 
 func main() {
+	originalExecDir, _ := os.Getwd()
 	var contentDir = readCurrentDir()
 
 	watcher, err := fsnotify.NewWatcher()
@@ -118,8 +124,8 @@ func main() {
 					event.Op&fsnotify.Rename == fsnotify.Rename ||
 					event.Op&fsnotify.Create == fsnotify.Create {
 					eventCounter++
-					fmt.Println("[INFO] Event count:", eventCounter)
-					commitIfCounterReached()
+					fmt.Println("[INFO]", eventCounter, "changes detected since last commit.")
+					commitIfCounterReached(originalExecDir)
 				}
 
 				if event.Op&fsnotify.Create == fsnotify.Create {
