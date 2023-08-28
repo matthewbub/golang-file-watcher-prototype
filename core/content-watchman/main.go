@@ -59,10 +59,8 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 	return strings.TrimPrefix(absPath, contentDir)
 }
 
-func commitIfCounterReached() {
-	currentExecDir, _ := os.Getwd()
-	currentExecDir += "../core/content-watchman"
-	commitScriptPath := filepath.Join(currentExecDir, "commit.sh")
+func commitIfCounterReached(originalExecDir string) {
+	commitScriptPath := filepath.Join(originalExecDir, "commit.sh")
 
 	if eventCounter >= changesBeforeCommit {
 		// execute shell script @ ./commit.sh
@@ -99,6 +97,7 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 }
 
 func main() {
+	originalExecDir, _ := os.Getwd()
 	var contentDir = readCurrentDir()
 
 	watcher, err := fsnotify.NewWatcher()
@@ -126,7 +125,7 @@ func main() {
 					event.Op&fsnotify.Create == fsnotify.Create {
 					eventCounter++
 					fmt.Println("[INFO] Event count:", eventCounter)
-					commitIfCounterReached()
+					commitIfCounterReached(originalExecDir)
 				}
 
 				if event.Op&fsnotify.Create == fsnotify.Create {
