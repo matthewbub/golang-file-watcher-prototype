@@ -8,17 +8,16 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
-	"github.com/9mbs/ucan/core/content-watchman/helpers"
 	"github.com/fsnotify/fsnotify"
 )
 
 var relativePathToContent string = "../../content"
 var changesBeforeCommit int = 5
-var commitMessage string = "[Auto Commit] Updated content"
-var branchName string = "auto-commit" + helpers.FormatTimeStamp()
+
 var useDebug bool = false
 var eventCounter int = 0
 
@@ -30,8 +29,7 @@ func printErr(err error) {
 func readCurrentDir() string {
 	// Change directory
 	if err := os.Chdir(relativePathToContent); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		printErr(err)
 	}
 
 	// Get new directory
@@ -63,7 +61,12 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 
 func commitIfCounterReached() {
 	if eventCounter >= changesBeforeCommit {
-		helpers.CommitAndPushAsBot(branchName, commitMessage)
+		// execute shell script @ ./commit.sh
+		cmd := exec.Command("./commit.sh")
+		err := cmd.Run()
+		if err != nil {
+			printErr(err)
+		}
 		fmt.Println("[INFO] Code committed and pushed successfully.")
 		eventCounter = 0 // Reset the counter
 	}
