@@ -59,6 +59,7 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 func commitIfCounterReached() {
 	if eventCounter >= changesBeforeCommit {
 		helpers.CommitAndPushAsBot(branchName, commitMessage)
+		fmt.Println("[INFO] Code committed and pushed successfully.")
 		eventCounter = 0 // Reset the counter
 	}
 }
