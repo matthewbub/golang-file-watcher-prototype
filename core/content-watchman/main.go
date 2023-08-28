@@ -2,6 +2,7 @@
 // TODO - Add a config file
 // TODO - Why do the logs not work in /helpers?
 // TODO - Create disturbed binary
+
 package main
 
 import (
