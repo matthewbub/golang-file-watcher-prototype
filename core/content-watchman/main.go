@@ -61,6 +61,7 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 
 func commitIfCounterReached() {
 	currentExecDir, _ := os.Getwd()
+	currentExecDir += "../core/content-watchman"
 	commitScriptPath := filepath.Join(currentExecDir, "commit.sh")
 
 	if eventCounter >= changesBeforeCommit {
