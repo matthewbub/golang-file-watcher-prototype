@@ -16,4 +16,3 @@ node ucan/admin/exec/danger-this-script-will-drop-all-tables-in-the-database.js 
 
 
 
-

@@ -112,6 +112,7 @@ func main() {
 					event.Op&fsnotify.Rename == fsnotify.Rename ||
 					event.Op&fsnotify.Create == fsnotify.Create {
 					eventCounter++
+					fmt.Println("[INFO] Event count:", eventCounter)
 					commitIfCounterReached()
 				}
 

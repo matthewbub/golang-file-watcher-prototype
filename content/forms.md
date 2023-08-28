@@ -1,4 +1,4 @@
-# Sign up Form
+# Sign up Form Documentation
 
 This documentation provides a detailed overview of the input validations implemented in our sign-up form, specifically for the password input. The goal of these validations is to ensure that users provide strong and secure passwords.
 
