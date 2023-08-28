@@ -15,6 +15,7 @@ var changesBeforeCommit int = 5
 var commitMessage string = "[Auto Commit] Updated content"
 var branchName string = "auto-commit" + helpers.FormatTimeStamp()
 var useDebug bool = false
+var eventCounter int = 0
 
 func printErr(err error) {
 	fmt.Println("[ERROR]", err)
@@ -53,6 +54,13 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 		contentDir += "/"
 	}
 	return strings.TrimPrefix(absPath, contentDir)
+}
+
+func commitIfCounterReached() {
+	if eventCounter >= changesBeforeCommit {
+		helpers.CommitAndPushAsBot(branchName, commitMessage)
+		eventCounter = 0 // Reset the counter
+	}
 }
 
 // traverse directory and add all subdirectories to watcher
@@ -99,18 +107,15 @@ func main() {
 					fmt.Println("[DEBUG] Event:", event.Op.String(), relPath)
 				}
 
-				if event.Op&fsnotify.Write == fsnotify.Write {
-					helpers.CommitAndPushAsBot(branchName, commitMessage)
+				if event.Op&fsnotify.Write == fsnotify.Write ||
+					event.Op&fsnotify.Remove == fsnotify.Remove ||
+					event.Op&fsnotify.Rename == fsnotify.Rename ||
+					event.Op&fsnotify.Create == fsnotify.Create {
+					eventCounter++
+					commitIfCounterReached()
 				}
-				if event.Op&fsnotify.Remove == fsnotify.Remove {
-					helpers.CommitAndPushAsBot(branchName, commitMessage)
-				}
-				if event.Op&fsnotify.Rename == fsnotify.Rename {
-					helpers.CommitAndPushAsBot(branchName, commitMessage)
-				}
-				if event.Op&fsnotify.Create == fsnotify.Create {
-					helpers.CommitAndPushAsBot(branchName, commitMessage)
 
+				if event.Op&fsnotify.Create == fsnotify.Create {
 					// if new directory is created, add it to watcher
 					fileInfo, err := os.Stat(event.Name)
 					if err != nil {
