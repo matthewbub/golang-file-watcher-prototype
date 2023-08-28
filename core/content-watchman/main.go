@@ -60,9 +60,12 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 }
 
 func commitIfCounterReached() {
+	currentExecDir, _ := os.Getwd()
+	commitScriptPath := filepath.Join(currentExecDir, "commit.sh")
+
 	if eventCounter >= changesBeforeCommit {
 		// execute shell script @ ./commit.sh
-		cmd := exec.Command("./commit.sh")
+		cmd := exec.Command(commitScriptPath)
 		err := cmd.Run()
 		if err != nil {
 			printErr(err)
