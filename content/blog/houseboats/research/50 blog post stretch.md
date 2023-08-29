@@ -1,7 +1,10 @@
 1. how does sewage work on a houseboat
     1. Understanding the Basics of Sewage on a Houseboat - what is it and why is it necessary
     2. What are the Different Types of Sewage Systems and Which One Do You Have?
-    3. 
+    3. Tips for Maintaining Your Sewage System 
+    4. How to properly dispose of waste from your houseboat 
+    5. Common mistakes to avoid when handling sewage on a houseboat 
+
 2. list of house boat marinas
 3. list of house boat manufacturers
 4. how to live on a houseboat year round
