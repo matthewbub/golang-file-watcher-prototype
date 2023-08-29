@@ -10,12 +10,14 @@ Title: **The Nitty-Gritty of Sewage Systems on Houseboats: A Comprehensive Guide
 **II. A Brief History of Sewage Systems on Houseboats**
 
 - Evolution of sewage systems on boats
+- When was the first houseboat sewage system built?
 - Introduction of sewage systems in houseboats
 
 **III. Unraveling the Mystery: What is a Sewage System on a Houseboat?**
 
 - Basic understanding of sewage system on a houseboat
 - Why is it necessary?
+- Common Misconceptions 
 
 **IV. The Different Types of Sewage Systems on Houseboats**
 
