@@ -37,6 +37,11 @@ Title: **The Nitty-Gritty of Sewage Systems on Houseboats: A Comprehensive Guide
 - Steps to identify your type of sewage system
 - Importance of knowing your system
 
+    
+
+
+ -- Maybe dive into those 10 questions for each of these tanks, and cover this -- 
+
 **VI. The Benefits of Proper Sewage Systems on Houseboats**
 
 - Environmental benefits
