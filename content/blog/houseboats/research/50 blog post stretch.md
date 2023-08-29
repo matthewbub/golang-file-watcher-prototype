@@ -1,0 +1,6 @@
+- how does sewage work on a houseboat
+- list of house boat marinas
+- list of house boat manufacturers
+- how to live on a houseboat
+- how much does a house boat cost to build
+- 
