@@ -12,6 +12,9 @@
 9. test locally, publish v2, test v2 as a app in prod
 10. Demonstrate tailwindcss, css and styled-components as publishable
 11. Setup Storybook for UI Library
-12. BONUS: Component best practices
-13. BONUS: Configure with Vedacco as private registry 
+    1. Storybook Stories
+    2. Storybook UI Testing
+12. Demonstrate how to make storybook components publishable
+13. BONUS: Component best practices
+14. BONUS: Configure with Docker/ Verdaccio as private registry 
     
