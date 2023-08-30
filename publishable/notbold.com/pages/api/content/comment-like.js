@@ -1,2 +1,0 @@
-// comment id
-// user id

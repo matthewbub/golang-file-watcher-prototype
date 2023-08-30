@@ -1,2 +1,0 @@
-// user id
-// post id
