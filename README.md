@@ -35,3 +35,11 @@ docker-compose up --build
 ## Architecture
 
 The primary entry point of this application is the `./index.js` file. This file is responsible for starting the Express.js server and loading all the routes. You'll find the functional application code within the `ucan` directory. 
+
+## Additional services
+
+Features outside of the express directory are considered additional services. These services are not required for the application to function, but are required for the application to function as intended.
+
+### Content Watchman
+
+The content watchman is a service that watches for changes to the content directory. When a change is detected, it will update the database with the new content. This service is required for the application to function as intended.
