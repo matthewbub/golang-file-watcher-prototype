@@ -10,3 +10,13 @@ An app that helps teams manage their projects, assign tasks, and track progress.
 7. (Premium) **Search and Filter:** Users should be able to search for specific tasks or projects and filter the view based on different criteria (e.g., status, assignee, etc.).
 8. (Premium) **Performance:** The app should be fast and responsive, with no noticeable lag.
 9. (Premium) **User-Friendly Design:** The design should be intuitive and easy to navigate, with a clean and modern interface.
+
+
+
+Tech Stack:
+- React.js, Vite
+- Node.js, Express
+- SQLite3, Prisma
+- Railway 
+- Jest
+- Misc: Nodemon, Lodash, DaisyUI, TailwindCSS, PostCSS
