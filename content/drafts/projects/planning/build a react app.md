@@ -34,7 +34,7 @@ npm run dev
 By following these steps, you will have set up a new Vite React project, installed all the necessary dependencies, and successfully initiated the development server. You're now ready to begin building your web application. Continue your learning journey with our subsequent guides to enhance your skills further.
 
 ### Sources:
-We believe in transparency. Here's some additional resources that helped us to help you on you're learning journey. 
+We highly value transparency and believe that multiple perspectives can enrich your learning experience. Below are some additional resources that have guided us in creating the instructional content provided to you.
 - [Getting Started | Vite](https://vitejs.dev/guide/)
 - [How To Set Up a React Project with Vite](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-react-project-with-vite)
 - [Using Vite to create a new React app](https://flaviocopes.com/vite-react-app/) 
