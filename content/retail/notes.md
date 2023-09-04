@@ -1,0 +1,4 @@
+- inventory is your biggest asset 
+- don't make decisions based on your bank balance
+- inventory purchases throughout the year should be 48$ of what your sales are predicted to be
+- 
