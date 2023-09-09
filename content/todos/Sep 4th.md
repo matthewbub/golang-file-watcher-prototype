@@ -1,3 +1,0 @@
-- [ ] Create Micro Article - "Vite x TailwindCSS" 
-- [ ] Create Micro Article - "Vite x TailwindCSS x DaisyUI" 
-- [ ] Create Micro Article - "React Calendar"
