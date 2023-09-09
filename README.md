@@ -13,3 +13,12 @@ UCAN stands for User, Content, Access, Network - the four pillars of our applica
 ### Content Watchman
 
 The content watchman is a service that watches for changes to the content directory. When a change is detected, it will update the database with the new content. This service is required for the application to function as intended.
+
+Execute the following command to start the content watchman service:
+
+```bash
+# first time setup
+chmod +x ./core/content-watchman/content-watchman
+
+./core/content-watchman/content-watchman
+```
