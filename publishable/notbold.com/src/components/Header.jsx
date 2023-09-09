@@ -4,9 +4,14 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import localFont from 'next/font/local'
 import { useTheme } from 'next-themes'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
+
+const indieFont = localFont({
+  src: '../static/fonts/Indie.otf',
+})
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
@@ -81,6 +86,8 @@ function MobileNavItem({ href, children }) {
     </li>
   )
 }
+
+
 
 function MobileNavigation(props) {
   return (

@@ -7,9 +7,16 @@ export default function Page() {
     // console.log(formData)
 
     const data = formData.get('title')
-    console.log(data, fs)
+
+
+    // console.log(data, __dirname)
+    const stream = fs.createWriteStream(__dirname + '/data.txt', {flags:'a'})
+
     // mutate data
+    
     // revalidate cache
+
+
   }
   return (
     <div>
