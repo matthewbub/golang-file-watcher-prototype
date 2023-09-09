@@ -11,6 +11,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/fsnotify/fsnotify"
 )
@@ -124,7 +125,9 @@ func main() {
 					event.Op&fsnotify.Rename == fsnotify.Rename ||
 					event.Op&fsnotify.Create == fsnotify.Create {
 					eventCounter++
-					fmt.Println("[INFO]", eventCounter, "changes detected since last commit.")
+
+					timestamp := time.Now().Format("01/02/2006 15:04")
+					fmt.Println("[INFO]", timestamp, "-", eventCounter, "changes detected since last commit.")
 					commitIfCounterReached(originalExecDir)
 				}
 
