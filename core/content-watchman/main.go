@@ -1,8 +1,3 @@
-// TODO - Add a flags
-// TODO - Add a config file
-// TODO - Why do the logs not work in /helpers?
-// TODO - Create disturbed binary
-
 package main
 
 import (
@@ -15,13 +10,17 @@ import (
 	"time"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/gomarkdown/markdown"
 )
 
-var relativePathToContent string = "../../content"
-var changesBeforeCommit int = 5
+const (
+	relativePathToContent = "../../content"
+)
 
-var useDebug bool = false
-var eventCounter int = 0
+var (
+	useDebug     bool
+	eventCounter int
+)
 
 // LogInfo logs an informational message with a timestamp.
 func LogInfo(message string) {
@@ -93,6 +92,15 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 	return dirCount
 }
 
+func convertFileContentsMdToHTML(filePath string) string {
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		LogError(err)
+	}
+
+	return string(markdown.ToHTML(content, nil, nil))
+}
+
 func main() {
 	var contentDir = readCurrentDir()
 
@@ -115,6 +123,9 @@ func main() {
 				if event.Op&fsnotify.Write == fsnotify.Write {
 					LogInfo(fmt.Sprintf("File modified at: %s - %s", timestamp, relPath))
 					runCommitScript("bot-commit-file-updated.sh")
+
+					content := convertFileContentsMdToHTML(event.Name)
+					fmt.Println("Content of modified file:", content)
 				}
 
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
@@ -125,6 +136,9 @@ func main() {
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
 					LogInfo(fmt.Sprintf("File renamed at: %s - %s", timestamp, relPath))
 					runCommitScript("bot-commit-file-renamed.sh")
+
+					content := convertFileContentsMdToHTML(event.Name)
+					fmt.Println("Content of renamed file:", content)
 				}
 
 				if event.Op&fsnotify.Create == fsnotify.Create {
@@ -139,6 +153,9 @@ func main() {
 
 					LogInfo(fmt.Sprintf("File created at: %s - %s", timestamp, relPath))
 					runCommitScript("bot-commit-file-added.sh")
+
+					content := convertFileContentsMdToHTML(event.Name)
+					fmt.Println("Content of created file:", content)
 				}
 			case err := <-watcher.Errors:
 				LogError(err)
