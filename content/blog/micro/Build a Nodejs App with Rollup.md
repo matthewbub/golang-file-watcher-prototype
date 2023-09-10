@@ -2,7 +2,7 @@
 
 Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application. It allows you to write your code using the latest JavaScript features, and then it will bundle it up into a package that can run anywhere.
 
-In this guide, we're going to build a simple Node.js application using Rollup. We'll start from scratch, setting up our project, installing dependencies, configuring Rollup, and writing some code. 
+In this guide, we're going to build a simple Node.js application using Rollup. We'll start from scratch, setting up our project, installing dependencies, configuring Rollup, and writing some code.
 
 ## Step 1: Setting Up Your Project
 
