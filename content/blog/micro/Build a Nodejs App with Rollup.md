@@ -18,7 +18,7 @@ Then, initialize a new Node.js project. You can do this by running npm init and 
 npm init -y
 ```
 
-This will create a new package.json file in your project root.
+This will create a new package.json file in your project root. 
 
 ## Step 2: Installing Dependencies
 
