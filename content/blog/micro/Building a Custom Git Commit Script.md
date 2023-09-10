@@ -111,4 +111,4 @@ Now, you can use the script to commit changes with a consistent message structur
 ./commit.sh "your commit message"
 ```
 
-That's it! You've created a custom git commit script. Pretty cool
+That's it! You've created a custom git commit script.
