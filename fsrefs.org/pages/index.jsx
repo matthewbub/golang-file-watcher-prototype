@@ -12,14 +12,31 @@ export default function Page({articles, legal}) {
   return (
     <div>
       <Navigation />
-      <BlogLanding />
-      {articles.map((article) => (
-        <div key={article.slug}>
-          <Link href={`/${article.category}/${article.slug}`}>
-            <h2 className="text-white">{article.title}</h2>
-          </Link>
-        </div>
-      ))}
+      <div className='px-4 sm:px-6 md:px-8 space-y-6'>
+        {articles.map((article) => (
+          <div key={article.slug}>
+            <Link href={`/${article.category}/${article.slug}`}>
+              <h2 className="text-white">{article.title}</h2>
+            </Link>
+            <span className="text-[#A1A1AA]">
+              <strong>Tags:</strong> {article.tags.map((tag, index) => (
+                <span key={tag}>
+                  <Link href={`/tags/${tag}`} className={clsx('text-[#A1A1AA]', index > 0 && 'ml-2')}>
+                    {tag}
+                  </Link>
+
+                  {index < article.tags.length - 1 && (
+                    <span className="text-[#A1A1AA]">, </span>
+                  )}
+
+              </span>
+              ))}
+
+
+            </span>
+          </div>
+        ))}
+      </div>
       <Footer links={{legal}}/>
     </div>
   )

@@ -8,9 +8,15 @@ import {
   SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon, RectangleGroupIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
+
+const navConstants = {
+  'nav.label.blog': 'Blog',
+  'nav.label.tutorials': 'Tutorials',
+  'nav.label.developerHub': 'Developer Hub',
+}
 
 const products = [
   {
@@ -33,15 +39,6 @@ const products = [
     icon: SquaresPlusIcon,
   },
 ]
-const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-  { name: 'View all products', href: '#', icon: RectangleGroupIcon },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -87,7 +84,7 @@ export default function Navigation() {
                   "font-adelle"
                 )}
               >
-                Product
+                <span>{navConstants['nav.label.blog']}</span>
                 <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400 dark:text-[#A1A1AA]" aria-hidden="true" />
               </Popover.Button>
 
@@ -115,34 +112,15 @@ export default function Navigation() {
                       </div>
                     ))}
                   </div>
-                  <div className="bg-gray-50 dark:bg-[#202022]">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                      <div className="grid grid-cols-3 divide-x divide-gray-900/5 border-x border-gray-900/5">
-                        {callsToAction.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 dark:text-[#A1A1AA] hover:bg-gray-100 dark:hover:bg-[#000]/20"
-                          >
-                            <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
                 </Popover.Panel>
               </Transition>
             </Popover>
 
             <a href="#" className="text-sm font-adelle leading-6 text-gray-900 dark:text-[#A1A1AA]">
-              Features
+              {navConstants['nav.label.tutorials']}
             </a>
             <a href="#" className="text-sm font-adelle leading-6 text-gray-900 dark:text-[#A1A1AA]">
-              Marketplace
-            </a>
-            <a href="#" className="text-sm font-adelle leading-6 text-gray-900 dark:text-[#A1A1AA]">
-              Company
+              {navConstants['nav.label.developerHub']}
             </a>
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -181,7 +159,7 @@ export default function Navigation() {
                         <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 dark:text-[#A1A1AA] hover:bg-gray-50">
                           Product
                           <ChevronDownIcon
-                            className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
+                            className={clsx(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                             aria-hidden="true"
                           />
                         </Disclosure.Button>
