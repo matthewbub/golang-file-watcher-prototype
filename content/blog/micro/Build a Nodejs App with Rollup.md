@@ -17,7 +17,7 @@ Then, initialize a new Node.js project. You can do this by running npm init and 
 ```shell
 npm init -y
 ```
-
+ 
 This will create a new package.json file in your project root. 
 
 ## Step 2: Installing Dependencies
@@ -26,7 +26,7 @@ We need to install Rollup and some plugins that will help us work with Node.js a
 
 ```shell
 npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-node-builtins rollup-plugin-node-globals
-```
+``` 
 
 These plugins do the following:
 
@@ -63,7 +63,7 @@ export default {
     globals()
   ]
 };
-```
+``` 
 
 This tells Rollup where our entry point is (src/index.js), where to output the bundled file (dist/bundle.js), and which plugins to use.
 
