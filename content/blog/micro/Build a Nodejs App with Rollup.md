@@ -63,7 +63,7 @@ export default {
     globals()
   ]
 };
-``` 
+```
 
 This tells Rollup where our entry point is (src/index.js), where to output the bundled file (dist/bundle.js), and which plugins to use.
 
