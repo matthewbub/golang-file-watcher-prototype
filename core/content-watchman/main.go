@@ -60,7 +60,7 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 func runCommitScript(scriptName string) {
 	originalExecDir, _ := os.Getwd()
 
-	commitScriptPath := filepath.Join(originalExecDir, "scripts", scriptName)
+	commitScriptPath := filepath.Join(originalExecDir, "../core/content-watchman/scripts", scriptName)
 
 	// execute shell script
 	cmd := exec.Command("sh", commitScriptPath)
@@ -138,7 +138,7 @@ func main() {
 					}
 
 					LogInfo(fmt.Sprintf("File created at: %s - %s", timestamp, relPath))
-					runCommitScript("bot-commit-file-created.sh")
+					runCommitScript("bot-commit-file-added.sh")
 				}
 			case err := <-watcher.Errors:
 				LogError(err)
