@@ -7,6 +7,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -21,6 +22,16 @@ var changesBeforeCommit int = 5
 
 var useDebug bool = false
 var eventCounter int = 0
+
+// LogInfo logs an informational message with a timestamp.
+func LogInfo(message string) {
+	log.Printf("[INFO] %s\n", message)
+}
+
+// LogError logs an error message with a timestamp and terminates the program.
+func LogError(err error) {
+	log.Fatalf("[ERROR] %v\n", err)
+}
 
 func printErr(err error) {
 	fmt.Println("[ERROR]", err)
@@ -116,13 +127,9 @@ func main() {
 			case event := <-watcher.Events:
 				relPath := clipAbsolutePathToContentDir(event.Name, contentDir)
 
-				if useDebug {
-					fmt.Println("[DEBUG] Event:", event.Op.String(), relPath)
-				}
-
 				if event.Op&fsnotify.Write == fsnotify.Write {
 					timestamp := time.Now().Format("01/02/2006 15:04")
-					fmt.Println("[INFO] File modified at:", timestamp, "-", relPath)
+					LogInfo(fmt.Sprintf("File modified at: %s - %s", timestamp, relPath))
 
 					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-updated.sh")
 
@@ -130,14 +137,14 @@ func main() {
 					cmd := exec.Command("sh", commitScriptPath)
 					err := cmd.Run()
 					if err != nil {
-						printErr(err)
+						LogError(err)
 					}
-					fmt.Println("[INFO] Code committed successfully.")
+					LogInfo("Code committed successfully.")
 				}
 
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
 					timestamp := time.Now().Format("01/02/2006 15:04")
-					fmt.Println("[INFO] File removed at:", timestamp, "-", relPath)
+					LogInfo(fmt.Sprintf("File removed at: %s - %s", timestamp, relPath))
 
 					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-removed.sh")
 
@@ -145,15 +152,15 @@ func main() {
 					cmd := exec.Command("sh", commitScriptPath)
 					err := cmd.Run()
 					if err != nil {
-						printErr(err)
+						LogError(err)
 					}
-					fmt.Println("[INFO] Code committed successfully.")
+					LogInfo("Code committed successfully.")
 				}
 
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
 
 					timestamp := time.Now().Format("01/02/2006 15:04")
-					fmt.Println("[INFO] File renamed at:", timestamp, "-", relPath)
+					LogInfo(fmt.Sprintf("File renamed at: %s - %s", timestamp, relPath))
 
 					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-renamed.sh")
 
@@ -161,44 +168,42 @@ func main() {
 					cmd := exec.Command("sh", commitScriptPath)
 					err := cmd.Run()
 					if err != nil {
-						printErr(err)
+						LogError(err)
 					}
-					fmt.Println("[INFO] Code committed successfully.")
+					LogInfo("Code committed successfully.")
 				}
 
 				if event.Op&fsnotify.Create == fsnotify.Create {
 					// if new directory is created, add it to watcher
 					fileInfo, err := os.Stat(event.Name)
 					if err != nil {
-						printErr(err)
+						LogError(err)
 					} else if fileInfo.IsDir() {
 						watcher.Add(event.Name)
-						logMessage := "[INFO] Added to watch list: " + event.Name
-						fmt.Println(logMessage)
+						LogInfo(fmt.Sprintf("Added to watch list: %s", event.Name))
 					}
 
 					timestamp := time.Now().Format("01/02/2006 15:04")
-					fmt.Println("[INFO] File created at:", timestamp, "-", relPath)
-
+					LogInfo(fmt.Sprintf("File created at: %s - %s", timestamp, relPath))
 					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-created.sh")
 
 					// execute shell script @ ./scripts/bot-commit-file-created
 					cmd := exec.Command("sh", commitScriptPath)
 					err = cmd.Run()
 					if err != nil {
-						printErr(err)
+						LogError(err)
 					}
-					fmt.Println("[INFO] Code committed successfully.")
+					LogInfo("Code committed successfully.")
 				}
 			case err := <-watcher.Errors:
-				printErr(err)
+				LogError(err)
 			}
 		}
 	}()
 
 	// init watcher
 	dirCount := watchDir(contentDir, watcher)
-	fmt.Println("[INFO] Watching:", dirCount, "directories for changes")
+	LogInfo(fmt.Sprintf("Watching: %d directories for changes", dirCount))
 
 	<-done
 
