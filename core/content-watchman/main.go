@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"os"
@@ -9,17 +10,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/adrg/frontmatter"
 	"github.com/fsnotify/fsnotify"
 	"github.com/gomarkdown/markdown"
 )
 
 const (
 	relativePathToContent = "../../content"
-)
-
-var (
-	useDebug     bool
-	eventCounter int
 )
 
 // LogInfo logs an informational message with a timestamp.
@@ -32,6 +29,12 @@ func LogError(err error) {
 	log.Fatalf("[ERROR] %v\n", err)
 }
 
+// readCurrentDir reads the current directory and returns the absolute path.
+// The current directory is the directory where the executable is located.
+// Example:
+//
+//	readCurrentDir()
+//	=> "/home/user/website/core/content-watchman"
 func readCurrentDir() string {
 	// Change directory
 	if err := os.Chdir(relativePathToContent); err != nil {
@@ -48,6 +51,12 @@ func readCurrentDir() string {
 	return dir
 }
 
+// clipAbsolutePathToContentDir removes the absolute path to the content directory
+// from the given absolute path.
+// Example:
+//
+//	clipAbsolutePathToContentDir("/home/user/website/content/blog/2021-01-01.md", "/home/user/website/content")
+//	=> "blog/2021-01-01.md"
 func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 	// Make sure contentDir ends with a trailing slash
 	if !strings.HasSuffix(contentDir, "/") {
@@ -56,6 +65,11 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 	return strings.TrimPrefix(absPath, contentDir)
 }
 
+// runCommitScript executes a shell script.
+// The shell script is located in the scripts directory.
+// Example:
+//
+//	runCommitScript("bot-commit-file-added.sh")
 func runCommitScript(scriptName string) {
 	originalExecDir, _ := os.Getwd()
 
@@ -70,7 +84,11 @@ func runCommitScript(scriptName string) {
 	LogInfo("Code committed successfully.")
 }
 
-// traverse directory and add all subdirectories to watcher
+// watchDir traverses the given directory and adds all subdirectories to watcher
+// returns the number of directories added to watcher
+// Example:
+//
+//	watchDir("/home/user/website/content", watcher)
 func watchDir(path string, watcher *fsnotify.Watcher) int {
 	dirCount := 0
 
@@ -92,13 +110,28 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 	return dirCount
 }
 
+// convertFileContentsMdToHTML converts the contents of a markdown file to HTML.
+// Example:
+//
+//	convertFileContentsMdToHTML("/home/user/website/content/blog/2021-01-01.md")
 func convertFileContentsMdToHTML(filePath string) string {
 	content, err := os.ReadFile(filePath)
 	if err != nil {
 		LogError(err)
 	}
 
-	return string(markdown.ToHTML(content, nil, nil))
+	// Define a variable to hold the front matter
+	var fm map[string]interface{}
+
+	// Parse front matter
+	body, err := frontmatter.Parse(bytes.NewReader(content), &fm)
+	if err != nil {
+		LogError(err)
+	}
+
+	fmt.Println("Front Matter:", fm)
+
+	return string(markdown.ToHTML([]byte(body), nil, nil))
 }
 
 func main() {
