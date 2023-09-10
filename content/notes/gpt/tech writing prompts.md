@@ -54,6 +54,6 @@ Remember, these guidelines are meant to improve readability and comprehension, s
 
 ```
 ---
-As an AI Language Model, I need you to act as an Instructional Desiger and document how this is built, starting from scratch. Make the following assumptions about our reader:
-- They are relatively comfortable with Express and Node.js but new to Rollup and its configurations
+As an AI Language Model, I need you to act as an Instructional Designer and document how this is built, starting from scratch. Make the following assumptions about our reader:
+- They are relatively comfortable with shell scripts
 - They are already equipped with the necessary requirements. ie. have node installed and they have their preferred IDEs
