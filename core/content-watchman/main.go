@@ -33,34 +33,20 @@ func LogError(err error) {
 	log.Fatalf("[ERROR] %v\n", err)
 }
 
-func printErr(err error) {
-	fmt.Println("[ERROR]", err)
-	os.Exit(1)
-}
-
 func readCurrentDir() string {
 	// Change directory
 	if err := os.Chdir(relativePathToContent); err != nil {
-		printErr(err)
+		LogError(err)
 	}
 
 	// Get new directory
 	dir, err := os.Getwd()
 
 	if err != nil {
-		printErr(err)
+		LogError(err)
 	}
 
 	return dir
-}
-
-func clipString(s string, max int) {
-	if len(s) > max {
-		fmt.Println(s[:max], "...")
-		return
-	}
-	fmt.Println(s)
-	return
 }
 
 func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
@@ -71,19 +57,18 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 	return strings.TrimPrefix(absPath, contentDir)
 }
 
-func commitIfCounterReached(originalExecDir string) {
-	commitScriptPath := filepath.Join(originalExecDir, "commit.sh")
+func runCommitScript(scriptName string) {
+	originalExecDir, _ := os.Getwd()
 
-	if eventCounter >= changesBeforeCommit {
-		// execute shell script @ ./commit.sh
-		cmd := exec.Command("sh", commitScriptPath)
-		err := cmd.Run()
-		if err != nil {
-			printErr(err)
-		}
-		fmt.Println("[INFO] Code committed successfully.")
-		eventCounter = 0 // Reset the counter
+	commitScriptPath := filepath.Join(originalExecDir, "scripts", scriptName)
+
+	// execute shell script
+	cmd := exec.Command("sh", commitScriptPath)
+	err := cmd.Run()
+	if err != nil {
+		LogError(err)
 	}
+	LogInfo("Code committed successfully.")
 }
 
 // traverse directory and add all subdirectories to watcher
@@ -92,13 +77,13 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 
 	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			printErr(err)
+			LogError(err)
 		}
 
 		if info.IsDir() {
 			err := watcher.Add(path)
 			if err != nil {
-				printErr(err)
+				LogError(err)
 			}
 
 			dirCount++
@@ -109,12 +94,11 @@ func watchDir(path string, watcher *fsnotify.Watcher) int {
 }
 
 func main() {
-	originalExecDir, _ := os.Getwd()
 	var contentDir = readCurrentDir()
 
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
-		printErr(err)
+		LogError(err)
 	}
 
 	defer watcher.Close()
@@ -126,51 +110,21 @@ func main() {
 			select {
 			case event := <-watcher.Events:
 				relPath := clipAbsolutePathToContentDir(event.Name, contentDir)
+				timestamp := time.Now().Format("01/02/2006 15:04")
 
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					timestamp := time.Now().Format("01/02/2006 15:04")
 					LogInfo(fmt.Sprintf("File modified at: %s - %s", timestamp, relPath))
-
-					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-updated.sh")
-
-					// execute shell script @ ./scripts/bot-commit-file-updated.sh
-					cmd := exec.Command("sh", commitScriptPath)
-					err := cmd.Run()
-					if err != nil {
-						LogError(err)
-					}
-					LogInfo("Code committed successfully.")
+					runCommitScript("bot-commit-file-updated.sh")
 				}
 
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
-					timestamp := time.Now().Format("01/02/2006 15:04")
 					LogInfo(fmt.Sprintf("File removed at: %s - %s", timestamp, relPath))
-
-					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-removed.sh")
-
-					// execute shell script @ ./scripts/bot-commit-file-removed
-					cmd := exec.Command("sh", commitScriptPath)
-					err := cmd.Run()
-					if err != nil {
-						LogError(err)
-					}
-					LogInfo("Code committed successfully.")
+					runCommitScript("bot-commit-file-removed.sh")
 				}
 
 				if event.Op&fsnotify.Rename == fsnotify.Rename {
-
-					timestamp := time.Now().Format("01/02/2006 15:04")
 					LogInfo(fmt.Sprintf("File renamed at: %s - %s", timestamp, relPath))
-
-					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-renamed.sh")
-
-					// execute shell script @ ./scripts/bot-commit-file-renamed
-					cmd := exec.Command("sh", commitScriptPath)
-					err := cmd.Run()
-					if err != nil {
-						LogError(err)
-					}
-					LogInfo("Code committed successfully.")
+					runCommitScript("bot-commit-file-renamed.sh")
 				}
 
 				if event.Op&fsnotify.Create == fsnotify.Create {
@@ -183,17 +137,8 @@ func main() {
 						LogInfo(fmt.Sprintf("Added to watch list: %s", event.Name))
 					}
 
-					timestamp := time.Now().Format("01/02/2006 15:04")
 					LogInfo(fmt.Sprintf("File created at: %s - %s", timestamp, relPath))
-					commitScriptPath := filepath.Join(originalExecDir, "scripts/bot-commit-file-created.sh")
-
-					// execute shell script @ ./scripts/bot-commit-file-created
-					cmd := exec.Command("sh", commitScriptPath)
-					err = cmd.Run()
-					if err != nil {
-						LogError(err)
-					}
-					LogInfo("Code committed successfully.")
+					runCommitScript("bot-commit-file-created.sh")
 				}
 			case err := <-watcher.Errors:
 				LogError(err)
@@ -206,5 +151,4 @@ func main() {
 	LogInfo(fmt.Sprintf("Watching: %d directories for changes", dirCount))
 
 	<-done
-
 }
