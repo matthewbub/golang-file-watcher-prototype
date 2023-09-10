@@ -7,7 +7,7 @@ In this guide, we're going to build a simple Node.js application using Rollup. W
 ## Step 1: Setting Up Your Project
 
 First, create a new directory for your project and navigate into it:
-
+ 
 ```shell
 mkdir hello-world && cd hello-world
 ```
