@@ -29,7 +29,7 @@ npm install
   
 ## 4. Start Development Server
 
-Initiate the Vite development server by executing this command:
+Initiate the Vite development server by executing this command: 
 
 ```bash
 npm run dev
