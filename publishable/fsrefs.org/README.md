@@ -1,4 +1,0 @@
-# notbold.com
-
-- use pnpm
-
