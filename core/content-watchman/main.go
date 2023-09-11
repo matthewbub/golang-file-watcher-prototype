@@ -2,11 +2,13 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"time"
 
@@ -16,8 +18,13 @@ import (
 )
 
 const (
-	relativePathToContent = "../../content"
+	pathToExecDir         = "../core/content-watchman"
+	pathToContentWatchDir = "../../content"
+	pathToCommitScripts   = "../core/content-watchman/scripts"
+	pathToContentBuildDir = "../www/content"
 )
+
+var buildFlag = flag.Bool("build", false, "execute production build")
 
 // LogInfo logs an informational message with a timestamp.
 func LogInfo(message string) {
@@ -29,15 +36,15 @@ func LogError(err error) {
 	log.Fatalf("[ERROR] %v\n", err)
 }
 
-// readCurrentDir reads the current directory and returns the absolute path.
-// The current directory is the directory where the executable is located.
+// readContentWatchDir reads the content watch directory, relative to the executable.
+//
 // Example:
 //
-//	readCurrentDir()
+//	readContentWatchDir()
 //	=> "/home/user/website/core/content-watchman"
-func readCurrentDir() string {
+func readContentWatchDir() string {
 	// Change directory
-	if err := os.Chdir(relativePathToContent); err != nil {
+	if err := os.Chdir(pathToContentWatchDir); err != nil {
 		LogError(err)
 	}
 
@@ -65,6 +72,22 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 	return strings.TrimPrefix(absPath, contentDir)
 }
 
+func formatBuildFileName(fileName string) string {
+	if !strings.HasSuffix(fileName, ".md") {
+		LogError(fmt.Errorf("File name must end with .md"))
+	}
+
+	fileName = strings.TrimSpace(fileName)            // remove leading and trailing whitespaces
+	fileName = strings.ToLower(fileName)              // convert to lower case
+	fileName = strings.ReplaceAll(fileName, " ", "-") // replace spaces with dashes
+
+	// Remove special characters using regular expressions
+	re := regexp.MustCompile(`[^a-zA-Z0-9\-\.]`)
+	fileName = re.ReplaceAllString(fileName, "")
+
+	return fileName
+}
+
 // runCommitScript executes a shell script.
 // The shell script is located in the scripts directory.
 // Example:
@@ -73,7 +96,7 @@ func clipAbsolutePathToContentDir(absPath string, contentDir string) string {
 func runCommitScript(scriptName string) {
 	originalExecDir, _ := os.Getwd()
 
-	commitScriptPath := filepath.Join(originalExecDir, "../core/content-watchman/scripts", scriptName)
+	commitScriptPath := filepath.Join(originalExecDir, pathToCommitScripts, scriptName)
 
 	// execute shell script
 	cmd := exec.Command("sh", commitScriptPath)
@@ -82,32 +105,6 @@ func runCommitScript(scriptName string) {
 		LogError(err)
 	}
 	LogInfo("Code committed successfully.")
-}
-
-// watchDir traverses the given directory and adds all subdirectories to watcher
-// returns the number of directories added to watcher
-// Example:
-//
-//	watchDir("/home/user/website/content", watcher)
-func watchDir(path string, watcher *fsnotify.Watcher) int {
-	dirCount := 0
-
-	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			LogError(err)
-		}
-
-		if info.IsDir() {
-			err := watcher.Add(path)
-			if err != nil {
-				LogError(err)
-			}
-
-			dirCount++
-		}
-		return nil
-	})
-	return dirCount
 }
 
 // convertFileContentsMdToHTML converts the contents of a markdown file to HTML.
@@ -134,8 +131,47 @@ func convertFileContentsMdToHTML(filePath string) string {
 	return string(markdown.ToHTML([]byte(body), nil, nil))
 }
 
+func runBuild(scriptName string) {
+	originalExecDir, _ := os.Getwd()
+
+	commitScriptPath := filepath.Join(originalExecDir, pathToContentBuildDir, formatBuildFileName(scriptName))
+
+	LogInfo(commitScriptPath)
+}
+
+// watchDir traverses the given directory and adds all subdirectories to watcher
+// returns the number of directories added to watcher
+// Example:
+//
+//	watchDir("/home/user/website/content", watcher)
+func watchDir(path string, watcher *fsnotify.Watcher) int {
+	dirCount := 0
+
+	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			LogError(err)
+		}
+
+		if info.IsDir() {
+			err := watcher.Add(path)
+			if err != nil {
+				LogError(err)
+			}
+
+			dirCount++
+		} else if strings.HasSuffix(info.Name(), ".md") {
+			if *buildFlag {
+				runBuild(info.Name())
+			}
+		}
+		return nil
+	})
+	return dirCount
+}
+
 func main() {
-	var contentDir = readCurrentDir()
+	flag.Parse()
+	var contentDir = readContentWatchDir()
 
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
