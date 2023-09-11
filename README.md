@@ -1,24 +1,9 @@
+# You can, too!
 
-<img src="https://bhoyxrelzzohrygasyjt.supabase.co/storage/v1/object/public/public/logo.png" alt="NineMbs Studio Logo" width="100"/>
+Hello and welcome to the root directory of UCAN. This repository consists of several micro services all of which are proprietary to NineMbs Studio LLC. 
 
 
-# IE Portal Services
+## Services
+- [Angus](./services/angus/readme.md) - CLI Based Auto Commit Tool & Markdown Parser
+- [Endura API](./services/enduraapi/readme.md) - Bulk api services for small business and personal use
 
-Hello and welcome to the root directory of IE Portals. This repository consists of several micro services, rest assured that at no-point in the development lifecycle are we reinventing the wheel. 
-
-Whats UCAN?
-
-UCAN stands for User, Content, Access, Network - the four pillars of our application. Want a fun back story? UCAN is shorten from UCAN2, originally stood for "You Can, Too." but we decided to make it an acronym instead.
-
-### Content Watchman
-
-The content watchman is a service that watches for changes to the content directory. When a change is detected, it will update the database with the new content. This service is required for the application to function as intended.
-
-Execute the following command to start the content watchman service:
-
-```bash
-# first time setup
-chmod +x ./core/content-watchman/content-watchman
-
-./core/content-watchman/content-watchman
-```
