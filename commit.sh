@@ -6,7 +6,7 @@ declare -a projects
 
 # https://www.conventionalcommits.org/en/v1.0.0/
 conventional_commits=(fix feat refactor build chore ci docs style test wip revert)
-projects=("content" "www" "core/content-watchman" "core/student-api" "global")
+projects=("content" "www" "services/angus" "services/enduraapi" "global" "root")
 
 if [ $# -eq 0 ]
 then
