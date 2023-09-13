@@ -4,9 +4,9 @@ import {
 } from "contentlayer/source-files"
 import { remarkCodeHike } from "@code-hike/mdx"
 
-const Articles = defineDocumentType(() => ({
-  name: "Articles",
-  filePathPattern: `**/*.mdx`,
+const Article = defineDocumentType(() => ({
+  name: "Article",
+  filePathPattern: '**/*.mdx',
   contentType: "mdx",
   fields: {
     title: {
@@ -17,21 +17,13 @@ const Articles = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    publishedAt: {
-      type: "string",
-      required: true,
-    },
     lastUpdated: {
       type: "string",
       required: true,
     },
-    tags: {
+    dependencies: {
       type: "json",
       required: true,
-    },
-    features: {
-      type: "json",
-      required: false,
     },
     category: {
       type: "string",
@@ -41,20 +33,36 @@ const Articles = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    image: {
-      type: "string",
-      required: false,
-    },
-    imageAlt: {
-      type: "string",
-      required: false,
-    }
   },
-}))
+}));
+
+const Legal = defineDocumentType(() => ({
+  name: "Legal",
+  filePathPattern: '**/*.mdx',
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    datePublished: {
+      type: "string",
+      required: true,
+    },
+    lastUpdated: {
+      type: "string",
+      required: true,
+    },
+    slug: {
+      type: "string",
+      required: true,
+    },
+  },
+}));
 
 export default makeSource({
   contentDirPath: "articles",
-  documentTypes: [Articles],
+  documentTypes: [Article, Legal],
   mdx: {
     remarkPlugins: [
       [

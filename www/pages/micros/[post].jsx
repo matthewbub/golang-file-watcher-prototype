@@ -37,7 +37,7 @@ export default function PostPage({ post }) {
  *    This way, even if a new post gets added after the build, it won't result in a 404 page.
  */
 export async function getStaticPaths() {
-  const paths = allArticles.filter(({category}) => category === 'micros').map((post) => '/' + post.category.toLowerCase() + '/' + post.slug);
+  const paths = allArticles.map((post) => '/' + post.category.toLowerCase() + '/' + post.slug);
   return { paths, fallback: true } 
 };
 

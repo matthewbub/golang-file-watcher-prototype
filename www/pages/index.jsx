@@ -19,13 +19,13 @@ export default function Page({articles, legal}) {
               <h2 className="text-white">{article.title}</h2>
             </Link>
             <span className="text-[#A1A1AA]">
-              <strong>Tags:</strong> {article.tags.map((tag, index) => (
+              <strong>Dependencies:</strong> {article.dependencies.map((tag, index) => (
                 <span key={tag}>
                   <Link href={`/tags/${tag}`} className={clsx('text-[#A1A1AA]', index > 0 && 'ml-2')}>
                     {tag}
                   </Link>
 
-                  {index < article.tags.length - 1 && (
+                  {index < article.dependencies.length - 1 && (
                     <span className="text-[#A1A1AA]">, </span>
                   )}
 
