@@ -234,7 +234,7 @@ func main() {
 
 	// init watcher
 	dirCount := watchDir(contentDir, watcher)
-	LogInfo(fmt.Sprintf("Watching: %d directories for changes", dirCount))
+	LogInfo(fmt.Sprintf("Watching: %d files for changes", dirCount))
 
 	<-done
 }
