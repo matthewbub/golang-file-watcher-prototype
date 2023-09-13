@@ -67,6 +67,7 @@ export default makeSource({
     remarkPlugins: [
       [
         remarkCodeHike, { 
+          lineNumbers: true,
           theme: "slack-dark",
           showCopyButton: true
         }
