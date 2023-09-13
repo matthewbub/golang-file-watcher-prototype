@@ -1,5 +1,5 @@
 .ch-codeblock.not-prose code {
-  @apply font-sourcecode select-all;
+  @apply font-sourcecode;
 }
 
 #prose {
@@ -65,7 +65,7 @@
   }
   
    code {
-    @apply font-sourcecode bg-[#2D2D2D] text-[#F4F4F5] px-1 rounded-sm text-sm select-all; 
+    @apply font-sourcecode bg-[#2D2D2D] text-[#F4F4F5] px-1 rounded-sm text-sm; 
   }
   
    ol + ul {
@@ -74,5 +74,17 @@
   
    hr {
     @apply border-t border-[#202022] my-6;
+  }
+
+  em, i {
+    @apply italic;
+  }
+ 
+  .ch-editor-tab[data-active=true] {
+    @apply border-none bg-[#2D2D2D];
+  }
+
+  .ch-editor-tab[data-active=false] {
+    @apply bg-transparent border-none;
   }
 }
