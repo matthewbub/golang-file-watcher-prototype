@@ -12,16 +12,16 @@ export default function PostPage({ post }) {
   return (
     <Fragment>
       <Navigation />
-      <div className={clsx("mx-auto max-w-7xl grid gap-4 grid-cols-4 ")}>
+      <div className={clsx("mx-auto max-w-7xl lg:grid lg:gap-4 lg:grid-cols-4 ")}>
         <div id="prose" className={clsx(
-          "max-w-full col-span-3",
-          "px-8 sm:px-10 md:px-12",
-        )}>
+          "max-w-full lg:col-span-3",
+          "px-4 sm:px-6 md:px-8",
+        ).trim()}>
           <h1>{post?.title}</h1>
           <MDXComponent />
         </div>
-        <div className="col-span-1">
-            <p className="text-white">Side col</p>
+        <div className="lg:col-span-1">
+            {/* <p className="text-white">Side col</p> */}
         </div>
       </div>
       <Footer />
