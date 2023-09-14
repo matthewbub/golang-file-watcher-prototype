@@ -1,8 +1,9 @@
----
-tags: [micro, nodejs, rollup] 
+***
+
+tags: \[micro, nodejs, rollup]
 description: "Building a Basic Node.js Application using Rollup"
----
- 
+----------------------------------------------------------------
+
 # Building a Basic Node.js Application using Rollup
 
 Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application. It allows you to write your code using the latest JavaScript features, and then it will bundle it up into a package that can run anywhere.
@@ -12,7 +13,7 @@ In this guide, we're going to build a simple Node.js application using Rollup. W
 ## Step 1: Setting Up Your Project
 
 First, create a new directory for your project and navigate into it:
- 
+
 ```shell
 mkdir hello-world && cd hello-world
 ```
@@ -22,8 +23,8 @@ Then, initialize a new Node.js project. You can do this by running npm init and 
 ```shell
 npm init -y
 ```
- 
-This will create a new package.json file in your project root. 
+
+This will create a new package.json file in your project root.
 
 ## Step 2: Installing Dependencies
 
@@ -31,27 +32,29 @@ We need to install Rollup and some plugins that will help us work with Node.js a
 
 ```shell
 npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs
-``` 
+```
 
 Let's break down the code and the purpose of the two plugins:
 
-- `@rollup/plugin-node-resolve`:
-  - **Purpose**: This plugin helps Rollup to locate and bundle third-party dependencies in `node_modules`. It's essential when you're using external modules.
-  - **Details**: The `preferBuiltins` option is set to `true`, which means that if a built-in module (like `fs` or `path` in Node.js) is imported, the plugin will prefer the built-in version over any local versions.
-- `@rollup/plugin-commonjs`:
-  - **Purpose**: Rollup understands ES modules out of the box, but it doesn't understand CommonJS modules. This plugin converts CommonJS modules to ES6, making them compatible with Rollup's bundling mechanism.
-  - **Details**: The plugin is used with its default settings in the provided code.
+*   `@rollup/plugin-node-resolve`:
+
+    *   **Purpose**: This plugin helps Rollup to locate and bundle third-party dependencies in `node_modules`. It's essential when you're using external modules.
+
+    *   **Details**: The `preferBuiltins` option is set to `true`, which means that if a built-in module (like `fs` or `path` in Node.js) is imported, the plugin will prefer the built-in version over any local versions.
+
+*   `@rollup/plugin-commonjs`:
+
+    *   **Purpose**: Rollup understands ES modules out of the box, but it doesn't understand CommonJS modules. This plugin converts CommonJS modules to ES6, making them compatible with Rollup's bundling mechanism.
+
+    *   **Details**: The plugin is used with its default settings in the provided code.
 
 ## Step 3: Configuring Rollup
 
 Create a new file in your project root named `rollup.config.mjs` and add the following content:
 
-```js
-// rollup.config.mjs
+```js rollup.config.mjs
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import builtins from 'rollup-plugin-node-builtins';
-import globals from 'rollup-plugin-node-globals';
 
 export default {
   input: 'src/index.js',
@@ -63,9 +66,7 @@ export default {
     resolve({
       preferBuiltins: true
     }),
-    commonjs(),
-    builtins(),
-    globals()
+    commonjs()
   ]
 };
 ```
