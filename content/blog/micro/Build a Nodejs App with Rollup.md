@@ -73,6 +73,14 @@ export default {
 
 This tells Rollup where our entry point is (src/index.js), where to output the bundled file (dist/bundle.js), and which plugins to use.
 
+Here's a more detailed breakdown of the code:
+- `input`: `'src/index.js'`: This is the entry point for your application or library.
+- `output`: This object defines how the final bundle will be outputted.
+  - `file: 'dist/bundle.js'`: The bundled file will be saved as bundle.js in the dist directory.
+  - `format: 'cjs'`: The output format will be CommonJS.
+- `plugins`: An array of plugins used during the bundling process.
+- `external: ['fastify']`: This tells Rollup to not bundle fastify but treat it as an external dependency. This might be useful if you're creating a library and you don't want to include certain dependencies in the final bundle, expecting the consumer to have them installed.
+
 ## Step 4: Writing Your Code
 
 Create a new directory named src in your project root, and inside it, create a new file named index.js:
