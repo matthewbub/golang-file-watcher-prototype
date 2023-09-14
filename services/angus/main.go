@@ -18,9 +18,9 @@ import (
 )
 
 const (
-	pathToExecDir         = "../core/content-watchman"
+	pathToExecDir         = "../services/angus"
 	pathToContentWatchDir = "../../content"
-	pathToCommitScripts   = "../core/content-watchman/scripts"
+	pathToCommitScripts   = "../services/angus/scripts"
 	pathToContentBuildDir = "../www/content"
 )
 
@@ -41,10 +41,11 @@ func LogError(err error) {
 // Example:
 //
 //	readContentWatchDir()
-//	=> "/home/user/website/core/content-watchman"
+//	=> "/home/user/website/services/angus"
 func readContentWatchDir() string {
 	// Change directory
 	if err := os.Chdir(pathToContentWatchDir); err != nil {
+		LogInfo(pathToContentWatchDir)
 		LogError(err)
 	}
 
@@ -234,7 +235,7 @@ func main() {
 
 	// init watcher
 	dirCount := watchDir(contentDir, watcher)
-	LogInfo(fmt.Sprintf("Watching: %d directories for changes", dirCount))
+	LogInfo(fmt.Sprintf("Watching: %d files for changes", dirCount))
 
 	<-done
 }

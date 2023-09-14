@@ -38,12 +38,12 @@ export default function PostPage({ post }) {
  *    This way, even if a new post gets added after the build, it won't result in a 404 page.
  */
 export async function getStaticPaths() {
-  const paths = allDocuments.filter(({category}) => category === 'legal').map((post) => '/' + post.category.toLowerCase() + '/' + post.slug);
+  const paths = allDocuments.filter(({type}) => type === 'Legal').map((post) => '/' + post.category.toLowerCase() + '/' + post.slug);
   return { paths, fallback: true } 
 };
 
 export async function getStaticProps({params}) {
-  const post = allDocuments.filter(({category}) => category === 'legal').find((post) => post.slug === params.post);
+  const post = allDocuments.filter(({type}) => type === 'Legal').find((post) => post.slug === params.post);
 
   if (!post) {
     return { notFound: true, } // Return 404 page

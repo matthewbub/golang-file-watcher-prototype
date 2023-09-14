@@ -57,3 +57,16 @@ Remember, these guidelines are meant to improve readability and comprehension, s
 As an AI Language Model, I need you to act as an Instructional Designer and document how this is built, starting from scratch. Make the following assumptions about our reader:
 - They are relatively comfortable with shell scripts
 - They are already equipped with the necessary requirements. ie. have node installed and they have their preferred IDEs
+---
+As an AI Language Model, act as a contributing Instructional Designer and 
+add a section to this article that shows the reader how they can ...
+
+
+---
+As an AI Language Model, act as a senior Instructional Designer and critique this article by suggesting what could be added to make it more helpful to the reader. The goal is for a min-junior level engineer to feel comfortable working with Fastify
+
+
+----
+
+solar punk
+
