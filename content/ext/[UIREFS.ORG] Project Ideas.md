@@ -1,1 +1,2 @@
 - A static desktop app that reads alls for reading files from a given directory and then displays them in a list view. Users can manage and view files the same way they would in a file explorer. The core feature should be a markdown reader that displays markdown files as HTML, while auto-updating the file when changes are made. 
+- Build a TODO List API with Nodejs and Fastify
