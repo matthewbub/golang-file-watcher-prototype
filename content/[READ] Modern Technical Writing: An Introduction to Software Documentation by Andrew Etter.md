@@ -3,3 +3,5 @@
 - If you've hired a technical writer, their learning process is likely not going to be as simple as reading a manual. They will need to learn the product by using it, and they will need to learn the audience by talking to them. 
 - The learning process can take days to months depending on the complexity of the product.
 - Technical writers spend a fair amount of time providing instruction. It's important to make assumptions in order to provide anything of value. At a minimum, you should assume that people can read and that they have a basic understanding of how to navigate a computer or mobile device weather it be via a mouse or touch screen or even a screen reader. The alternative would be to provide a manual on how to use a mouse or touch screen or screen reader.
+- Do not spend too much energy trying to help the folks who appear helpless. They are not your audience. Your audience is the folks who are willing to learn and are capable of learning.
+- 
