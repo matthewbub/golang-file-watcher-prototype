@@ -2,7 +2,10 @@
 
 This is a simple tool that watches a directory for changes and commits them to git. 
 
-NOTE: It is intended to be used with the [content](../content) directory of this project and hasn't been tested with any other directory.
+> NOTE: This is a work in progress, and is not perfect. You'll need to actually be within `./services/angus` to run it the script. I'll fix this soon.
+
+> NOTE: It is intended to be used with the [content](../content) directory of this project and hasn't been tested with any other directory.
+
 
 ## CLI Flags
 
