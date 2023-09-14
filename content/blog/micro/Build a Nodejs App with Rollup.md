@@ -33,14 +33,14 @@ We need to install Rollup and some plugins that will help us work with Node.js a
 npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs
 ``` 
 
-These plugins do the following:
+Let's break down the code and the purpose of the two plugins:
 
-
-- `@rollup/plugin-node-resolve`: Helps Rollup find external modules.
-
-- `@rollup/plugin-commonjs`: Converts CommonJS modules to ES6, so they can be included in a Rollup bundle.
-
-- `rollup-plugin-node-builtins` and `rollup-plugin-node-globals`: Provide Node.js built-ins and globals emulation.
+- `@rollup/plugin-node-resolve`:
+  - **Purpose**: This plugin helps Rollup to locate and bundle third-party dependencies in `node_modules`. It's essential when you're using external modules.
+  - **Details**: The `preferBuiltins` option is set to `true`, which means that if a built-in module (like `fs` or `path` in Node.js) is imported, the plugin will prefer the built-in version over any local versions.
+- `@rollup/plugin-commonjs`:
+  - **Purpose**: Rollup understands ES modules out of the box, but it doesn't understand CommonJS modules. This plugin converts CommonJS modules to ES6, making them compatible with Rollup's bundling mechanism.
+  - **Details**: The plugin is used with its default settings in the provided code.
 
 ## Step 3: Configuring Rollup
 
