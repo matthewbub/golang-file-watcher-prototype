@@ -30,7 +30,7 @@ This will create a new package.json file in your project root.
 We need to install Rollup and some plugins that will help us work with Node.js and Express:
 
 ```shell
-npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-node-builtins rollup-plugin-node-globals
+npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs
 ``` 
 
 These plugins do the following:
