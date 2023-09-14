@@ -13,4 +13,4 @@ And Other Tough-Love Truths to Make You a Better Writer
 By: Steven Pressfield](https://www.audible.com/pd/Nobody-Wants-to-Read-Your-Sh-t-Audiobook/B07FXZ25CC?plink=CNt5OiD08llqCikF&ref_pageloadid=GbbY2XqxIcS62vhk&ref=a_pd_Smart-_c5_adblp13nvtcf_1_5&pf_rd_p=845f0c58-78d9-4f96-8a29-dae2be9758f6&pf_rd_r=K7QXDGC84VBS8W771X3R&pageLoadId=fLOqDa4GwwLBVMWZ&creativeId=8a51e45c-298e-47d8-a31b-38eb71e2f293)
 - [AUDIOBOOK] [Simply Said
 Communicating Better at Work and Beyond
-By: Jay Sullivan](https://www.audible.com/pd/Simply-Said-Audiobook/B06XRN58LM?plink=CNt5OiD08llqCikF&ref_pageloadid=GbbY2XqxIcS62vhk&ref=a_pd_Smart-_c5_adblp13nvtcf_1_1&pf_rd_p=845f0c58-78d9-4f96-8a29-dae2be9758f6&pf_rd_r=K7QXDGC84VBS8W771X3R&pageLoadId=fLOqDa4GwwLBVMWZ&creativeId=8a51e45c-298e-47d8-a31b-38eb71e2f293)
+By: Jay Sullivan](https://www.audible.com/pd/Simply-Said-Audiobook/B06XRN58LM?plink=CNt5OiD08llqCikF&ref_pageloadid=GbbY2XqxIcS62vhk&ref=a_pd_Smart-_c5_adblp13nvtcf_1_1&pf_rd_p=845f0c58-78d9-4f96-8a29-dae2be9758f6&pf_rd_r=K7QXDGC84VBS8W771X3R&pageLoadId=fLOqDa4GwwLBVMWZ&creativeId=8a51e45c-298e-47d8-a31b-38eb71e2f293) 
