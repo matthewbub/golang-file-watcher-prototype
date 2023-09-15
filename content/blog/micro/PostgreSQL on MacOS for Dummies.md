@@ -60,3 +60,27 @@ Name          Status  User      File
 # ...
 postgresql@14 none              
 ```
+
+### Restart PostgreSQL
+
+Restart the PostgreSQL service:
+
+```bash
+brew services restart postgresql
+```
+
+- **When should I restart PostgreSQL?** You should restart PostgreSQL when you've made changes to the configuration file or when you've installed a new version of PostgreSQL. 
+
+### Uninstall PostgreSQL
+
+Uninstall PostgreSQL:
+
+```bash
+brew uninstall postgresql
+```
+
+- **When should I uninstall PostgreSQL?** You should uninstall PostgreSQL when you no longer need it.
+- **Would this help if I can't remember my password?** No, this would not help if you can't remember your password. Uninstalling PostgreSQL via Homebrew will not remove your data. If you can't remember your password, you can reset it by following the instructions in the next section. Alternatively, if you'd like to completely remove PostgreSQL and all of its data, you can follow the instructions in the this article: https://blog.testdouble.com/posts/2021-01-28-how-to-completely-uninstall-homebrew-postgres  
+
+
+## Step 2: Connect to PostgreSQL
