@@ -148,7 +148,18 @@ Connect to PostgreSQL via the command line:
 psql
 ```
 
-- **How do I exit psql?** You can exit psql by typing `\q` and hitting enter.
+If successful, you'll have entered the `psql` command-line interface and you'll see a prompt like this:
+
+```shell
+psql (version)
+Type "help" for help.
+
+username=#
+```
+
+
+- **What is `psql`?** psql is a command-line interface for PostgreSQL. It allows you to connect to a PostgreSQL database and run SQL queries.
+- **How do I exit `psql`?** You can exit psql by typing `\q` and hitting enter.
 
 
 ### List Databases
