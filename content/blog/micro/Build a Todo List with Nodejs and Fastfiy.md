@@ -20,13 +20,13 @@ Let's dive deeper into each step of building a TODO List API with Node.js and Fa
 
 2. Define the Database:
   - Choose a database that suits your needs. For a simple TODO List, a NoSQL database like MongoDB might suffice, but you can also use relational databases like PostgreSQL.
-    - Database - Supabase
+    - Database - PostgreSQL
     - Schema Design: Define the structure of your data. For a TODO List, you might have fields like id, task, completed, dateCreated, etc.
       - `id` - Unique identifier for the task
       - `task` - Description of the task
       - `completed` - Whether the task has been completed
       - `dateCreated` - Date the task was created
-      
+
     - Connection: Set up a connection to the database using appropriate drivers or ORM (Object-Relational Mapping) tools.
 3. Define the Routes:
   - Routes determine how the API responds to client requests.
