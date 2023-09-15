@@ -45,6 +45,7 @@ brew services stop postgresql
 ```
 
 - **When should I stop PostgreSQL?** You should stop PostgreSQL when you're not using it to save resources.
+- **If I stop PostgreSQL, will my data be lost?** No, your data will not be lost. PostgreSQL stores data in a database, which is a collection of tables. When you stop PostgreSQL, the database is still there, but it's not running. When you start PostgreSQL again, you'll be able to access the same database and tables.
 - **How do I know if PostgreSQL is running?** You can check if PostgreSQL is running by running the following command in your terminal:
 
 ```shell
