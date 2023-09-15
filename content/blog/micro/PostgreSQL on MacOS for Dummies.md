@@ -79,8 +79,17 @@ Uninstall PostgreSQL:
 brew uninstall postgresql
 ```
 
-- **When should I uninstall PostgreSQL?** You should uninstall PostgreSQL when you no longer need it.
+- **When should I uninstall PostgreSQL?** You should uninstall PostgreSQL when you no longer need it. 
 - **Would this help if I can't remember my password?** No, this would not help if you can't remember your password. Uninstalling PostgreSQL via Homebrew will not remove your data. If you can't remember your password, you can reset it by following the instructions in the next section. Alternatively, if you'd like to completely remove PostgreSQL and all of its data, you can follow the instructions in the this article: https://blog.testdouble.com/posts/2021-01-28-how-to-completely-uninstall-homebrew-postgres  
 
+
+
+## Create a New Database 
+
+Create a new database with the same name as your username, which is the default database that PostgreSQL will connect to if you don't specify a database name:
+
+```shell
+createdb `whoami`
+```
 
 ## Step 2: Connect to PostgreSQL
