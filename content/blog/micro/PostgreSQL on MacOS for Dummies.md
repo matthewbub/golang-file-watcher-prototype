@@ -52,3 +52,10 @@ brew services list
 ```
 
 If PostgreSQL is running, you should see `started` next to `postgresql`. Otherwise, you'll see `stopped`.
+
+```shell
+➜  ~ brew services list
+Name          Status  User      File
+# ...
+postgresql@14 none              
+```
