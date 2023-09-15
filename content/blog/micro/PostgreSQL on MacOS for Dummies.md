@@ -27,3 +27,28 @@ After installing Homebrew, you can install PostgreSQL with:
 ```shell
 brew install postgresql
 ```
+
+### Start PostgreSQL
+
+Start the PostgreSQL service:
+
+```bash
+brew services start postgresql
+```
+
+### Stop PostgreSQL
+
+Stop the PostgreSQL service:
+
+```bash
+brew services stop postgresql
+```
+
+- **When should I stop PostgreSQL?** You should stop PostgreSQL when you're not using it to save resources.
+- **How do I know if PostgreSQL is running?** You can check if PostgreSQL is running by running the following command in your terminal:
+
+```shell
+brew services list
+```
+
+If PostgreSQL is running, you should see `started` next to `postgresql`. Otherwise, you'll see `stopped`.
