@@ -93,3 +93,29 @@ createdb `whoami`
 ```
 
 ## Step 2: Connect to PostgreSQL
+
+### Connect to PostgreSQL via the Command Line
+
+Connect to PostgreSQL via the command line:
+
+```shell
+psql
+```
+
+- **What is psql?** psql is a command-line interface for PostgreSQL. It allows you to connect to a PostgreSQL database and run SQL queries.
+
+### Connect to PostgreSQL via a GUI
+
+You can also connect to PostgreSQL via a GUI, such as [Postico](https://eggerapps.at/postico/), [pgAdmin](https://www.pgadmin.org/), or [TablePlus](https://tableplus.com/).
+
+### Connect to PostgreSQL Programmatically
+
+You can also connect to PostgreSQL programmatically using a client library, such as [node-postgres](https://node-postgres.com/), [pg](https://node-postgres.com/), or [pg-promise](
+
+## Step 3: Create a New User
+
+Create a new user with the same name as your username:
+
+```shell
+createuser `whoami`
+```
