@@ -169,3 +169,8 @@ First, lets list all the databases:
 ```shell
 \l
 ```
+
+
+
+### Create a New Database
+...
