@@ -119,3 +119,23 @@ Create a new user with the same name as your username:
 ```shell
 createuser `whoami`
 ```
+
+- **What is a user?** A user is an account that can connect to a PostgreSQL database. Each user has a username and password.
+
+
+## Where do `createdb` and `createuser` come from?
+
+The `createdb` and `createuser` commands are part of PostgreSQL, an open-source relational database management system. They are utility binaries that come with PostgreSQL and can be run from the command shell.
+
+The `createdb` command is used to create a new PostgreSQL database, while the `createuser` command is used to create a new PostgreSQL user.
+
+These commands can be run in the shell and not within the `psql` command-line interface. They provide a convenient way to perform these actions without having to connect to the `psql` command-line interface.
+
+Sources:
+
+
+PostgreSQL: Documentation: 8.0: CREATE USER
+
+Creating user, database and adding access on PostgreSQL
+
+Create database from command line - postgresql
