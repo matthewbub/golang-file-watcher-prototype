@@ -2,12 +2,31 @@ Let's dive deeper into each step of building a TODO List API with Node.js and Fa
 
 1. Define the API:
   - Before you start coding, you need to define the structure and functionality of your API. This involves:
-    - Endpoints: Decide on the URL paths users will access. For a TODO List, you might have endpoints like /todos, /todos/:id, etc.
+    - Endpoints: Decide on the URL paths users will access. For a TODO List, you might have endpoints like `/todos`, `/todos/:id`, etc.
+      - `todos` - Fetch all tasks
+      - `todos/:id` - Fetch a specific task 
+      - `todos` - Create a new task
+      - `todos/:id` - Update a task
+      - `todos/:id` - Delete a task
+
     - HTTP Methods: Determine which HTTP methods (GET, POST, PUT, DELETE) will be used for each endpoint.
+      - `GET /todos` - Fetch all tasks
+      - `GET /todos/:id` - Fetch a specific task
+      - `POST /todos` - Create a new task
+      - `PUT /todos/:id` - Update a task
+      - `DELETE /todos/:id` - Delete a task
+
     - Response Formats: Decide on the format of the data you'll send back, usually JSON.
+
 2. Define the Database:
   - Choose a database that suits your needs. For a simple TODO List, a NoSQL database like MongoDB might suffice, but you can also use relational databases like PostgreSQL.
+    - Database - Supabase
     - Schema Design: Define the structure of your data. For a TODO List, you might have fields like id, task, completed, dateCreated, etc.
+      - `id` - Unique identifier for the task
+      - `task` - Description of the task
+      - `completed` - Whether the task has been completed
+      - `dateCreated` - Date the task was created
+      
     - Connection: Set up a connection to the database using appropriate drivers or ORM (Object-Relational Mapping) tools.
 3. Define the Routes:
   - Routes determine how the API responds to client requests.
