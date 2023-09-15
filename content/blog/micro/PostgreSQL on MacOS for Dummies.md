@@ -136,22 +136,25 @@ The `createdb` command is used to create a new PostgreSQL database, while the `c
 
 These commands can be run in the shell and not within the `psql` command-line interface. They provide a convenient way to perform these actions without having to connect to the `psql` command-line interface.
 
-## Step 4: Create a New Table
 
-Create a new table named `users`:
 
-```shell
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(50) NOT NULL
-);
-```
+## Working with PostgreSQL via Command Line
 
-## Step 5: Insert Data Into Table
+### Connect to PostgreSQL
 
-Insert data into the `users` table:
+Connect to PostgreSQL via the command line:
 
 ```shell
-INSERT INTO users (name) VALUES ('John Doe');
+psql
 ```
 
+- **How do I exit psql?** You can exit psql by typing `\q` and hitting enter.
+
+
+### List Databases
+
+First, lets list all the databases:
+
+```shell
+\l
+```
