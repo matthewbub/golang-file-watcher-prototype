@@ -194,10 +194,10 @@ This could go in a separate file, but for simplicity we'll just add it to the to
 import Joi from 'joi';
 
 const todoSchema = Joi.object({
-  task: Joi.string().required()
-  completed: Joi.boolean().required()
-  id: Joi.number().required()
-  datecreated: Joi.date().required()
+  task: Joi.string().required(),
+  completed: Joi.boolean().required(),
+  id: Joi.number().required(),
+  datecreated: Joi.date().required(),
 });
 
 const incomingNewTodoSchema = Joi.object({
@@ -205,7 +205,7 @@ const incomingNewTodoSchema = Joi.object({
 });
 
 const incomingUpdatedTodoSchema = Joi.object({
-  task: Joi.string().required()
+  task: Joi.string().required(),
   completed: Joi.boolean().required()
 });
 
@@ -251,4 +251,4 @@ fastify.get('/todos/:id', async (request, reply) => {
 })
 ```
 
-```js
+
