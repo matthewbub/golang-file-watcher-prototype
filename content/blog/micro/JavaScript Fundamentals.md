@@ -1,0 +1,2 @@
+- In what order does a computer execute instructions in JavaScript? 
+  - top to bottom.  
