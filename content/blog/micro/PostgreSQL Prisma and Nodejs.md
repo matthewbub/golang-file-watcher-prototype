@@ -223,3 +223,38 @@ const validateTodo = (todo, schema) => {
   }
 }
 ```
+
+
+now we can use our validateTodo function in our routes:
+
+```js
+fastify.get('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const { error: queryParamError } = incomingTodoQuerySchema.validate({ id: parseInt(id) });
+  
+  if (queryParamError) {
+    throw new Error(queryParamError);
+  }
+
+  const todo = await prisma.tasks.findUnique({
+    where: {
+      id: parseInt(id)
+    }
+  })
+
+  const { error: todoError } = todoSchema.validate({
+    id: todo.id,
+    task: todo.task,
+    completed: todo.completed,
+    datecreated: todo.datecreated
+  });
+
+  if (todoError) {
+    throw new Error(todoError);
+  }
+
+  reply.send({ data: todo })
+})
+```
+
+```js
