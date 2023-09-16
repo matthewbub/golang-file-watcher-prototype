@@ -245,6 +245,31 @@ fastify.get('/todos', async (request, reply) => {
 then we can move on to the POST route:
 
 ```js
+fastify.post('/todos', async (request, reply) => {
+  const { task } = request.body
+
+  const { error: reqBodyError } = incomingNewTodoSchema.validate({ task });
+
+  if (reqBodyError) {
+    reply.status(500).send({ error: reqBodyError.message });
+    return;
+  }
+
+  const todo = await prisma.tasks.create({
+    data: {
+      task
+    }
+  })
+
+  const { error: validationError } = todoSchema.validate(todo);
+  
+  if (validationError) {
+    reply.status(500).send({ error: validationError.message });
+    return;
+  }
+
+  reply.send({ data: todo })
+})
 ```
 
 ```js
