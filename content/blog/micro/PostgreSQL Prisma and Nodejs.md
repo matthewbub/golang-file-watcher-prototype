@@ -272,6 +272,9 @@ fastify.post('/todos', async (request, reply) => {
 })
 ```
 
+next, the get route for a single todo item:
+
+
 ```js
 fastify.get('/todos/:id', async (request, reply) => {
   const { id } = request.params;
