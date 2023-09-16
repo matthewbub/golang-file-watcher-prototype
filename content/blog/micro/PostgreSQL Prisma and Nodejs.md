@@ -33,3 +33,25 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 ```
 
+Now we can add a get route to the app:
+
+```js
+fastify.get('/todos', async (request, reply) => {
+  const todos = await prisma.tasks.findMany()
+  reply.send({ data: todos })
+})
+```
+
+and a post route:
+
+```js
+fastify.post('/todos', async (request, reply) => {
+  const { task } = request.body
+  const todo = await prisma.tasks.create({
+    data: {
+      task
+    }
+  })
+  reply.send({ data: todo })
+})
+```
