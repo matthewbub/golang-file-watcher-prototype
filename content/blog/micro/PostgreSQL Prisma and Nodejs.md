@@ -186,6 +186,14 @@ first lets install Joi:
 pnpm i joi
 ```
 
+we can also add joi to the `externals` array in our rollup config:
+
+```js
+// ...
+external: ['fastify', 'prisma', '@prisma/client', 'joi']
+// ...
+```
+
 now we could create a schema for each route, but that would be a lot of duplication.  Instead lets create a schema for our todo items, and then we can use that schema in each of our routes.
 
 This could go in a separate file, but for simplicity we'll just add it to the top of our server.js file:
