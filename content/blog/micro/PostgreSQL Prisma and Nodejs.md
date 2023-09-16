@@ -55,3 +55,23 @@ fastify.post('/todos', async (request, reply) => {
   reply.send({ data: todo })
 })
 ```
+
+now we can build and run the app:
+
+```shell
+npm run build
+```
+
+```shell
+npm start
+```
+
+and then we can test the app with curl:
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"task":"Learn Prisma"}' http://localhost:3000/todos
+```
+
+```shell
+curl http://localhost:3000/todos
+```
