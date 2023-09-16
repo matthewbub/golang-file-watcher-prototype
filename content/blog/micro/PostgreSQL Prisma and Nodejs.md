@@ -220,7 +220,6 @@ const incomingUpdatedTodoSchema = Joi.object({
 const incomingTodoQuerySchema = Joi.object({
   id: Joi.number().required()
 });
-
 ```
 
 
