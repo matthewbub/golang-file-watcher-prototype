@@ -76,3 +76,9 @@ curl -X POST -H "Content-Type: application/json" -d '{"task":"Learn Prisma"}' ht
 curl http://localhost:3000/todos
 ```
 
+your rollup build may produce warnings, you can list prisma and @prisma/client as external dependencies in your rollup config to avoid these warnings:
+
+```js
+// ...
+external: ['fastify', 'prisma', '@prisma/client']
+```
