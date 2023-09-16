@@ -83,3 +83,96 @@ your rollup build may produce warnings, you can list prisma and @prisma/client a
 external: ['fastify', 'prisma', '@prisma/client']
 // ...
 ```
+
+go ahead and execute another build, and you should see no warnings. You may also notice that the time it takes to build your app has decreased significantly.
+
+```shell
+npm run build
+```
+
+Now lets create a route that will allow us to get a single task by id:
+
+```js
+fastify.get('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const todo = await prisma.tasks.findUnique({
+    where: {
+      id: parseInt(id)
+    }
+  })
+
+  reply.send({ data: todo })
+})
+```
+
+and a route to update a task:
+
+```js
+fastify.put('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const { task } = request.body;
+  const todo = await prisma.tasks.update({
+    where: {
+      id: parseInt(id)
+    },
+    data: {
+      task
+    }
+  })
+
+  reply.send({ data: todo })
+})
+```
+
+and a route to delete a task:
+
+```js
+fastify.delete('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const todo = await prisma.tasks.delete({
+    where: {
+      id: parseInt(id)
+    }
+  })
+
+  reply.send({ data: todo })
+})
+```
+
+now we can build and run the app:
+
+```shell
+npm run build
+```
+
+```shell
+npm start
+```
+
+and then we can test the app with curl:
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"task":"Learn Prisma"}' http://localhost:3000/todos
+```
+
+```shell
+curl http://localhost:3000/todos
+```
+
+```shell
+curl -X PUT -H "Content-Type: application/json" -d '{"task":"Learn Prisma and Fastify"}' http://localhost:3000/todos/1
+```
+
+```shell
+curl http://localhost:3000/todos/1
+```
+
+```shell
+curl -X DELETE http://localhost:3000/todos/1
+```
+
+```shell
+curl http://localhost:3000/todos
+```
+
+everything should be working as expected at this point.
