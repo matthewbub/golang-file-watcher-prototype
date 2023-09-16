@@ -201,8 +201,24 @@ const todoSchema = Joi.object({
   datecreated: Joi.date().required()
 });
 
-const validateTodo = (todo) => {
-  const { error } = todoSchema.validate(todo);
+const incomingNewTodoSchema = Joi.object({
+  task: Joi.string().required()
+});
+
+const incomingUpdatedTodoSchema = Joi.object({
+  task: Joi.string().required()
+  completed: Joi.boolean().required()
+});
+
+const incomingTodoQuerySchema = Joi.object({
+  id: Joi.number().required()
+});
+
+const validateTodo = (todo, schema) => {
+  if (!todo || !schema) {
+    throw new Error('Missing args');
+  }
+  const { error } = schema.validate(todo);
   if (error) {
     throw new Error(error);
   }
