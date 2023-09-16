@@ -177,28 +177,34 @@ curl http://localhost:3000/todos
 
 everything should be working as expected at this point.
 
-cool, next lets add some sort of validation to our routes. We can use fastify's built in validation for this:
+cool, next lets add some sort of validation to our routes.  We aren't using TypeScript in this demonstration, so we [won't be able to take advantage of Fastify's built in validation](https://fastify.dev/docs/latest/Reference/Type-Providers). Instead we'll use Joi to validate the data coming into our routes.
 
-```js
-fastify.post('/todos', {
-  schema: {
-    body: {
-      type: 'object',
-      properties: {
-        task: { type: 'string' }
-      },
-      required: ['task']
-    }
-  }
-}, async (request, reply) => {
-  const { task } = request.body
-  const todo = await prisma.tasks.create({
-    data: {
-      task
-    }
-  })
-  reply.send({ data: todo })
-})
+
+first lets install Joi:
+
+```shell
+pnpm i joi
 ```
 
+
+now we could create a schema for each route, but that would be a lot of duplication.  Instead lets create a schema for our todo items, and then we can use that schema in each of our routes.
+
+This could go in a separate file, but for simplicity we'll just add it to the top of our server.js file:
+
 ```js
+import Joi from 'joi';
+
+const todoSchema = Joi.object({
+  task: Joi.string().required()
+  completed: Joi.boolean().required()
+  id: Joi.number().required()
+  datecreated: Joi.date().required()
+});
+
+const validateTodo = (todo) => {
+  const { error } = todoSchema.validate(todo);
+  if (error) {
+    throw new Error(error);
+  }
+}
+```
