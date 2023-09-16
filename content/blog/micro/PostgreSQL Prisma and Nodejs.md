@@ -213,25 +213,17 @@ const incomingTodoQuerySchema = Joi.object({
   id: Joi.number().required()
 });
 
-const validateTodo = (todo, schema) => {
-  if (!todo || !schema) {
-    throw new Error('Missing args');
-  }
-  const { error } = schema.validate(todo);
-  if (error) {
-    throw new Error(error);
-  }
-}
 ```
 
 
-now we can use our validateTodo function in our routes:
+now we can use these schemas in our routes:
 
 ```js
 fastify.get('/todos/:id', async (request, reply) => {
   const { id } = request.params;
   const { error: queryParamError } = incomingTodoQuerySchema.validate({ id: parseInt(id) });
   
+  // throw an error if the query params are invalid
   if (queryParamError) {
     throw new Error(queryParamError);
   }
@@ -249,6 +241,8 @@ fastify.get('/todos/:id', async (request, reply) => {
     datecreated: todo.datecreated
   });
 
+  // throw an error if the todo is invalid
+  // this is less likely to be invalid, but it's still possible
   if (todoError) {
     throw new Error(todoError);
   }
