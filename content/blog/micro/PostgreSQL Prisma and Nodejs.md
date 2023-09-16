@@ -208,6 +208,8 @@ const todoSchema = Joi.object({
   datecreated: Joi.date().required(),
 });
 
+const todoListSchema = Joi.array().items(todoSchema);
+
 const incomingNewTodoSchema = Joi.object({
   task: Joi.string().required()
 });
@@ -223,7 +225,27 @@ const incomingTodoQuerySchema = Joi.object({
 ```
 
 
-now we can use these schemas in our routes:
+now we can use these schemas in our routes. Let's start with the GET route we created earlier:
+
+```js
+fastify.get('/todos', async (request, reply) => {
+  const todos = await prisma.tasks.findMany()
+
+  const { error } = todoListSchema.validate(todos);
+  
+  if (error) {
+    reply.status(500).send({ error: error.message });
+    return;
+  }
+
+  reply.send({ data: todos })
+})
+```
+
+then we can move on to the POST route:
+
+```js
+```
 
 ```js
 fastify.get('/todos/:id', async (request, reply) => {
