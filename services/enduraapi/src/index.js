@@ -1,40 +1,71 @@
-// - HTTP Methods: Determine which HTTP methods (GET, POST, PUT, DELETE) will be used for each endpoint.
-  // - `GET /todos` - Fetch all tasks
-  // - `GET /todos/:id` - Fetch a specific task
-  // - `POST /todos` - Create a new task
-  // - `PUT /todos/:id` - Update a task
-  // - `DELETE /todos/:id` - Delete a task
 import Fastify from 'fastify'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 const fastify = Fastify({
   logger: true
 })
 
-fastify.get('/', (request, reply) => {
-  reply.send({ hello: 'world' })
+// fastify.get('/', (request, reply) => {
+//   reply.send({ hello: 'world' })
+// })
+
+fastify.get('/todos', async (request, reply) => {
+  const todos = await prisma.tasks.findMany()
+  reply.send({ data: todos })
 })
 
-fastify.get('/todos', (request, reply) => {
-  reply.send({ hello: 'world' })
+fastify.get('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const todo = await prisma.tasks.findUnique({
+    where: {
+      id: parseInt(id)
+    }
+  })
+
+  reply.send({ data: todo })
 })
 
-fastify.get('/todos/:id', (request, reply) => {
-  reply.send({ hello: 'world' })
+fastify.post('/todos', async (request, reply) => {
+  const { task } = request.body
+  const todo = await prisma.tasks.create({
+    data: {
+      task
+    }
+  })
+  reply.send({ data: todo })
 })
 
-fastify.post('/todos', (request, reply) => {
-  reply.send({ hello: 'world' })
+fastify.put('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const { task, completed } = request.body;
+
+  const todo = await prisma.tasks.update({
+    where: {
+      id: parseInt(id)
+    },
+    data: {
+      task,
+      completed
+    }
+  });
+
+  reply.send({ data: todo })
 })
 
-fastify.put('/todos/:id', (request, reply) => {
-  reply.send({ hello: 'world' })
+fastify.delete('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const todo = await prisma.tasks.delete({
+    where: {
+      id: parseInt(id)
+    }
+  })
+
+  reply.send({ data: todo })
 })
 
-fastify.delete('/todos/:id', (request, reply) => {
-  reply.send({ hello: 'world' })
-})
-
-fastify.listen({ port: 3000 }, (err, address) => {
+const port = process.env.PORT || 3000
+fastify.listen({ port }, (err, address) => {
   if (err) throw err
-  console.log(`Server is now listening on http://localhost:${address}`)
+  console.log(`Server is now listening on http://localhost:${port}`)
 })

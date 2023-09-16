@@ -13,5 +13,5 @@ export default {
     }),
     commonjs()
   ],
-  external: ['fastify']
+  external: ['fastify', 'prisma', '@prisma/client']
 };
