@@ -176,3 +176,29 @@ curl http://localhost:3000/todos
 ```
 
 everything should be working as expected at this point.
+
+cool, next lets add some sort of validation to our routes. We can use fastify's built in validation for this:
+
+```js
+fastify.post('/todos', {
+  schema: {
+    body: {
+      type: 'object',
+      properties: {
+        task: { type: 'string' }
+      },
+      required: ['task']
+    }
+  }
+}, async (request, reply) => {
+  const { task } = request.body
+  const todo = await prisma.tasks.create({
+    data: {
+      task
+    }
+  })
+  reply.send({ data: todo })
+})
+```
+
+```js
