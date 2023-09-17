@@ -601,6 +601,8 @@ Now we're going to need to SSH into our droplet. We can do that by running the f
 ssh root@<your droplet ip address>
 ```
 
+The IP Address you're going to want is the IPv4 Public IP Address. You can find this in the Digital Ocean App Platform UI.
+
 ## Where did the root user come from?
 
 The "root" user is the default administrative user created when a new Linux system is set up, including Ubuntu systems like your DigitalOcean Droplet. This user has full administrative privileges, allowing you to install software, manage services, and perform other system-level tasks.
