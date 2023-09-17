@@ -536,6 +536,12 @@ but wouldn't ya know. The table doesn't exist yet. We'll need to run the prisma 
 npx prisma migrate dev --name init
 ```
 
+and then add a prestart script to our `package.json` file:
+
+```json
+"prestart": "npx prisma migrate dev",
+```
+
 then we can run the docker-compose file again:
 
 ```shell
