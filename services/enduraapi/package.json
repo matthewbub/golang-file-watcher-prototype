@@ -5,16 +5,21 @@
   "scripts": {
     "build": "rollup -c",
     "start": "node dist/bundle.js",
-    "dev": "rollup -c -w"
+    "dev": "concurrently \"npm run dev:compile\" \"npm run dev:server\"",
+    "dev:server": "nodemon ./dist/bundle.js",
+    "dev:compile": "rollup -c -w"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
+    "concurrently": "^8.2.1",
+    "nodemon": "^3.0.1",
     "prisma": "^5.3.1",
     "rollup": "^3.29.1"
   },
   "dependencies": {
     "@prisma/client": "5.3.1",
-    "fastify": "^4.23.0"
+    "fastify": "^4.23.0",
+    "joi": "^17.10.1"
   }
 }
