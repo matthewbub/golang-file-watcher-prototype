@@ -609,4 +609,4 @@ While thats installing, we can create a API key for our droplet. To do this we'l
 
 Click the **Generate New Token** button. Give your token a name and select the **Read** and **Write** option for **Droplets**. For security purposes, it's advised to keep you're expiration date at no longer than 90 days. Then click the **Generate Token** button.
 
-You're only going to be presented with the key once, take a moment to add this key to your .env file. You'll need it later.
+You're only going to be presented with the key once, take a moment to add this key to your `.env` file. You'll need it later.
