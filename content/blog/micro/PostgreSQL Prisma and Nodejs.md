@@ -1,6 +1,25 @@
 1. Node app with Rollup
 2. PostgreSQL on MacOS for Dummies
 
+We'll need to modify some scripts within our `package.json` file as to have a smoother development experience.  
+
+First let's install `nodemon` and `concurrently`:
+
+```shell
+npm i nodemon concurrently --save-dev
+```
+
+then we can modify our `package.json` file:
+
+```json
+"scripts": {
+  "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+  "dev:server": "nodemon ./src/index.js",
+  "dev:client": "rollup -c -w"
+},
+```
+
+
 
 ```shell
 npm i prisma --save-dev
