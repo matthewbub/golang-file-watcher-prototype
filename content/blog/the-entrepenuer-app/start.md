@@ -21,7 +21,10 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - React
 - Rollup
 - TailwindCSS
-- Vite
 - Typescript
 - Jest
+
+### Component library
+
 - Storybook
+- NPM Registry
