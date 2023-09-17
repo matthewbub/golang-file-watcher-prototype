@@ -607,4 +607,4 @@ While thats installing, we can create a API key for our droplet. To do this we'l
 
 <https://cloud.digitalocean.com/account/api/tokens>
 
-Click the **Generate New Token** button. Give your token a name and select the **Read** and **Write** option for **Droplets**. Then click the **Generate Token** button.
+Click the **Generate New Token** button. Give your token a name and select the **Read** and **Write** option for **Droplets**. For security purposes, it's advised to keep you're expiration date at no longer than 90 days. Then click the **Generate Token** button.
