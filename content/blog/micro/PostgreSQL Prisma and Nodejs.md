@@ -27,7 +27,6 @@ npm run dev
 
 cool, now let's install prisma.
 
-
 ```shell
 npm i prisma --save-dev
 ```
@@ -210,7 +209,6 @@ everything should be working as expected at this point.
 
 cool, next lets add some sort of validation to our routes.  We aren't using TypeScript in this demonstration, so we [won't be able to take advantage of Fastify's built in validation](https://fastify.dev/docs/latest/Reference/Type-Providers). Instead we'll use Joi to validate the data coming into our routes.
 
-
 first lets install Joi:
 
 ```shell
@@ -254,7 +252,6 @@ const incomingTodoQuerySchema = Joi.object({
   id: Joi.number().required()
 });
 ```
-
 
 now we can use these schemas in our routes. Let's start with the GET route we created earlier:
 
@@ -305,7 +302,6 @@ fastify.post('/todos', async (request, reply) => {
 
 next, the get route for a single todo item:
 
-
 ```js
 fastify.get('/todos/:id', async (request, reply) => {
   const { id } = request.params;
@@ -338,7 +334,6 @@ fastify.get('/todos/:id', async (request, reply) => {
   reply.send({ data: todo })
 })
 ```
-
 
 here's the put route:
 
@@ -408,4 +403,4 @@ fastify.delete('/todos/:id', async (request, reply) => {
 
 cool, that's a full CRUD API with validation.  Next let's add some error handling to our app.  We'll start by adding a generic error handler to the bottom of our server.js file:
 
-lets get this bad boy building with docker. 
+lets get this bad boy building with docker.
