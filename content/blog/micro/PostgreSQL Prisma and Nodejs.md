@@ -582,3 +582,13 @@ ssh-keygen
 ```
 
 You'll be prompted to enter a file in which to save the key. Press Enter to accept the default location. You'll then be prompted to enter a passphrase. You _could_ leave this blank but don't you do it damn it. Enter a passphrase and press Enter. You'll be prompted to confirm the passphrase. Enter it again and press Enter. Also, don't forget your passphrase. You'll need it later.
+
+Next we need to extract the public key from the private key we just generated. Run the following command in your terminal:
+
+```shell
+cat ~/.ssh/id_rsa.pub
+```
+
+Copy the output of this command and paste it into the SSH Key field in the Digital Ocean App Platform UI.
+
+Ensure that the key you've just created is selected to add and then, if satisfied with the configuration, click the **Create** button.
