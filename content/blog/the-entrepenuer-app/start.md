@@ -2,7 +2,9 @@
 
 What's the Entrepreneur App?
 
-The Entrepreneur App is an enterprise-grade application that provides an array of tools for entrepreneurs to use to manage their business. As the solo-engineer on this project, you'll be responsible for building the entire application from scratch. There will be no bootstrapping if an open-source or proprietary solution can be provided. You're going to need to fill a lot of roles, by the time you're done you'll feel like a full-stack developer.
+The Entrepreneur App is an enterprise-grade application that provides an array of tools for entrepreneurs to use to manage their business. As the solo-engineer on this project, you'll be responsible for building the entire application from scratch. There will be no bootstrapping if an open-source or proprietary solution can be provided. Sometimes there might be shit that you aren't looking to do yourself, theres loads of reasons. We'll also learn how to document code so should you ever need to outsource part of the project, contributors can pick up where you left off.
+
+You're going to need to fill a lot of roles, by the time you're done you'll feel like a full-stack developer.
 
 Range of Skills you'll learn:
 
@@ -52,3 +54,13 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - Digital Ocean
 - Docker
 - Kubernetes
+
+## Roadmap
+
+- Create nodejs app with rollup
+- Create fastify server
+- Add postgresql via Prisma
+- Add development scripts
+- Build TODO api with CRUD operations
+- Dockerize TODO api
+- Push to
