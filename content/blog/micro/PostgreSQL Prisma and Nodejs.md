@@ -592,3 +592,7 @@ cat ~/.ssh/id_rsa.pub
 Copy the output of this command and paste it into the SSH Key field in the Digital Ocean App Platform UI.
 
 Ensure that the key you've just created is selected to add and then, if satisfied with the configuration, click the **Create** button.
+
+Congratulations on setting up your DigitalOcean Droplet with a Docker Server! Now, let's move on to deploying your Dockerized application to the web. This guide will walk you through the essential steps to get your app up and running.
+
+Now we need to find the section labeled: "Go containerized with Docker Install and use Docker containers to build containerized applications"
