@@ -29,7 +29,26 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 
 - Storybook
 - Verdaccio (private npm registry)
+- Docker
 
 ### API Documentation
 
 - Docusaurus
+- Docker
+
+## Backend
+
+- NodeJS
+- Fastify
+- Typescript
+- Jest
+- PostgreSQL
+- Docker
+- Joi
+- Prisma
+  
+## Hosting
+
+- Digital Ocean
+- Docker
+- Kubernetes
