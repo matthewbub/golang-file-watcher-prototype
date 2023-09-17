@@ -86,17 +86,7 @@ fastify.post('/todos', async (request, reply) => {
 })
 ```
 
-now we can build and run the app:
-
-```shell
-npm run build
-```
-
-```shell
-npm start
-```
-
-and then we can test the app with curl:
+If you've been running your app in development mode, you're good to go.  If not, you'll need to build your app, then we can test the app with curl:
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"task":"Learn Prisma"}' http://localhost:3000/todos
