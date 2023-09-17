@@ -376,3 +376,5 @@ fastify.delete('/todos/:id', async (request, reply) => {
 ```
 
 cool, that's a full CRUD API with validation.  Next let's add some error handling to our app.  We'll start by adding a generic error handler to the bottom of our server.js file:
+
+lets get this bad boy building with docker. 
