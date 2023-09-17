@@ -26,19 +26,24 @@ For applications that are spread across multiple cloud providers or a mix of clo
 
 Business Indicators for Scaling to Kubernetes
 
-1. Team Growth
+## 1. Team Growth
+
 As your development team expands, managing containers can become complex. Kubernetes offers features that can simplify this complexity.
 
-2. Cost Optimization
+## 2. Cost Optimization
+
 While Kubernetes itself may not be cheaper upfront, its efficient resource utilization can lead to cost savings in the long run.
 
-3. Compliance and Security
+## 3. Compliance and Security
+
 If your application needs to adhere to strict compliance and security guidelines, Kubernetes offers robust features to meet these requirements.
 
-4. Business Continuity
+## 4. Business Continuity
+
 For businesses that can't afford downtime, Kubernetes provides fault tolerance and self-healing capabilities that can ensure business continuity.
 
-Summary and Recommendations
+## Summary and Recommendations
+
 Start Small: If your application is in its early stages, starting with Docker can provide you with the simplicity and control you need.
 
 Plan for Scale: As your application grows, keep an eye on the indicators mentioned above. If you find yourself checking off multiple points, it's likely time to consider Kubernetes.
