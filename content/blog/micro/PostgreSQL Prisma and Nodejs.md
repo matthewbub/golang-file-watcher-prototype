@@ -610,3 +610,11 @@ While thats installing, we can create a API key for our droplet. To do this we'l
 Click the **Generate New Token** button. Give your token a name and select the **Read** and **Write** option for **Droplets**. For security purposes, it's advised to keep you're expiration date at no longer than 90 days. Then click the **Generate Token** button.
 
 You're only going to be presented with the key once, take a moment to add this key to your `.env` file. You'll need it later.
+
+Now we can go back to our terminal. The `doctl` command should be installed by now. We can run the following command to authenticate our CLI:
+
+```shell
+doctl auth init --context <context name>
+```
+
+The context name can be anything you choose. Keep in mind that you may have multiple contexts in the future, so choose something that will help you remember what this context is for.
