@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "universal and multi-purpose api",
   "scripts": {
+    "prestart": "npx prisma migrate dev && echo \"prisma migration done\" && npx prisma generate && echo \"prisma generate done\"",
     "build": "rollup -c",
-    "start": "node dist/bundle.js",
+    "start": "npm run prestart && node dist/bundle.js",
     "dev": "concurrently \"npm run dev:compile\" \"npm run dev:server\"",
     "dev:server": "nodemon ./dist/bundle.js",
     "dev:compile": "rollup -c -w"
