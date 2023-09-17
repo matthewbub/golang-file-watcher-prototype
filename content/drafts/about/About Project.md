@@ -1,4 +1,4 @@
-## Principles
+# Principles
 
 - To deliver the highest quality content to our readers
 - To strive for accuracy and precision in our content
