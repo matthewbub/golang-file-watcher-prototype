@@ -19,11 +19,20 @@ then we can modify our `package.json` file:
 },
 ```
 
+now we can run our app in development mode, this is the mode we'll use while we're developing our app:
+
+```shell
+npm run dev
+```
+
+cool, now let's install prisma.
 
 
 ```shell
 npm i prisma --save-dev
 ```
+
+then we can initialize prisma:
 
 ```shell
 npx prisma init 
@@ -32,27 +41,30 @@ npx prisma init
   You can now open it in your favorite editor.
 ```
 
-Next steps:
-1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
-2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.
-3. Run prisma db pull to turn your database schema into a Prisma schema.
-4. Run prisma generate to generate the Prisma Client. You can then start querying your database.
+Prisma usually defaults to PostgreSQL but you can confirm that in your `schema.prisma` file. If you aren't using PostgreSQL, you can change the provider to match your database.
+
+Run prisma db pull to turn your database schema into a Prisma schema.
 
 ```shell
 npx prisma db pull
 ```
+
+Run prisma generate to generate the Prisma Client. You can then start querying your database.
 
 ```shell
 npx prisma generate
 ```
 
 Then in the app:
+
 ```js
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 ```
 
-Now we can add a get route to the app:
+That's all there is to Prisma initialization. You can now start querying your database.
+
+Let's add a get route:
 
 ```js
 fastify.get('/todos', async (request, reply) => {
