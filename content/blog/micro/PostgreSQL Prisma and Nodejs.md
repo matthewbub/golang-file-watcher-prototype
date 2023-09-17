@@ -560,3 +560,7 @@ and we can test the app with curl:
 ```shell
 curl http://localhost:3000/todos
 ```
+
+cool. We've got a working app with a database all running in Docker.
+
+Now let's take this to production. We're going to use Digital Ocean's App Platform to deploy our app.
