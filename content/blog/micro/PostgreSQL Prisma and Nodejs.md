@@ -508,12 +508,12 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql://prisma:prisma@db:5432/mydatabase
+      DATABASE_URL: postgresql://prisma:prisma@db:5432/tasks
   db:
     image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: tasks
 ```
