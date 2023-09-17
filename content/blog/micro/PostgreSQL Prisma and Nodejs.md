@@ -546,6 +546,7 @@ and then add a prestart script to our `package.json` file:
 then we can run the docker-compose file again:
 
 ```shell
-docker-compose down
-docker-compose up
+docker-compose stop
+docker-compose build --no-cache
+docker-compose up -d
 ```
