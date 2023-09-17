@@ -601,7 +601,7 @@ Now we're going to need to SSH into our droplet. We can do that by running the f
 ssh root@<your droplet ip address>
 ```
 
-The IP Address you're going to want is the IPv4 Public IP Address. You can find this in the Digital Ocean App Platform UI.
+For SSH access as the root user, you should use the public IPv4 address, which in your case is 167.71.120.50. This will allow you to connect to the Droplet from your local machine or any other machine with internet access.
 
 ## Where did the root user come from?
 
