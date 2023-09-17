@@ -63,4 +63,4 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - Add development scripts
 - Build TODO api with CRUD operations
 - Dockerize TODO api
-- Push to
+- Push to Docker Hub
