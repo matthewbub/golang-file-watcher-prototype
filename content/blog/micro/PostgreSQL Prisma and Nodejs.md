@@ -544,7 +544,7 @@ and then add a prestart script to our `package.json` file:
 
 ```json
 "prestart": "npx prisma migrate deploy && echo \"Prisma migration deployed\" && npx prisma generate && echo \"Prisma client generated\"",
-    "start": "npm run prestart && node dist/bundle.js",
+"start": "npm run prestart && node dist/bundle.js",
 ```
 
 then we can run the docker-compose file again:
