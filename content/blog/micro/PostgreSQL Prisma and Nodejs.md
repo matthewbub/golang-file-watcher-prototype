@@ -550,3 +550,9 @@ docker-compose stop
 docker-compose build --no-cache
 docker-compose up -d
 ```
+
+and we can test the app with curl:
+
+```shell
+curl http://localhost:3000/todos
+```
