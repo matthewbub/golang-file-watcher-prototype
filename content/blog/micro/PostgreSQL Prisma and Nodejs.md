@@ -595,26 +595,34 @@ Ensure that the key you've just created is selected to add and then, if satisfie
 
 Congratulations on setting up your DigitalOcean Droplet with a Docker Server! Now, let's move on to deploying your Dockerized application to the web. This guide will walk you through the essential steps to get your app up and running.
 
-Now we're going to need to SSH into our droplet. We can do that by running the following command in our terminal:
+Now we're going to need to SSH into our droplet. We can do that by installing the DigitalOcean CLI:
+
+<https://docs.digitalocean.com/reference/doctl/how-to/install/>
 
 ```shell
-ssh root@<your droplet ip address>
+brew install doctl
+```
+
+then we can login to our DigitalOcean account:
+
+```shell
+doctl auth init
+```
+
+then we can list our droplets:
+
+```shell
+doctl compute droplet list
+```
+
+then we can SSH into our droplet:
+
+```shell
+doctl compute ssh <droplet name>
 ```
 
 For SSH access as the root user, you should use the public IPv4 address, which in your case is 167.71.120.50. This will allow you to connect to the Droplet from your local machine or any other machine with internet access.
 
 ## Where did the root user come from?
 
-The "root" user is the default administrative user created when a new Linux system is set up, including Ubuntu systems like your DigitalOcean Droplet. This user has full administrative privileges, allowing you to install software, manage services, and perform other system-level tasks.
-
-When is the Root User Created?
-During Droplet Creation: When you create a new Droplet on DigitalOcean, the root user is automatically created as part of the operating system installation process.
-
-SSH Key or Password: During the Droplet setup, you have the option to associate an SSH key with the root user for secure access. Alternatively, you can use password-based authentication, where DigitalOcean will email you a temporary root password.
-
-Important Considerations
-Security: It's generally recommended to create a non-root user with sudo privileges for day-to-day tasks to minimize security risks.
-
-SSH Access: If you've set up SSH keys during the Droplet creation process, you'll use those keys to SSH into the Droplet as the root user.
-
-By default, you'll often start with the root user, but for better security, you should consider creating additional users for application deployment and other non-administrative tasks.
+The "root" user is automatically created with full administrative rights when you set up a new Linux system, including a DigitalOcean Droplet. During setup, you can choose to use either an SSH key or a temporary password for secure root access. While the root user has extensive privileges, it's advisable to create a non-root user with sudo rights for everyday tasks to enhance security. If you've configured SSH keys, you'll use them for root access. For better security, consider adding non-root users for specific tasks.
