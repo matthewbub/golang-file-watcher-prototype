@@ -1,0 +1,22 @@
+# Start here
+
+What's the Entrepreneur App?
+
+The Entrepreneur App is an enterprise-grade application that provides an array of tools for entrepreneurs to use to manage their business. As the solo-engineer on this project, you'll be responsible for building the entire application from scratch. You're going to need to fill a lot of roles, by the time you're done you'll feel like a full-stack developer.
+
+Range of Skills you'll learn:
+
+- Version Control
+- Project Management
+- Frontend Development
+- Backend Development
+- DevOps
+- Web Security
+
+Tech we'll use:
+
+- Fastify
+- React
+- Tailwind
+- Typescript
+-
