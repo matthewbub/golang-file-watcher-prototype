@@ -12,11 +12,11 @@ Range of Skills you'll learn:
 - Backend Development
 - DevOps
 - Web Security
+- Quality Assurance
 
-Tech we'll use:
+Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk you through it.
 
-- Fastify
+## Frontend
+
 - React
-- Tailwind
-- Typescript
--
+- Rollup
