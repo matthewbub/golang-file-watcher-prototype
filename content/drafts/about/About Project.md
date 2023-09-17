@@ -6,6 +6,14 @@
 
 ## Style Guide
 
+### Plain Language
+
+- Use simple, concise language.
+- Avoid jargon and technical terms.
+- Avoid passive voice; use active voice instead.
+- Simplify your writing by eliminating unnecessary words, punctuation, capitalization, bolding, italics, lists, headings, images, code blocks, and links.
+- Headings use the Chicago Manual of Style.
+
 ### Code Blocks and Inline Code
 
 - All inline code should be wrapped in backticks.
