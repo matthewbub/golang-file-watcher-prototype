@@ -466,3 +466,21 @@ docker run -p 3000:3000 task-app
 and we can test the app with curl:
 
 ```shell
+curl http://localhost:3000/todos
+```
+
+That was weird, nothing happened. Turns out, docker is only listening from inside itself.
+
+To make your application accessible from outside the Docker container, you should have your Node.js application listen to `0.0.0.0` instead of `localhost` or `127.0.0.1`.
+
+The `0.0.0.0` IP address means "all IPv4 addresses on the local machine". So, if a server is set to listen on `0.0.0.0`, it will be reachable at all network interfaces (including the Docker network interface).
+
+We need to slightly modify the fastify entry point in our `server.js` file:
+
+```js
+const port = process.env.PORT || 3000
+fastify.listen({port, host: '0.0.0.0'}, (err, address) => {
+  if (err) throw err
+  console.log(`Server is now listening on ${address}`)
+})
+```
