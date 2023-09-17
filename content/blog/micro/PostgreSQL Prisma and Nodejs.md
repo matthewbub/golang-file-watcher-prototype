@@ -618,3 +618,17 @@ doctl auth init --context <context name>
 ```
 
 The context name can be anything you choose. Keep in mind that you may have multiple contexts in the future, so choose something that will help you remember what this context is for.
+
+The docs tell us to test and validate this is a successful connection by running the following command:
+
+```shell
+doctl account get
+```
+
+If you see your account information, we know we've successfully authenticated our CLI. Now we can SSH into our droplet so we can run some commands on it.
+
+```shell
+ssh root@<droplet ip address>
+```
+
+You'll get a message "The authenticity of host '...' can't be established. Are you sure you want to continue connecting (yes/no/[fingerprint])?". Type `yes` and press Enter. To which you can respond yes.
