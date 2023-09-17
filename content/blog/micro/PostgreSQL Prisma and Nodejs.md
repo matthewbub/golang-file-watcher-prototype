@@ -309,3 +309,69 @@ fastify.get('/todos/:id', async (request, reply) => {
 ```
 
 
+here's the put route:
+
+```js
+fastify.put('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+  const { task, completed } = request.body;
+
+  const { error: reqBodyError } = incomingUpdatedTodoSchema.validate({ task, completed });
+  const { error: reqParamsError } = incomingTodoQuerySchema.validate({ id });
+
+  if (reqBodyError || reqParamsError) {
+    reply.status(500).send({ error: reqBodyError.message || reqParamsError.message });
+    return;
+  }
+
+  const todo = await prisma.tasks.update({
+    where: {
+      id: parseInt(id)
+    },
+    data: {
+      task,
+      completed
+    }
+  });
+
+  const { error: validationError } = todoSchema.validate(todo);
+
+  if (validationError) {
+    reply.status(500).send({ error: validationError.message });
+    return;
+  }
+
+  reply.send({ data: todo })
+})
+```
+
+and finally the delete route:
+
+```js
+fastify.delete('/todos/:id', async (request, reply) => {
+  const { id } = request.params;
+
+  const { error: reqParamsError } = incomingTodoQuerySchema.validate({ id });
+
+  if (reqParamsError) {
+    reply.status(500).send({ error: reqParamsError.message });
+    return;
+  }
+
+  const todo = await prisma.tasks.delete({
+    where: {
+      id: parseInt(id)
+    }
+  })
+
+  const { error: validationError } = todoSchema.validate(todo);
+
+  if (validationError) {
+    reply.status(500).send({ error: validationError.message });
+    return;
+  }
+
+  reply.send({ data: todo })
+})
+```
+
