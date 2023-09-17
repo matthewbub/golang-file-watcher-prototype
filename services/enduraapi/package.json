@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "universal and multi-purpose api",
   "scripts": {
-    "prestart": "npx prisma migrate dev && echo \"prisma migration done\" && npx prisma generate && echo \"prisma generate done\"",
+    "prestart": "npx prisma migrate deploy && echo \"Prisma migration deployed\" && npx prisma generate && echo \"Prisma client generated\"",
     "build": "rollup -c",
     "start": "npm run prestart && node dist/bundle.js",
     "dev": "concurrently \"npm run dev:compile\" \"npm run dev:server\"",
