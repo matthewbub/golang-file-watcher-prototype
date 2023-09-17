@@ -572,3 +572,5 @@ We're looking to **Deploy a Container Based App** so click on that.
 Next you might wonder if you're going to want to deploy a Docker Server or a Kubernetes Cluster, we're going to deploy a Docker Server.
 
 Next, we need to configure the Docker Server we're going to deploy. We'll need to give it a name, and we'll need to select the region we want to deploy to. I'm going to select San Francisco 2 but you can select whichever region you prefer.
+
+We can choose the cheapest Droplet size, the $6/mo option will work just fine for this demonstration.
