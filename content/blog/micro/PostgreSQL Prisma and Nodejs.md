@@ -393,9 +393,13 @@ fastify.delete('/todos/:id', async (request, reply) => {
 
 cool, that's a full CRUD API with validation.  Next let's add some error handling to our app.  We'll start by adding a generic error handler to the bottom of our server.js file:
 
-lets get this bad boy building with docker.
+lets get this bad boy building with docker. First, let's stop the development server if it's running.
 
-Create a `dockerfile`:
+```shell
+cmd + c
+``
+
+then we can create a `dockerfile`:
 
 ```dockerfile
 # Use the specific version of Node.js.
@@ -424,4 +428,22 @@ CMD [ "pnpm", "run", "start" ]
 
 # If your app runs on a specific port, for example 3000, expose that port
 EXPOSE 3000
+```
+
+then we can build the image:
+
+```shell
+docker build -t fastify-app .
+```
+
+and run the image:
+
+```shell
+docker run -p 3000:3000 fastify-app
+```
+
+and we can test the app with curl:
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"task":"Learn Prisma"}' http://localhost:3000/todos
 ```
