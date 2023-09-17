@@ -581,4 +581,4 @@ We're going to use SSH  keys for Authentication. Open your terminal and run the 
 ssh-keygen
 ```
 
-You'll be prompted to enter a file in which to save the key. Press Enter to accept the default location. You'll then be prompted to enter a passphrase. You _could_ leave this blank but don't you do it damn it. Enter a passphrase and press Enter. You'll be prompted to confirm the passphrase. Enter it again and press Enter.
+You'll be prompted to enter a file in which to save the key. Press Enter to accept the default location. You'll then be prompted to enter a passphrase. You _could_ leave this blank but don't you do it damn it. Enter a passphrase and press Enter. You'll be prompted to confirm the passphrase. Enter it again and press Enter. Also, don't forget your passphrase. You'll need it later.
