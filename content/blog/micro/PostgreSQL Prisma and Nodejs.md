@@ -517,3 +517,28 @@ services:
       POSTGRES_PASSWORD: prisma
       POSTGRES_DB: mydatabase
 ```
+
+then we can run the docker-compose file:
+
+```shell
+docker-compose up
+```
+
+and we can test the app with curl:
+
+```shell
+curl http://localhost:3000/todos
+```
+
+but wouldn't ya know. The table doesn't exist yet. We'll need to run the prisma migrate command:
+
+```shell
+npx prisma migrate dev --name init
+```
+
+then we can run the docker-compose file again:
+
+```shell
+docker-compose down
+docker-compose up
+```
