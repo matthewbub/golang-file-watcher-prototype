@@ -16,9 +16,8 @@
 
 ### Code Blocks and Inline Code
 
-- All inline code should be wrapped in backticks.
-- All code blocks should be wrapped in triple backticks, with the language specified.
-- All code blocks should be formatted with Prettier.
-- All code blocks should be tested and verified to work.
-- All code blocks should be as concise as possible.
-- All code blocks should be as simple as possible.
+1. Use backticks to highlight inline code.
+2. Enclose code blocks with triple backticks and specify the programming language.
+3. Format code blocks with Prettier for consistency.
+4. Test and verify the functionality of your code blocks.
+5. Strive for simplicity and brevity in your code.
