@@ -484,3 +484,12 @@ fastify.listen({port, host: '0.0.0.0'}, (err, address) => {
   console.log(`Server is now listening on ${address}`)
 })
 ```
+
+then we can build and run the image again:
+
+```shell
+docker ls -a 
+docker stop <container id>
+docker build -t task-app .
+docker run -p 3000:3000 task-app
+```
