@@ -457,10 +457,9 @@ npx prisma generate
 and then we can build and run the image again:
 
 ```shell
+docker ls -a 
+docker stop <container id>
 docker build -t task-app .
-```
-
-```shell
 docker run -p 3000:3000 task-app
 ```
 
