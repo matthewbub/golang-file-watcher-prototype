@@ -552,7 +552,7 @@ then we can run the docker-compose file again:
 ```shell
 docker-compose stop
 docker-compose build --no-cache
-docker-compose up -d
+docker-compose up
 ```
 
 and we can test the app with curl:
