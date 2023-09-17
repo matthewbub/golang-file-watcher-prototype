@@ -13,6 +13,7 @@ Range of Skills you'll learn:
 - DevOps
 - Web Security
 - Quality Assurance
+- Technical Writing
 
 Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk you through it.
 
@@ -28,3 +29,7 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 
 - Storybook
 - NPM Registry
+
+### API Documentation
+
+-
