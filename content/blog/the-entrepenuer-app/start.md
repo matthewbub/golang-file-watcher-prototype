@@ -28,8 +28,8 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 ### Component library
 
 - Storybook
-- NPM Registry
+- Verdaccio (private npm registry)
 
 ### API Documentation
 
--
+- Docusaurus
