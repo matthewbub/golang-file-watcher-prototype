@@ -564,3 +564,11 @@ curl http://localhost:3000/todos
 cool. We've got a working app with a database all running in Docker.
 
 Now let's take this to production. We're going to use Digital Ocean's App Platform to deploy our app.
+
+First navigate to <https://cloud.digitalocean.com/> and sign in or create an account.
+
+We're looking to **Deploy a Container Based App** so click on that.
+
+Next you might wonder if you're going to want to deploy a Docker Server or a Kubernetes Cluster, we're going to deploy a Docker Server.
+
+Next, we need to configure the Docker Server we're going to deploy. We'll need to give it a name, and we'll need to select the region we want to deploy to. I'm going to select San Francisco 2 but you can select whichever region you prefer.
