@@ -603,26 +603,8 @@ Now we're going to need to SSH into our droplet. We can do that by installing th
 brew install doctl
 ```
 
-then we can login to our DigitalOcean account:
+While thats installing, we can create a API key for our droplet. To do this we'll need to make our way to the API section of the Digital Ocean UI. You can find it here:
 
-```shell
-doctl auth init
-```
+<https://cloud.digitalocean.com/account/api/tokens>
 
-then we can list our droplets:
-
-```shell
-doctl compute droplet list
-```
-
-then we can SSH into our droplet:
-
-```shell
-doctl compute ssh <droplet name>
-```
-
-For SSH access as the root user, you should use the public IPv4 address, which in your case is 167.71.120.50. This will allow you to connect to the Droplet from your local machine or any other machine with internet access.
-
-## Where did the root user come from?
-
-The "root" user is automatically created with full administrative rights when you set up a new Linux system, including a DigitalOcean Droplet. During setup, you can choose to use either an SSH key or a temporary password for secure root access. While the root user has extensive privileges, it's advisable to create a non-root user with sudo rights for everyday tasks to enhance security. If you've configured SSH keys, you'll use them for root access. For better security, consider adding non-root users for specific tasks.
+Click the **Generate New Token** button. Give your token a name and select the **Read** and **Write** option for **Droplets**. Then click the **Generate Token** button.
