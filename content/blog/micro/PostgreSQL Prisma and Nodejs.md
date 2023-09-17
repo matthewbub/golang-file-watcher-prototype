@@ -14,8 +14,8 @@ then we can modify our `package.json` file:
 ```json
 "scripts": {
   "dev": "concurrently \"npm run dev:compile\" \"npm run dev:server\"",
-  "dev:server": "nodemon ./dist/bundle.js",
-  "dev:compile": "rollup -c -w"
+  "dev:compile": "rollup -c -w",
+  "dev:server": "nodemon ./dist/bundle.js"
 },
 ```
 
