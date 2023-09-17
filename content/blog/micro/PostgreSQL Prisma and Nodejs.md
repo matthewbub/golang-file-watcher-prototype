@@ -493,3 +493,22 @@ docker stop <container id>
 docker build -t task-app .
 docker run -p 3000:3000 task-app
 ```
+
+This is great for local development, but we wouldn't necessarily want to use this in production.  We'll need to modify our `server.js` file again:
+
+```js
+const port = process.env.PORT || 3000
+fastify.listen({port, host: '0.0.0.0'}, (err, address) => {
+  if (err) throw err
+  console.log(`Server is now listening on ${address}`)
+})
+```
+
+then we can build and run the image again:
+
+```shell
+docker ls -a
+docker stop <container id>
+docker build -t task-app .
+docker run -p 3000:3000 -e HOST=localhost task-app
+```
