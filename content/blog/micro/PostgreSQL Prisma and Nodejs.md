@@ -442,8 +442,28 @@ and run the image:
 docker run -p 3000:3000 task-app
 ```
 
+Before Docker will play nice, we need to modify the `binaryTargets` array in our `priisma.schema` file:
+
+```prisma
+binaryTargets = ["native", "linux-arm64-openssl-1.1.x"]
+```
+
+then we can run the prisma generate command again:
+
+```shell
+npx prisma generate
+```
+
+and then we can build and run the image again:
+
+```shell
+docker build -t task-app .
+```
+
+```shell
+docker run -p 3000:3000 task-app
+```
+
 and we can test the app with curl:
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"task":"Learn Prisma"}' http://localhost:3000/todos
-```
