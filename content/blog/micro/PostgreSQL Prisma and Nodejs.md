@@ -433,13 +433,13 @@ EXPOSE 3000
 then we can build the image:
 
 ```shell
-docker build -t fastify-app .
+docker build -t task-app .
 ```
 
 and run the image:
 
 ```shell
-docker run -p 3000:3000 fastify-app
+docker run -p 3000:3000 task-app
 ```
 
 and we can test the app with curl:
