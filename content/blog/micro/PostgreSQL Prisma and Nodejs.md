@@ -495,3 +495,25 @@ docker run -p 3000:3000 task-app
 ```
 
 This is great but now we've got another problem. We can't connect to our database.
+
+We'll need to create a docker-compose file to get our database running in docker as well.
+
+```yaml
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@db:5432/mydatabase
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: mydatabase
+```
