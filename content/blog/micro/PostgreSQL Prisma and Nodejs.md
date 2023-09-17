@@ -397,7 +397,7 @@ lets get this bad boy building with docker. First, let's stop the development se
 
 ```shell
 cmd + c
-``
+```
 
 then we can create a `dockerfile`:
 
