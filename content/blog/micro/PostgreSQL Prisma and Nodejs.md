@@ -674,7 +674,15 @@ ssh root@<droplet ip address>
 and remove what we've already copied over:
 
 ```shell
-rm -rf /root/<app name>
+# locate the app directory you've just created
+ls
+
+# cd into it to confirm it's contents
+cd <app name>
+
+# back out and remove it
+cd ..
+rm -rf <app name>
 ```
 
 Now let's exit the droplet:
