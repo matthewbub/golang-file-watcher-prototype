@@ -704,9 +704,8 @@ scp myapp.tar.gz root@<ip address>:/root/
 
 SSH into your server and extract the tarball:
 
-```
+```shell
 ssh root@<ip address>
-cd /root/
 tar -xzvf myapp.tar.gz
 ```
 
