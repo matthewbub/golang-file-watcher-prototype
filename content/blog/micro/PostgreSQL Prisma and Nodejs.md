@@ -689,4 +689,4 @@ and try copying the files again:
 scp -r . root@<ip address>:/root/<app name>
 ```
 
-This will copy all the files in your current directory to the `/root/<app name>` directory on your droplet.
+This will copy all the files in your current directory to the `/root/<app name>` directory on your droplet, this time excluding the `node_modules` and `dist` directories.
