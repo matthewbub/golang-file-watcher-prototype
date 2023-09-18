@@ -33,6 +33,13 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - Verdaccio (private npm registry)
 - Docker
 
+### API SDK
+
+- A Node SDK for our API
+- A Shell SDK for Vue.js
+- A Shell SDK for React.js
+- A Shell SDK for Angular
+
 ### API Documentation
 
 - Docusaurus
