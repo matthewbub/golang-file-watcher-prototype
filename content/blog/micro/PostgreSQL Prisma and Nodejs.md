@@ -652,7 +652,38 @@ To exit the droplet, type `exit` and press Enter.
 
 Now we can deploy our app to the droplet.
 
-Ensure you're in the directory of your app, where the `Dockerfile` and `docker-compose.yml` files are located and run the following command:
+Ensure you're in the directory of your app, where the `Dockerfile` and `docker-compose.yml` files are located we're going to want to run the following command:
+
+```shell
+scp -r . root@<ip address>:/root/<app name>
+```
+
+Wait, whys that taking so long. (If the process is still running, you can `ctrl` + `c` to exit and cancel the build) We've unintentionally copied the `node_modules` directory and the `dist` directory. We don't need to do that. Let's add a `.dockerignore` file to our app directory and add the following to it:
+
+```shell
+node_modules
+dist
+```
+
+Now we need to SSH into our droplet again:
+
+```shell
+ssh root@<droplet ip address>
+```
+
+and remove what we've already copied over:
+
+```shell
+rm -rf /root/<app name>
+```
+
+Now let's exit the droplet:
+
+```shell
+exit
+```
+
+and try copying the files again:
 
 ```shell
 scp -r . root@<ip address>:/root/<app name>
