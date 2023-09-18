@@ -658,7 +658,9 @@ Ensure you're in the directory of your app, where the `Dockerfile` and `docker-c
 scp -r . root@<ip address>:/root/<app name>
 ```
 
-Wait, whys that taking so long. (If the process is still running, you can `ctrl` + `c` to exit and cancel the build) We've unintentionally copied the `node_modules` directory and the `dist` directory. We don't need to do that. Let's add a `.dockerignore` file to our app directory and add the following to it:
+Wait, whys that taking so long. (If the process is still running, you can `ctrl` + `c` to exit and cancel the build) We've unintentionally copied the `node_modules` directory and the `dist` directory. We don't need to do that.
+
+Let's take a few steps to ensure that doesn't happen again. First Add a `.dockerignore` file to our app directory and add the following to it:
 
 ```shell
 node_modules
@@ -694,7 +696,18 @@ exit
 and try copying the files again:
 
 ```shell
-scp -r . root@<ip address>:/root/<app name>
+tar -czvf <app name>.tar.gz --exclude=node_modules --exclude=dist .
+
+
+scp myapp.tar.gz root@<ip address>:/root/
+```
+
+SSH into your server and extract the tarball:
+
+```
+ssh root@<ip address>
+cd /root/
+tar -xzvf myapp.tar.gz
 ```
 
 This will copy all the files in your current directory to the `/root/<app name>` directory on your droplet, this time excluding the `node_modules` and `dist` directories.
