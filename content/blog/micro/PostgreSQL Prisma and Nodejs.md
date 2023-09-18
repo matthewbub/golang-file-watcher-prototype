@@ -597,6 +597,17 @@ Ensure that the key you've just created is selected to add and then, if satisfie
 
 Congratulations on setting up your DigitalOcean Droplet with a Docker Server! Now, let's move on to deploying your Dockerized application to the web. This guide will walk you through the essential steps to get your app up and running.
 
+----
+The first attempt failed. Heres with a better understaning
+
+- From your cloud.digitalocean.com dashboard, select a project and click the **Create** button in the top right corner. Then, select **Droplets** from the dropdown menu.
+- Choose the region that is closest to you.
+- Select the **Docker** image from the **Choose an image** section. Its under the OS Marketplace tab and may require a search.
+- Choose size: Basic
+- CPU Options: Regular SSD, then select the cheapest plan available. This can always be scaled later.
+
+----
+
 Now we're going to need to SSH into our droplet. We can do that by installing the DigitalOcean CLI:
 
 <https://docs.digitalocean.com/reference/doctl/how-to/install/>
