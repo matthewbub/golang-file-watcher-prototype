@@ -732,3 +732,5 @@ and we can test the app with curl:
 ```shell
 curl http://localhost:3000/todos
 ```
+
+Cool. This concludes that we've successfully deployed our app to a Digital Ocean Droplet. But we're not done yet.
