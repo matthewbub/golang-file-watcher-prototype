@@ -720,3 +720,15 @@ snap install docker
 
 apt install docker-compose 
 ```
+
+Then we can build our app
+
+```shell
+docker-compose up -d
+```
+
+and we can test the app with curl:
+
+```shell
+curl http://localhost:3000/todos
+```
