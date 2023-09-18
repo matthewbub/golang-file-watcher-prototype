@@ -710,3 +710,13 @@ tar -xzvf myapp.tar.gz
 ```
 
 This will copy all the files in your current directory to the `/root/<app name>` directory on your droplet, this time excluding the `node_modules` and `dist` directories.
+
+Once inside the project directory on the VM, we'll need to install a few dependencies
+
+```shell
+cd <app name>
+
+snap install docker
+
+apt install docker-compose 
+```
