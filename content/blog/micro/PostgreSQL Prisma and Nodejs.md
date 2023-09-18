@@ -649,3 +649,13 @@ You'll get a message "The authenticity of host '...' can't be established. Are y
 If that worked, you should see a message that says "Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-88-generic x86_64)". You may also notice your now logged in as `root@<droplet ip address>` and are no longer working directly in your local terminal.
 
 To exit the droplet, type `exit` and press Enter.
+
+Now we can deploy our app to the droplet.
+
+Ensure you're in the directory of your app, where the `Dockerfile` and `docker-compose.yml` files are located and run the following command:
+
+```shell
+scp -r . root@<ip address>:/root/<app name>
+```
+
+This will copy all the files in your current directory to the `/root/<app name>` directory on your droplet.
