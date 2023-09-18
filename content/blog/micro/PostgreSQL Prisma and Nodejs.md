@@ -665,13 +665,13 @@ node_modules
 dist
 ```
 
-Now we need to SSH into our droplet again:
+Really this is a perfect opportunity to get familiar with your virtual machine (VM). Now we need to SSH into our droplet again:
 
 ```shell
 ssh root@<droplet ip address>
 ```
 
-and remove what we've already copied over:
+and remove what we've already copied over. This is essentially the same process as deleting a directory in your local terminal.
 
 ```shell
 # locate the app directory you've just created
