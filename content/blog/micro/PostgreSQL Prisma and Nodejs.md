@@ -647,3 +647,5 @@ ssh root@<droplet ip address>
 You'll get a message "The authenticity of host '...' can't be established. Are you sure you want to continue connecting (yes/no/[fingerprint])?". Type `yes` and press Enter. To which you can respond yes.
 
 If that worked, you should see a message that says "Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-88-generic x86_64)". You may also notice your now logged in as `root@<droplet ip address>` and are no longer working directly in your local terminal.
+
+To exit the droplet, type `exit` and press Enter.
