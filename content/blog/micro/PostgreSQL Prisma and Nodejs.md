@@ -589,6 +589,8 @@ Next we need to extract the public key from the private key we just generated. R
 cat ~/.ssh/id_rsa.pub
 ```
 
+<https://docs.digitalocean.com/products/droplets/how-to/add-ssh-keys/>
+
 Copy the output of this command and paste it into the SSH Key field in the Digital Ocean App Platform UI.
 
 Ensure that the key you've just created is selected to add and then, if satisfied with the configuration, click the **Create** button.
