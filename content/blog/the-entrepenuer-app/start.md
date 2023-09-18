@@ -1,5 +1,9 @@
 # Start here
 
+## What makes us different?
+
+We're providing long-form tutorials that are designed to be followed along with. We continuously build on a single project to simulate the ongoing efforts of a real-world project in an enterprise grade application. To be successful requires an adequate amount of competency in the basics of web development and a willingness to dabble in the full lifecycle of a project.
+
 What's the Entrepreneur App?
 
 The Entrepreneur App is an enterprise-grade application that provides an array of tools for entrepreneurs to use to manage their business. As the solo-engineer on this project, you'll be responsible for building the entire application from scratch. There will be no bootstrapping if an open-source or proprietary solution can be provided. Sometimes there might be shit that you aren't looking to do yourself, theres loads of reasons. We'll also learn how to document code so should you ever need to outsource part of the project, contributors can pick up where you left off.
@@ -71,3 +75,8 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - Build TODO api with CRUD operations
 - Dockerize TODO api
 - Push to Docker Hub
+
+- Build React app with rollup, tailwindcss, typescript, jest
+- Deploy React app to Digital Ocean
+- Build Nodejs SDK for TODO api publish to Verdaccio
+-
