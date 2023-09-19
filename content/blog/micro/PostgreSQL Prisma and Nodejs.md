@@ -726,6 +726,7 @@ Then we can build our app
 ```shell
 docker build -t your_image_name .
 docker run -d -p 3000:3000 your_image_name
+docker-compose up -d
 ```
 
 and we can test the app with curl:
