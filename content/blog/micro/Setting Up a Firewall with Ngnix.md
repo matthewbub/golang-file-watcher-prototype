@@ -20,3 +20,29 @@ sudo apt install ufw
 ## Step 2: Enable Basic Firewall Rules
 
 Allow SSH connections to manage your server remotely.
+
+```bash
+sudo ufw allow ssh
+```
+
+Enable UFW.
+
+```bash
+sudo ufw enable
+```
+
+## Step 3: Allow Nginx Through the Firewall
+
+To allow Nginx to receive incoming web traffic, you need to configure UFW to allow it.
+
+```bash
+sudo ufw allow 'Nginx Full'
+```
+
+## Step 4: Verify Firewall Rules
+
+Check the status of UFW to ensure the rules are correctly set.
+
+```bash
+sudo ufw status
+```
