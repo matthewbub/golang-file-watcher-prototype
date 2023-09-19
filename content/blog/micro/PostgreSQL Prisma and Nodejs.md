@@ -735,4 +735,4 @@ curl http://localhost:3000/todos
 
 At this point we should be able to execute all of the CRUD operations we've created in our app.
 
-Cool. This concludes that we've successfully deployed our app to a Digital Ocean Droplet. But we're not done yet.
+Cool. This concludes that we've successfully deployed our app to a Digital Ocean Droplet. Now we should be able to visit our app in the browser at the IP address of our droplet. ie: <http://<ip address>:3000/todos>
