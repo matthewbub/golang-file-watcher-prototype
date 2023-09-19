@@ -66,3 +66,17 @@ sudo ln -s /etc/nginx/sites-available/my_app /etc/nginx/sites-enabled/
 ## Step 6: Test and Reload Nginx
 
 Test the Nginx configuration for syntax errors.
+
+```bash
+sudo nginx -t
+```
+
+If the test is successful, reload Nginx to apply the changes.
+
+```bash
+sudo systemctl reload nginx
+```
+
+## Step 7. Verify Setup
+
+Once DNS propagation is complete, navigate to your domain in a web browser. You should see your app running.
