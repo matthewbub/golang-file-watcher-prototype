@@ -62,3 +62,7 @@ Create a symbolic link to enable the configuration.
 ```shell
 sudo ln -s /etc/nginx/sites-available/my_app /etc/nginx/sites-enabled/
 ```
+
+## Step 6: Test and Reload Nginx
+
+Test the Nginx configuration for syntax errors.
