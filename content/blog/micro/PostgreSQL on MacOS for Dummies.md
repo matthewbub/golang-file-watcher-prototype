@@ -69,7 +69,7 @@ Restart the PostgreSQL service:
 brew services restart postgresql
 ```
 
-- **When should I restart PostgreSQL?** You should restart PostgreSQL when you've made changes to the configuration file or when you've installed a new version of PostgreSQL. 
+- **When should I restart PostgreSQL?** You should restart PostgreSQL when you've made changes to the configuration file or when you've installed a new version of PostgreSQL.
 
 ### Uninstall PostgreSQL
 
@@ -79,12 +79,10 @@ Uninstall PostgreSQL:
 brew uninstall postgresql
 ```
 
-- **When should I uninstall PostgreSQL?** You should uninstall PostgreSQL when you no longer need it. 
-- **Would this help if I can't remember my password?** No, this would not help if you can't remember your password. Uninstalling PostgreSQL via Homebrew will not remove your data. If you can't remember your password, you can reset it by following the instructions in the next section. Alternatively, if you'd like to completely remove PostgreSQL and all of its data, you can follow the instructions in the this article: https://blog.testdouble.com/posts/2021-01-28-how-to-completely-uninstall-homebrew-postgres  
+- **When should I uninstall PostgreSQL?** You should uninstall PostgreSQL when you no longer need it.
+- **Would this help if I can't remember my password?** No, this would not help if you can't remember your password. Uninstalling PostgreSQL via Homebrew will not remove your data. If you can't remember your password, you can reset it by following the instructions in the next section. Alternatively, if you'd like to completely remove PostgreSQL and all of its data, you can follow the instructions in the this article: <https://blog.testdouble.com/posts/2021-01-28-how-to-completely-uninstall-homebrew-postgres>  
 
-
-
-## Create a New Database 
+## Create a New Database
 
 Create a new database with the same name as your username, which is the default database that PostgreSQL will connect to if you don't specify a database name:
 
@@ -136,8 +134,6 @@ The `createdb` command is used to create a new PostgreSQL database, while the `c
 
 These commands can be run in the shell and not within the `psql` command-line interface. They provide a convenient way to perform these actions without having to connect to the `psql` command-line interface.
 
-
-
 ## Working with PostgreSQL via Command Line
 
 ### Connect to PostgreSQL
@@ -157,10 +153,8 @@ Type "help" for help.
 username=#
 ```
 
-
 - **What is `psql`?** psql is a command-line interface for PostgreSQL. It allows you to connect to a PostgreSQL database and run SQL queries.
 - **How do I exit `psql`?** You can exit psql by typing `\q` and hitting enter.
-
 
 ### List Databases
 
@@ -169,8 +163,3 @@ First, lets list all the databases:
 ```shell
 \l
 ```
-
-
-
-### Create a New Database
-...
