@@ -65,3 +65,20 @@ For added security, you can also deny all incoming traffic and then only allow s
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 ```
+
+Then, explicitly allow the services you need, like SSH and Nginx.
+
+```bash
+sudo ufw allow ssh
+sudo ufw allow 'Nginx Full'
+```
+
+## Step 7: Reload Firewall
+
+Whenever you make changes to the firewall rules, reload UFW to apply them.
+
+```bash
+sudo ufw reload
+```
+
+By following these steps, you'll set up a basic firewall using UFW on your Ubuntu server. This will help secure both your server and the Nginx web server, ensuring that only authorized traffic can access your services.
