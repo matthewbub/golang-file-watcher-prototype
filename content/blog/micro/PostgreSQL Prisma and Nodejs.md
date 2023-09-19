@@ -724,7 +724,8 @@ apt install docker-compose
 Then we can build our app
 
 ```shell
-docker-compose up -d
+docker build -t your_image_name .
+docker run -d -p 3000:3000 your_image_name
 ```
 
 and we can test the app with curl:
