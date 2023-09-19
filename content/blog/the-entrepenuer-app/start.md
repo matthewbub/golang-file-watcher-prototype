@@ -67,6 +67,8 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - Digital Ocean
 - Docker
 - Kubernetes
+- Nginx
+-
 
 ## Roadmap
 
@@ -85,6 +87,8 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 
 ## Create a story
 
+- Plugin Based SDK
+-
 - Why would we need a user-location based service?
 - Why would we need a plugin based SaaS product?
 - Why would we need a mobile app?
