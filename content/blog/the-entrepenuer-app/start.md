@@ -82,3 +82,10 @@ Tech we'll use. Some of this may seem overwhelming, but don't worry, we'll walk 
 - Deploy React app to Digital Ocean
 - Build Nodejs SDK for TODO api publish to Verdaccio
 -
+
+## Create a story
+
+- Why would we need a user-location based service?
+- Why would we need a plugin based SaaS product?
+- Why would we need a mobile app?
+- Why would we need a CLI?
