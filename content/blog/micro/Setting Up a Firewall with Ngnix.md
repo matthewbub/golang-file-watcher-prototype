@@ -9,3 +9,14 @@ SSH into your Digital Ocean Droplet.
 ```bash
 ssh username@<Your Droplet's IP Address>
 ```
+
+Update your package list and install UFW.
+
+```bash
+sudo apt update
+sudo apt install ufw
+```
+
+## Step 2: Enable Basic Firewall Rules
+
+Allow SSH connections to manage your server remotely.
