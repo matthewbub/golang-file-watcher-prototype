@@ -54,3 +54,11 @@ server {
 - `listen 80;`: Listens on port 80 for incoming HTTP requests.
 - `server_name`: Replace with your domain name.
 - `proxy_pass`: Directs traffic to your app running on port 3000.
+
+## Step 5: Enable Configuration
+
+Create a symbolic link to enable the configuration.
+
+```shell
+sudo ln -s /etc/nginx/sites-available/my_app /etc/nginx/sites-enabled/
+```
