@@ -46,3 +46,22 @@ Check the status of UFW to ensure the rules are correctly set.
 ```bash
 sudo ufw status
 ```
+
+You should see that Nginx is allowed.
+
+## Step 5: Test Nginx
+
+After setting up the firewall, make sure Nginx is still functioning correctly.
+
+Navigate to your domain or IP address in a web browser.
+
+You should see your application running, confirming that Nginx is allowed through the firewall.
+
+## Step 6: Additional Security Measures
+
+For added security, you can also deny all incoming traffic and then only allow specific services.
+
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
