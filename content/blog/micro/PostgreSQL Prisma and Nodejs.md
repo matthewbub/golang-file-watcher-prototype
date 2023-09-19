@@ -737,6 +737,8 @@ At this point we should be able to execute all of the CRUD operations we've crea
 
 Cool. This concludes that we've successfully deployed our app to a Digital Ocean Droplet. Now we should be able to visit our app in the browser at the IP address of our droplet. ie: <http://<ip address>:3000/>
 
+Let's connect this to a Domain.
+
 ## Refactoring
 
 Now we'll take a look at our repo and make some changes to the structure, were going to make a mono repo! If you'd like, you can use the `git mv` command, alternatively you can just move the files in your file explorer using the tarball command we used earlier.
