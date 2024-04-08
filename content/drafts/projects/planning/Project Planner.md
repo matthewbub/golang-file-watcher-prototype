@@ -1,2 +1,0 @@
-**Building a Custom Calendar with React & Abstract API | Step-by-step Guide** 
-Learn how to build a custom calendar using React.js and the Abstract API for IP geolocation services and holiday-specific information that can be used to provide users with a custom experience.

@@ -1,10 +1,9 @@
-# You can, too!
+# Angus
 
-Hello and welcome to the root directory of UCAN. This repository consists of several micro services all of which are proprietary to NineMbs Studio LLC. 
+A prototype watching mechanism that runs background tasks
 
-> Just go bird by bird. - Anne Lamott
+## Use
 
-## Services
-- [Angus](./services/angus/readme.md) - CLI Based Auto Commit Tool & Markdown Parser
-- [Endura API](./services/enduraapi/readme.md) - Bulk api services for small business and personal use
+1. Clone this repo, and execute `go run main.go` 
+2. Change the `content/test` file and modify the file
 
