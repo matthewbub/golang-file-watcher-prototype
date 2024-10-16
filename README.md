@@ -1,4 +1,4 @@
-# Angus
+# Dir watcher prototype
 
 A prototype watching mechanism that runs background tasks
 
